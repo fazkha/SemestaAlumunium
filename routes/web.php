@@ -48,21 +48,21 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return response()->file(public_path('html/index.html'));
-});
-
-Route::get('/mm', function () {
-    return response()->file(public_path('html/mm/index.html'));
-});
-
-Route::get('/ty', function () {
-    return response()->file(public_path('html/ty/index.html'));
-});
-
 // Route::get('/', function () {
-//     return view('landing');
+//     return response()->file(public_path('html/index.html'));
 // });
+
+// Route::get('/mm', function () {
+//     return response()->file(public_path('html/mm/index.html'));
+// });
+
+// Route::get('/ty', function () {
+//     return response()->file(public_path('html/ty/index.html'));
+// });
+
+Route::get('/', function () {
+    return view('landing');
+});
 
 Route::get('locale/{lang}', [LocaleController::class, 'setLocale']);
 
