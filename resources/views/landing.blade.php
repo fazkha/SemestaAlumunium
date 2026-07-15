@@ -915,26 +915,29 @@
                         <x-application-logo style="width: 5rem; height: auto;" />
                     </div>
                     @if (Route::has('login'))
-                        <nav class="flex flex-1 justify-end gap-2">
-                            @auth
-                                <a href="{{ url('/admin/dashboard') }}"
-                                    class="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-white/70 focus:outline-none focus-visible:ring-[#FF2D20]">
-                                    Dashboard
-                                </a>
-                            @else
-                                <a href="{{ route('login') }}"
-                                    class="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-white/70 focus:outline-none focus-visible:ring-[#FF2D20]">
-                                    Login
-                                </a>
-
-                                @if (Route::has('register'))
-                                    <a href="{{ route('register') }}"
+                        <div class="flex justify-end">
+                            <nav class="flex gap-4 rounded-lg"
+                                style="background: rgba(0, 0, 0, 0.4); padding: 10px 20px;">
+                                @auth
+                                    <a href="{{ url('/admin/dashboard') }}"
                                         class="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-white/70 focus:outline-none focus-visible:ring-[#FF2D20]">
-                                        Register
+                                        Dashboard
                                     </a>
-                                @endif
-                            @endauth
-                        </nav>
+                                @else
+                                    <a href="{{ route('login') }}"
+                                        class="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-white/70 focus:outline-none focus-visible:ring-[#FF2D20]">
+                                        Login
+                                    </a>
+
+                                    @if (Route::has('register'))
+                                        <a href="{{ route('register') }}"
+                                            class="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-white/70 focus:outline-none focus-visible:ring-[#FF2D20]">
+                                            Register
+                                        </a>
+                                    @endif
+                                @endauth
+                            </nav>
+                        </div>
                     @endif
                 </header>
 
@@ -942,10 +945,13 @@
                 </main>
             </div>
 
-            <footer style="margin-bottom: 12px;" class="text-left text-sm text-white">
-                <div style="margin-left: 20px;">&copy; 2026 {{ config('custom.company_name') }}.<br />All
-                    rights reserved.</div>
-                {{-- <div>Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})</div> --}}
+            <footer class="absolute left-0 inline-block text-left text-sm text-white"
+                style="bottom:-50px; padding-right:20px;">
+                <div class="inline-block rounded-lg"
+                    style="margin-left:20px; padding:20px; background:rgba(0,0,0,0.4);">
+                    &copy; 2026 {{ config('custom.company_name') }}.<br>
+                    All rights reserved.
+                </div>
             </footer>
         </div>
     </div>
