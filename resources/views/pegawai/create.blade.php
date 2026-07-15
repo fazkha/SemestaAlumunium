@@ -1,7 +1,7 @@
 @section('title', __('messages.employee'))
 
 <x-app-layout>
-    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6 dark:border-primary-800">
+    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6">
         <h1 class="text-xl flex items-center justify-center">
             <a href="{{ route('employee.index') }}" class="flex items-center justify-center">
                 <svg fill="currentColor" class="size-7" viewBox="0 0 32 32" version="1.1"
@@ -33,7 +33,7 @@
                     </div>
 
                     <div
-                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
                         <div class="p-4 space-y-2">
 
                             <div class="flex flex-col lg:flex-row">
@@ -41,7 +41,7 @@
 
                                     <div class="w-auto pb-4">
                                         <label for="nik"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.nik')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.nik')</label>
                                         <x-text-input type="text" name="nik" id="nik" tabindex="1"
                                             autofocus required
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.nik') }}"
@@ -52,7 +52,7 @@
 
                                     <div class="w-auto pb-4">
                                         <label for="nama_lengkap"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.fullname')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.fullname')</label>
                                         <x-text-input type="text" name="nama_lengkap" id="nama_lengkap"
                                             tabindex="2" required
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.fullname') }}"
@@ -63,7 +63,7 @@
 
                                     <div class="w-auto pb-4">
                                         <label for="nama_panggilan"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.shortname')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.shortname')</label>
                                         <x-text-input type="text" name="nama_panggilan" id="nama_panggilan"
                                             tabindex="3"
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.shortname') }}"
@@ -74,7 +74,7 @@
 
                                     <div class="w-auto pb-4">
                                         <label for="tempat_lahir"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.birthplace')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.birthplace')</label>
                                         <x-text-input type="text" name="tempat_lahir" id="tempat_lahir"
                                             tabindex="4"
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.birthplace') }}"
@@ -85,7 +85,7 @@
 
                                     <div class="w-auto pb-4">
                                         <label for="tanggal_lahir"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.birthdate')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.birthdate')</label>
                                         <x-text-input type="date" name="tanggal_lahir" id="tanggal_lahir"
                                             data-date-format="dd-mm-yyyy" tabindex="5" value="{{ date('Y-m-d') }}" />
 
@@ -94,7 +94,7 @@
 
                                     <div class="w-auto pb-4">
                                         <label for="alamat_asal"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.originaddress')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.originaddress')</label>
                                         <x-text-input type="text" name="alamat_asal" id="alamat_asal" tabindex="6"
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.originaddress') }}"
                                             value="{{ old('alamat_asal') }}" />
@@ -106,7 +106,7 @@
                                 <div class="w-full lg:w-1/2 px-2 flex flex-col justify-start">
                                     <div class="w-auto pb-4">
                                         <label for="nip"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.nip')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.nip')</label>
                                         <x-text-input type="text" name="nip" id="nip" tabindex="7"
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.nip') }}"
                                             value="{{ old('nip') }}" />
@@ -116,7 +116,7 @@
 
                                     <div class="w-auto pb-4">
                                         <label for="alamat_tinggal"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.residentialaddress')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.residentialaddress')</label>
                                         <x-text-input type="text" name="alamat_tinggal" id="alamat_tinggal"
                                             tabindex="8" required
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.residentialaddress') }}"
@@ -127,7 +127,7 @@
 
                                     <div class="w-auto pb-4">
                                         <label for="telpon"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.phonenumber')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.phonenumber')</label>
                                         <x-text-input type="text" name="telpon" id="telpon" tabindex="9"
                                             required
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.phonenumber') }}"
@@ -138,7 +138,7 @@
 
                                     <div class="w-auto pb-4">
                                         <span
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.gender')</span>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.gender')</span>
                                         <x-text-span>
                                             <div class="flex flex-row gap-6">
                                                 <label class="relative flex items-center cursor-pointer">
@@ -165,7 +165,7 @@
 
                                     <div class="w-auto pb-4">
                                         <label for="email"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.emailaddress')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.emailaddress')</label>
                                         <x-text-input type="text" name="email" id="email" tabindex="10"
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.description') }}"
                                             value="{{ old('email') }}" />
@@ -175,7 +175,7 @@
 
                                     <div class="w-auto pb-4 lg:pb-12">
                                         <label for="keterangan"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.description')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.description')</label>
                                         <x-text-input type="text" name="keterangan" id="keterangan"
                                             tabindex="11"
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.description') }}"
@@ -190,7 +190,7 @@
                                 <div class="w-auto">
                                     <label class="cursor-pointer flex flex-col items-center md:flex-row md:gap-2">
                                         <input type="checkbox" id="isactive" name="isactive" tabindex="12"
-                                            class="dark:border-white-400/20 dark:scale-100 transition-all duration-500 ease-in-out dark:hover:scale-110 dark:checked:scale-100 w-7 h-7 rounded-lg shadow-md"
+                                            class="dark:border-white-400/20 transition-all duration-500 ease-in-out w-7 h-7 rounded-lg shadow-md"
                                             checked>
                                         <span
                                             class="pr-4 group-hover:text-blue-500 transition-colors duration-300 text-right w-1/2 md:w-full">

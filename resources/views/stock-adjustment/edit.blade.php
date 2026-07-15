@@ -1,7 +1,7 @@
 @section('title', __('messages.stockadjustment'))
 
 <x-app-layout>
-    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6 dark:border-primary-800">
+    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6">
         <h1 class="text-xl flex items-center justify-center">
             <a href="{{ route('stock-adjustment.index') }}" class="flex items-center justify-center">
                 <svg class="w-7 h-7" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg"
@@ -37,7 +37,7 @@
 
                     {{-- Master --}}
                     <div
-                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
                         <div class="p-4 space-y-2">
 
                             <div class="flex flex-col lg:flex-row">
@@ -46,13 +46,13 @@
                                     <div class="w-auto pb-4">
                                         <input type="hidden" name="branch_id" value="{{ $branch_id }}" />
                                         <span for="gudang_id"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.warehouse')</span>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.warehouse')</span>
                                         <x-text-span>{{ $datas->gudang->nama }}</x-text-span>
                                     </div>
 
                                     <div class="w-auto pb-4">
                                         <label for="tanggal_adjustment"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.adjustmentdate')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.adjustmentdate')</label>
                                         <x-text-input type="date" name="tanggal_adjustment" id="tanggal_adjustment"
                                             data-date-format="dd-mm-yyyy" tabindex="2" required autofocus
                                             value="{{ $datas->tanggal_adjustment }}" />
@@ -62,7 +62,7 @@
 
                                     <div class="w-auto pb-4">
                                         <label for="keterangan_adjustment"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.description')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.description')</label>
                                         <x-textarea-input name="keterangan_adjustment" id="keterangan_adjustment"
                                             tabindex="3" rows="3" maxlength="200"
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.description') }}">{{ $datas->keterangan_adjustment }}</x-textarea-input>
@@ -74,10 +74,10 @@
                                 <div class="w-full lg:w-1/2 px-2 flex flex-col justify-start">
                                     <div class="w-auto pb-4">
                                         <label for="petugas_1_id"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.officer')
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.officer')
                                             1</label>
                                         <select name="petugas_1_id" id="petugas_1_id" tabindex="4"
-                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:text-gray dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
+                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
                                             <option value="">@lang('messages.choose')...</option>
                                             @foreach ($petugas as $id => $name)
                                                 <option value="{{ $id }}"
@@ -91,10 +91,10 @@
 
                                     <div class="w-auto pb-4">
                                         <label for="petugas_2_id"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.officer')
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.officer')
                                             2</label>
                                         <select name="petugas_2_id" id="petugas_2_id" tabindex="5"
-                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:text-gray dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
+                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
                                             <option value="">@lang('messages.choose')...</option>
                                             @foreach ($petugas as $id => $name)
                                                 <option value="{{ $id }}"
@@ -108,7 +108,7 @@
 
                                     <div class="w-auto pb-4 lg:pb-12">
                                         <span for="tanggungjawab_id"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.supervisor')</span>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.supervisor')</span>
                                         <x-text-span>{{ $datas->tanggungjawab_id ? $datas->tanggungjawab->nama_lengkap : '-' }}</x-text-span>
                                     </div>
 
@@ -117,7 +117,7 @@
                                             <div
                                                 class="flex flex-row flex-wrap lg:flex-nowrap items-center justify-end gap-2 md:gap-4">
                                                 <x-secondary-button id="print-laporan" tabindex="0"
-                                                    class="bg-indigo-700 hover:bg-indigo-800 dark:bg-indigo-900 hover:dark:bg-indigo-950">
+                                                    class="bg-indigo-700 hover:bg-indigo-800 hover:dark:bg-indigo-950">
                                                     <svg id="print-icon" class="size-5" viewBox="0 0 15 15"
                                                         fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <path
@@ -148,7 +148,7 @@
                                                 <label
                                                     class="cursor-pointer flex flex-col items-center md:flex-row md:gap-2">
                                                     <input type="checkbox" id="adjusted" name="adjusted"
-                                                        class="dark:border-white-400/20 dark:scale-100 transition-all duration-500 ease-in-out dark:hover:scale-110 dark:checked:scale-100 w-7 h-7 rounded-lg shadow-md"
+                                                        class="dark:border-white-400/20 transition-all duration-500 ease-in-out w-7 h-7 rounded-lg shadow-md"
                                                         {{ $datas->adjusted == '1' ? 'checked' : '' }}>
                                                     <span
                                                         class="pr-4 group-hover:text-blue-500 transition-colors duration-300 text-right w-1/2 md:w-full">
@@ -192,7 +192,7 @@
 
                     {{-- Detail --}}
                     <div
-                        class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                        class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100">
                         <div class="p-4 space-y-2">
                             <div class="flex flex-row items-center gap-2">
                                 <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5"
@@ -210,13 +210,13 @@
                                             d="M24.3,39.1c-3,0-5.5,2.5-5.5,5.5c0,3,2.5,5.5,5.5,5.5s5.5-2.5,5.5-5.5C29.8,41.5,27.3,39.1,24.3,39.1z" />
                                     </g>
                                 </svg>
-                                <span class="block font-medium text-primary-600 dark:text-primary-500">
+                                <span class="block font-medium text-primary-600">
                                     @lang('messages.goods')
                                 </span>
                             </div>
 
                             <div
-                                class="border rounded-md border-primary-100 bg-primary-100 dark:border-primary-800 dark:bg-primary-850">
+                                class="border rounded-md border-primary-100 bg-primary-100">
                                 <div class="p-2 overflow-scroll md:overflow-auto lg:overflow-hidden">
 
                                     <form id="form-order" method="POST" enctype="multipart/form-data"
@@ -231,7 +231,7 @@
                                                     <th rowspan="2" class="w-1/5">@lang('messages.goods')</th>
                                                     <th rowspan="2" class="w-auto">@lang('messages.unit')</th>
                                                     <th colspan="4"
-                                                        class="w-auto border-b border-1 border-primary-500 dark:border-primary-700">
+                                                        class="w-auto border-b border-1 border-primary-500">
                                                         @lang('messages.stock')
                                                     </th>
                                                     <th rowspan="2" class="w-auto">@lang('messages.description')</th>

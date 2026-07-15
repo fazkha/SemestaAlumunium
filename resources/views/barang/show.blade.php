@@ -1,7 +1,7 @@
 @section('title', __('messages.goods'))
 
 <x-app-layout>
-    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6 dark:border-primary-800">
+    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6">
         <h1 class="text-xl flex items-center justify-center">
             <a href="{{ route('goods.index') }}" class="flex items-center justify-center">
                 <svg fill="currentColor" class="w-7 h-7" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg">
@@ -28,7 +28,7 @@
                 </div>
 
                 <div
-                    class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                    class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
                     <div class="p-4 space-y-2">
 
                         <div class="flex flex-col lg:flex-row">
@@ -36,47 +36,47 @@
 
                                 <div class="w-auto pb-4">
                                     <span for="jenis_barang_id"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.warehouse')</span>
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.warehouse')</span>
                                     <x-text-span>{{ $datas->gudang->nama }}</x-text-span>
                                 </div>
 
                                 <div class="flex flex-row justify-between gap-4">
                                     <div class="w-1/2 pb-4">
                                         <span for="jenis_barang_id"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.typeofdesignation')</span>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.typeofdesignation')</span>
                                         <x-text-span>{{ $datas->jenis_barang->nama }}</x-text-span>
                                     </div>
 
                                     <div class="w-1/2 pb-4">
                                         <span for="subjenis_barang_id"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.typeofsubdesignation')</span>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.typeofsubdesignation')</span>
                                         <x-text-span>{{ $datas->subjenis_barang_id ? $datas->subjenis_barang->nama : '-' }}</x-text-span>
                                     </div>
                                 </div>
 
                                 <div class="w-auto pb-4">
                                     <span for="nama"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.nameofgoods')</span>
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.nameofgoods')</span>
                                     <x-text-span>{{ $datas->nama }}</x-text-span>
                                 </div>
 
                                 <div class="w-auto pb-4">
                                     <span for="merk"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.brand')</span>
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.brand')</span>
                                     <x-text-span>{{ $datas->merk }}</x-text-span>
                                 </div>
 
                                 <div class="flex flex-row justify-between gap-4">
                                     <div class="w-1/2 pb-4">
                                         <span for="harga_satuan"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.unitpricebuy')</span>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.unitpricebuy')</span>
                                         <x-text-span>Rp.
                                             {{ number_format($datas->harga_satuan, 0, ',', '.') }}</x-text-span>
                                     </div>
 
                                     <div class="w-1/2 pb-4">
                                         <span for="satuan_beli_id"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.unit')</span>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.unit')</span>
                                         <x-text-span>{{ $datas->satuan_beli_id ? $datas->satuan_beli->nama_lengkap : '-' }}</x-text-span>
                                     </div>
                                 </div>
@@ -84,14 +84,14 @@
                                 <div class="flex flex-row justify-between gap-4">
                                     <div class="w-1/2 pb-4">
                                         <span for="harga_satuan_jual"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.unitpricesell')</span>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.unitpricesell')</span>
                                         <x-text-span>Rp.
                                             {{ number_format($datas->harga_satuan_jual, 0, ',', '.') }}</x-text-span>
                                     </div>
 
                                     <div class="w-1/2 pb-4">
                                         <span for="satuan_jual_id"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.unit')</span>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.unit')</span>
                                         <x-text-span>{{ $datas->satuan_jual_id ? $datas->satuan_jual->nama_lengkap : '-' }}</x-text-span>
                                     </div>
                                 </div>
@@ -99,7 +99,7 @@
                                 <div class="flex flex-row justify-between gap-4">
                                     <div class="w-1/2 pb-4">
                                         <label for="operator"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.operator')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.operator')</label>
                                         @php
                                             switch ($datas->operator) {
                                                 case config('custom.nilai_tambah'):
@@ -124,7 +124,7 @@
 
                                     <div class="w-1/2 pb-4">
                                         <span for="bilangan"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.number')</span>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.number')</span>
                                         <x-text-span>{{ $datas->bilangan }}</x-text-span>
                                     </div>
                                 </div>
@@ -132,14 +132,14 @@
                                 <div class="flex flex-row justify-between gap-4">
                                     <div class="w-1/2 pb-4">
                                         <span for="hpp"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.hpp')</span>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.hpp')</span>
                                         <x-text-span>Rp.
                                             {{ number_format($datas->hpp, 0, ',', '.') }}</x-text-span>
                                     </div>
 
                                     <div class="w-1/2 pb-4">
                                         <span for="profit"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.profit')</span>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.profit')</span>
                                         <x-text-span id="profit">{!! $dprof !!}</x-text-span>
                                     </div>
                                 </div>
@@ -148,34 +148,34 @@
                             <div class="w-full lg:w-1/2 px-2 flex flex-col justify-start">
                                 <div class="w-auto pb-4">
                                     <span for="keterangan"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.description')</span>
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.description')</span>
                                     <x-text-span>{{ $datas->keterangan }}</x-text-span>
                                 </div>
 
                                 <div class="flex flex-row flex-wrap md:justify-between">
                                     <div class="w-1/2 md:w-1/3 pb-4">
                                         <span for="stock"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.stock')</span>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.stock')</span>
                                         <x-text-span
-                                            class="{{ $datas->stock < $datas->minstock ? 'text-white bg-red-700' : 'text-gray-900 bg-primary-50' }} {{ $datas->stock < $datas->minstock ? 'dark:text-white dark:bg-red-700' : 'dark:text-white dark:bg-primary-800' }}">{{ $datas->stock }}</x-text-span>
+                                            class="{{ $datas->stock < $datas->minstock ? 'text-white bg-red-700' : 'text-gray-900 bg-primary-50' }} {{ $datas->stock < $datas->minstock ? 'dark:text-white' : 'dark:text-white' }}">{{ $datas->stock }}</x-text-span>
                                     </div>
 
                                     <div class="w-1/2 md:w-1/3 pb-4">
                                         <span for="minstock"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.minstock')</span>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.minstock')</span>
                                         <x-text-span>{{ $datas->minstock }}</x-text-span>
                                     </div>
 
                                     <div class="w-1/2 md:w-1/3 pb-4">
                                         <span for="satuan_stock_id"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.unit')</span>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.unit')</span>
                                         <x-text-span>{{ $datas->satuan_stock_id ? $datas->satuan_stock->nama_lengkap : '-' }}</x-text-span>
                                     </div>
                                 </div>
 
                                 <div class="w-auto pb-4 lg:pb-12">
                                     <label for="gambar"
-                                        class="text-center block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.picture')</label>
+                                        class="text-center block mb-2 font-medium text-primary-600">@lang('messages.picture')</label>
                                     <div class="mt-2 flex justify-center">
                                         <img id="image-preview" class="w-full lg:w-3/5 h-auto border rounded-lg"
                                             @if ($datas->gambar) src="{{ asset($datas->lokasi . '/' . $datas->gambar) }}" @else src="{{ url('/') }}/images/0cd6be830e32f80192d496e50cfa9dbc.jpg" @endif

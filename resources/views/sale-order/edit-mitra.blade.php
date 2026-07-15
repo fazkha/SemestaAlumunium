@@ -7,7 +7,7 @@
 @section('title', __('messages.saleorder'))
 
 <x-app-layout>
-    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6 dark:border-primary-800">
+    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6">
         <h1 class="text-xl flex items-center justify-center">
             <a href="{{ route('sale-order.index') }}" class="flex items-center justify-center">
                 <svg fill="currentColor" class="w-7 h-7" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
@@ -41,7 +41,7 @@
 
                     {{-- Master --}}
                     <div
-                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
                         <div class="p-4 space-y-2">
 
                             <div class="flex flex-col lg:flex-row">
@@ -50,12 +50,12 @@
                                     <div class="w-auto pb-4">
                                         <input type="hidden" name="branch_id" value="{{ $branch_id }}" />
                                         <span for="customer_id"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.customer')</span>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.customer')</span>
                                         <x-text-span>{{ $datas->customer->nama }}</x-text-span>
                                         <div class="hidden">
                                             <select name="customer_id" id="customer_id" tabindex="1" required
                                                 autofocus
-                                                class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:text-gray dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
+                                                class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
                                                 <option value="">@lang('messages.choose')...</option>
                                                 @foreach ($customers as $id => $name)
                                                     <option value="{{ $id }}"
@@ -71,7 +71,7 @@
                                     <div class="flex flex-row gap-2">
                                         <div class="w-1/3 pb-4">
                                             <label for="hke"
-                                                class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.hke')</label>
+                                                class="block mb-2 font-medium text-primary-600">@lang('messages.hke')</label>
                                             <x-text-input type="number" min="0" name="hke" id="hke"
                                                 tabindex="2" required value="{{ old('hke', $datas->hke) }}" />
 
@@ -80,7 +80,7 @@
 
                                         <div class="w-2/3 pb-4">
                                             <label for="tanggal"
-                                                class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.transactiondate')</label>
+                                                class="block mb-2 font-medium text-primary-600">@lang('messages.transactiondate')</label>
                                             <x-text-span>{{ date_format(date_create($datas->tanggal), 'd/m/Y') }}</x-text-span>
                                             <div class="hidden">
                                                 <x-text-input type="date" name="tanggal" id="tanggal"
@@ -94,9 +94,9 @@
 
                                     <div class="w-auto pb-4">
                                         <label for="tunai"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.payment')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.payment')</label>
                                         <select name="tunai" id="tunai" tabindex="3" required
-                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:text-gray dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
+                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
                                             <option value="">@lang('messages.choose')...</option>
                                             <option value="1" {{ $datas->tunai == 1 ? 'selected' : '' }}>
                                                 @lang('messages.cash')</option>
@@ -110,7 +110,7 @@
                                     <div id="div-jatuhtempo"
                                         class="{{ $datas->tunai == 1 ? 'hidden ' : '' }}w-auto pb-4">
                                         <label for="jatuhtempo"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.duedate')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.duedate')</label>
                                         <x-text-input type="date" name="jatuhtempo" id="jatuhtempo"
                                             data-date-format="dd-mm-yyyy" tabindex="4"
                                             placeholder="{{ __('messages.enter') }} {{ __('calendar.date') }}"
@@ -121,7 +121,7 @@
 
                                     <div class="w-auto pb-4">
                                         <label for="biaya_angkutan"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.deliverycost')
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.deliverycost')
                                             (@lang('messages.currencysymbol'))</label>
                                         <x-text-input type="text" name="biaya_angkutan" id="biaya_angkutan"
                                             tabindex="4"
@@ -134,7 +134,7 @@
                                 <div class="w-full lg:w-1/2 px-2 flex flex-col justify-start">
                                     <div class="w-auto pb-4">
                                         <label for="pajak"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.tax')
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.tax')
                                             (%)</label>
                                         <x-text-input type="number" min="0" step="0.01" name="pajak"
                                             id="pajak" tabindex="4"
@@ -145,7 +145,7 @@
 
                                     <div class="w-auto pb-4">
                                         <span for="total_harga"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.totalprice')
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.totalprice')
                                             (@lang('messages.currencysymbol'))</span>
                                         <x-text-span
                                             id="disp-total_harga-master">{{ number_format($totals['total_price'], 0, ',', '.') }}</x-text-span>
@@ -157,7 +157,7 @@
 
                                     <div class="w-auto pb-4 lg:pb-12">
                                         <span for="no_order"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.ordernumber')</span>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.ordernumber')</span>
                                         <x-text-span
                                             id="disp-no_order">{{ old('no_order', $datas->no_order) }}</x-text-span>
                                         <x-text-input type="hidden" name="no_order" id="no_order"
@@ -171,7 +171,7 @@
                                             <label
                                                 class="cursor-pointer flex flex-col items-center md:flex-row md:gap-2">
                                                 <input type="checkbox" id="isactive" name="isactive"
-                                                    class="dark:border-white-400/20 dark:scale-100 transition-all duration-500 ease-in-out dark:hover:scale-110 dark:checked:scale-100 w-7 h-7 rounded-lg shadow-md"
+                                                    class="dark:border-white-400/20 transition-all duration-500 ease-in-out w-7 h-7 rounded-lg shadow-md"
                                                     {{ $datas->isactive == '1' ? 'checked' : '' }}>
                                                 <span
                                                     class="pr-4 group-hover:text-blue-500 transition-colors duration-300 text-right w-1/2 md:w-full">
@@ -218,7 +218,7 @@
                         <input type="hidden" name="branch_id" value="{{ $branch_id }}" />
                         <input type="hidden" id="order_id" name="order_id" value="{{ $datas->id }}" />
                         <div
-                            class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                            class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
                             <div class="p-4 space-y-2">
                                 <div class="flex flex-row items-center gap-2">
                                     <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5"
@@ -236,13 +236,13 @@
                                                 d="M24.3,39.1c-3,0-5.5,2.5-5.5,5.5c0,3,2.5,5.5,5.5,5.5s5.5-2.5,5.5-5.5C29.8,41.5,27.3,39.1,24.3,39.1z" />
                                         </g>
                                     </svg>
-                                    <span class="block font-medium text-primary-600 dark:text-primary-500">
+                                    <span class="block font-medium text-primary-600">
                                         @lang('messages.solditem')
                                     </span>
                                 </div>
 
                                 <div
-                                    class="border rounded-md border-primary-100 bg-primary-100 dark:border-primary-800 dark:bg-primary-850">
+                                    class="border rounded-md border-primary-100 bg-primary-100">
                                     <div class="p-2">
                                         <table id="order_table" class="w-full border-separate border-spacing-2">
                                             <thead>
@@ -275,15 +275,15 @@
                                                             data-hs-select='{
   "hasSearch": true,
   "searchPlaceholder": "{!! __('messages.search') . '...' !!}",
-  "searchClasses": "block w-full py-1.5 sm:py-2 px-3 sm:text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 text-gray-700 border-primary-100 bg-primary-20 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300 before:absolute before:inset-0 before:z-1",
-  "searchWrapperClasses": "sticky -top-1 p-2 -mx-1 bg-primary-100 dark:bg-primary-850",
+  "searchClasses": "block w-full py-1.5 sm:py-2 px-3 sm:text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 text-gray-700 border-primary-100 bg-primary-20 before:absolute before:inset-0 before:z-1",
+  "searchWrapperClasses": "sticky -top-1 p-2 -mx-1 bg-primary-100",
   "placeholder": "{!! __('messages.choose') . '...' !!}",
   "toggleTag": "<button type=\"button\" aria-expanded=\"false\"></button>",
-  "toggleClasses": "hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 relative py-2 px-3 pe-9 flex text-nowrap w-full cursor-pointer bg-primary-20 border border-gray-200 rounded-lg text-start text-sm focus:border-blue-500 focus:ring-blue-500 before:absolute before:inset-0 before:z-1 dark:bg-primary-700 dark:border-neutral-700 dark:text-neutral-400 dark:focus:outline-hidden dark:focus:ring-1 dark:focus:ring-neutral-600",
-  "dropdownClasses": "mt-2 z-50 w-full max-h-72 p-1 space-y-0.5 border bg-primary-20 border-primary-500 rounded-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-primary-500 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 dark:bg-primary-700 dark:border-primary-600",
-  "optionClasses": "py-2 px-4 w-full text-sm text-gray-800 cursor-pointer hover:bg-primary-100 rounded-lg focus:outline-hidden focus:bg-gray-100 dark:bg-primary-700 dark:hover:bg-primary-800 dark:text-neutral-200 dark:focus:bg-primary-800",
-  "optionTemplate": "<div class=\"flex justify-between items-center w-full\"><span data-title></span><span class=\"hidden hs-selected:block\"><svg class=\"shrink-0 size-3.5 text-blue-600 dark:text-blue-500 \" xmlns=\"http:.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"20 6 9 17 4 12\"/></svg></span></div>",
-  "extraMarkup": "<div class=\"absolute top-1/2 end-3 -translate-y-1/2\"><svg class=\"shrink-0 size-3.5 text-gray-500 dark:text-neutral-500 \" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m7 15 5 5 5-5\"/><path d=\"m7 9 5-5 5 5\"/></svg></div>"
+  "toggleClasses": "hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 relative py-2 px-3 pe-9 flex text-nowrap w-full cursor-pointer bg-primary-20 border border-gray-200 rounded-lg text-start text-sm focus:border-blue-500 focus:ring-blue-500 before:absolute before:inset-0 before:z-1",
+  "dropdownClasses": "mt-2 z-50 w-full max-h-72 p-1 space-y-0.5 border bg-primary-20 border-primary-500 rounded-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-primary-500 [&::-webkit-scrollbar-thumb]:bg-gray-300",
+  "optionClasses": "py-2 px-4 w-full text-sm text-gray-800 cursor-pointer hover:bg-primary-100 rounded-lg focus:outline-hidden focus:bg-gray-100",
+  "optionTemplate": "<div class=\"flex justify-between items-center w-full\"><span data-title></span><span class=\"hidden hs-selected:block\"><svg class=\"shrink-0 size-3.5 text-blue-600 \" xmlns=\"http:.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"20 6 9 17 4 12\"/></svg></span></div>",
+  "extraMarkup": "<div class=\"absolute top-1/2 end-3 -translate-y-1/2\"><svg class=\"shrink-0 size-3.5 text-gray-500 \" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m7 15 5 5 5-5\"/><path d=\"m7 9 5-5 5 5\"/></svg></div>"
 }'
                                                             class="hidden">
                                                             <option value="">@lang('messages.choose')...</option>
@@ -300,7 +300,7 @@
                                                     <td class="align-top">
                                                         <select id="satuan_id" name="satuan_id" required
                                                             tabindex="12"
-                                                            class="readonly-select w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:text-gray dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
+                                                            class="readonly-select w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
                                                             <option value="">@lang('messages.choose')...</option>
                                                             @foreach ($satuans as $id => $name)
                                                                 <option value="{{ $id }}">
@@ -315,7 +315,7 @@
                                                                 tabindex="13" />
                                                             <input type="hidden" id="stock" name="stock" />
                                                             <x-text-span id="disp-stock"
-                                                                class="field-large-show text-right text-gray-900 bg-primary-50 dark:text-white dark:bg-primary-800" />
+                                                                class="field-large-show text-right text-gray-900 bg-primary-50" />
                                                         </div>
                                                     </td>
                                                     <td class="align-top field-large-show">
@@ -369,7 +369,7 @@
 
             <div id="scanner" class="fixed bottom-0 left-0">
                 <div
-                    class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                    class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
                     @php $element = ['el' => 'barang_id']; @endphp
                     {{-- @include('qrcode.partials.scanner', $element) --}}
                 </div>
@@ -387,7 +387,7 @@
                         <input type="hidden" name="branch_id" value="{{ $branch_id }}" />
                         <input type="hidden" id="order_id" name="order_id" value="{{ $datas->id }}" />
                         <div
-                            class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                            class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100">
                             <div class="p-4 space-y-2">
                                 <div class="flex flex-row items-center gap-2">
                                     <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none"
@@ -409,13 +409,13 @@
                                             d="M20.3149 8.48584H3.68498C3.26575 8.48584 2.9259 8.82569 2.9259 9.24492V10.3006C2.9259 15.3121 6.98849 19.3747 12 19.3747C17.0114 19.3747 21.074 15.3121 21.074 10.3006V9.24492C21.074 8.82569 20.7342 8.48584 20.3149 8.48584Z"
                                             stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
                                     </svg>
-                                    <span class="block font-medium text-primary-600 dark:text-primary-500">
+                                    <span class="block font-medium text-primary-600">
                                         @lang('messages.dough')
                                     </span>
                                 </div>
 
                                 <div
-                                    class="border rounded-md border-primary-100 bg-primary-100 dark:border-primary-800 dark:bg-primary-850">
+                                    class="border rounded-md border-primary-100 bg-primary-100">
                                     <div class="p-0 lg:p-2">
                                         <table id="order_table" class="w-full border-separate border-spacing-2">
                                             <thead>
@@ -444,7 +444,7 @@
                                                     <td class="align-top">
                                                         <div class="flex flex-col gap-2">
                                                             <select id="pegawai_id" name="pegawai_id" tabindex="18"
-                                                                class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:text-gray dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
+                                                                class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
                                                                 <option value="">@lang('messages.choose')...</option>
                                                                 @foreach ($pegawais as $pegawai)
                                                                     <option value="{{ $pegawai->id }}">
@@ -460,7 +460,7 @@
                                                     <td class="align-top">
                                                         <select id="barang_id_adonan" name="barang_id_adonan" required
                                                             tabindex="18"
-                                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:text-gray dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
+                                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
                                                             <option value="">@lang('messages.choose')...</option>
                                                             @foreach ($barang2s as $id => $name)
                                                                 <option value="{{ $id }}">
@@ -481,7 +481,7 @@
                                                     <td class="align-top field-large-show">
                                                         <select id="satuan_id_adonan" name="satuan_id_adonan" required
                                                             tabindex="20"
-                                                            class="readonly-select w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:text-gray dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
+                                                            class="readonly-select w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
                                                             <option value="">@lang('messages.choose')...</option>
                                                             @foreach ($satuans as $id => $name)
                                                                 <option value="{{ $id }}">
@@ -492,7 +492,7 @@
                                                     <td class="align-top">
                                                         <select id="keterangan_adonan" name="keterangan_adonan"
                                                             tabindex="22"
-                                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:text-gray dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
+                                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
                                                             <option value="">@lang('messages.choose')...</option>
                                                             <option value="Adonan Regular">Adonan Regular</option>
                                                             <option value="Adonan Jumat">Adonan Jumat</option>
@@ -738,12 +738,12 @@
 
                     if ((xku * 1) > (xst * 1)) {
                         $("#disp-stock")
-                            .removeClass("text-gray-900 bg-primary-50 dark:text-white dark:bg-primary-800")
-                            .addClass("text-white bg-red-700 dark:text-white dark:bg-red-700");
+                            .removeClass("text-gray-900 bg-primary-50")
+                            .addClass("text-white bg-red-700");
                     } else {
                         $("#disp-stock")
-                            .removeClass("text-white bg-red-700 dark:text-white dark:bg-red-700")
-                            .addClass("text-gray-900 bg-primary-50 dark:text-white dark:bg-primary-800");
+                            .removeClass("text-white bg-red-700")
+                            .addClass("text-gray-900 bg-primary-50");
                     }
                 });
 

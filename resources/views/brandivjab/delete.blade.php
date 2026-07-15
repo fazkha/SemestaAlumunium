@@ -4,7 +4,7 @@
 @section('title', __('messages.brandivjab'))
 
 <x-app-layout>
-    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6 dark:border-primary-800">
+    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6">
         <h1 class="text-xl flex items-center justify-center">
             <a href="{{ route('brandivjab.index') }}" class="flex items-center justify-center">
                 <svg class="size-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -63,7 +63,7 @@
                                     <p class="text-gray-600 text-sm mb-5">@lang('messages.deleteitemconfirm')?</p>
                                     <div class="flex flex-col md:flex-row gap-2 justify-between">
                                         <x-primary-button type="submit"
-                                            class="bg-red-600 hover:bg-red-700 dark:bg-red-700 dark:hover:bg-red-800">
+                                            class="bg-red-600 hover:bg-red-700">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                 stroke-width="1.5" stroke="currentColor" class="size-5">
                                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -88,7 +88,7 @@
                 </div>
 
                 <div
-                    class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                    class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
                     <div class="p-4 space-y-2">
 
                         <div class="flex flex-col lg:flex-row">
@@ -96,19 +96,19 @@
 
                                 <div class="w-auto pb-4">
                                     <span for="branch_id"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.branch')</span>
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.branch')</span>
                                     <x-text-span>{{ $datas->branch->nama }}</x-text-span>
                                 </div>
 
                                 <div class="w-auto pb-4">
                                     <span for="jabatan_id"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.jobposition')</span>
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.jobposition')</span>
                                     <x-text-span>{{ $datas->jabatan->nama }}</x-text-span>
                                 </div>
 
                                 <div class="w-auto pb-4">
                                     <span for="keterangan"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.description')</span>
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.description')</span>
                                     <x-text-span>{{ $datas->keterangan ? $datas->keterangan : '-' }}</x-text-span>
                                 </div>
                             </div>
@@ -116,13 +116,13 @@
                             <div class="w-full lg:w-1/2 px-2 flex flex-col justify-start">
                                 <div class="w-auto pb-4">
                                     <span for="division_id"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.division')</span>
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.division')</span>
                                     <x-text-span>{{ $datas->division_id ? $datas->division->nama : '-' }}</x-text-span>
                                 </div>
 
                                 <div class="w-auto pb-4 lg:pb-12">
                                     <span for="atasan_id"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.superior')</span>
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.superior')</span>
                                     <x-text-span>{{ $datas->atasan_id ? $datas->atasan_id : '-' }}</x-text-span>
                                 </div>
 

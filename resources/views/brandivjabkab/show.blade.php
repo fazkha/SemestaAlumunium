@@ -5,7 +5,7 @@
 @section('title', __('messages.brandivjabkab'))
 
 <x-app-layout>
-    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6 dark:border-primary-800">
+    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6">
         <h1 class="text-xl flex items-center justify-center">
             <a href="{{ route('brandivjabkab.index') }}" class="flex items-center justify-center">
                 <svg class="size-7" version="1.1" xmlns="http://www.w3.org/2000/svg"
@@ -37,7 +37,7 @@ S254.158,299.966,218.317,299.966z" />
                 </div>
 
                 <div
-                    class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                    class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
                     <div class="p-4 space-y-2">
 
                         <div class="flex flex-col lg:flex-row">
@@ -45,13 +45,13 @@ S254.158,299.966,218.317,299.966z" />
 
                                 <div class="w-auto pb-4">
                                     <span for="brandivjab_id"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.jobposition')</span>
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.jobposition')</span>
                                     <x-text-span>{{ $brandivjabs->nama }}</x-text-span>
                                 </div>
 
                                 <div class="w-auto pb-4">
                                     <span for="keterangan"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.description')</span>
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.description')</span>
                                     <x-text-span>{{ $datas[0]->keterangan }}</x-text-span>
                                 </div>
 
@@ -60,7 +60,7 @@ S254.158,299.966,218.317,299.966z" />
                             <div class="w-full lg:w-1/2 px-2 flex flex-col justify-start">
                                 <div class="w-auto pb-4 lg:pb-12">
                                     <span for="propinsis"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.region')</span>
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.region')</span>
                                     <x-text-span>
                                         <div class="p-2 flex flex-col gap-2">
                                             @foreach ($kabupatens as $kabupaten)

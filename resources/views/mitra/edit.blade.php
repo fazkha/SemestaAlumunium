@@ -4,7 +4,7 @@
 @section('title', __('messages.partner'))
 
 <x-app-layout>
-    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6 dark:border-primary-800">
+    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6">
         <h1 class="text-xl flex items-center justify-center">
             <a href="{{ route('mitra.index') }}" class="flex items-center justify-center">
                 <svg fill="currentColor" class="size-7" viewBox="0 0 32 32" version="1.1"
@@ -38,7 +38,7 @@
                     @method('PUT')
 
                     <div
-                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
                         <div class="p-4 space-y-2">
 
                             <div class="flex flex-col lg:flex-row">
@@ -46,7 +46,7 @@
 
                                     <div class="w-auto pb-4">
                                         <label for="nik"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.nik')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.nik')</label>
                                         <x-text-input type="text" name="nik" id="nik" tabindex="1"
                                             autofocus required
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.nik') }}"
@@ -57,7 +57,7 @@
 
                                     <div class="w-auto pb-4">
                                         <label for="nama_lengkap"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.fullname')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.fullname')</label>
                                         <x-text-input type="text" name="nama_lengkap" id="nama_lengkap"
                                             tabindex="2" required
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.fullname') }}"
@@ -68,7 +68,7 @@
 
                                     <div class="w-auto pb-4">
                                         <label for="nama_panggilan"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.shortname')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.shortname')</label>
                                         <x-text-input type="text" name="nama_panggilan" id="nama_panggilan"
                                             tabindex="3"
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.shortname') }}"
@@ -79,7 +79,7 @@
 
                                     <div class="w-auto pb-4">
                                         <label for="tempat_lahir"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.birthplace')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.birthplace')</label>
                                         <x-text-input type="text" name="tempat_lahir" id="tempat_lahir"
                                             tabindex="4"
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.birthplace') }}"
@@ -90,7 +90,7 @@
 
                                     <div class="w-auto pb-4">
                                         <label for="tanggal_lahir"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.birthdate')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.birthdate')</label>
                                         <x-text-input type="date" name="tanggal_lahir" id="tanggal_lahir"
                                             data-date-format="dd-mm-yyyy" tabindex="5"
                                             value="{{ old('tanggal_lahir', $datas->tanggal_lahir) }}" />
@@ -100,7 +100,7 @@
 
                                     <div class="w-auto pb-4">
                                         <label for="alamat_asal"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.originaddress')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.originaddress')</label>
                                         <x-text-input type="text" name="alamat_asal" id="alamat_asal" tabindex="6"
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.originaddress') }}"
                                             value="{{ old('alamat_asal', $datas->alamat_asal) }}" />
@@ -112,7 +112,7 @@
                                 <div class="w-full lg:w-1/2 px-2 flex flex-col justify-start">
                                     <div class="w-auto pb-4">
                                         <label for="nip"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.nip')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.nip')</label>
                                         <x-text-input type="text" name="nip" id="nip" tabindex="7"
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.nip') }}"
                                             value="{{ old('nip', $datas->nip) }}" />
@@ -122,7 +122,7 @@
 
                                     <div class="w-auto pb-4">
                                         <label for="alamat_tinggal"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.residentialaddress')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.residentialaddress')</label>
                                         <x-text-input type="text" name="alamat_tinggal" id="alamat_tinggal"
                                             tabindex="8" required
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.residentialaddress') }}"
@@ -133,7 +133,7 @@
 
                                     <div class="w-auto pb-4">
                                         <label for="telpon"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.phonenumber')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.phonenumber')</label>
                                         <x-text-input type="text" name="telpon" id="telpon" tabindex="9"
                                             required
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.phonenumber') }}"
@@ -144,7 +144,7 @@
 
                                     <div class="w-auto pb-4">
                                         <span
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.gender')</span>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.gender')</span>
                                         <x-text-span>
                                             <div class="flex flex-row gap-6">
                                                 <label class="relative flex items-center cursor-pointer">
@@ -173,7 +173,7 @@
 
                                     <div class="w-auto pb-4">
                                         <label for="email"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.emailaddress')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.emailaddress')</label>
                                         <x-text-input type="text" name="email" id="email" tabindex="10"
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.emailaddress') }}"
                                             value="{{ old('email', $datas->email) }}" />
@@ -183,7 +183,7 @@
 
                                     <div class="w-auto pb-4">
                                         <label for="keterangan"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.description')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.description')</label>
                                         <x-text-input type="text" name="keterangan" id="keterangan"
                                             tabindex="11"
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.description') }}"
@@ -197,11 +197,11 @@
                             <div class="flex flex-col lg:flex-row">
                                 <div class="w-full lg:w-1/2 px-2">
                                     <h1
-                                        class="text-xl font-bold leading-tight pb-2 mb-4 border-b-2 border-primary-100 dark:border-primary-800">
+                                        class="text-xl font-bold leading-tight pb-2 mb-4 border-b-2 border-primary-100">
                                         @lang('messages.penggajian')</h1>
                                     <div class="w-auto pb-4">
                                         <label for="gaji_pokok"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.gapok')
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.gapok')
                                             (@lang('messages.currencysymbol'))</label>
                                         <x-text-input type="number" min="0" name="gaji_pokok"
                                             id="gaji_pokok" tabindex="12"
@@ -214,7 +214,7 @@
                                     <div class="flex flex-row gap-2">
                                         <div class="w-2/3 pb-4">
                                             <label for="t1_keterangan"
-                                                class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.tunjangan')</label>
+                                                class="block mb-2 font-medium text-primary-600">@lang('messages.tunjangan')</label>
                                             <x-text-input type="text" name="t1_keterangan" id="t1_keterangan"
                                                 tabindex="13"
                                                 placeholder="{{ __('messages.enter') }} {{ __('messages.tunjangan') }}"
@@ -225,7 +225,7 @@
 
                                         <div class="w-1/3 pb-4">
                                             <label for="t1_gaji"
-                                                class="block mb-2 font-medium text-primary-600 dark:text-primary-500">Rp.</label>
+                                                class="block mb-2 font-medium text-primary-600">Rp.</label>
                                             <x-text-input type="number" min="0" name="t1_gaji"
                                                 id="t1_gaji" tabindex="14"
                                                 placeholder="{{ __('messages.enter') }} {{ __('messages.tunjangan') }}"
@@ -238,7 +238,7 @@
                                     <div class="flex flex-row gap-2">
                                         <div class="w-2/3 pb-4">
                                             <label for="t2_keterangan"
-                                                class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.tunjangan')</label>
+                                                class="block mb-2 font-medium text-primary-600">@lang('messages.tunjangan')</label>
                                             <x-text-input type="text" name="t2_keterangan" id="t2_keterangan"
                                                 tabindex="15"
                                                 placeholder="{{ __('messages.enter') }} {{ __('messages.tunjangan') }}"
@@ -249,7 +249,7 @@
 
                                         <div class="w-1/3 pb-4">
                                             <label for="t2_gaji"
-                                                class="block mb-2 font-medium text-primary-600 dark:text-primary-500">Rp.</label>
+                                                class="block mb-2 font-medium text-primary-600">Rp.</label>
                                             <x-text-input type="number" min="0" name="t2_gaji"
                                                 id="t2_gaji" tabindex="16"
                                                 placeholder="{{ __('messages.enter') }} {{ __('messages.tunjangan') }}"
@@ -262,7 +262,7 @@
                                     <div class="flex flex-row gap-2">
                                         <div class="w-2/3 pb-4">
                                             <label for="t3_keterangan"
-                                                class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.tunjangan')</label>
+                                                class="block mb-2 font-medium text-primary-600">@lang('messages.tunjangan')</label>
                                             <x-text-input type="text" name="t3_keterangan" id="t3_keterangan"
                                                 tabindex="17"
                                                 placeholder="{{ __('messages.enter') }} {{ __('messages.tunjangan') }}"
@@ -273,7 +273,7 @@
 
                                         <div class="w-1/3 pb-4">
                                             <label for="t3_gaji"
-                                                class="block mb-2 font-medium text-primary-600 dark:text-primary-500">Rp.</label>
+                                                class="block mb-2 font-medium text-primary-600">Rp.</label>
                                             <x-text-input type="number" min="0" name="t3_gaji"
                                                 id="t3_gaji" tabindex="18"
                                                 placeholder="{{ __('messages.enter') }} {{ __('messages.tunjangan') }}"
@@ -287,11 +287,11 @@
 
                                 <div class="w-full lg:w-1/2 px-2">
                                     <h1
-                                        class="text-xl font-bold leading-tight pb-2 mb-4 border-b-2 border-primary-100 dark:border-primary-800">
+                                        class="text-xl font-bold leading-tight pb-2 mb-4 border-b-2 border-primary-100">
                                         @lang('messages.rekening')</h1>
                                     <div class="w-auto pb-4">
                                         <label for="rek_nama_bank"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.bankname')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.bankname')</label>
                                         <x-text-input type="text" name="rek_nama_bank" id="rek_nama_bank"
                                             tabindex="19"
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.bankname') }}"
@@ -302,7 +302,7 @@
 
                                     <div class="w-auto pb-4">
                                         <label for="rek_nomor"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.bankaccountnumber')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.bankaccountnumber')</label>
                                         <x-text-input type="text" name="rek_nomor" id="rek_nomor" tabindex="20"
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.bankaccountnumber') }}"
                                             value="{{ old('rek_nomor', $penggajian ? $penggajian->rek_nomor : null) }}" />
@@ -312,7 +312,7 @@
 
                                     <div class="w-auto pb-4">
                                         <label for="rek_nama_pemilik"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.bankaccountname')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.bankaccountname')</label>
                                         <x-text-input type="text" name="rek_nama_pemilik" id="rek_nama_pemilik"
                                             tabindex="21"
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.bankaccountname') }}"
@@ -326,13 +326,13 @@
                             <div class="pb-4 lg:pb-12">
                                 <x-text-span>
                                     <h1
-                                        class="text-xl font-bold leading-tight pb-2 mb-4 border-b-2 border-primary-100 dark:border-primary-800">
+                                        class="text-xl font-bold leading-tight pb-2 mb-4 border-b-2 border-primary-100">
                                         @lang('messages.attachment')</h1>
                                     <div class="image-set">
                                         <div class="flex flex-row flex-wrap gap-4 md:gap-6 text-center justify-center">
                                             <div class="w-1/3 md:w-1/4 lg:w-1/6">
                                                 <span
-                                                    class="block mb-2 font-medium text-primary-600 dark:text-primary-500">
+                                                    class="block mb-2 font-medium text-primary-600">
                                                     <span>@lang('messages.picture')-1</span>
                                                     <a data-title="{{ __('messages.picture') }}-1"
                                                         href="{{ $datas->gambar_1_nama ? asset($datas->gambar_1_lokasi . '/' . $datas->gambar_1_nama) : url('/images/0cd6be830e32f80192d496e50cfa9dbc.jpg') }}">
@@ -349,7 +349,7 @@
 
                                             <div class="w-1/3 md:w-1/4 lg:w-1/6">
                                                 <span
-                                                    class="block mb-2 font-medium text-primary-600 dark:text-primary-500">
+                                                    class="block mb-2 font-medium text-primary-600">
                                                     <span>@lang('messages.picture')-2</span>
                                                     <a data-title="{{ __('messages.picture') }}-2"
                                                         href="{{ $datas->gambar_2_nama ? asset($datas->gambar_2_lokasi . '/' . $datas->gambar_2_nama) : url('/images/0cd6be830e32f80192d496e50cfa9dbc.jpg') }}">
@@ -366,7 +366,7 @@
 
                                             <div class="w-1/3 md:w-1/4 lg:w-1/6">
                                                 <span
-                                                    class="block mb-2 font-medium text-primary-600 dark:text-primary-500">
+                                                    class="block mb-2 font-medium text-primary-600">
                                                     <span>@lang('messages.picture')-3</span>
                                                     <a data-title="{{ __('messages.picture') }}-3"
                                                         href="{{ $datas->gambar_3_nama ? asset($datas->gambar_3_lokasi . '/' . $datas->gambar_3_nama) : url('/images/0cd6be830e32f80192d496e50cfa9dbc.jpg') }}">
@@ -383,7 +383,7 @@
 
                                             <div class="w-1/3 md:w-1/4 lg:w-1/6">
                                                 <span
-                                                    class="block mb-2 font-medium text-primary-600 dark:text-primary-500">
+                                                    class="block mb-2 font-medium text-primary-600">
                                                     <span>@lang('messages.picture')-4</span>
                                                     <a data-title="{{ __('messages.picture') }}-4"
                                                         href="{{ $datas->gambar_4_nama ? asset($datas->gambar_4_lokasi . '/' . $datas->gambar_4_nama) : url('/images/0cd6be830e32f80192d496e50cfa9dbc.jpg') }}">
@@ -400,7 +400,7 @@
 
                                             <div class="w-1/3 md:w-1/4 lg:w-1/6">
                                                 <span
-                                                    class="block mb-2 font-medium text-primary-600 dark:text-primary-500">
+                                                    class="block mb-2 font-medium text-primary-600">
                                                     <span>@lang('messages.picture')-5</span>
                                                     <a data-title="{{ __('messages.picture') }}-5"
                                                         href="{{ $datas->gambar_5_nama ? asset($datas->gambar_5_lokasi . '/' . $datas->gambar_5_nama) : url('/images/0cd6be830e32f80192d496e50cfa9dbc.jpg') }}">
@@ -423,7 +423,7 @@
                                 <div class="w-auto">
                                     <label class="cursor-pointer flex flex-col items-center md:flex-row md:gap-2">
                                         <input type="checkbox" id="isactive" name="isactive" tabindex="22"
-                                            class="dark:border-white-400/20 dark:scale-100 transition-all duration-500 ease-in-out dark:hover:scale-110 dark:checked:scale-100 w-7 h-7 rounded-lg shadow-md"
+                                            class="dark:border-white-400/20 transition-all duration-500 ease-in-out w-7 h-7 rounded-lg shadow-md"
                                             {{ $datas->isactive == '1' ? 'checked' : '' }}>
                                         <span
                                             class="pr-4 group-hover:text-blue-500 transition-colors duration-300 text-right w-1/2 md:w-full">
@@ -464,7 +464,7 @@
 
                         {{-- Jabatan --}}
                         <div
-                            class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                            class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100">
                             <div class="p-4 space-y-2">
                                 <div class="flex flex-row items-center gap-2">
                                     <svg fill="currentColor" class="size-5" viewBox="0 0 24 24"
@@ -472,13 +472,13 @@
                                         <path
                                             d="M21.435,11.5h-.38V8.12a1.626,1.626,0,0,0-1.62-1.62h-.63V6.12a1.625,1.625,0,0,0-3.25,0V11.5H8.445V6.12a1.625,1.625,0,0,0-3.25,0V6.5h-.63a1.62,1.62,0,0,0-1.62,1.62V11.5h-.38a.5.5,0,1,0,0,1h.38v3.37a1.622,1.622,0,0,0,1.62,1.63H5.2v.37a1.625,1.625,0,1,0,3.25,0V12.5h7.11v5.37a1.625,1.625,0,1,0,3.25,0V17.5h.63a1.628,1.628,0,0,0,1.62-1.63V12.5h.38a.5.5,0,1,0,0-1ZM5.2,16.5h-.63a.625.625,0,0,1-.62-.63V8.12a.623.623,0,0,1,.62-.62H5.2Zm2.25,1.37a.634.634,0,0,1-.63.63.625.625,0,0,1-.62-.63V6.12a.623.623,0,0,1,.62-.62.632.632,0,0,1,.63.62Zm10.36,0a.625.625,0,1,1-1.25,0V6.12a.625.625,0,0,1,1.25,0Zm2.25-2a.625.625,0,0,1-.62.63h-.63v-9h.63a.623.623,0,0,1,.62.62Z" />
                                     </svg>
-                                    <span class="block font-medium text-primary-600 dark:text-primary-500">
+                                    <span class="block font-medium text-primary-600">
                                         @lang('messages.jobposition')
                                     </span>
                                 </div>
 
                                 <div
-                                    class="border rounded-md border-primary-100 bg-primary-100 dark:border-primary-800 dark:bg-primary-850">
+                                    class="border rounded-md border-primary-100 bg-primary-100">
                                     <div class="p-2 overflow-scroll md:overflow-auto lg:overflow-hidden">
                                         <table id="jabatan_table" class="w-full border-separate border-spacing-2">
                                             <thead>
@@ -505,7 +505,7 @@
                                                             value="{{ $datas->id }}" />
                                                         <select name="brandivjab_id" id="brandivjab_id"
                                                             tabindex="25" required
-                                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:text-gray dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
+                                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
                                                             <option value="">@lang('messages.choose')...
                                                             </option>
                                                             @foreach ($brandivjabs as $brandivjab)
@@ -529,7 +529,7 @@
                                                     <td>
                                                         <select name="gerobak_id" id="gerobak_id" tabindex="28"
                                                             required
-                                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:text-gray dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
+                                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
                                                             <option value="">@lang('messages.choose')...
                                                             </option>
                                                             @foreach ($gerobaks as $gerobak)
@@ -545,7 +545,7 @@
                                                     <td class="text-center">
                                                         <div class="w-auto">
                                                             <select name="isactive" id="isactive" tabindex="29"
-                                                                class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:text-gray dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
+                                                                class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
                                                                 <option value="1" selected>@lang('messages.active')
                                                                 </option>
                                                                 <option value="2">@lang('messages.relocate')</option>

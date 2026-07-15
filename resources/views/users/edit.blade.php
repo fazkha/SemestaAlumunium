@@ -9,7 +9,7 @@
 @section('title', __('messages.user'))
 
 <x-app-layout>
-    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6 dark:border-primary-800">
+    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6">
         <h1 class="text-xl flex items-center justify-center">
             <a href="{{ route('users.index') }}" class="flex items-center justify-center">
                 <svg fill="currentColor" class="w-7 h-7" viewBox="-2 -1.5 24 24" xmlns="http://www.w3.org/2000/svg"
@@ -36,7 +36,7 @@
                 </div>
 
                 <div
-                    class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                    class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
                     <div class="p-6 space-y-2 md:space-y-2 sm:p-8">
                         <form action="{{ route('users.update', Crypt::Encrypt($datas->id)) }}"
                             class="space-y-4 md:space-y-6" method="POST" enctype="multipart/form-data">
@@ -45,7 +45,7 @@
 
                             <div class="form-group" style="margin-top: 0 !important">
                                 <label for="name"
-                                    class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.username')</label>
+                                    class="block mb-2 font-medium text-primary-600">@lang('messages.username')</label>
                                 <x-text-input type="text" name="name" id="name" autofocus tabindex="1"
                                     placeholder="{{ __('messages.enter') }} {{ __('messages.username') }}" required
                                     value="{{ old('name', $datas->name) }}" />
@@ -55,7 +55,7 @@
 
                             <div class="form-group">
                                 <label for="email"
-                                    class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.emailaddress')</label>
+                                    class="block mb-2 font-medium text-primary-600">@lang('messages.emailaddress')</label>
                                 <x-text-input type="email" name="email" id="email" tabindex="2"
                                     placeholder="{{ __('messages.enter') }} {{ __('messages.emailaddress') }}" required
                                     value="{{ old('email', $datas->email) }}" />
@@ -65,7 +65,7 @@
 
                             {{-- <div class="form-group">
                                 <label for="password"
-                                    class="block mb-2 font-medium text-primary-600 dark:text-primary-500">Password</label>
+                                    class="block mb-2 font-medium text-primary-600">Password</label>
                                 <x-text-input type="password" name="password" id="password"
                                     placeholder="Enter password" required
                                     value="{{ old('password'), $datas->password }}" />
@@ -75,7 +75,7 @@
 
                             <div class="form-group">
                                 <label for="approved"
-                                    class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.approval')</label>
+                                    class="block mb-2 font-medium text-primary-600">@lang('messages.approval')</label>
                                 <x-text-span>
                                     <div class="px-2 pb-2">
                                         <div class="inline-flex items-center">
@@ -83,15 +83,15 @@
                                                 required class="form-control"
                                                 {{ old('approved', $datas->approved) == '1' ? 'checked' : '' }}>
                                             <label for="approved"
-                                                class="ml-2 block font-medium text-primary-600 dark:text-primary-500">@lang('messages.approved')</label>
+                                                class="ml-2 block font-medium text-primary-600">@lang('messages.approved')</label>
                                         </div>
                                     </div>
 
                                     <div class="px-2 pb-2">
                                         <label for="branch_id"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.branch')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.branch')</label>
                                         <select name="branch_id" id="branch_id" tabindex="4" required
-                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:text-gray dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
+                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
                                             <option value="">@lang('messages.choose')...</option>
                                             @foreach ($branches as $id => $name)
                                                 <option value="{{ $id }}"
@@ -105,7 +105,7 @@
 
                             <div class="form-group">
                                 <label for="roles"
-                                    class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.choose')
+                                    class="block mb-2 font-medium text-primary-600">@lang('messages.choose')
                                     @lang('messages.role')</label>
                                 <x-text-span>
                                     @foreach ($roles as $role)

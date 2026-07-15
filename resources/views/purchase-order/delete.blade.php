@@ -4,7 +4,7 @@
 @section('title', __('messages.purchaseorder'))
 
 <x-app-layout>
-    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6 dark:border-primary-800">
+    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6">
         <h1 class="text-xl flex items-center justify-center">
             <a href="{{ route('purchase-order.index') }}" class="flex items-center justify-center">
                 <svg fill="currentColor" class="w-7 h-7" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
@@ -49,7 +49,7 @@
                                     <p class="text-gray-600 text-sm mb-5">@lang('messages.deleteitemconfirm')?</p>
                                     <div class="flex flex-col md:flex-row gap-2 justify-between">
                                         <x-primary-button type="submit"
-                                            class="bg-red-600 hover:bg-red-700 dark:bg-red-700 dark:hover:bg-red-800">
+                                            class="bg-red-600 hover:bg-red-700">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                 stroke-width="1.5" stroke="currentColor" class="size-5">
                                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -75,7 +75,7 @@
 
                 {{-- Master --}}
                 <div
-                    class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                    class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
                     <div class="p-4 space-y-2">
 
                         <div class="flex flex-col lg:flex-row">
@@ -83,26 +83,26 @@
 
                                 <div class="w-auto pb-4">
                                     <span for="supplier_id"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.supplier')</span>
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.supplier')</span>
                                     <x-text-span>{{ $datas->supplier->nama }}</x-text-span>
                                 </div>
 
                                 <div class="w-auto pb-4">
                                     <span for="tanggal"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.transactiondate')</span>
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.transactiondate')</span>
                                     <x-text-span>{{ date('d/m/Y', strtotime($datas->tanggal)) }}</x-text-span>
                                 </div>
 
                                 <div class="w-auto pb-4">
                                     <span for="tunai"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.payment')</span>
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.payment')</span>
                                     <x-text-span>{{ $datas->tunai == 1 ? __('messages.cash') : __('messages.credit') }}</x-text-span>
                                 </div>
 
                                 @if ($datas->tunai == 2)
                                     <div class="w-auto pb-4">
                                         <span for="jatuhtempo"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.transactiondate')</span>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.transactiondate')</span>
                                         <x-text-span>{{ date('d/m/Y', strtotime($datas->jatuhtempo)) }}</x-text-span>
                                     </div>
                                 @endif
@@ -111,14 +111,14 @@
                             <div class="w-full lg:w-1/2 px-2 flex flex-col justify-start">
                                 <div class="w-auto pb-4">
                                     <span for="biaya_angkutan"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.deliverycost')
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.deliverycost')
                                         (@lang('messages.currencysymbol'))</span>
                                     <x-text-span>{{ number_format($datas->biaya_angkutan, 0, ',', '.') }}</x-text-span>
                                 </div>
 
                                 <div class="w-auto pb-4">
                                     <label for="total_harga"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.totalprice')
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.totalprice')
                                         (@lang('messages.currencysymbol'))</label>
                                     <x-text-span
                                         id="disp-total_harga-master">{{ number_format($totals['total_price'], 0, ',', '.') }}</x-text-span>
@@ -126,7 +126,7 @@
 
                                 <div class="w-auto pb-4 lg:pb-12">
                                     <label for="no_order"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.ordernumber')</label>
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.ordernumber')</label>
                                     <x-text-span id="disp-no_order">{{ $datas->no_order }}</x-text-span>
                                 </div>
 
@@ -165,7 +165,7 @@
 
                     {{-- Detail --}}
                     <div
-                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
                         <div class="p-4 space-y-2">
                             <div class="flex flex-row items-center gap-2">
                                 <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5"
@@ -183,13 +183,13 @@
                                             d="M24.3,39.1c-3,0-5.5,2.5-5.5,5.5c0,3,2.5,5.5,5.5,5.5s5.5-2.5,5.5-5.5C29.8,41.5,27.3,39.1,24.3,39.1z" />
                                     </g>
                                 </svg>
-                                <span class="block font-medium text-primary-600 dark:text-primary-500">
+                                <span class="block font-medium text-primary-600">
                                     @lang('messages.purchasedgoods')
                                 </span>
                             </div>
 
                             <div
-                                class="border rounded-md border-primary-100 bg-primary-100 dark:border-primary-800 dark:bg-primary-850">
+                                class="border rounded-md border-primary-100 bg-primary-100">
                                 <div class="p-2 overflow-scroll md:overflow-auto lg:overflow-hidden">
                                     <table id="order_table" class="w-full border-separate border-spacing-2">
                                         <thead>

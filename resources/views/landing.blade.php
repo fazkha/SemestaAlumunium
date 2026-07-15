@@ -905,8 +905,8 @@
     </style>
 </head>
 
-<body class="font-sans antialiased dark:bg-black dark:text-white">
-    <div className="bg-gray-50 text-black/50 dark:bg-black dark:text-white">
+<body class="font-sans antialiased">
+    <div className="bg-gray-50 text-black/50">
         <div
             class="relative min-h-screen flex flex-col items-start justify-end selection:bg-[#FF2D20] selection:text-white">
             <div class="absolute top-0 left-0 w-full px-6">
@@ -918,18 +918,18 @@
                         <nav class="flex flex-1 justify-end gap-2">
                             @auth
                                 <a href="{{ url('/admin/dashboard') }}"
-                                    class="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-white/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white dark:focus-visible:ring-white">
+                                    class="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-white/70 focus:outline-none focus-visible:ring-[#FF2D20]">
                                     Dashboard
                                 </a>
                             @else
                                 <a href="{{ route('login') }}"
-                                    class="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-white/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white dark:focus-visible:ring-white">
+                                    class="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-white/70 focus:outline-none focus-visible:ring-[#FF2D20]">
                                     Login
                                 </a>
 
                                 @if (Route::has('register'))
                                     <a href="{{ route('register') }}"
-                                        class="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-white/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white dark:focus-visible:ring-white">
+                                        class="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-white/70 focus:outline-none focus-visible:ring-[#FF2D20]">
                                         Register
                                     </a>
                                 @endif
@@ -942,7 +942,7 @@
                 </main>
             </div>
 
-            <footer style="margin-bottom: 12px;" class="text-left text-sm text-white dark:text-white">
+            <footer style="margin-bottom: 12px;" class="text-left text-sm text-white">
                 <div style="margin-left: 20px;">&copy; 2026 {{ config('custom.company_name') }}.<br />All
                     rights reserved.</div>
                 {{-- <div>Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})</div> --}}

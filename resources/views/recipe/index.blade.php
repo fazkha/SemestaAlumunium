@@ -1,7 +1,7 @@
 @section('title', __('messages.recipe'))
 
 <x-app-layout>
-    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6 dark:border-primary-800">
+    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6">
         <h1 class="text-xl flex items-center justify-center">
             <a href="{{ route('recipe.index') }}" class="flex items-center justify-center">
                 <svg class="w-7 h-7" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">

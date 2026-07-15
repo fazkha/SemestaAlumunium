@@ -4,7 +4,7 @@
 @section('title', __('messages.partner'))
 
 <x-app-layout>
-    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6 dark:border-primary-800">
+    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6">
         <h1 class="text-xl flex items-center justify-center">
             <a href="{{ route('mitra.index') }}" class="flex items-center justify-center">
                 <svg fill="currentColor" class="size-7" viewBox="0 0 32 32" version="1.1"
@@ -33,7 +33,7 @@
                 </div>
 
                 <div
-                    class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                    class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
                     <div class="p-4 space-y-2">
 
                         <div class="flex flex-col lg:flex-row">
@@ -41,37 +41,37 @@
 
                                 <div class="w-auto pb-4">
                                     <span for="nik"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.nik')</span>
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.nik')</span>
                                     <x-text-span>{{ $datas->nik ? $datas->nik : '-' }}</x-text-span>
                                 </div>
 
                                 <div class="w-auto pb-4">
                                     <span for="nama_lengkap"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.fullname')</span>
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.fullname')</span>
                                     <x-text-span>{{ $datas->nama_lengkap ? $datas->nama_lengkap : '-' }}</x-text-span>
                                 </div>
 
                                 <div class="w-auto pb-4">
                                     <span for="nama_panggilan"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.shortname')</span>
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.shortname')</span>
                                     <x-text-span>{{ $datas->nama_panggilan ? $datas->nama_panggilan : '-' }}</x-text-span>
                                 </div>
 
                                 <div class="w-auto pb-4">
                                     <span for="tempat_lahir"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.birthplace')</span>
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.birthplace')</span>
                                     <x-text-span>{{ $datas->tempat_lahir ? $datas->tempat_lahir : '-' }}</x-text-span>
                                 </div>
 
                                 <div class="w-auto pb-4">
                                     <span for="tanggal_lahir"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.birthdate')</span>
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.birthdate')</span>
                                     <x-text-span>{{ date('d/m/Y', strtotime($datas->tanggal_lahir)) }}</x-text-span>
                                 </div>
 
                                 <div class="w-auto pb-4">
                                     <span for="alamat_asal"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.originaddress')</span>
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.originaddress')</span>
                                     <x-text-span>{{ $datas->alamat_asal ? $datas->alamat_asal : '-' }}</x-text-span>
                                 </div>
                             </div>
@@ -79,37 +79,37 @@
                             <div class="w-full lg:w-1/2 px-2 flex flex-col justify-start">
                                 <div class="w-auto pb-4">
                                     <span for="nip"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.nip')</span>
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.nip')</span>
                                     <x-text-span>{{ $datas->nip ? $datas->nip : '-' }}</x-text-span>
                                 </div>
 
                                 <div class="w-auto pb-4">
                                     <span for="alamat_tinggal"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.residentialaddress')</span>
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.residentialaddress')</span>
                                     <x-text-span>{{ $datas->alamat_tinggal ? $datas->alamat_tinggal : '-' }}</x-text-span>
                                 </div>
 
                                 <div class="w-auto pb-4">
                                     <span for="telpon"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.phonenumber')</span>
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.phonenumber')</span>
                                     <x-text-span>{{ $datas->telpon ? $datas->telpon : '-' }}</x-text-span>
                                 </div>
 
                                 <div class="w-auto pb-4">
                                     <span
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.gender')</span>
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.gender')</span>
                                     <x-text-span>{{ $datas->kelamin == 'L' ? 'Laki-laki' : 'Perempuan' }}</x-text-span>
                                 </div>
 
                                 <div class="w-auto pb-4">
                                     <span for="email"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.emailaddress')</span>
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.emailaddress')</span>
                                     <x-text-span>{{ $datas->email ? $datas->email : '-' }}</x-text-span>
                                 </div>
 
                                 <div class="w-auto pb-4 lg:pb-12">
                                     <span for="keterangan"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.description')</span>
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.description')</span>
                                     <x-text-span>{{ $datas->keterangan ? $datas->keterangan : '-' }}</x-text-span>
                                 </div>
 
@@ -149,7 +149,7 @@
 
                     {{-- Jabatan --}}
                     <div
-                        class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                        class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100">
                         <div class="p-4 space-y-2">
                             <div class="flex flex-row items-center gap-2">
                                 <svg fill="currentColor" class="size-5" viewBox="0 0 24 24"
@@ -157,13 +157,13 @@
                                     <path
                                         d="M21.435,11.5h-.38V8.12a1.626,1.626,0,0,0-1.62-1.62h-.63V6.12a1.625,1.625,0,0,0-3.25,0V11.5H8.445V6.12a1.625,1.625,0,0,0-3.25,0V6.5h-.63a1.62,1.62,0,0,0-1.62,1.62V11.5h-.38a.5.5,0,1,0,0,1h.38v3.37a1.622,1.622,0,0,0,1.62,1.63H5.2v.37a1.625,1.625,0,1,0,3.25,0V12.5h7.11v5.37a1.625,1.625,0,1,0,3.25,0V17.5h.63a1.628,1.628,0,0,0,1.62-1.63V12.5h.38a.5.5,0,1,0,0-1ZM5.2,16.5h-.63a.625.625,0,0,1-.62-.63V8.12a.623.623,0,0,1,.62-.62H5.2Zm2.25,1.37a.634.634,0,0,1-.63.63.625.625,0,0,1-.62-.63V6.12a.623.623,0,0,1,.62-.62.632.632,0,0,1,.63.62Zm10.36,0a.625.625,0,1,1-1.25,0V6.12a.625.625,0,0,1,1.25,0Zm2.25-2a.625.625,0,0,1-.62.63h-.63v-9h.63a.623.623,0,0,1,.62.62Z" />
                                 </svg>
-                                <span class="block font-medium text-primary-600 dark:text-primary-500">
+                                <span class="block font-medium text-primary-600">
                                     @lang('messages.jobposition')
                                 </span>
                             </div>
 
                             <div
-                                class="border rounded-md border-primary-100 bg-primary-100 dark:border-primary-800 dark:bg-primary-850">
+                                class="border rounded-md border-primary-100 bg-primary-100">
                                 <div class="p-2 overflow-scroll md:overflow-auto lg:overflow-hidden">
                                     <table id="jabatan_table" class="w-full border-separate border-spacing-2">
                                         <thead>

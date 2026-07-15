@@ -6,7 +6,7 @@
 @section('title', __('messages.delivery'))
 
 <x-app-layout>
-    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6 dark:border-primary-800">
+    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6">
         <h1 class="text-xl flex items-center justify-center">
             <a href="{{ route('delivery-order.index') }}" class="flex items-center justify-center">
                 <svg class="size-7" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -41,7 +41,7 @@
 
                 {{-- Master --}}
                 <div
-                    class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                    class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
                     <div class="p-4 space-y-2">
 
                         <div class="flex flex-col lg:flex-row">
@@ -49,26 +49,26 @@
 
                                 <div class="w-auto pb-4">
                                     <span for="no_order"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.deliveryordernumber')</span>
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.deliveryordernumber')</span>
                                     <x-text-span>{{ $datas->no_order }}</x-text-span>
                                 </div>
 
                                 <div class="w-auto pb-4">
                                     <span for="tanggal"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.deliverydate')</span>
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.deliverydate')</span>
                                     <x-text-span>{{ date('d/m/Y', strtotime($datas->tanggal)) }}</x-text-span>
                                 </div>
 
                                 <div class="flex flex-row gap-4">
                                     <div class="w-1/2 pb-4">
                                         <span for="jam_awal"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.departure')</span>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.departure')</span>
                                         <x-text-span>{{ old('jam_awal', $datas->jam_awal ? $datas->jam_awal : '') }}</x-text-span>
                                     </div>
 
                                     <div class="w-1/2 pb-4">
                                         <span for="jam_akhir"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.arrival')</span>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.arrival')</span>
                                         <x-text-span>{{ old('jam_akhir', $datas->jam_akhir ? $datas->jam_akhir : '') }}</x-text-span>
                                     </div>
                                 </div>
@@ -77,13 +77,13 @@
                             <div class="w-full lg:w-1/2 px-2 flex flex-col justify-start">
                                 <div class="w-auto pb-4">
                                     <span for="keterangan"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.description')</span>
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.description')</span>
                                     <x-text-span>{{ $datas->keterangan }}</x-text-span>
                                 </div>
 
                                 <div class="w-auto pb-4 lg:pb-12">
                                     <span for="pegawai_id"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.deliveryman')</span>
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.deliveryman')</span>
                                     <x-text-span>{{ $datas->pegawai_id ? $datas->pegawai->nama_lengkap : '???' }}</x-text-span>
                                 </div>
 
@@ -118,7 +118,7 @@
 
                     {{-- Package --}}
                     <div
-                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
                         <div class="p-4 space-y-2">
                             <div class="flex flex-row items-center gap-2">
                                 <svg class="size-5" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
@@ -128,13 +128,13 @@
                                     <path
                                         d="M451.986,36.005c-5.813-2.55-12.599,0.093-15.152,5.91l-41.289,94.088H63.323L22.034,41.915 c-2.552-5.816-9.338-8.46-15.152-5.91c-5.816,2.552-8.462,9.336-5.91,15.152L46.36,154.584v249.972 c0,10.63,8.648,19.278,19.278,19.278H394.26c10.63,0,19.278-8.648,19.278-19.278V152.237l44.358-101.08 C460.448,45.341,457.802,38.558,451.986,36.005z M195.003,159.003h66v149.538h-66V159.003z M390.538,400.835H69.36V159.003h102.643 v161.038c0,6.351,5.149,11.5,11.5,11.5h89c6.351,0,11.5-5.149,11.5-11.5V159.003h106.535V400.835z" />
                                 </svg>
-                                <span class="block font-medium text-primary-600 dark:text-primary-500">
+                                <span class="block font-medium text-primary-600">
                                     @lang('messages.packaging')
                                 </span>
                             </div>
 
                             <div
-                                class="border rounded-md border-primary-100 bg-primary-100 dark:border-primary-800 dark:bg-primary-850">
+                                class="border rounded-md border-primary-100 bg-primary-100">
                                 <div class="p-2 overflow-scroll md:overflow-auto lg:overflow-hidden">
                                     <table id="order_table" class="w-full border-separate border-spacing-2">
                                         <thead>
@@ -195,7 +195,7 @@
 
                     {{-- Delivery Items --}}
                     <div
-                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
                         <div class="p-4 space-y-2">
                             <div class="flex flex-row items-center gap-2">
                                 <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5"
@@ -213,13 +213,13 @@
                                             d="M24.3,39.1c-3,0-5.5,2.5-5.5,5.5c0,3,2.5,5.5,5.5,5.5s5.5-2.5,5.5-5.5C29.8,41.5,27.3,39.1,24.3,39.1z" />
                                     </g>
                                 </svg>
-                                <span class="block font-medium text-primary-600 dark:text-primary-500">
+                                <span class="block font-medium text-primary-600">
                                     @lang('messages.delivery')
                                 </span>
                             </div>
 
                             <div
-                                class="border rounded-md shadow-md border-primary-100 bg-primary-20 dark:border-primary-800 dark:bg-primary-850">
+                                class="border rounded-md shadow-md border-primary-100 bg-primary-20">
                                 <div class="p-2 overflow-scroll md:overflow-auto lg:overflow-hidden">
                                     <div class="p-2 flex flex-col gap-2">
                                         @foreach ($customers as $customer)

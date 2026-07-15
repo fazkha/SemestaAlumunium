@@ -4,7 +4,7 @@
 @section('title', __('messages.user'))
 
 <x-app-layout>
-    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6 dark:border-primary-800">
+    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6">
         <h1 class="text-xl flex items-center justify-center">
             <a href="{{ route('users.index') }}" class="flex items-center justify-center">
                 <svg fill="currentColor" class="w-7 h-7" viewBox="-2 -1.5 24 24" xmlns="http://www.w3.org/2000/svg"
@@ -50,7 +50,7 @@
                                     <p class="text-gray-600 text-sm mb-5">@lang('messages.deleteitemconfirm')?</p>
                                     <div class="flex flex-col md:flex-row gap-2 justify-between">
                                         <x-primary-button type="submit"
-                                            class="bg-red-600 hover:bg-red-700 dark:bg-red-700 dark:hover:bg-red-800">
+                                            class="bg-red-600 hover:bg-red-700">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                 stroke-width="1.5" stroke="currentColor" class="size-5">
                                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -74,30 +74,30 @@
                 </div>
 
                 <div
-                    class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                    class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
                     <div class="p-6 space-y-2 md:space-y-2 sm:p-8">
                         <div class="form-group">
                             <label for="name"
-                                class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.username')</label>
+                                class="block mb-2 font-medium text-primary-600">@lang('messages.username')</label>
                             <x-text-span>{{ $datas->name }}</x-text-span>
                         </div>
 
                         <div class="form-group">
                             <label for="email"
-                                class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.emailaddress')</label>
+                                class="block mb-2 font-medium text-primary-600">@lang('messages.emailaddress')</label>
                             <x-text-span>{{ $datas->email }}</x-text-span>
                         </div>
 
                         {{-- <div class="form-group">
                             <label for="password"
-                                class="block mb-2 font-medium text-primary-600 dark:text-primary-500">Password</label>
+                                class="block mb-2 font-medium text-primary-600">Password</label>
                             <x-text-span type="password" name="password"
                                 id="password">{{ $datas->password }}</x-text-span>
                         </div> --}}
 
                         <div class="form-group">
                             <label for="approved"
-                                class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.approval')</label>
+                                class="block mb-2 font-medium text-primary-600">@lang('messages.approval')</label>
                             <x-text-span>
                                 <div class="px-2 pb-2">
                                     <div class="inline-flex items-center">
@@ -121,7 +121,7 @@
 
                                 <div class="px-2 pb-2">
                                     <span for="branch_id"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.branch')</span>
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.branch')</span>
                                     <x-text-span>{{ $datas->profile->branch->nama }}</x-text-span>
                                 </div>
                             </x-text-span>
@@ -129,7 +129,7 @@
 
                         <div class="form-group">
                             <label for="roles"
-                                class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.role')</label>
+                                class="block mb-2 font-medium text-primary-600">@lang('messages.role')</label>
                             <x-text-span>
                                 @foreach ($roles as $role)
                                     <div class="pb-2">

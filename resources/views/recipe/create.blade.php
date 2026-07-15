@@ -1,7 +1,7 @@
 @section('title', __('messages.recipe'))
 
 <x-app-layout>
-    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6 dark:border-primary-800">
+    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6">
         <h1 class="text-xl flex items-center justify-center">
             <a href="{{ route('recipe.index') }}" class="flex items-center justify-center">
                 <svg class="w-7 h-7" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
@@ -32,7 +32,7 @@
 
                     {{-- Master --}}
                     <div
-                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
                         <div class="p-4 space-y-2">
 
                             <div class="flex flex-col lg:flex-row">
@@ -40,7 +40,7 @@
 
                                     <div class="w-auto pb-4">
                                         <label for="judul"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.title')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.title')</label>
                                         <x-text-input type="text" name="judul" id="judul" tabindex="1"
                                             autofocus
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.title') }}" required
@@ -51,7 +51,7 @@
 
                                     <div class="w-auto pb-4">
                                         <label for="keterangan"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.description')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.description')</label>
                                         <x-text-input type="text" name="keterangan" id="keterangan" tabindex="2"
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.description') }}"
                                             value="{{ old('keterangan') }}" />
@@ -69,7 +69,7 @@
                                             <label
                                                 class="cursor-pointer flex flex-col items-center md:flex-row md:gap-2">
                                                 <input type="checkbox" id="isactive" name="isactive"
-                                                    class="dark:border-white-400/20 dark:scale-100 transition-all duration-500 ease-in-out dark:hover:scale-110 dark:checked:scale-100 w-7 h-7 rounded-lg shadow-md"
+                                                    class="dark:border-white-400/20 transition-all duration-500 ease-in-out w-7 h-7 rounded-lg shadow-md"
                                                     checked>
                                                 <span
                                                     class="pr-4 group-hover:text-blue-500 transition-colors duration-300 text-right w-1/2 md:w-full">
@@ -109,7 +109,7 @@
 
                         {{-- Input --}}
                         <div
-                            class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                            class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100">
                             <div class="p-4 space-y-2">
                                 <div class="flex flex-row items-center gap-2">
                                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 48 48"
@@ -127,13 +127,13 @@
                                             </g>
                                         </g>
                                     </svg>
-                                    <span class="block font-medium text-primary-600 dark:text-primary-500">
+                                    <span class="block font-medium text-primary-600">
                                         @lang('messages.rawmaterial')
                                     </span>
                                 </div>
 
                                 <div
-                                    class="border rounded-md border-primary-100 bg-primary-100 dark:border-primary-800 dark:bg-primary-850">
+                                    class="border rounded-md border-primary-100 bg-primary-100">
                                     <div class="p-2 overflow-scroll md:overflow-auto lg:overflow-hidden">
                                         <table id="order_table" class="w-full border-separate border-spacing-2">
                                             <thead>
@@ -162,7 +162,7 @@
 
                         {{-- Output --}}
                         <div
-                            class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                            class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100">
                             <div class="p-4 space-y-2">
                                 <div class="flex flex-row items-center gap-2">
                                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 48 48"
@@ -182,13 +182,13 @@
                                             </g>
                                         </g>
                                     </svg>
-                                    <span class="block font-medium text-primary-600 dark:text-primary-500">
+                                    <span class="block font-medium text-primary-600">
                                         @lang('messages.productionresult')
                                     </span>
                                 </div>
 
                                 <div
-                                    class="border rounded-md border-primary-100 bg-primary-100 dark:border-primary-800 dark:bg-primary-850">
+                                    class="border rounded-md border-primary-100 bg-primary-100">
                                     <div class="p-2 overflow-scroll md:overflow-auto lg:overflow-hidden">
                                         <table id="order_table" class="w-full border-separate border-spacing-2">
                                             <thead>

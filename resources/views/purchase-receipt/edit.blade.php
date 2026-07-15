@@ -4,7 +4,7 @@
 @section('title', __('messages.goodsreceipt'))
 
 <x-app-layout>
-    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6 dark:border-primary-800">
+    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6">
         <h1 class="text-xl flex items-center justify-center">
             <a href="{{ route('purchase-receipt.index') }}" class="flex items-center justify-center">
                 <svg class="size-7" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg"
@@ -49,7 +49,7 @@
 
                     {{-- Master --}}
                     <div
-                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
                         <div class="p-4 space-y-2">
 
                             <div class="flex flex-col lg:flex-row">
@@ -59,13 +59,13 @@
                                         <input type="hidden" name="supplier_id" value="{{ $datas->supplier_id }}" />
                                         <input type="hidden" id="order_id" value="{{ $datas->id }}" />
                                         <span for="supplier_id"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.supplier')</span>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.supplier')</span>
                                         <x-text-span>{{ $datas->supplier->nama }}</x-text-span>
                                     </div>
 
                                     <div class="w-auto pb-4">
                                         <span for="no_order"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.ordernumber')</span>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.ordernumber')</span>
                                         <x-text-span
                                             id="disp-no_order">{{ old('no_order', $datas->no_order) }}</x-text-span>
                                         <x-text-input type="hidden" name="no_order" id="no_order"
@@ -76,13 +76,13 @@
 
                                     <div class="w-auto pb-4">
                                         <span for="tanggal"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.transactiondate')</span>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.transactiondate')</span>
                                         <x-text-span>{{ $datas->tanggal ? date_format(date_create($datas->tanggal), 'd/m/Y') : '' }}</x-text-span>
                                     </div>
 
                                     <div class="w-auto pb-4">
                                         <span for="tunai"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.payment')</span>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.payment')</span>
                                         <x-text-span>{{ $datas->tunai == 1 ? __('messages.cash') : __('messages.credit') }}</x-text-span>
                                     </div>
                                 </div>
@@ -90,7 +90,7 @@
                                 <div class="w-full lg:w-1/2 px-2 flex flex-col justify-start">
                                     <div class="w-auto pb-4">
                                         <label for="tanggal_terima"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.receiptdate')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.receiptdate')</label>
                                         <x-text-input type="date" name="tanggal_terima" id="tanggal_terima"
                                             data-date-format="dd-mm-yyyy" tabindex="1" autofocus
                                             value="{{ old('tanggal_terima', $datas->tanggal_terima) }}" />
@@ -100,10 +100,10 @@
 
                                     <div class="w-auto pb-4">
                                         <label for="isaccepted"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.arethegoodsreceived')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.arethegoodsreceived')</label>
                                         <label class="cursor-pointer flex flex-col md:flex-row md:gap-2 py-1">
                                             <input type="checkbox" id="isaccepted" name="isaccepted" tabindex="2"
-                                                class="dark:border-white-400/20 dark:scale-100 transition-all duration-500 ease-in-out dark:hover:scale-110 dark:checked:scale-100 w-7 h-7 rounded-lg shadow-md"
+                                                class="dark:border-white-400/20 transition-all duration-500 ease-in-out w-7 h-7 rounded-lg shadow-md"
                                                 {{ $datas->isaccepted == '1' ? 'checked' : '' }}>
                                             <span class="pr-4 group-hover:text-blue-500 transition-colors duration-300">
                                                 @lang('messages.isaccepted')
@@ -113,7 +113,7 @@
 
                                     <div class="w-auto pb-4 lg:pb-12">
                                         <label for="keterangan_terima"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.receiptdescription')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.receiptdescription')</label>
                                         <x-text-input type="text" name="keterangan_terima" id="keterangan_terima"
                                             tabindex="3"
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.description') }}"
@@ -171,7 +171,7 @@
 
                         {{-- Detail --}}
                         <div
-                            class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                            class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
                             <div class="p-4 space-y-2">
                                 <div class="flex flex-row items-center gap-2">
                                     <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5"
@@ -189,13 +189,13 @@
                                                 d="M24.3,39.1c-3,0-5.5,2.5-5.5,5.5c0,3,2.5,5.5,5.5,5.5s5.5-2.5,5.5-5.5C29.8,41.5,27.3,39.1,24.3,39.1z" />
                                         </g>
                                     </svg>
-                                    <span class="block font-medium text-primary-600 dark:text-primary-500">
+                                    <span class="block font-medium text-primary-600">
                                         @lang('messages.goodsreceived')
                                     </span>
                                 </div>
 
                                 <div
-                                    class="border rounded-md border-primary-100 bg-primary-100 dark:border-primary-800 dark:bg-primary-850">
+                                    class="border rounded-md border-primary-100 bg-primary-100">
                                     <div class="p-2 overflow-scroll md:overflow-auto lg:overflow-hidden">
                                         <table id="order_table" class="w-full border-separate border-spacing-2">
                                             <thead>

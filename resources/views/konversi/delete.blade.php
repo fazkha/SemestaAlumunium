@@ -4,7 +4,7 @@
 @section('title', __('messages.conversion'))
 
 <x-app-layout>
-    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6 dark:border-primary-800">
+    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6">
         <h1 class="text-xl flex items-center justify-center">
             <a href="{{ route('conversions.index') }}" class="flex items-center justify-center">
                 <svg class="size-7" viewBox="0 0 17 17" version="1.1" xmlns="http://www.w3.org/2000/svg"
@@ -50,7 +50,7 @@
                                     <p class="text-gray-600 text-sm mb-5">@lang('messages.deleteitemconfirm')?</p>
                                     <div class="flex flex-col md:flex-row gap-2 justify-between">
                                         <x-primary-button type="submit"
-                                            class="bg-red-600 hover:bg-red-700 dark:bg-red-700 dark:hover:bg-red-800">
+                                            class="bg-red-600 hover:bg-red-700">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                 stroke-width="1.5" stroke="currentColor" class="size-5">
                                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -75,7 +75,7 @@
                 </div>
 
                 <div
-                    class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                    class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
                     <div class="p-4 space-y-2">
 
                         <div class="flex flex-col lg:flex-row">
@@ -83,13 +83,13 @@
 
                                 <div class="w-auto pb-4">
                                     <span for="satuan_id"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.usedunit')</span>
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.usedunit')</span>
                                     <x-text-span>{{ $datas->satuan->nama_lengkap }}</x-text-span>
                                 </div>
 
                                 <div class="w-auto pb-4">
                                     <span for="satuan2_id"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.desiredunit')</span>
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.desiredunit')</span>
                                     <x-text-span>{{ $datas->satuan2->nama_lengkap }}</x-text-span>
                                 </div>
                             </div>
@@ -97,7 +97,7 @@
                             <div class="w-full lg:w-1/2 px-2 flex flex-col justify-start">
                                 <div class="w-auto pb-4">
                                     <label for="operator"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.operator')</label>
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.operator')</label>
                                     @php
                                         switch ($datas->operator) {
                                             case config('custom.nilai_tambah'):
@@ -122,7 +122,7 @@
 
                                 <div class="w-auto pb-4 lg:pb-12">
                                     <span for="bilangan"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.number')</span>
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.number')</span>
                                     <x-text-span>{{ $datas->bilangan }}</x-text-span>
                                 </div>
 

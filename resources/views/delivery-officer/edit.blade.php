@@ -6,7 +6,7 @@
 @section('title', __('messages.delivery'))
 
 <x-app-layout>
-    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6 dark:border-primary-800">
+    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6">
         <h1 class="text-xl flex items-center justify-center">
             <a href="{{ route('delivery-order.index') }}" class="flex items-center justify-center">
                 <svg class="size-7" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -46,7 +46,7 @@
 
                     {{-- Master --}}
                     <div
-                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
                         <div class="p-4 space-y-2">
 
                             <div class="flex flex-col lg:flex-row">
@@ -54,13 +54,13 @@
 
                                     <div class="w-auto pb-4">
                                         <span for="no_order"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.deliveryordernumber')</span>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.deliveryordernumber')</span>
                                         <x-text-span>{{ $datas->no_order }}</x-text-span>
                                     </div>
 
                                     <div class="w-auto pb-4">
                                         <label for="tanggal"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.deliverydate')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.deliverydate')</label>
                                         <x-text-input type="date" name="tanggal" id="tanggal"
                                             x-bind:disabled="buttonDisabled" data-date-format="dd-mm-yyyy"
                                             tabindex="1" autofocus required value="{{ $datas->tanggal }}" />
@@ -71,7 +71,7 @@
                                     <div class="flex flex-row gap-4">
                                         <div class="w-1/2 pb-4">
                                             <label for="jam_awal"
-                                                class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.departure')</label>
+                                                class="block mb-2 font-medium text-primary-600">@lang('messages.departure')</label>
                                             <x-text-input type="time" name="jam_awal" id="jam_awal"
                                                 x-bind:disabled="buttonDisabled" tabindex="1" required
                                                 value="{{ old('jam_awal', $datas->jam_awal ? $datas->jam_awal : '') }}" />
@@ -81,7 +81,7 @@
 
                                         <div class="w-1/2 pb-4">
                                             <label for="jam_akhir"
-                                                class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.arrival')</label>
+                                                class="block mb-2 font-medium text-primary-600">@lang('messages.arrival')</label>
                                             <x-text-input type="time" name="jam_akhir" id="jam_akhir"
                                                 x-bind:disabled="buttonDisabled" tabindex="1" required
                                                 value="{{ old('jam_akhir', $datas->jam_akhir ? $datas->jam_akhir : '') }}" />
@@ -94,7 +94,7 @@
                                 <div class="w-full lg:w-1/2 px-2 flex flex-col justify-start">
                                     <div class="w-auto pb-4">
                                         <label for="keterangan"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.description')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.description')</label>
                                         <x-text-input type="text" name="keterangan" id="keterangan" tabindex="3"
                                             x-bind:disabled="buttonDisabled"
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.description') }}"
@@ -105,7 +105,7 @@
 
                                     <div class="w-auto pb-4 lg:pb-12">
                                         <span for="pegawai_id"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.deliveryman')</span>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.deliveryman')</span>
                                         <x-text-span>{{ $datas->pegawai_id ? $datas->pegawai->nama_lengkap : '???' }}</x-text-span>
                                     </div>
 
@@ -123,7 +123,7 @@
                                                 <label
                                                     class="cursor-pointer flex flex-col items-center md:flex-row md:gap-2">
                                                     <input type="checkbox" id="isdone" name="isdone"
-                                                        class="dark:border-white-400/20 dark:scale-100 transition-all duration-500 ease-in-out dark:hover:scale-110 dark:checked:scale-100 w-7 h-7 rounded-lg shadow-md"
+                                                        class="dark:border-white-400/20 transition-all duration-500 ease-in-out w-7 h-7 rounded-lg shadow-md"
                                                         {{ $datas->isdone == '1' ? 'checked' : '' }}>
                                                     <span
                                                         class="pr-4 group-hover:text-blue-500 transition-colors duration-300 text-right w-1/2 md:w-full">
@@ -171,7 +171,7 @@
 
                         {{-- Package --}}
                         <div
-                            class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                            class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
                             <div class="p-4 space-y-2">
                                 <div class="flex flex-row items-center gap-2">
                                     <svg class="size-5" version="1.1" id="Capa_1"
@@ -181,13 +181,13 @@
                                         <path
                                             d="M451.986,36.005c-5.813-2.55-12.599,0.093-15.152,5.91l-41.289,94.088H63.323L22.034,41.915 c-2.552-5.816-9.338-8.46-15.152-5.91c-5.816,2.552-8.462,9.336-5.91,15.152L46.36,154.584v249.972 c0,10.63,8.648,19.278,19.278,19.278H394.26c10.63,0,19.278-8.648,19.278-19.278V152.237l44.358-101.08 C460.448,45.341,457.802,38.558,451.986,36.005z M195.003,159.003h66v149.538h-66V159.003z M390.538,400.835H69.36V159.003h102.643 v161.038c0,6.351,5.149,11.5,11.5,11.5h89c6.351,0,11.5-5.149,11.5-11.5V159.003h106.535V400.835z" />
                                     </svg>
-                                    <span class="block font-medium text-primary-600 dark:text-primary-500">
+                                    <span class="block font-medium text-primary-600">
                                         @lang('messages.packaging')
                                     </span>
                                 </div>
 
                                 <div
-                                    class="border rounded-md border-primary-100 bg-primary-100 dark:border-primary-800 dark:bg-primary-850">
+                                    class="border rounded-md border-primary-100 bg-primary-100">
                                     <div class="p-2 overflow-scroll md:overflow-auto lg:overflow-hidden">
                                         <table id="order_table" class="w-full border-separate border-spacing-2">
                                             <thead>
@@ -215,7 +215,7 @@
                                                             name="delivery_officer_id" value="{{ $datas->id }}" />
                                                         <select id="barang_id" name="barang_id" required
                                                             tabindex="9"
-                                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:text-gray dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
+                                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
                                                             <option value="">@lang('messages.choose')...</option>
                                                             @foreach ($barangs as $id => $name)
                                                                 <option value="{{ $id }}">
@@ -230,7 +230,7 @@
                                                     <td class="align-top">
                                                         <select id="satuan_id" name="satuan_id" required
                                                             tabindex="11" disabled
-                                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:text-gray dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
+                                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
                                                             <option value="">@lang('messages.choose')...</option>
                                                             @foreach ($satuans as $id => $name)
                                                                 <option value="{{ $id }}">
@@ -302,7 +302,7 @@
 
                     {{-- Delivery Items --}}
                     <div
-                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
                         <div class="p-4 space-y-2">
                             <div class="flex flex-row items-center gap-2">
                                 <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5"
@@ -320,13 +320,13 @@
                                             d="M24.3,39.1c-3,0-5.5,2.5-5.5,5.5c0,3,2.5,5.5,5.5,5.5s5.5-2.5,5.5-5.5C29.8,41.5,27.3,39.1,24.3,39.1z" />
                                     </g>
                                 </svg>
-                                <span class="block font-medium text-primary-600 dark:text-primary-500">
+                                <span class="block font-medium text-primary-600">
                                     @lang('messages.delivery')
                                 </span>
                             </div>
 
                             <div
-                                class="border rounded-md shadow-md border-primary-100 bg-primary-20 dark:border-primary-800 dark:bg-primary-850">
+                                class="border rounded-md shadow-md border-primary-100 bg-primary-20">
                                 <div class="p-2 overflow-scroll md:overflow-auto lg:overflow-hidden">
                                     <div class="p-2 flex flex-col gap-2">
                                         @foreach ($customers as $customer)

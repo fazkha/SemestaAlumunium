@@ -8,7 +8,7 @@
     }">
 
         <div
-            class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6 dark:border-primary-800">
+            class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6">
             <h1 class="text-xl flex items-center justify-center">
                 <a href="{{ route('coa.index') }}" class="flex items-center justify-center">
                     <svg class="w-7 h-7" viewBox="0 0 1024 1024" fill="currentColor" class="icon" version="1.1"
@@ -34,28 +34,28 @@
                     </div>
 
                     <div
-                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
                         <div class="p-4 space-y-2">
 
                             <div class="flex flex-col lg:flex-row">
                                 <div class="w-full lg:w-1/2 px-2">
                                     <div class="pb-4">
                                         <span
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">Title</span>
+                                            class="block mb-2 font-medium text-primary-600">Title</span>
                                         <x-text-span>{{ $datas->title }}</x-text-span>
                                     </div>
 
                                     <div class="flex flex-row justify-between gap-2">
                                         <div class="w-auto pb-4">
                                             <label
-                                                class="block mb-2 font-medium text-primary-600 dark:text-primary-500">Number
+                                                class="block mb-2 font-medium text-primary-600">Number
                                                 Of Question(s)</label>
                                             <x-text-span>{{ $datas->quest_amount }}</x-text-span>
                                         </div>
 
                                         <div class="w-1/2 pb-4">
                                             <label
-                                                class="block mb-2 font-medium text-primary-600 dark:text-primary-500">Price
+                                                class="block mb-2 font-medium text-primary-600">Price
                                                 (@lang('messages.currencysymbol'))</label>
                                             <x-text-span>{{ number_format($datas->price, 0, ',', '.') }}</x-text-span>
                                         </div>
@@ -63,7 +63,7 @@
 
                                     <div class="pb-4">
                                         <span for="educationlevel_id"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">Educational
+                                            class="block mb-2 font-medium text-primary-600">Educational
                                             Level</span>
                                         <x-text-span>{{ $datas->educationlevel->name }}</x-text-span>
                                     </div>
@@ -72,7 +72,7 @@
                                 <div class="w-full lg:w-1/2 px-2 flex flex-col justify-start">
                                     <div class="w-auto pb-4 lg:pb-12">
                                         <span
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">Description</span>
+                                            class="block mb-2 font-medium text-primary-600">Description</span>
                                         <x-text-span>{{ $datas->description }}</x-text-span>
                                     </div>
 
@@ -125,16 +125,16 @@
                         </div>
 
                         <div
-                            class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                            class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100">
                             <div class="p-4 space-y-2">
                                 <div class="flex flex-row
                             items-center justify-between">
                                     <span
-                                        class="block font-medium text-primary-600 dark:text-primary-500">Question(s)</span>
+                                        class="block font-medium text-primary-600">Question(s)</span>
                                 </div>
 
                                 <div
-                                    class="border rounded-md border-primary-500 bg-gray-300 dark:border-primary-800 dark:bg-gray-800">
+                                    class="border rounded-md border-primary-500 bg-gray-300">
                                     <div id="table-question-container" class="p-4 overflow-hidden">
                                         <table id="question_table" class="w-full border-separate border-spacing-2">
                                             <thead>
@@ -183,7 +183,7 @@
                                                             openModalImage = true;"
                                                                 src="{{ $detail->gambar ? asset($detail->lokasi . '/' . $detail->gambar) : asset('/images/no-image.256x256.png') }}"
                                                                 alt="o.o"
-                                                                class="absolute top-[2px] left-[2px] h-9 w-9 rounded-tl-md rounded-br-md bg-gray-300 dark:bg-gray-600" />
+                                                                class="absolute top-[2px] left-[2px] h-9 w-9 rounded-tl-md rounded-br-md bg-gray-300" />
                                                             <x-text-span
                                                                 class="pl-11">{{ $detail->question }}</x-text-span>
                                                         </td>
@@ -207,12 +207,12 @@
         </div>
 
         <div x-show="openModalImage" x-cloak x-transition
-            class="z-50 fixed inset-0 bg-white bg-opacity-75 dark:bg-black dark:bg-opacity-75 flex items-center justify-center px-4 md:px-0">
+            class="z-50 fixed inset-0 bg-white bg-opacity-75 flex items-center justify-center px-4 md:px-0">
             <div @click.away="openModalImage = false;"
-                class="flex flex-col p-0 h-full w-full shadow-2xl rounded-lg border-2 bg-white border-gray-300 dark:bg-darker dark:border-gray-700">
+                class="flex flex-col p-0 h-full w-full shadow-2xl rounded-lg border-2 bg-white border-gray-300">
                 <div class="absolute top-4 right-4">
                     <button @click="openModalImage = false;" class="p-2 rounded-full bg-red-600">
-                        <svg class="w-5 h-5 text-white dark:text-white-700" viewBox="0 0 24 24" fill="currentColor"
+                        <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor"
                             xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M5.293 5.293a1 1 0 0 1 1.414 0L12 10.586l5.293-5.293a1 1 0 1 1 1.414 1.414L13.414 12l5.293 5.293a1 1 0 0 1-1.414 1.414L12 13.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L10.586 12 5.293 6.707a1 1 0 0 1 0-1.414z"
@@ -221,7 +221,7 @@
                     </button>
                 </div>
                 <div
-                    class="flex h-full items-center justify-center overflow-auto rounded-lg border border-primary-500 bg-primary-50 dark:border-primary-800 dark:bg-primary-800">
+                    class="flex h-full items-center justify-center overflow-auto rounded-lg border border-primary-500 bg-primary-50">
                     <img id="gambar_soal" :src="imagePreview" alt="o.o"
                         :class="imageOrientation == 'p' ? 'w-auto h-full' : 'w-full h-auto'" />
                 </div>

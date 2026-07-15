@@ -5,7 +5,7 @@
 @section('title', __('messages.plan'))
 
 <x-app-layout>
-    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6 dark:border-primary-800">
+    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6">
         <h1 class="text-xl flex items-center justify-center">
             <a href="{{ route('purchase-plan.index') }}" class="flex items-center justify-center">
                 <svg class="size-7" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -37,7 +37,7 @@
 
                     {{-- Master --}}
                     <div
-                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
                         <div class="p-4 space-y-2">
 
                             <div class="flex flex-col lg:flex-row">
@@ -46,9 +46,9 @@
                                     <div class="w-auto pb-4">
                                         <input type="hidden" name="branch_id" value="{{ $branch_id }}" />
                                         <label for="supplier_id"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.supplier')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.supplier')</label>
                                         <select name="supplier_id" id="supplier_id" tabindex="1" required autofocus
-                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:text-gray dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
+                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
                                             <option value="">@lang('messages.choose')...</option>
                                             @foreach ($suppliers as $id => $name)
                                                 <option value="{{ $id }}"
@@ -63,9 +63,9 @@
                                     <div class="flex flex-row gap-4">
                                         <div class="w-1/2 pb-4">
                                             <label for="periode_bulan"
-                                                class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('calendar.month')</label>
+                                                class="block mb-2 font-medium text-primary-600">@lang('calendar.month')</label>
                                             <select name="periode_bulan" id="periode_bulan" tabindex="2" required
-                                                class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:text-gray dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
+                                                class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
                                                 <option value="">@lang('messages.choose')...</option>
                                                 @foreach ($bulans as $id => $name)
                                                     <option value="{{ $id }}"
@@ -79,7 +79,7 @@
 
                                         <div class="w-1/2 pb-4">
                                             <label for="periode_tahun"
-                                                class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('calendar.year')</label>
+                                                class="block mb-2 font-medium text-primary-600">@lang('calendar.year')</label>
                                             <x-text-input type="number" min="0" name="periode_tahun"
                                                 id="periode_tahun" tabindex="3" required
                                                 value="{{ $thisyear }}" />
@@ -97,7 +97,7 @@
                                             <label
                                                 class="cursor-pointer flex flex-col items-center md:flex-row md:gap-2">
                                                 <input type="checkbox" id="isactive" name="isactive" tabindex="4"
-                                                    class="dark:border-white-400/20 dark:scale-100 transition-all duration-500 ease-in-out dark:hover:scale-110 dark:checked:scale-100 w-7 h-7 rounded-lg shadow-md"
+                                                    class="dark:border-white-400/20 transition-all duration-500 ease-in-out w-7 h-7 rounded-lg shadow-md"
                                                     checked>
                                                 <span
                                                     class="pr-4 group-hover:text-blue-500 transition-colors duration-300 text-right w-1/2 md:w-full">
@@ -136,7 +136,7 @@
 
                         {{-- Detail --}}
                         <div
-                            class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                            class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100">
                             <div class="p-4 space-y-2">
                                 <div class="flex flex-row items-center gap-2">
                                     <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5"
@@ -154,12 +154,12 @@
                                                 d="M24.3,39.1c-3,0-5.5,2.5-5.5,5.5c0,3,2.5,5.5,5.5,5.5s5.5-2.5,5.5-5.5C29.8,41.5,27.3,39.1,24.3,39.1z" />
                                         </g>
                                     </svg>
-                                    <span class="block font-medium text-primary-600 dark:text-primary-500">
+                                    <span class="block font-medium text-primary-600">
                                         @lang('messages.purchaseplan')
                                     </span>
                                 </div>
                                 <div
-                                    class="border rounded-md border-primary-100 bg-primary-100 dark:border-primary-800 dark:bg-primary-850">
+                                    class="border rounded-md border-primary-100 bg-primary-100">
                                     <div class="p-2 overflow-scroll md:overflow-auto lg:overflow-hidden">
                                         <table id="order_table" class="w-full border-separate border-spacing-2">
                                             <thead>

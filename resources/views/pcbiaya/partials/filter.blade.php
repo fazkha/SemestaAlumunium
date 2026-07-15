@@ -1,7 +1,7 @@
 <div class="my-2">
     <div class="flex flex-col-reverse md:flex-row gap-4 justify-between">
         <div
-            class="p-2 md:p-4 border rounded-md shadow-md bg-primary-50 border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+            class="p-2 md:p-4 border rounded-md shadow-md bg-primary-50 border-primary-100">
 
             <div class="relative flex flex-row gap-2 mb-2 md:mb-4">
                 <div id="filter-loading" class="absolute top-[0%] right-[2%] z-10 hidden">
@@ -27,10 +27,10 @@
                 <div class="flex-row justify-start">
                     <div class="relative shadow-md mr-2 mb-2">
                         <span
-                            class="w-24 text-xs h-full absolute inset-y-0 left-0 flex items-center px-2 border-r border-primary-100 dark:border-primary-800">Per
+                            class="w-24 text-xs h-full absolute inset-y-0 left-0 flex items-center px-2 border-r border-primary-100">Per
                             @lang('messages.page')</span>
                         <select id="pp-dropdown"
-                            class="text-sm px-2 leading-tight pl-28 pr-9 py-2 appearance-none w-full h-full rounded-md border block bg-primary-20 border-primary-100 text-gray-700 dark:text-white dark:bg-primary-700 dark:border-primary-800">
+                            class="text-sm px-2 leading-tight pl-28 pr-9 py-2 appearance-none w-full h-full rounded-md border block bg-primary-20 border-primary-100 text-gray-700">
                             <option
                                 {{ session('pcbiaya_pp') == config('custom.list_per_page_opt_1') ? 'selected' : '' }}
                                 value="{{ config('custom.list_per_page_opt_1') }}">
@@ -45,7 +45,7 @@
                                 {{ config('custom.list_per_page_opt_3') }}</option>
                         </select>
                         <div
-                            class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:text-white">
+                            class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                         </div>
                     </div>
                 </div>
@@ -53,9 +53,9 @@
                 <div class="flex-row justify-start">
                     <div class="relative shadow-md mr-2 mb-2">
                         <span
-                            class="w-24 text-xs h-full absolute inset-y-0 left-0 flex items-center px-2 border-r border-primary-100 dark:border-primary-800">@lang('messages.branch')</span>
+                            class="w-24 text-xs h-full absolute inset-y-0 left-0 flex items-center px-2 border-r border-primary-100">@lang('messages.branch')</span>
                         <select id="branch-dropdown"
-                            class="text-sm px-2 leading-tight pl-28 pr-9 py-2 appearance-none w-full h-full rounded-md border block bg-primary-20 border-primary-100 text-gray-700 dark:text-white dark:bg-primary-700 dark:border-primary-800">
+                            class="text-sm px-2 leading-tight pl-28 pr-9 py-2 appearance-none w-full h-full rounded-md border block bg-primary-20 border-primary-100 text-gray-700">
                             <option {{ session('pcbiaya_branch_id') == 'all' ? 'selected' : '' }} value="all">
                                 @lang('messages.all')</option>
                             @foreach ($branches as $id => $name)
@@ -64,16 +64,16 @@
                             @endforeach
                         </select>
                         <div
-                            class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:text-white">
+                            class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                         </div>
                     </div>
 
                     <div class="relative shadow-md mr-2 mb-2">
                         <span
-                            class="w-24 text-xs h-full absolute inset-y-0 left-0 flex items-center px-2 border-r border-primary-100 dark:border-primary-800">@lang('calendar.date')</span>
+                            class="w-24 text-xs h-full absolute inset-y-0 left-0 flex items-center px-2 border-r border-primary-100">@lang('calendar.date')</span>
                         <input id="search-tanggal" type="date" placeholder="@lang('messages.search')"
                             value="{{ session('pcbiaya_tanggal') == '_' ? '' : session('pcbiaya_tanggal') }}"
-                            class="text-sm pl-28 pr-6 pt-1.5 pb-2 appearance-none rounded-md border block w-full bg-primary-20 border-primary-100 placeholder-gray-400 text-gray-700 dark:text-white dark:bg-primary-700 dark:border-primary-800" />
+                            class="text-sm pl-28 pr-6 pt-1.5 pb-2 appearance-none rounded-md border block w-full bg-primary-20 border-primary-100 placeholder-gray-400 text-gray-700" />
                     </div>
                 </div>
             </div>

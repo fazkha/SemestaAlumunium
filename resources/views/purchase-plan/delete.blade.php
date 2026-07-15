@@ -4,7 +4,7 @@
 @section('title', __('messages.plan'))
 
 <x-app-layout>
-    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6 dark:border-primary-800">
+    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6">
         <h1 class="text-xl flex items-center justify-center">
             <a href="{{ route('purchase-plan.index') }}" class="flex items-center justify-center">
                 <svg class="size-7" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -50,7 +50,7 @@
                                     <p class="text-gray-600 text-sm mb-5">@lang('messages.deleteitemconfirm')?</p>
                                     <div class="flex flex-col md:flex-row gap-2 justify-between">
                                         <x-primary-button type="submit"
-                                            class="bg-red-600 hover:bg-red-700 dark:bg-red-700 dark:hover:bg-red-800">
+                                            class="bg-red-600 hover:bg-red-700">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                 stroke-width="1.5" stroke="currentColor" class="size-5">
                                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -76,7 +76,7 @@
 
                 {{-- Master --}}
                 <div
-                    class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                    class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
                     <div class="p-4 space-y-2">
 
                         <div class="flex flex-col lg:flex-row">
@@ -84,20 +84,20 @@
 
                                 <div class="w-auto pb-4">
                                     <span for="supplier_id"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.supplier')</span>
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.supplier')</span>
                                     <x-text-span>{{ $datas->supplier->nama }}</x-text-span>
                                 </div>
 
                                 <div class="flex flex-row gap-4">
                                     <div class="w-1/2 pb-4">
                                         <span for="periode_bulan"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('calendar.month')</span>
+                                            class="block mb-2 font-medium text-primary-600">@lang('calendar.month')</span>
                                         <x-text-span>{{ $bulans[$datas->periode_bulan] }}</x-text-span>
                                     </div>
 
                                     <div class="w-1/2 pb-4">
                                         <span for="periode_tahun"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('calendar.year')</span>
+                                            class="block mb-2 font-medium text-primary-600">@lang('calendar.year')</span>
                                         <x-text-span>{{ $datas->periode_tahun }}</x-text-span>
                                     </div>
                                 </div>
@@ -141,7 +141,7 @@
 
                     {{-- Detail --}}
                     <div
-                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
                         <div class="p-4 space-y-2">
                             <div class="flex flex-row items-center gap-2">
                                 <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5"
@@ -159,13 +159,13 @@
                                             d="M24.3,39.1c-3,0-5.5,2.5-5.5,5.5c0,3,2.5,5.5,5.5,5.5s5.5-2.5,5.5-5.5C29.8,41.5,27.3,39.1,24.3,39.1z" />
                                     </g>
                                 </svg>
-                                <span class="block font-medium text-primary-600 dark:text-primary-500">
+                                <span class="block font-medium text-primary-600">
                                     @lang('messages.purchaseplan')
                                 </span>
                             </div>
 
                             <div
-                                class="border rounded-md border-primary-100 bg-primary-100 dark:border-primary-800 dark:bg-primary-850">
+                                class="border rounded-md border-primary-100 bg-primary-100">
                                 <div class="p-2 overflow-scroll md:overflow-auto lg:overflow-hidden">
                                     <table id="order_table" class="w-full border-separate border-spacing-2">
                                         <thead>

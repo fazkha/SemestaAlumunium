@@ -1,7 +1,7 @@
 @section('title', __('messages.pcpettycash'))
 
 <x-app-layout>
-    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6 dark:border-primary-800">
+    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6">
         <h1 class="text-xl flex items-center justify-center">
             <a href="{{ route('pcpettycash.index') }}" class="flex items-center justify-center">
                 <svg class="size-7" version="1.1" xmlns="http://www.w3.org/2000/svg"
@@ -51,7 +51,7 @@
                     </div>
 
                     <div
-                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
                         <div class="p-4 space-y-2">
 
                             <div class="flex flex-col lg:flex-row">
@@ -59,9 +59,9 @@
 
                                     <div class="w-auto pb-4">
                                         <label for="branch_id"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.branch')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.branch')</label>
                                         <select name="branch_id" id="branch_id" tabindex="1" required autofocus
-                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:text-gray dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
+                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
                                             <option value="">@lang('messages.choose')...</option>
                                             @foreach ($branches as $id => $name)
                                                 <option value="{{ $id }}"
@@ -75,7 +75,7 @@
 
                                     <div class="w-auto pb-4">
                                         <label for="tanggal"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.transactiondate')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.transactiondate')</label>
                                         <x-text-input type="date" name="tanggal" id="tanggal"
                                             data-date-format="dd-mm-yyyy" tabindex="2" required
                                             value="{{ $datas->tanggal }}" />
@@ -87,7 +87,7 @@
                                 <div class="w-full lg:w-1/2 px-2 flex flex-col justify-start">
                                     <div class="w-auto pb-4 lg:pb-12">
                                         <label for="nominal"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.nominal')
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.nominal')
                                             (@lang('messages.thousands') @lang('messages.currencysymbol'))</label>
                                         <x-text-input type="text" name="nominal" id="nominal" tabindex="3"
                                             value="{{ $datas->nominal }}" />

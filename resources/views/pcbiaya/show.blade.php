@@ -1,7 +1,7 @@
 @section('title', __('messages.pcpettycash'))
 
 <x-app-layout>
-    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6 dark:border-primary-800">
+    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6">
         <h1 class="text-xl flex items-center justify-center">
             <a href="{{ route('pcpettycash.index') }}" class="flex items-center justify-center">
                 <svg class="size-7" version="1.1" xmlns="http://www.w3.org/2000/svg"
@@ -46,7 +46,7 @@
                 </div>
 
                 <div
-                    class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                    class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
                     <div class="p-4 space-y-2">
 
                         <div class="flex flex-col lg:flex-row">
@@ -54,13 +54,13 @@
 
                                 <div class="w-auto pb-4">
                                     <span for="branch_id"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.branch')</span>
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.branch')</span>
                                     <x-text-span>{{ $datas->cabang->nama }}</x-text-span>
                                 </div>
 
                                 <div class="w-auto pb-4">
                                     <span for="tanggal"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.transactiondate')</span>
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.transactiondate')</span>
                                     <x-text-span>{{ $datas->tanggal }}</x-text-span>
                                 </div>
                             </div>
@@ -68,7 +68,7 @@
                             <div class="w-full lg:w-1/2 px-2 flex flex-col justify-start">
                                 <div class="w-auto pb-4 lg:pb-12">
                                     <span for="nominal"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.nominal')
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.nominal')
                                         (@lang('messages.thousands') @lang('messages.currencysymbol'))</span>
                                     <x-text-span>{{ $datas->nominal }}</x-text-span>
                                 </div>

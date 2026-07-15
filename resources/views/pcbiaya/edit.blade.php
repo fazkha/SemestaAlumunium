@@ -4,7 +4,7 @@
 @section('title', __('messages.pcbiaya'))
 
 <x-app-layout>
-    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6 dark:border-primary-800">
+    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6">
         <h1 class="text-xl flex items-center justify-center">
             <a href="{{ route('pcbiaya.index') }}" class="flex items-center justify-center">
                 <svg class="size-7" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -43,7 +43,7 @@
 
                     {{-- Master --}}
                     <div
-                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
                         <div class="p-4 space-y-2">
 
                             <div class="flex flex-col lg:flex-row">
@@ -51,13 +51,13 @@
 
                                     <div class="w-auto pb-4">
                                         <span for="branch_id"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.branch')</span>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.branch')</span>
                                         <x-text-span>{{ $details[0]->cabang->nama }}</x-text-span>
                                     </div>
 
                                     <div class="w-auto pb-4">
                                         <span for="tanggal"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.transactiondate')</span>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.transactiondate')</span>
                                         <x-text-span>{{ $details[0]->tanggal }}</x-text-span>
                                     </div>
                                 </div>
@@ -65,7 +65,7 @@
                                 <div class="w-full lg:w-1/2 px-2 flex flex-col justify-start">
                                     <div class="w-auto pb-4 lg:pb-12">
                                         <span for="pc_nama"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.pcname')</span>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.pcname')</span>
                                         <x-text-span>{{ $details[0]->pc_nama }}</x-text-span>
                                     </div>
 
@@ -92,7 +92,7 @@
 
                         {{-- Detail --}}
                         <div
-                            class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                            class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
                             <div class="p-4 space-y-2">
                                 <div class="flex flex-row items-center gap-2">
                                     <svg class="size-5" viewBox="0 0 32 32" fill="none"
@@ -109,13 +109,13 @@
                                             </clipPath>
                                         </defs>
                                     </svg>
-                                    <span class="block font-medium text-primary-600 dark:text-primary-500">
+                                    <span class="block font-medium text-primary-600">
                                         @lang('messages.cost')
                                     </span>
                                 </div>
 
                                 <div
-                                    class="border rounded-md border-primary-100 bg-primary-100 dark:border-primary-800 dark:bg-primary-850">
+                                    class="border rounded-md border-primary-100 bg-primary-100">
                                     <div class="p-2 overflow-scroll md:overflow-auto lg:overflow-hidden">
                                         <table id="order_table" class="w-full border-separate border-spacing-2">
                                             <thead>

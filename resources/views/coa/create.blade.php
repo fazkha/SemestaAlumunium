@@ -6,7 +6,7 @@
         modalTitle: 'Group'
     }">
         <div
-            class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6 dark:border-primary-800">
+            class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6">
             <h1 class="text-xl flex items-center justify-center">
                 <a href="{{ route('coa.index') }}" class="flex items-center justify-center">
                     <svg class="w-7 h-7" viewBox="0 0 1024 1024" fill="currentColor" class="icon" version="1.1"
@@ -35,7 +35,7 @@
                         </div>
 
                         <div
-                            class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                            class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100">
                             <div class="p-4 space-y-2">
 
                                 <div class="flex flex-col
@@ -45,7 +45,7 @@
                                         <div class="pb-4">
                                             <div class="relative">
                                                 <span @click="openModal = true; modalTitle = 'COA Group';"
-                                                    class="w-10 text-xs h-2/6 absolute top-1/2 left-0 flex items-center px-3 mt-1 border-r border-gray-400 dark:border-primary-800">
+                                                    class="w-10 text-xs h-2/6 absolute top-1/2 left-0 flex items-center px-3 mt-1 border-r border-gray-400">
                                                     <svg fill="currentColor" class="w-5 h-5" viewBox="0 0 24 24"
                                                         xmlns="http://www.w3.org/2000/svg">
                                                         <path
@@ -54,10 +54,10 @@
                                                 </span>
 
                                                 <label for="coasgroups_id"
-                                                    class="block mb-2 font-medium text-primary-600 dark:text-primary-500">Account
+                                                    class="block mb-2 font-medium text-primary-600">Account
                                                     Group</label>
                                                 <select name="coasgroups_id" id="coasgroups_id"
-                                                    class="w-full pl-14 block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary dark:text-gray dark:placeholder-gray-600 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300">
+                                                    class="w-full pl-14 block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary">
                                                     <option value="">Choose group...</option>
                                                     @foreach ($coasgroups as $id => $name)
                                                         <option value="{{ $id }}"
@@ -73,7 +73,7 @@
                                         <div class="flex flex-row justify-between gap-2">
                                             <div class="w-auto pb-4">
                                                 <label for="code"
-                                                    class="block mb-2 font-medium text-primary-600 dark:text-primary-500">Code</label>
+                                                    class="block mb-2 font-medium text-primary-600">Code</label>
                                                 <x-text-input type="text" name="code" id="code"
                                                     placeholder="Enter code" required value="{{ old('code') }}" />
 
@@ -82,7 +82,7 @@
 
                                             <div class="w-2/3 pb-4">
                                                 <label for="name"
-                                                    class="block mb-2 font-medium text-primary-600 dark:text-primary-500">Name</label>
+                                                    class="block mb-2 font-medium text-primary-600">Name</label>
                                                 <x-text-input type="text" name="name" id="name"
                                                     placeholder="Enter name" required value="{{ old('name') }}" />
 
@@ -95,10 +95,10 @@
                                     <div class="w-full lg:w-1/2 px-2 flex flex-col justify-start">
                                         <div class="w-auto pb-4 lg:pb-12">
                                             <label for="balance"
-                                                class="block mb-2 font-medium text-primary-600 dark:text-primary-500">Balance
+                                                class="block mb-2 font-medium text-primary-600">Balance
                                                 Side</label>
                                             <select name="balance" id="balance"
-                                                class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:text-gray dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
+                                                class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
                                                 <option value="">Choose side...</option>
                                                 <option value="1" {{ old('balance') == '1' ? 'selected' : '' }}>
                                                     Debit
@@ -117,7 +117,7 @@
                                                     <input type="checkbox" id="isactive" name="isactive"
                                                         class="form-control">
                                                     <label for="isactive"
-                                                        class="ml-2 block font-medium text-primary-600 dark:text-primary-500">Active</label>
+                                                        class="ml-2 block font-medium text-primary-600">Active</label>
                                                 </div>
 
                                                 <x-input-error class="mt-2" :messages="$errors->get('isactive')" />
@@ -153,14 +153,14 @@
         </form>
 
         <div x-show.transition.duration.500ms="openModal"
-            class="fixed inset-0 flex items-center justify-center px-4 md:px-0 bg-white bg-opacity-75 dark:bg-black dark:bg-opacity-75">
+            class="fixed inset-0 flex items-center justify-center px-4 md:px-0 bg-white bg-opacity-75">
             <div @click.away="openModal = false"
-                class="flex flex-col p-6 h-full w-auto shadow-2xl rounded-lg border-2 bg-white border-gray-400 dark:bg-gray-700 dark:border-gray-900">
+                class="flex flex-col p-6 h-full w-auto shadow-2xl rounded-lg border-2 bg-white border-gray-400">
                 <div class="flex justify-between mb-4">
-                    <h1 class="font-bold text-xl text-gray-900 dark:text-gray-50"><span x-html="modalTitle"></span>
+                    <h1 class="font-bold text-xl text-gray-900"><span x-html="modalTitle"></span>
                     </h1>
                     <button @click="openModal = false">
-                        <svg class="w-5 h-5 text-gray-900 dark:text-gray-50" viewBox="0 0 24 24" fill="currentColor"
+                        <svg class="w-5 h-5 text-gray-900" viewBox="0 0 24 24" fill="currentColor"
                             xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M5.293 5.293a1 1 0 0 1 1.414 0L12 10.586l5.293-5.293a1 1 0 1 1 1.414 1.414L13.414 12l5.293 5.293a1 1 0 0 1-1.414 1.414L12 13.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L10.586 12 5.293 6.707a1 1 0 0 1 0-1.414z"

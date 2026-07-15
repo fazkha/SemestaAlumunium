@@ -5,7 +5,7 @@
 @section('title', __('messages.announcement'))
 
 <x-app-layout>
-    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6 dark:border-primary-800">
+    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6">
         <h1 class="text-xl flex items-center justify-center">
             <a href="{{ route('announcement.index') }}" class="flex items-center justify-center">
                 <svg class="size-7" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -37,7 +37,7 @@
                     </div>
 
                     <div
-                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
                         <div class="p-4 space-y-2">
 
                             <div class="flex flex-col lg:flex-row">
@@ -45,7 +45,7 @@
 
                                     <div class="w-auto pb-4">
                                         <label for="tanggal"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.date')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.date')</label>
                                         <x-text-input type="date" name="tanggal" id="tanggal"
                                             data-date-format="dd-mm-yyyy" tabindex="1" placeholder="Enter date"
                                             required value="{{ old('tanggal', $datas->tanggal) }}" />
@@ -55,7 +55,7 @@
 
                                     <div class="w-auto pb-4">
                                         <label for="judul"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.title_head')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.title_head')</label>
                                         <x-text-input type="text" name="judul" id="judul" tabindex="2"
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.title_head') }}"
                                             required value="{{ old('judul', $datas->judul) }}" />
@@ -65,7 +65,7 @@
 
                                     <div class="w-auto pb-4">
                                         <label for="keterangan"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.description')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.description')</label>
                                         <x-textarea-input name="keterangan" id="keterangan" tabindex="3"
                                             rows="7" maxlength="2000"
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.description') }}">{{ old('keterangan', $datas->keterangan) }}</x-textarea-input>
@@ -75,7 +75,7 @@
 
                                     <div class="w-auto pb-4">
                                         <label for="untuk"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.jobposition')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.jobposition')</label>
                                         <x-text-span>
                                             <div class="grid grid-cols-1 lg:grid-cols-3 gap-2">
                                                 @foreach ($jabatans as $jabatan)
@@ -88,7 +88,7 @@
                                                                         echo 'checked';
                                                                     }
                                                                 } @endphp
-                                                                class="dark:border-white-400/20 dark:scale-100 transition-all duration-500 ease-in-out dark:hover:scale-110 dark:checked:scale-100 w-7 h-7 rounded-lg shadow-md" />
+                                                                class="dark:border-white-400/20 transition-all duration-500 ease-in-out w-7 h-7 rounded-lg shadow-md" />
                                                             <span
                                                                 class="pr-4 group-hover:text-blue-500 transition-colors duration-300">
                                                                 {{ $jabatan->nama }}
@@ -111,7 +111,7 @@
                                 <div class="w-full lg:w-1/2 px-2 flex flex-col justify-start">
                                     <div class="w-auto pb-4 lg:pb-12">
                                         <label for="gambar"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.picture')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.picture')</label>
                                         <x-text-input type="file" name="gambar" id="gambar" tabindex="4"
                                             accept=".jpg,.jpeg" placeholder="@lang('messages.choose')"
                                             class="!rounded-none border" />
@@ -130,7 +130,7 @@
                                             <label
                                                 class="cursor-pointer flex flex-col items-center md:flex-row md:gap-2">
                                                 <input type="checkbox" id="isactive" name="isactive"
-                                                    class="dark:border-white-400/20 dark:scale-100 transition-all duration-500 ease-in-out dark:hover:scale-110 dark:checked:scale-100 w-7 h-7 rounded-lg shadow-md"
+                                                    class="dark:border-white-400/20 transition-all duration-500 ease-in-out w-7 h-7 rounded-lg shadow-md"
                                                     {{ $datas->isactive == '1' ? 'checked' : '' }}>
                                                 <span
                                                     class="pr-4 group-hover:text-blue-500 transition-colors duration-300 text-right w-1/2 md:w-full">

@@ -4,7 +4,7 @@
 @section('title', __('messages.production'))
 
 <x-app-layout>
-    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6 dark:border-primary-800">
+    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6">
         <h1 class="text-xl flex items-center justify-center">
             <a href="{{ route('production-order.index') }}" class="flex items-center justify-center">
                 <svg class="size-7" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" version="1.1">
@@ -51,7 +51,7 @@
 
                     {{-- Master --}}
                     <div
-                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
                         <div class="p-4 space-y-2">
 
                             <div class="flex flex-col lg:flex-row">
@@ -61,7 +61,7 @@
                                         <input type="hidden" name="branch_id" value="{{ $branch_id }}" />
                                         <input type="hidden" id="prod_status" value="{{ $datas->isactive }}" />
                                         <label for="tanggal"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.productiondate')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.productiondate')</label>
                                         <x-text-input type="date" name="tanggal" id="tanggal"
                                             data-date-format="dd-mm-yyyy" tabindex="1" autofocus required
                                             value="{{ $datas->tanggal }}" />
@@ -71,7 +71,7 @@
 
                                     <div class="w-auto pb-4">
                                         <label for="keterangan"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.description')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.description')</label>
                                         <x-text-input type="text" name="keterangan" id="keterangan" tabindex="2"
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.description') }}"
                                             value="{{ $datas->keterangan }}" />
@@ -81,18 +81,18 @@
 
                                     <div class="w-auto pb-4">
                                         <span for="no_order"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.salesordernumber')</span>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.salesordernumber')</span>
                                         <x-text-span>{{ $datas->order->no_order }}</x-text-span>
                                     </div>
 
                                     <div class="w-auto pb-4">
                                         <span for="no_order"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.productionresult')</span>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.productionresult')</span>
                                         <x-text-span class="!text-md">
                                             <div class="flex flex-row gap-2 p-2">
                                                 <div class="w-1/2 pb-4">
                                                     <span for="jumlah_sasaran"
-                                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.target')
+                                                        class="block mb-2 font-medium text-primary-600">@lang('messages.target')
                                                         ({{ $satuanTarget }})</span>
                                                     <x-text-input type="number" min="0" step="0.01"
                                                         name="jumlah_sasaran" tabindex="3"
@@ -101,7 +101,7 @@
 
                                                 <div class="w-1/2 pb-4">
                                                     <span for="jumlah_rusak"
-                                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.damage')
+                                                        class="block mb-2 font-medium text-primary-600">@lang('messages.damage')
                                                         ({{ $satuanTarget }})</span>
                                                     <x-text-input type="number" min="0" step="0.01"
                                                         name="jumlah_rusak" tabindex="4"
@@ -115,10 +115,10 @@
                                 <div class="w-full lg:w-1/2 px-2 flex flex-col justify-start">
                                     <div class="w-auto pb-4">
                                         <label for="petugas_1_id"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.officer')
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.officer')
                                             1</label>
                                         <select name="petugas_1_id" id="petugas_1_id" tabindex="5"
-                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:text-gray dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
+                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
                                             <option value="">@lang('messages.choose')...</option>
                                             @foreach ($petugas as $id => $name)
                                                 <option value="{{ $id }}"
@@ -132,10 +132,10 @@
 
                                     <div class="w-auto pb-4">
                                         <label for="petugas_2_id"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.officer')
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.officer')
                                             2</label>
                                         <select name="petugas_2_id" id="petugas_2_id" tabindex="6"
-                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:text-gray dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
+                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
                                             <option value="">@lang('messages.choose')...</option>
                                             @foreach ($petugas as $id => $name)
                                                 <option value="{{ $id }}"
@@ -149,9 +149,9 @@
 
                                     <div class="w-auto pb-4 lg:pb-12">
                                         <label for="tanggungjawab_id"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.supervisor')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.supervisor')</label>
                                         <select name="tanggungjawab_id" id="tanggungjawab_id" tabindex="7"
-                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:text-gray dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
+                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
                                             <option value="">@lang('messages.choose')...</option>
                                             @foreach ($petugas2 as $id => $name)
                                                 <option value="{{ $id }}"
@@ -206,7 +206,7 @@
                 <div class="flex flex-col items-center gap-4">
 
                     <div
-                        class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                        class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100">
                         <div class="p-4 space-y-2">
                             <div class="flex flex-row items-center gap-2">
                                 <svg class="size-5" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
@@ -214,7 +214,7 @@
                                     <path fill-rule="evenodd" clip-rule="evenodd"
                                         d="M1.5 1l-.5.5v3l.5.5h3l.5-.5v-3L4.5 1h-3zM2 4V2h2v2H2zm-.5 2l-.5.5v3l.5.5h3l.5-.5v-3L4.5 6h-3zM2 9V7h2v2H2zm-1 2.5l.5-.5h3l.5.5v3l-.5.5h-3l-.5-.5v-3zm1 .5v2h2v-2H2zm10.5-7l-.5.5v6l.5.5h3l.5-.5v-6l-.5-.5h-3zM15 8h-2V6h2v2zm0 3h-2V9h2v2zM9.1 8H6v1h3.1l-1 1 .7.6 1.8-1.8v-.7L8.8 6.3l-.7.7 1 1z" />
                                 </svg>
-                                <span class="block font-medium text-primary-600 dark:text-primary-500">
+                                <span class="block font-medium text-primary-600">
                                     @lang('messages.productioncombine')
                                 </span>
                             </div>
@@ -241,14 +241,14 @@
                     </div>
 
                     <div
-                        class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                        class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100">
                         <div class="p-4 space-y-2">
                             <div class="flex flex-row items-center gap-2">
                                 <svg class="size-5" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
                                     <path fill="currentColor"
                                         d="M468.166 24.156c-13.8-.31-30.977 9.192-42.46 16.883-22.597 15.13-45.255 67.882-45.255 67.882s-17.292-5.333-22.626 0c-5.333 5.333 0 22.627 0 22.627l-4.95 4.948 22.628 22.63 4.95-4.952s17.293 5.333 22.626 0c5.333-5.334 0-22.627 0-22.627s52.75-22.66 67.883-45.255c10.7-15.978 24.91-42.97 11.313-56.568-3.824-3.825-8.707-5.45-14.107-5.57zM312.568 121.65L121.65 312.568l77.782 77.782L390.35 199.432l-77.782-77.782zm-176.07 231.223l-4.95 4.95s-17.293-5.332-22.626 0c-5.333 5.335 0 22.628 0 22.628s-52.75 22.66-67.883 45.255c-10.7 15.978-24.91 42.97-11.313 56.568 13.597 13.598 40.59-.612 56.568-11.312 22.596-15.13 45.254-67.882 45.254-67.882s17.292 5.333 22.626 0c5.333-5.333 0-22.627 0-22.627l4.95-4.948-22.628-22.63z" />
                                 </svg>
-                                <span class="block font-medium text-primary-600 dark:text-primary-500">
+                                <span class="block font-medium text-primary-600">
                                     @lang('messages.rawmaterial')
                                 </span>
                             </div>
@@ -275,7 +275,7 @@
 
                         {{-- Detail --}}
                         <div
-                            class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                            class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100">
                             <div class="p-4 space-y-2">
                                 <div class="flex flex-row items-center gap-2">
                                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 48 48"
@@ -295,14 +295,14 @@
                                             </g>
                                         </g>
                                     </svg>
-                                    <span class="block font-medium text-primary-600 dark:text-primary-500">
+                                    <span class="block font-medium text-primary-600">
                                         @lang('messages.productionresult')
                                     </span>
                                 </div>
 
                                 @if (count($details) > 0)
                                     <div
-                                        class="border rounded-md border-primary-100 bg-primary-100 dark:border-primary-800 dark:bg-primary-850">
+                                        class="border rounded-md border-primary-100 bg-primary-100">
                                         <div class="p-2 overflow-scroll md:overflow-auto lg:overflow-hidden">
                                             <table id="order_table" class="w-full border-separate border-spacing-2">
                                                 <thead>

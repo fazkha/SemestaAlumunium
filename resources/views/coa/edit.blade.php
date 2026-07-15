@@ -4,7 +4,7 @@
 @section('title', __('messages.chartofaccount'))
 
 <x-app-layout>
-    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6 dark:border-primary-800">
+    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6">
         <h1 class="text-xl flex items-center justify-center">
             <a href="{{ route('coa.index') }}" class="flex items-center justify-center">
                 <svg class="w-7 h-7" viewBox="0 0 1024 1024" fill="currentColor" class="icon" version="1.1"
@@ -44,7 +44,7 @@
                         </div>
 
                         <div
-                            class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                            class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100">
                             <div class="p-4 space-y-2">
 
                                 <div class="flex flex-col
@@ -53,7 +53,7 @@
 
                                         <div class="pb-4">
                                             <label for="title"
-                                                class="block mb-2 font-medium text-primary-600 dark:text-primary-500">Title</label>
+                                                class="block mb-2 font-medium text-primary-600">Title</label>
                                             <x-text-input type="text" id="title" name="title" required
                                                 placeholder="Enter title" value="{{ old('title', $datas->title) }}" />
 
@@ -63,7 +63,7 @@
                                         <div class="flex flex-row justify-between gap-2">
                                             <div class="w-auto pb-4">
                                                 <label for="quest_amount"
-                                                    class="block mb-2 font-medium text-primary-600 dark:text-primary-500">Number
+                                                    class="block mb-2 font-medium text-primary-600">Number
                                                     Of Question(s)</label>
                                                 <x-text-input type="number" min="0" id="quest_amount"
                                                     name="quest_amount" required placeholder="Enter amount"
@@ -74,7 +74,7 @@
 
                                             <div class="w-1/2 pb-4">
                                                 <label for="price"
-                                                    class="block mb-2 font-medium text-primary-600 dark:text-primary-500">Price</label>
+                                                    class="block mb-2 font-medium text-primary-600">Price</label>
                                                 <x-text-input type="text" id="price" name="price" required
                                                     placeholder="Enter price"
                                                     value="{{ old('price', $datas->price) }}" />
@@ -85,10 +85,10 @@
 
                                         <div class="pb-4">
                                             <label for="educationlevel_id"
-                                                class="block mb-2 font-medium text-primary-600 dark:text-primary-500">Educational
+                                                class="block mb-2 font-medium text-primary-600">Educational
                                                 Level</label>
                                             <select name="educationlevel_id" id="educationlevel_id"
-                                                class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:text-gray dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
+                                                class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
                                                 <option value="">Choose level...</option>
                                                 @foreach ($educlvl as $id => $name)
                                                     <option value="{{ $id }}"
@@ -104,7 +104,7 @@
                                     <div class="w-full lg:w-1/2 px-2 flex flex-col justify-start">
                                         <div class="w-auto pb-4 lg:pb-12">
                                             <label for="description"
-                                                class="block mb-2 font-medium text-primary-600 dark:text-primary-500">Description</label>
+                                                class="block mb-2 font-medium text-primary-600">Description</label>
                                             <x-textarea-input id="description" name="description" rows="5"
                                                 cols="50" required placeholder="Enter description">
                                                 {{ old('description', $datas->description) }}
@@ -120,7 +120,7 @@
                                                         class="form-control"
                                                         {{ $datas->isactive == '1' ? 'checked' : '' }}>
                                                     <label for="isactive"
-                                                        class="ml-2 block font-medium text-primary-600 dark:text-primary-500">Active</label>
+                                                        class="ml-2 block font-medium text-primary-600">Active</label>
                                                 </div>
 
                                                 <x-input-error class="mt-2" :messages="$errors->get('isactive')" />
@@ -163,17 +163,17 @@
                             </div>
 
                             <div
-                                class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                                class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100">
                                 <div class="p-4 space-y-2">
                                     <div
                                         class="flex flex-row
                                 items-center justify-between">
                                         <span
-                                            class="block font-medium text-primary-600 dark:text-primary-500">Question(s)</span>
+                                            class="block font-medium text-primary-600">Question(s)</span>
                                     </div>
 
                                     <div
-                                        class="border rounded-md border-primary-100 bg-primary-100 dark:border-primary-800 dark:bg-primary-850">
+                                        class="border rounded-md border-primary-100 bg-primary-100">
                                         <div id="table-question-container" class="p-0 lg:p-4">
                                             @include('coa.partials.table-question', $questions)
                                         </div>
@@ -190,15 +190,15 @@
         </form>
 
         <div x-show="openModal" x-cloak x-transition
-            class="fixed inset-0 bg-white bg-opacity-75 dark:bg-black dark:bg-opacity-75 flex items-center justify-center px-4 md:px-0">
+            class="fixed inset-0 bg-white bg-opacity-75 flex items-center justify-center px-4 md:px-0">
             <div @click.away="fetchquestion(questionId, questionIndex);"
-                class="flex flex-col p-4 h-full w-full shadow-2xl rounded-lg border-2 bg-white border-gray-300 dark:bg-darker dark:border-gray-700">
+                class="flex flex-col p-4 h-full w-full shadow-2xl rounded-lg border-2 bg-white border-gray-300">
                 <div class="flex justify-between mb-4">
-                    <h4 class="font-bold text-gray-900 dark:text-primary-500">
+                    <h4 class="font-bold text-gray-900">
                         <span>Choices</span>
                     </h4>
                     <button @click="openModal = false; fetchquestion(questionId, questionIndex);" class="ml-4">
-                        <svg class="w-5 h-5 text-gray-900 dark:text-primary-500" viewBox="0 0 24 24"
+                        <svg class="w-5 h-5 text-gray-900" viewBox="0 0 24 24"
                             fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M5.293 5.293a1 1 0 0 1 1.414 0L12 10.586l5.293-5.293a1 1 0 1 1 1.414 1.414L13.414 12l5.293 5.293a1 1 0 0 1-1.414 1.414L12 13.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L10.586 12 5.293 6.707a1 1 0 0 1 0-1.414z"
@@ -222,9 +222,9 @@
 
                 <div id="panels" class="relative overflow-auto flex flex-col-reverse lg:flex-row gap-4">
                     <div id="left-panel"
-                        class="relative min-w-96 w-96 p-2 rounded-lg border border-primary-500 bg-primary-50 dark:border-primary-800 dark:bg-primary-800">
+                        class="relative min-w-96 w-96 p-2 rounded-lg border border-primary-500 bg-primary-50">
                         <div
-                            class="h-full overflow-auto flex flex-col rounded-lg border border-primary-500 bg-white dark:border-primary-800 dark:bg-black">
+                            class="h-full overflow-auto flex flex-col rounded-lg border border-primary-500 bg-white">
                             <div id="pertanyaan" x-html="modalTitle" class="px-6 py-4 text-sm"></div>
                             <div id="gambar" class="px-6 py-4 relative">
                                 <form id="form-gambar" enctype="multipart/form-data">
@@ -234,13 +234,13 @@
                                     <input type="hidden" id="qid" :value="questionId" />
                                     <img @click="openModalImage = true;" id="gambar_soal_preview"
                                         :src="imagePreview" alt="o.o"
-                                        class="relative w-full h-auto rounded-lg border border-primary-500 bg-primary-50 dark:border-primary-800 dark:bg-primary-800" />
+                                        class="relative w-full h-auto rounded-lg border border-primary-500 bg-primary-50" />
                                 </form>
                                 <div class="absolute top-6 right-2 flex flex-col gap-1">
                                     <button id="triggerBtn"
-                                        class="p-2 rounded-full border border-primary-500 bg-blue-400 dark:border-primary-800 dark:bg-blue-600"
+                                        class="p-2 rounded-full border border-primary-500 bg-blue-400"
                                         title="Assign">
-                                        <svg class="size-4 text-white bg-blue-400 dark:bg-blue-600"
+                                        <svg class="size-4 text-white bg-blue-400"
                                             viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M15.5 10a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"
                                                 fill="currentColor" />
@@ -250,9 +250,9 @@
                                         </svg>
                                     </button>
                                     <button @click="pasangGambar(questionId, 'hapus');" id="removeBtn"
-                                        class="p-2 rounded-full border border-primary-500 bg-red-400 dark:border-primary-800 dark:bg-red-600"
+                                        class="p-2 rounded-full border border-primary-500 bg-red-400"
                                         title="Remove">
-                                        <svg class="size-4 text-white bg-red-400 dark:bg-red-600"
+                                        <svg class="size-4 text-white bg-red-400"
                                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                             stroke-width="1.5" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -277,7 +277,7 @@
 
                         <div id="table-choice-container" class="relative overflow-auto">
                             <div
-                                class="border border-primary-500 bg-primary-50 dark:border-primary-800 dark:bg-primary-800">
+                                class="border border-primary-500 bg-primary-50">
                                 <div class="flex items-center justify-center">
                                     <form id="choice-form" class="w-full p-2">
                                         @csrf
@@ -326,12 +326,12 @@
         </div>
 
         <div x-show="openModalImage" x-cloak x-transition
-            class="z-50 fixed inset-0 bg-white bg-opacity-75 dark:bg-black dark:bg-opacity-75 flex items-center justify-center px-4 md:px-0">
+            class="z-50 fixed inset-0 bg-white bg-opacity-75 flex items-center justify-center px-4 md:px-0">
             <div @click.away="openModalImage = false;"
-                class="flex flex-col p-0 h-full w-full shadow-2xl rounded-lg border-2 bg-white border-gray-300 dark:bg-darker dark:border-gray-700">
+                class="flex flex-col p-0 h-full w-full shadow-2xl rounded-lg border-2 bg-white border-gray-300">
                 <div class="absolute top-4 right-4">
                     <button @click="openModalImage = false;" class="p-2 rounded-full bg-red-600">
-                        <svg class="w-5 h-5 text-white dark:text-white-700" viewBox="0 0 24 24" fill="currentColor"
+                        <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor"
                             xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M5.293 5.293a1 1 0 0 1 1.414 0L12 10.586l5.293-5.293a1 1 0 1 1 1.414 1.414L13.414 12l5.293 5.293a1 1 0 0 1-1.414 1.414L12 13.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L10.586 12 5.293 6.707a1 1 0 0 1 0-1.414z"
@@ -340,7 +340,7 @@
                     </button>
                 </div>
                 <div
-                    class="flex h-full items-center justify-center overflow-auto rounded-lg border border-primary-500 bg-primary-50 dark:border-primary-800 dark:bg-primary-800">
+                    class="flex h-full items-center justify-center overflow-auto rounded-lg border border-primary-500 bg-primary-50">
                     <img id="gambar_soal" :src="imagePreview" alt="o.o"
                         :class="imageOrientation == 'p' ? 'w-auto h-full' : 'w-full h-auto'" />
                 </div>
@@ -420,8 +420,8 @@
 
                     $('#question_table').append('<tr id="question' + (new_q_row_number) + '">' +
                         '<td><input type="number" min="0" name="seq[]" value="' + q_row_number +
-                        '" class="w-full text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary dark:text-gray dark:placeholder-gray-600 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300" /></td>' +
-                        '<td><input type="text" name="question[]" value="" placeholder="Enter question" class="w-full text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary dark:text-gray dark:placeholder-gray-600 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300" />' +
+                        '" class="w-full text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary" /></td>' +
+                        '<td><input type="text" name="question[]" value="" placeholder="Enter question" class="w-full text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary" />' +
                         '<input type="hidden" name="ids[]" value="" /></td><td>&nbsp;</td><td>&nbsp;</td></tr>'
                     );
                     q_row_number++;
@@ -483,11 +483,11 @@
                         '<input type="hidden" name="id[]" value="" />' +
                         '<input type="hidden" name="qid[]" :value="questionId" />' +
                         '<input type="number" min="0" name="seq[]" value="' + row_number +
-                        '" class="w-full text-sm rounded-md shadow-sm text-gray-700 placeholder-gray-300 border-primary dark:text-gray dark:placeholder-gray-600 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300" /></td><td>' +
-                        '<input type="text" name="choice[]" value="" class="w-full text-sm rounded-md shadow-sm text-gray-700 placeholder-gray-300 border-primary dark:text-gray dark:placeholder-gray-600 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300" /></td>' +
+                        '" class="w-full text-sm rounded-md shadow-sm text-gray-700 placeholder-gray-300 border-primary" /></td><td>' +
+                        '<input type="text" name="choice[]" value="" class="w-full text-sm rounded-md shadow-sm text-gray-700 placeholder-gray-300 border-primary" /></td>' +
                         '<td align="center"><input type="checkbox" name="correct[]" value="' + (row_number -
                             1) +
-                        '" class="cb" onchange="cbChange(this)" /></td><td><input type="number" min="0" name="value[]" value="1" class="w-full text-sm rounded-md shadow-sm text-gray-700 placeholder-gray-300 border-primary dark:text-gray dark:placeholder-gray-600 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300" />' +
+                        '" class="cb" onchange="cbChange(this)" /></td><td><input type="number" min="0" name="value[]" value="1" class="w-full text-sm rounded-md shadow-sm text-gray-700 placeholder-gray-300 border-primary" />' +
                         '</td><td>&nbsp;</td></tr>'
                     );
                     row_number++;

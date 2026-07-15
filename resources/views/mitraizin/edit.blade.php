@@ -1,7 +1,7 @@
 @section('title', __('messages.mitraizin'))
 
 <x-app-layout>
-    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6 dark:border-primary-800">
+    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6">
         <h1 class="text-xl flex items-center justify-center">
             <a href="{{ route('mitraizin.index') }}" class="flex items-center justify-center">
                 <svg fill="currentColor" class="size-7" viewBox="0 0 16 16" id="request-16px"
@@ -35,7 +35,7 @@
                     </div>
 
                     <div
-                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
                         <div class="p-4 space-y-2">
 
                             <div class="flex flex-col lg:flex-row">
@@ -43,19 +43,19 @@
 
                                     <div class="w-auto pb-4">
                                         <span for="branch_id"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.branch')</span>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.branch')</span>
                                         <x-text-span>{{ $datas->branch_nama }}</x-text-span>
                                     </div>
 
                                     <div class="w-auto pb-4">
                                         <span for="mitra_id"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.mitraname')</span>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.mitraname')</span>
                                         <x-text-span>{{ $datas->mitra_nama }}</x-text-span>
                                     </div>
 
                                     <div class="w-auto pb-4">
                                         <span for="jenis_id"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.izin')</span>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.izin')</span>
                                         <x-text-span>{{ $datas->jenis_nama }}</x-text-span>
                                     </div>
 
@@ -63,14 +63,14 @@
                                         <div class="flex flex-row flex-wrap items-center gap-2">
                                             <div>
                                                 <span for="tanggal_mulai"
-                                                    class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.startdate')</span>
+                                                    class="block mb-2 font-medium text-primary-600">@lang('messages.startdate')</span>
                                                 <x-text-span>{{ $datas->tanggal_mulai->translatedFormat('l, d F Y') }}</x-text-span>
                                                 <x-text-span
                                                     class="text-bold">{{ $datas->tanggal_mulai->translatedFormat('H:i') }}</x-text-span>
                                             </div>
                                             <div>
                                                 <span for="tanggal_selesai"
-                                                    class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.enddate')</span>
+                                                    class="block mb-2 font-medium text-primary-600">@lang('messages.enddate')</span>
                                                 <x-text-span>{{ $datas->tanggal_selesai->translatedFormat('l, d F Y') }}</x-text-span>
                                                 <x-text-span
                                                     class="text-bold">{{ $datas->tanggal_selesai->translatedFormat('H:i') }}</x-text-span>
@@ -80,13 +80,13 @@
 
                                     <div class="w-auto pb-4">
                                         <span for="keterangan"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.description')</span>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.description')</span>
                                         <x-text-span>{{ $datas->keterangan }}</x-text-span>
                                     </div>
 
                                     <div class="w-auto pb-4">
                                         <label for="penanganan"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.handling')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.handling')</label>
                                         <x-textarea-input name="penanganan" id="penanganan" tabindex="1"
                                             rows="7" maxlength="200"
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.handling') }}">{{ old('penanganan', $datas->penanganan) }}

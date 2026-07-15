@@ -9,49 +9,49 @@
 }" class="w-full overflow-x-auto">
     <div class="w-full overflow-x-auto">
         <div
-            class="inline-block min-w-full shadow-md overflow-hidden rounded-md border border-solid border-primary-100 dark:border-primary-800">
+            class="inline-block min-w-full shadow-md overflow-hidden rounded-md border border-solid border-primary-100">
             <table class="min-w-full leading-normal">
                 <thead>
                     <tr>
                         <th
-                            class="px-3 py-1 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
+                            class="px-3 py-1 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50">
                             #
                         </th>
                         <th
-                            class="hidden px-3 py-1 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
+                            class="hidden px-3 py-1 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50">
                             &nbsp;
                         </th>
                         <th
-                            class="px-3 py-1 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
+                            class="px-3 py-1 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50">
                             @lang('messages.typeofdesignation')
                         </th>
                         <th
-                            class="px-3 py-1 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
+                            class="px-3 py-1 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50">
                             @lang('messages.nameofgoods')
                         </th>
                         <th
-                            class="px-3 py-1 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
+                            class="px-3 py-1 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50">
                             @lang('messages.brand')
                         </th>
                         <th
-                            class="px-3 py-1 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
+                            class="px-3 py-1 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50">
                             <div class="flex flex-col ">
                                 <span>@lang('messages.unitprice') (@lang('messages.currencysymbol'))</span>
                                 <span>@lang('messages.buy&sell')</span>
                             </div>
                         </th>
                         <th
-                            class="px-3 py-1 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
+                            class="px-3 py-1 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50">
                             <div class="flex flex-col ">
                                 <span>@lang('messages.stock')</span>
                             </div>
                         </th>
                         <th
-                            class="px-3 py-1 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
+                            class="px-3 py-1 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50">
                             @lang('messages.active')
                         </th>
                         <th
-                            class="px-3 py-1 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
+                            class="px-3 py-1 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50">
                             &nbsp;
                         </th>
                     </tr>
@@ -59,7 +59,7 @@
                 <tbody>
                     @if ($datas->count() == 0)
                         <tr>
-                            <td colspan="8" class="text-sm bg-primary-20 dark:bg-primary-900">
+                            <td colspan="8" class="text-sm bg-primary-20">
                                 <div class="flex items-center justify-center p-5">@lang('messages.datanotavailable')</div>
                             </td>
                         </tr>
@@ -68,13 +68,13 @@
                     @foreach ($datas as $data)
                         <tr>
                             <td
-                                class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 dark:bg-primary-900 dark:border-primary-800">
-                                <p class="text-center text-gray-900 whitespace-no-wrap dark:text-white">
+                                class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
+                                <p class="text-center text-gray-900 whitespace-no-wrap">
                                     {{ ++$i }}
                                 </p>
                             </td>
                             <td
-                                class="hidden px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 dark:bg-primary-900 dark:border-primary-800">
+                                class="hidden px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
                                 <div class="flex items-center justify-center">
                                     <button
                                         @click="openModal = true; modalTitle = '{{ $data->nama }}'; $refs.imgRef.src = '{{ $data->gambar ? asset($data->lokasi . '/' . $data->gambar) : asset('images/0cd6be830e32f80192d496e50cfa9dbc.jpg') }}'">
@@ -85,20 +85,20 @@
                                 </div>
                             </td>
                             <td
-                                class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 dark:bg-primary-900 dark:border-primary-800">
-                                <span class="text-gray-900 dark:text-white">{{ $data->jenis_barang->nama }}</span>
+                                class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
+                                <span class="text-gray-900">{{ $data->jenis_barang->nama }}</span>
                             </td>
                             <td
-                                class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 dark:bg-primary-900 dark:border-primary-800">
-                                <span class="text-gray-900 dark:text-white">{{ $data->nama }}</span>
+                                class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
+                                <span class="text-gray-900">{{ $data->nama }}</span>
                             </td>
                             <td
-                                class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 dark:bg-primary-900 dark:border-primary-800">
-                                <span class="text-gray-900 dark:text-white">{{ $data->merk }}</span>
+                                class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
+                                <span class="text-gray-900">{{ $data->merk }}</span>
                             </td>
                             <td
-                                class="text-center px-3 py-3 text-sm border-b border-primary-100 bg-primary-20 dark:bg-primary-900 dark:border-primary-800">
-                                <div class="flex flex-row gap-2 text-gray-900 whitespace-no-wrap dark:text-white">
+                                class="text-center px-3 py-3 text-sm border-b border-primary-100 bg-primary-20">
+                                <div class="flex flex-row gap-2 text-gray-900 whitespace-no-wrap">
                                     <span
                                         class="w-1/2 text-right">{{ $data->harga_satuan ? (is_int($data->harga_satuan) ? Number::forHumans($data->harga_satuan, abbreviate: true) : Number::forHumans($data->harga_satuan, precision: 1, abbreviate: true)) : 0 }}</span>
                                     <span>📱</span>
@@ -107,8 +107,8 @@
                                 </div>
                             </td>
                             <td
-                                class="text-center px-3 py-3 text-sm border-b border-primary-100 bg-primary-20 dark:bg-primary-900 dark:border-primary-800">
-                                <div class="flex flex-row gap-2 text-gray-900 whitespace-no-wrap dark:text-white">
+                                class="text-center px-3 py-3 text-sm border-b border-primary-100 bg-primary-20">
+                                <div class="flex flex-row gap-2 text-gray-900 whitespace-no-wrap">
                                     <span
                                         class="w-1/2 text-right">{{ number_format($data->stock, '1', ',', '.') }}</span>
                                     <span
@@ -116,7 +116,7 @@
                                 </div>
                             </td>
                             <td
-                                class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 dark:bg-primary-900 dark:border-primary-800">
+                                class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
                                 <span class="flex items-center justify-center">
                                     @if ($data->isactive == '1')
                                         <span>✔️</span>
@@ -126,7 +126,7 @@
                                     @endif
                                 </span>
                             </td>
-                            <td class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 dark:bg-primary-900 dark:border-primary-800"
+                            <td class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20"
                                 style="vertical-align: middle;">
                                 <div class="flex items-center justify-center">
                                     @can('barang-show')
@@ -134,9 +134,9 @@
                                             onclick="print_one_mutasi({{ $data->id }})"
                                             title="{{ __('messages.mutationreport') }}" class="ml-2 p-2">
                                             <span
-                                                class="relative inline-block px-2 py-2 font-semibold text-blue-800 dark:text-blue-50 leading-tight">
+                                                class="relative inline-block px-2 py-2 font-semibold text-blue-800 leading-tight">
                                                 <span aria-hidden
-                                                    class="absolute inset-0 bg-blue-200 hover:bg-blue-400 dark:bg-blue-500 hover:dark:bg-blue-700 opacity-50 rounded-full"></span>
+                                                    class="absolute inset-0 bg-blue-200 hover:bg-blue-400 hover:dark:bg-blue-700 opacity-50 rounded-full"></span>
                                                 <svg class="size-5" viewBox="0 0 15 15" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <path
@@ -157,9 +157,9 @@
                                         <a href="{{ route('goods.show', Crypt::Encrypt($data->id)) }}"
                                             title="{{ __('messages.view') }}">
                                             <span
-                                                class="relative inline-block px-2 py-2 font-semibold text-blue-800 dark:text-blue-50 leading-tight">
+                                                class="relative inline-block px-2 py-2 font-semibold text-blue-800 leading-tight">
                                                 <span aria-hidden
-                                                    class="absolute inset-0 bg-blue-200 hover:bg-blue-400 dark:bg-blue-500 hover:dark:bg-blue-700 opacity-50 rounded-full"></span>
+                                                    class="absolute inset-0 bg-blue-200 hover:bg-blue-400 hover:dark:bg-blue-700 opacity-50 rounded-full"></span>
                                                 <svg class="size-5" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
                                                     fill="currentColor">
                                                     <path fill-rule="evenodd" clip-rule="evenodd"
@@ -173,9 +173,9 @@
                                         <a href="{{ route('goods.edit', Crypt::Encrypt($data->id)) }}"
                                             title="{{ __('messages.edit') }}" class="ml-2">
                                             <span
-                                                class="relative inline-block px-2 py-2 font-semibold text-green-800 dark:text-green-50 leading-tight">
+                                                class="relative inline-block px-2 py-2 font-semibold text-green-800 leading-tight">
                                                 <span aria-hidden
-                                                    class="absolute inset-0 bg-green-200 hover:bg-green-400 dark:bg-green-500 hover:dark:bg-green-700 opacity-50 rounded-full"></span>
+                                                    class="absolute inset-0 bg-green-200 hover:bg-green-400 hover:dark:bg-green-700 opacity-50 rounded-full"></span>
                                                 <svg class="size-5" xmlns="http://www.w3.org/2000/svg" fill="none"
                                                     viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -189,9 +189,9 @@
                                         <a href="{{ route('goods.delete', Crypt::Encrypt($data->id)) }}"
                                             title="{{ __('messages.delete') }}" class="ml-2">
                                             <span
-                                                class="relative inline-block px-2 py-2 font-semibold text-red-800 dark:text-red-50 leading-tight">
+                                                class="relative inline-block px-2 py-2 font-semibold text-red-800 leading-tight">
                                                 <span aria-hidden
-                                                    class="absolute inset-0 bg-red-200 hover:bg-red-400 dark:bg-red-500 hover:dark:bg-red-700 opacity-50 rounded-full"></span>
+                                                    class="absolute inset-0 bg-red-200 hover:bg-red-400 hover:dark:bg-red-700 opacity-50 rounded-full"></span>
                                                 <svg class="size-5" xmlns="http://www.w3.org/2000/svg" fill="none"
                                                     viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -207,7 +207,7 @@
                 </tbody>
             </table>
             <div
-                class="px-5 py-5 bg-primary-50 items-center xs:justify-between border-t border-primary-100 dark:text-white dark:bg-primary-800 dark:border-primary-800">
+                class="px-5 py-5 bg-primary-50 items-center xs:justify-between border-t border-primary-100">
                 <div class="mt-2 xs:mt-0">
                     {{ $datas->links() }}
                 </div>
@@ -217,13 +217,13 @@
     </div>
 
     <div x-show.transition.duration.500ms="openModal"
-        class="fixed inset-0 flex items-center justify-center px-4 md:px-0 bg-white bg-opacity-75 dark:bg-black dark:bg-opacity-75">
+        class="fixed inset-0 flex items-center justify-center px-4 md:px-0 bg-white bg-opacity-75">
         <div @click.away="openModal = false"
-            class="flex flex-col p-6 h-auto w-auto shadow-2xl rounded-lg border-2 bg-white border-gray-400 dark:bg-gray-700 dark:border-gray-900">
+            class="flex flex-col p-6 h-auto w-auto shadow-2xl rounded-lg border-2 bg-white border-gray-400">
             <div class="flex justify-between mb-4">
-                <div class="font-bold text-lg text-gray-900 dark:text-gray-50"><span x-html="modalTitle"></span></div>
+                <div class="font-bold text-lg text-gray-900"><span x-html="modalTitle"></span></div>
                 <button @click="openModal = false">
-                    <svg class="w-5 h-5 text-gray-900 dark:text-gray-50" viewBox="0 0 24 24" fill="currentColor"
+                    <svg class="w-5 h-5 text-gray-900" viewBox="0 0 24 24" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M5.293 5.293a1 1 0 0 1 1.414 0L12 10.586l5.293-5.293a1 1 0 1 1 1.414 1.414L13.414 12l5.293 5.293a1 1 0 0 1-1.414 1.414L12 13.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L10.586 12 5.293 6.707a1 1 0 0 1 0-1.414z"

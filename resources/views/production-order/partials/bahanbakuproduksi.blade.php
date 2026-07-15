@@ -11,7 +11,7 @@
         @endif
     </tr>
     @foreach ($bahans as $bahan)
-        <tr class="border-t border-primary-100 dark:border-primary-700">
+        <tr class="border-t border-primary-100">
             <td class="py-2">
                 <p class="pl-4">{{ $bahan->bahan }}</p>
             </td>
@@ -32,7 +32,7 @@
         @endphp
     @endforeach
     @if ($isready == 1)
-        <tr class="border-t border-primary-100 dark:border-primary-700">
+        <tr class="border-t border-primary-100">
             <th colspan="5" class="py-2 text-right">{{ number_format($total, 0, ',', '.') }}</th>
         </tr>
     @endif

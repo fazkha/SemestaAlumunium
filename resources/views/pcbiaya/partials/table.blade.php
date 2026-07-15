@@ -4,32 +4,32 @@
 
 <div class="w-full overflow-x-auto">
     <div
-        class="inline-block min-w-full shadow-md overflow-hidden rounded-md border border-solid border-primary-100 dark:border-primary-800">
+        class="inline-block min-w-full shadow-md overflow-hidden rounded-md border border-solid border-primary-100">
         <table class="min-w-full leading-normal">
             <thead>
                 <tr>
                     <th
-                        class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
+                        class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50">
                         #
                     </th>
                     <th
-                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
+                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50">
                         @lang('messages.date')
                     </th>
                     <th
-                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
+                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50">
                         @lang('messages.branch')
                     </th>
                     <th
-                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
+                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50">
                         @lang('messages.pcname')
                     </th>
                     <th
-                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
+                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50">
                         @lang('messages.totalcost')
                     </th>
                     <th
-                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
+                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50">
                         &nbsp;
                     </th>
                 </tr>
@@ -37,7 +37,7 @@
             <tbody>
                 @if ($datas->count() == 0)
                     <tr>
-                        <td colspan="6" class="text-sm bg-primary-20 dark:bg-primary-900">
+                        <td colspan="6" class="text-sm bg-primary-20">
                             <div class="flex items-center justify-center p-5">@lang('messages.datanotavailable')</div>
                         </td>
                     </tr>
@@ -46,36 +46,36 @@
                 @foreach ($datas as $data)
                     <tr>
                         <td
-                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 dark:bg-primary-900 dark:border-primary-800">
-                            <p class="text-center text-gray-900 whitespace-no-wrap dark:text-white">{{ ++$i }}
+                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
+                            <p class="text-center text-gray-900 whitespace-no-wrap">{{ ++$i }}
                             </p>
                         </td>
                         <td
-                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 dark:bg-primary-900 dark:border-primary-800">
-                            <span class="text-gray-900 dark:text-white">{{ $data->tanggal }}</span>
+                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
+                            <span class="text-gray-900">{{ $data->tanggal }}</span>
                         </td>
                         <td
-                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 dark:bg-primary-900 dark:border-primary-800">
-                            <span class="text-gray-900 dark:text-white">{{ $data->branch_nama }}</span>
+                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
+                            <span class="text-gray-900">{{ $data->branch_nama }}</span>
                         </td>
                         <td
-                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 dark:bg-primary-900 dark:border-primary-800">
-                            <span class="text-gray-900 dark:text-white">{{ $data->pc_nama }}</span>
+                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
+                            <span class="text-gray-900">{{ $data->pc_nama }}</span>
                         </td>
                         <td
-                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 dark:bg-primary-900 dark:border-primary-800">
-                            <span class="text-gray-900 dark:text-white">{{ $data->total_biaya }}</span>
+                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
+                            <span class="text-gray-900">{{ $data->total_biaya }}</span>
                         </td>
-                        <td class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 dark:bg-primary-900 dark:border-primary-800"
+                        <td class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20"
                             style="vertical-align: middle;">
                             <div class="flex items-center justify-center">
                                 @can('pcbiaya-edit')
                                     <a href="{{ route('pcbiaya.editt', ['branch_id' => Crypt::Encrypt($data->branch_id), 'tanggal' => Crypt::Encrypt($data->tanggal)]) }}"
                                         title="{{ __('messages.edit') }}" class="ml-2">
                                         <span
-                                            class="relative inline-block px-2 py-2 font-semibold text-green-800 dark:text-green-50 leading-tight">
+                                            class="relative inline-block px-2 py-2 font-semibold text-green-800 leading-tight">
                                             <span aria-hidden
-                                                class="absolute inset-0 bg-green-200 hover:bg-green-400 dark:bg-green-500 hover:dark:bg-green-700 opacity-50 rounded-full"></span>
+                                                class="absolute inset-0 bg-green-200 hover:bg-green-400 hover:dark:bg-green-700 opacity-50 rounded-full"></span>
                                             <svg class="size-5" xmlns="http://www.w3.org/2000/svg" fill="none"
                                                 viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -91,7 +91,7 @@
             </tbody>
         </table>
         <div
-            class="px-3 py-3 bg-primary-50 items-center xs:justify-between border-t border-primary-100 dark:text-white dark:bg-primary-800 dark:border-primary-800">
+            class="px-3 py-3 bg-primary-50 items-center xs:justify-between border-t border-primary-100">
             <div class="mt-2 xs:mt-0">
                 {{ $datas->links() }}
             </div>

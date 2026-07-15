@@ -4,7 +4,7 @@
 @section('title', __('messages.saleorder'))
 
 <x-app-layout>
-    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6 dark:border-primary-800">
+    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6">
         <h1 class="text-xl flex items-center justify-center">
             <a href="{{ route('sale-order.index') }}" class="flex items-center justify-center">
                 <svg fill="currentColor" class="w-7 h-7" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
@@ -50,7 +50,7 @@
                                     <p class="text-gray-600 text-sm mb-5">@lang('messages.deleteitemconfirm')?</p>
                                     <div class="flex flex-col md:flex-row gap-2 justify-between">
                                         <x-primary-button type="submit"
-                                            class="bg-red-600 hover:bg-red-700 dark:bg-red-700 dark:hover:bg-red-800">
+                                            class="bg-red-600 hover:bg-red-700">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                 stroke-width="1.5" stroke="currentColor" class="size-5">
                                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -76,7 +76,7 @@
 
                 {{-- Master --}}
                 <div
-                    class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                    class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
                     <div class="p-4 space-y-2">
 
                         <div class="flex flex-col lg:flex-row">
@@ -84,27 +84,27 @@
 
                                 <div class="w-auto pb-4">
                                     <span for="customer_id"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.customer')</span>
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.customer')</span>
                                     <x-text-span>{{ $datas->customer->nama }}</x-text-span>
                                 </div>
 
                                 <div class="flex flex-row gap-2">
                                     <div class="w-1/3 pb-4">
                                         <span for="hke"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.hke')</span>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.hke')</span>
                                         <x-text-span>{{ $datas->hke }}</x-text-span>
                                     </div>
 
                                     <div class="w-2/3 pb-4">
                                         <span for="tanggal"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.transactiondate')</span>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.transactiondate')</span>
                                         <x-text-span>{{ date('d/m/Y', strtotime($datas->tanggal)) }}</x-text-span>
                                     </div>
                                 </div>
 
                                 <div class="w-auto pb-4">
                                     <span for="tunai"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.payment')</span>
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.payment')</span>
                                     <x-text-span>{{ $datas->tunai == 1 ? __('messages.cash') : __('messages.credit') }}</x-text-span>
                                 </div>
                             </div>
@@ -112,14 +112,14 @@
                             <div class="w-full lg:w-1/2 px-2 flex flex-col justify-start">
                                 <div class="w-auto pb-4">
                                     <span for="biaya_angkutan"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.deliverycost')
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.deliverycost')
                                         (@lang('messages.currencysymbol'))</span>
                                     <x-text-span>{{ number_format($datas->biaya_angkutan, 0, ',', '.') }}</x-text-span>
                                 </div>
 
                                 <div class="w-auto pb-4">
                                     <label for="total_harga"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.totalprice')
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.totalprice')
                                         (@lang('messages.currencysymbol'))</label>
                                     <x-text-span
                                         id="disp-total_harga-master">{{ number_format($totals['total_price'], 0, ',', '.') }}</x-text-span>
@@ -127,13 +127,13 @@
 
                                 <div class="w-auto pb-4 lg:pb-12">
                                     <label for="no_order"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.ordernumber')</label>
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.ordernumber')</label>
                                     <x-text-span id="disp-no_order">{{ $datas->no_order }}</x-text-span>
                                 </div>
 
                                 {{-- <div class="w-auto pb-4 lg:pb-12">
                                             <label for="gambar"
-                                                class="block mb-2 font-medium text-primary-600 dark:text-primary-500">Picture</label>
+                                                class="block mb-2 font-medium text-primary-600">Picture</label>
                                             <x-text-input type="file" name="gambar" id="gambar" tabindex="6"
                                                 accept=".jpg,.jpeg" placeholder="Choose Image"
                                                 class="!rounded-none border" />
@@ -181,7 +181,7 @@
 
                     {{-- Detail --}}
                     <div
-                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
                         <div class="p-4 space-y-2">
                             <div class="flex flex-row items-center gap-2">
                                 <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5"
@@ -199,13 +199,13 @@
                                             d="M24.3,39.1c-3,0-5.5,2.5-5.5,5.5c0,3,2.5,5.5,5.5,5.5s5.5-2.5,5.5-5.5C29.8,41.5,27.3,39.1,24.3,39.1z" />
                                     </g>
                                 </svg>
-                                <span class="block font-medium text-primary-600 dark:text-primary-500">
+                                <span class="block font-medium text-primary-600">
                                     @lang('messages.solditem')
                                 </span>
                             </div>
 
                             <div
-                                class="border rounded-md border-primary-100 bg-primary-100 dark:border-primary-800 dark:bg-primary-850">
+                                class="border rounded-md border-primary-100 bg-primary-100">
                                 <div class="p-2 overflow-scroll md:overflow-auto lg:overflow-hidden">
                                     <table id="order_table" class="w-full border-separate border-spacing-2">
                                         <thead>
@@ -255,7 +255,7 @@
 
                     {{-- Adonan --}}
                     <div
-                        class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                        class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100">
                         <div class="p-4 space-y-2">
                             <div class="flex flex-row items-center gap-2">
                                 <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none"
@@ -277,13 +277,13 @@
                                         d="M20.3149 8.48584H3.68498C3.26575 8.48584 2.9259 8.82569 2.9259 9.24492V10.3006C2.9259 15.3121 6.98849 19.3747 12 19.3747C17.0114 19.3747 21.074 15.3121 21.074 10.3006V9.24492C21.074 8.82569 20.7342 8.48584 20.3149 8.48584Z"
                                         stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
                                 </svg>
-                                <span class="block font-medium text-primary-600 dark:text-primary-500">
+                                <span class="block font-medium text-primary-600">
                                     @lang('messages.dough')
                                 </span>
                             </div>
 
                             <div
-                                class="border rounded-md border-primary-100 bg-primary-100 dark:border-primary-800 dark:bg-primary-850">
+                                class="border rounded-md border-primary-100 bg-primary-100">
                                 <div class="p-2 overflow-scroll md:overflow-auto lg:overflow-hidden">
                                     <table id="order_table" class="w-full border-separate border-spacing-2">
                                         <thead>

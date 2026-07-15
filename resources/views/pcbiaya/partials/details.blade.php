@@ -29,7 +29,7 @@
                             echo 'checked';
                         }
                     } @endphp
-                        class="dark:border-white-400/20 dark:scale-100 transition-all duration-500 ease-in-out dark:hover:scale-110 dark:checked:scale-100 w-7 h-7 rounded-lg shadow-md">
+                        class="dark:border-white-400/20 transition-all duration-500 ease-in-out w-7 h-7 rounded-lg shadow-md">
                 </label>
             </td>
         </tr>

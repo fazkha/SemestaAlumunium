@@ -1,7 +1,7 @@
 @section('title', __('messages.delivery'))
 
 <x-app-layout>
-    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6 dark:border-primary-800">
+    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6">
         <h1 class="text-xl flex items-center justify-center">
             <a href="{{ route('delivery-order.index') }}" class="flex items-center justify-center">
                 <svg class="size-7" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -36,7 +36,7 @@
 
                 {{-- Master --}}
                 <div
-                    class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                    class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
                     <div class="p-4 space-y-2">
 
                         <div class="flex flex-col lg:flex-row">
@@ -44,25 +44,25 @@
 
                                 <div class="w-auto pb-4">
                                     <span for="no_order"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.salesordernumber')</span>
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.salesordernumber')</span>
                                     <x-text-span>{{ $datas->order->no_order }}</x-text-span>
                                 </div>
 
                                 <div class="w-auto pb-4">
                                     <span for="tanggal"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.deliverydate')</span>
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.deliverydate')</span>
                                     <x-text-span>{{ date('d/m/Y', strtotime($datas->tanggal)) }}</x-text-span>
                                 </div>
 
                                 <div class="w-auto pb-4">
                                     <span for="alamat"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.deliveryaddress')</span>
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.deliveryaddress')</span>
                                     <x-text-span>{{ $datas->alamat }}</x-text-span>
                                 </div>
 
                                 <div class="w-auto pb-4">
                                     <span for="keterangan"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.description')</span>
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.description')</span>
                                     <x-text-span>{{ $datas->keterangan }}</x-text-span>
                                 </div>
                             </div>
@@ -70,27 +70,27 @@
                             <div class="w-full lg:w-1/2 px-2 flex flex-col justify-start">
                                 <div class="w-auto pb-4">
                                     <span for="petugas_1_id"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.officer')
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.officer')
                                         1</span>
                                     <x-text-span>{{ $datas->petugas_1_id ? $datas->petugas_1->view_pegawai_jabatan->nama_plus : '-' }}</x-text-span>
                                 </div>
 
                                 <div class="w-auto pb-4">
                                     <span for="petugas_2_id"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.officer')
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.officer')
                                         2</span>
                                     <x-text-span>{{ $datas->petugas_2_id ? $datas->petugas_2->view_pegawai_jabatan->nama_plus : '-' }}</x-text-span>
                                 </div>
 
                                 <div class="w-auto pb-4">
                                     <span for="pengirim_id"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.deliveryman')</span>
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.deliveryman')</span>
                                     <x-text-span>{{ $datas->pengirim_id ? $datas->pengirim->view_pegawai_jabatan->nama_plus : '-' }}</x-text-span>
                                 </div>
 
                                 <div class="w-auto pb-4 lg:pb-12">
                                     <span for="tanggungjawab_id"
-                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.supervisor')</span>
+                                        class="block mb-2 font-medium text-primary-600">@lang('messages.supervisor')</span>
                                     <x-text-span>{{ $datas->tanggungjawab_id ? $datas->tanggungjawab->view_pegawai_jabatan->nama_plus : '-' }}</x-text-span>
                                 </div>
 
@@ -122,7 +122,7 @@
             <div class="w-full">
                 <div class="flex flex-col items-center">
                     <div
-                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
                         <div class="p-4 space-y-2">
                             <div class="flex flex-row items-center gap-2">
                                 <svg class="size-5" viewBox="0 0 16 16" version="1.1"
@@ -131,7 +131,7 @@
                                         d="M8 0l-8 2v10l8 4 8-4v-10l-8-2zM8 1l2.1 0.5-5.9 1.9-2.3-0.8 6.1-1.6zM8 14.9l-7-3.5v-8.1l3 1v3.4l1 0.3v-3.3l3 1v9.2zM8.5 4.8l-2.7-0.9 6.2-1.9 2.4 0.6-5.9 2.2z">
                                     </path>
                                 </svg>
-                                <span class="block font-medium text-primary-600 dark:text-primary-500">
+                                <span class="block font-medium text-primary-600">
                                     @lang('messages.packagespecification')
                                 </span>
                             </div>
@@ -142,9 +142,9 @@
                                         $paketdetails = App\Models\PaketDetail::where('paket_id', $id)->get();
                                     @endphp
                                     <div
-                                        class="flex flex-row items-center justify-start shadow rounded-md border border-solid border-primary-100 dark:border-primary-800">
+                                        class="flex flex-row items-center justify-start shadow rounded-md border border-solid border-primary-100">
                                         <div
-                                            class="px-4 py-2 border border-primary-100 bg-primary-20 dark:border-primary-800 dark:bg-primary-850">
+                                            class="px-4 py-2 border border-primary-100 bg-primary-20">
                                             <span class="text-sm font-bold">{{ $name }}</span>
                                         </div>
                                         <div class="px-4 py-2 flex flex-col gap-2">
@@ -168,7 +168,7 @@
 
                     {{-- Detail --}}
                     <div
-                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
                         <div class="p-4 space-y-2">
                             <div class="flex flex-row items-center gap-2">
                                 <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5"
@@ -186,13 +186,13 @@
                                             d="M24.3,39.1c-3,0-5.5,2.5-5.5,5.5c0,3,2.5,5.5,5.5,5.5s5.5-2.5,5.5-5.5C29.8,41.5,27.3,39.1,24.3,39.1z" />
                                     </g>
                                 </svg>
-                                <span class="block font-medium text-primary-600 dark:text-primary-500">
+                                <span class="block font-medium text-primary-600">
                                     @lang('messages.solditem')
                                 </span>
                             </div>
 
                             <div
-                                class="border rounded-md border-primary-100 bg-primary-100 dark:border-primary-800 dark:bg-primary-850">
+                                class="border rounded-md border-primary-100 bg-primary-100">
                                 <div class="p-2 overflow-scroll md:overflow-auto lg:overflow-hidden">
                                     <table id="order_table" class="w-full border-separate border-spacing-2">
                                         <thead>
@@ -248,7 +248,7 @@
                 <div class="flex flex-col items-center">
 
                     <div
-                        class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                        class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100">
                         <div class="p-4 space-y-2">
                             <div class="flex flex-row items-center gap-2">
                                 <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none"
@@ -270,13 +270,13 @@
                                         d="M20.3149 8.48584H3.68498C3.26575 8.48584 2.9259 8.82569 2.9259 9.24492V10.3006C2.9259 15.3121 6.98849 19.3747 12 19.3747C17.0114 19.3747 21.074 15.3121 21.074 10.3006V9.24492C21.074 8.82569 20.7342 8.48584 20.3149 8.48584Z"
                                         stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
                                 </svg>
-                                <span class="block font-medium text-primary-600 dark:text-primary-500">
+                                <span class="block font-medium text-primary-600">
                                     @lang('messages.dough')
                                 </span>
                             </div>
 
                             <div
-                                class="border rounded-md border-primary-100 bg-primary-100 dark:border-primary-800 dark:bg-primary-850">
+                                class="border rounded-md border-primary-100 bg-primary-100">
                                 <div class="p-2 overflow-scroll md:overflow-auto lg:overflow-hidden">
                                     <table id="order_table" class="w-full border-separate border-spacing-2">
                                         <thead>
@@ -336,7 +336,7 @@
                 <div class="flex flex-col items-center">
 
                     <div
-                        class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                        class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100">
                         <div class="p-4 space-y-2">
                             <div class="flex flex-row items-center gap-2">
                                 <svg class="size-5" viewBox="0 0 16 16" version="1.1"
@@ -345,7 +345,7 @@
                                         d="M8 0l-8 2v10l8 4 8-4v-10l-8-2zM8 1l2.1 0.5-5.9 1.9-2.3-0.8 6.1-1.6zM8 14.9l-7-3.5v-8.1l3 1v3.4l1 0.3v-3.3l3 1v9.2zM8.5 4.8l-2.7-0.9 6.2-1.9 2.4 0.6-5.9 2.2z">
                                     </path>
                                 </svg>
-                                <span class="block font-medium text-primary-600 dark:text-primary-500">
+                                <span class="block font-medium text-primary-600">
                                     @lang('messages.packaging')
                                 </span>
                             </div>
@@ -363,7 +363,7 @@
                                     <tbody>
                                         @if (count($kemasans) > 0)
                                             @foreach ($kemasans as $kemasan)
-                                                <tr class="border-t border-primary-100 dark:border-primary-700">
+                                                <tr class="border-t border-primary-100">
                                                     <td class="py-2"><span>{{ $kemasan->barang }}</span></td>
                                                     <td class="text-right">
                                                         {{ number_format($kemasan->kuantiti, 2, ',', '.') }}</td>
@@ -372,7 +372,7 @@
                                             @endforeach
                                         @else
                                             <tr>
-                                                <td colspan="3" class="text-sm bg-primary-20 dark:bg-primary-900">
+                                                <td colspan="3" class="text-sm bg-primary-20">
                                                     <div class="flex items-center justify-center p-5">
                                                         @lang('messages.datanotavailable')</div>
                                                 </td>

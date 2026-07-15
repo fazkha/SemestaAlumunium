@@ -4,7 +4,7 @@
 @section('title', __('messages.branch'))
 
 <x-app-layout>
-    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6 dark:border-primary-800">
+    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6">
         <h1 class="text-xl flex items-center justify-center">
             <a href="{{ route('branch.index') }}" class="flex items-center justify-center">
                 <svg fill="currentColor" class="size-7" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
@@ -36,7 +36,7 @@
                     </div>
 
                     <div
-                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
                         <div class="p-4 space-y-2">
 
                             <div class="flex flex-col lg:flex-row">
@@ -44,9 +44,9 @@
 
                                     <div class="w-auto pb-4">
                                         <label for="wilayah_id"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.region')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.region')</label>
                                         <select name="wilayah_id" id="wilayah_id" tabindex="1" required autofocus
-                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:text-gray dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
+                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
                                             <option value="">@lang('messages.choose')...</option>
                                             @foreach ($wilayahs as $id => $name)
                                                 <option value="{{ $id }}"
@@ -60,7 +60,7 @@
 
                                     <div class="w-auto pb-4">
                                         <label for="kode"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.code')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.code')</label>
                                         <x-text-input type="text" name="kode" id="kode" tabindex="1"
                                             required placeholder="{{ __('messages.enter') }} {{ __('messages.code') }}"
                                             value="{{ old('kode', $datas->kode) }}" />
@@ -70,7 +70,7 @@
 
                                     <div class="w-auto pb-4">
                                         <label for="nama"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.name')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.name')</label>
                                         <x-text-input type="text" name="nama" id="nama" tabindex="2"
                                             required placeholder="{{ __('messages.enter') }} {{ __('messages.name') }}"
                                             value="{{ old('nama', $datas->nama) }}" />
@@ -80,7 +80,7 @@
 
                                     <div class="w-auto pb-4">
                                         <label for="alamat"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.address')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.address')</label>
                                         <x-text-input type="text" name="alamat" id="alamat" tabindex="3"
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.address') }}"
                                             value="{{ old('alamat', $datas->alamat) }}" />
@@ -90,7 +90,7 @@
 
                                     <div class="w-auto pb-4">
                                         <label for="kodepos"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.zipcode')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.zipcode')</label>
                                         <x-text-input type="text" name="kodepos" id="kodepos" tabindex="3"
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.zipcode') }}"
                                             value="{{ old('kodepos', $datas->kodepos) }}" />
@@ -100,7 +100,7 @@
 
                                     <div class="w-auto pb-4">
                                         <label for="email"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.email')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.email')</label>
                                         <x-text-input type="text" name="email" id="email" tabindex="3"
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.email') }}"
                                             value="{{ old('email', $datas->email) }}" />
@@ -112,9 +112,9 @@
                                 <div class="w-full lg:w-1/2 px-2 flex flex-col justify-start">
                                     <div class="w-auto pb-4">
                                         <label for="propinsi_id"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.propinsi')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.propinsi')</label>
                                         <select name="propinsi_id" id="propinsi_id" tabindex="4" required
-                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:text-gray dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
+                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
                                             <option value="">@lang('messages.choose')...</option>
                                             @foreach ($propinsis as $id => $name)
                                                 <option value="{{ $id }}"
@@ -128,9 +128,9 @@
 
                                     <div class="w-auto pb-4">
                                         <label for="kabupaten_id"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.kabupaten')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.kabupaten')</label>
                                         <select name="kabupaten_id" id="kabupaten_id" tabindex="5" required
-                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:text-gray dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
+                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
                                             <option value="">@lang('messages.choose')...</option>
                                             @foreach ($kabupatens as $id => $name)
                                                 <option value="{{ $id }}"
@@ -144,9 +144,9 @@
 
                                     <div class="w-auto pb-4">
                                         <label for="kecamatan_id"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.kecamatan')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.kecamatan')</label>
                                         <select name="kecamatan_id" id="kecamatan_id" tabindex="5" required
-                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:text-gray dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
+                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
                                             <option value="">@lang('messages.choose')...</option>
                                             @foreach ($kecamatans as $id => $name)
                                                 <option value="{{ $id }}"
@@ -160,7 +160,7 @@
 
                                     <div class="w-auto pb-4 lg:pb-12">
                                         <label for="keterangan"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.description')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.description')</label>
                                         <x-text-input type="text" name="keterangan" id="keterangan"
                                             tabindex="6"
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.description') }}"
@@ -174,7 +174,7 @@
                                             <label
                                                 class="cursor-pointer flex flex-col items-center md:flex-row md:gap-2">
                                                 <input type="checkbox" id="isactive" name="isactive"
-                                                    class="dark:border-white-400/20 dark:scale-100 transition-all duration-500 ease-in-out dark:hover:scale-110 dark:checked:scale-100 w-7 h-7 rounded-lg shadow-md"
+                                                    class="dark:border-white-400/20 transition-all duration-500 ease-in-out w-7 h-7 rounded-lg shadow-md"
                                                     {{ $datas->isactive == 1 ? 'checked' : '' }}>
                                                 <span
                                                     class="pr-4 group-hover:text-blue-500 transition-colors duration-300 text-right w-1/2 md:w-full">
@@ -208,25 +208,25 @@
                             <div class="flex flex-col lg:flex-row">
                                 <div class="w-full lg:w-1/2 px-2">
                                     <h1
-                                        class="text-xl font-bold leading-tight pb-2 mb-4 border-b-2 border-primary-100 dark:border-primary-800">
+                                        class="text-xl font-bold leading-tight pb-2 mb-4 border-b-2 border-primary-100">
                                         @lang('messages.personincharge')</h1>
                                     @foreach ($pcmitra as $pc)
                                         @if ($pc->islevel == 5)
                                             <div class="w-auto pb-4">
                                                 <span
-                                                    class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.name')</span>
+                                                    class="block mb-2 font-medium text-primary-600">@lang('messages.name')</span>
                                                 <x-text-span>{{ $pc->nama_lengkap }}</x-text-span>
                                             </div>
 
                                             <div class="w-auto pb-4">
                                                 <span
-                                                    class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.jobposition')</span>
+                                                    class="block mb-2 font-medium text-primary-600">@lang('messages.jobposition')</span>
                                                 <x-text-span>{{ $pc->jabatan }}</x-text-span>
                                             </div>
 
                                             <div class="w-auto pb-4">
                                                 <span
-                                                    class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.phonenumber')</span>
+                                                    class="block mb-2 font-medium text-primary-600">@lang('messages.phonenumber')</span>
                                                 <x-text-span>{{ $pc->telpon }}</x-text-span>
                                             </div>
                                         @endif
@@ -235,7 +235,7 @@
 
                                 <div class="w-full lg:w-1/2 px-2">
                                     <div
-                                        class="flex flex-row gap-2 pb-2 mb-4 border-b-2 border-primary-100 dark:border-primary-800">
+                                        class="flex flex-row gap-2 pb-2 mb-4 border-b-2 border-primary-100">
                                         <h1 class="text-xl font-bold leading-tight">
                                             @lang('messages.partner') (@lang('messages.active'))</h1>
                                         <span>/&nbsp;telpon</span>
@@ -260,13 +260,13 @@
                 <div class="flex flex-col items-center">
 
                     <div
-                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
                         <div class="p-4 space-y-2">
                             <div class="flex flex-col lg:flex-row">
                                 <div class="w-full lg:w-1/2 px-2">
                                     <div class="w-auto pb-4">
                                         <label for="latitude"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.latitude')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.latitude')</label>
                                         <x-text-input type="text" name="latitude" id="latitude"
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.latitude') }}"
                                             value="{{ old('latitude', $datas->latitude ? $datas->latitude : config('custom.latitude')) }}" />
@@ -275,7 +275,7 @@
                                 <div class="w-full lg:w-1/2 px-2">
                                     <div class="w-auto pb-4">
                                         <label for="longitude"
-                                            class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.longitude')</label>
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.longitude')</label>
                                         <x-text-input type="text" name="longitude" id="longitude"
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.longitude') }}"
                                             value="{{ old('longitude', $datas->longitude ? $datas->longitude : config('custom.longitude')) }}" />
@@ -283,7 +283,7 @@
                                 </div>
                             </div>
 
-                            <div id="map" class="rounded-md border border-primary-100 dark:border-primary-800">
+                            <div id="map" class="rounded-md border border-primary-100">
                             </div>
                         </div>
                     </div>
