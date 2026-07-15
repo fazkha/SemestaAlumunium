@@ -1,0 +1,247 @@
+@php
+    use Illuminate\Support\Facades\Crypt;
+@endphp
+@section('title', __('messages.partner'))
+
+<x-app-layout>
+    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6 dark:border-primary-800">
+        <h1 class="text-xl flex items-center justify-center">
+            <a href="{{ route('mitra.index') }}" class="flex items-center justify-center">
+                <svg fill="currentColor" class="size-7" viewBox="0 0 32 32" version="1.1"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <title>users</title>
+                    <path
+                        d="M16 21.416c-5.035 0.022-9.243 3.537-10.326 8.247l-0.014 0.072c-0.018 0.080-0.029 0.172-0.029 0.266 0 0.69 0.56 1.25 1.25 1.25 0.596 0 1.095-0.418 1.22-0.976l0.002-0.008c0.825-3.658 4.047-6.35 7.897-6.35s7.073 2.692 7.887 6.297l0.010 0.054c0.127 0.566 0.625 0.982 1.221 0.982 0.69 0 1.25-0.559 1.25-1.25 0-0.095-0.011-0.187-0.031-0.276l0.002 0.008c-1.098-4.78-5.305-8.295-10.337-8.316h-0.002zM9.164 11.102c0 0 0 0 0 0 2.858 0 5.176-2.317 5.176-5.176s-2.317-5.176-5.176-5.176c-2.858 0-5.176 2.317-5.176 5.176v0c0.004 2.857 2.319 5.172 5.175 5.176h0zM9.164 3.25c0 0 0 0 0 0 1.478 0 2.676 1.198 2.676 2.676s-1.198 2.676-2.676 2.676c-1.478 0-2.676-1.198-2.676-2.676v0c0.002-1.477 1.199-2.674 2.676-2.676h0zM22.926 11.102c2.858 0 5.176-2.317 5.176-5.176s-2.317-5.176-5.176-5.176c-2.858 0-5.176 2.317-5.176 5.176v0c0.004 2.857 2.319 5.172 5.175 5.176h0zM22.926 3.25c1.478 0 2.676 1.198 2.676 2.676s-1.198 2.676-2.676 2.676c-1.478 0-2.676-1.198-2.676-2.676v0c0.002-1.477 1.199-2.674 2.676-2.676h0zM31.311 19.734c-0.864-4.111-4.46-7.154-8.767-7.154-0.395 0-0.784 0.026-1.165 0.075l0.045-0.005c-0.93-2.116-3.007-3.568-5.424-3.568-2.414 0-4.49 1.448-5.407 3.524l-0.015 0.038c-0.266-0.034-0.58-0.057-0.898-0.063l-0.009-0c-4.33 0.019-7.948 3.041-8.881 7.090l-0.012 0.062c-0.018 0.080-0.029 0.173-0.029 0.268 0 0.691 0.56 1.251 1.251 1.251 0.596 0 1.094-0.417 1.22-0.975l0.002-0.008c0.684-2.981 3.309-5.174 6.448-5.186h0.001c0.144 0 0.282 0.020 0.423 0.029 0.056 3.218 2.679 5.805 5.905 5.805 3.224 0 5.845-2.584 5.905-5.794l0-0.006c0.171-0.013 0.339-0.035 0.514-0.035 3.14 0.012 5.765 2.204 6.442 5.14l0.009 0.045c0.126 0.567 0.625 0.984 1.221 0.984 0.69 0 1.249-0.559 1.249-1.249 0-0.094-0.010-0.186-0.030-0.274l0.002 0.008zM16 18.416c-0 0-0 0-0.001 0-1.887 0-3.417-1.53-3.417-3.417s1.53-3.417 3.417-3.417c1.887 0 3.417 1.53 3.417 3.417 0 0 0 0 0 0.001v-0c-0.003 1.886-1.53 3.413-3.416 3.416h-0z" />
+                </svg>
+                <div class="relative px-2 pt-2">
+                    <span class="absolute top-0 left-2 text-xs w-40">@lang('messages.humanresource')</span>
+                    <span>@lang('messages.partner')</span>
+                </div>
+            </a>
+            <span class="px-2">&raquo;</span>
+            <span class="px-2 font-semibold">@lang('messages.delete')</span>
+        </h1>
+    </div>
+
+    <div class="py-2 flex flex-col">
+        <div class="container mx-auto px-2 sm:px-4 py-2">
+            <div class="flex flex-col items-center">
+
+                <div class="w-3/4 lg:w-1/2 shadow mb-5" role="alert">
+                    <form action="{{ route('mitra.destroy', Crypt::Encrypt($datas->id)) }}" class="block"
+                        method="POST" enctype="multipart/form-data">
+                        @csrf
+                        @method('DELETE')
+
+                        <div class="flex">
+                            <div class="bg-red-600 w-16 text-center p-2">
+                                <div class="flex justify-center h-full items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="bg-white border-r-4 border-red-600 w-full p-4">
+                                <div>
+                                    <p class="text-gray-600 font-bold">@lang('messages.confirm')</p>
+                                    <p class="text-gray-600 font-bold text-sm">@lang('messages.deleteitemwarning').</p>
+                                    <p class="text-gray-600 text-sm mb-5">@lang('messages.deleteitemconfirm')?</p>
+                                    <div class="flex flex-col md:flex-row gap-2 justify-between">
+                                        <x-primary-button type="submit"
+                                            class="bg-red-600 hover:bg-red-700 dark:bg-red-700 dark:hover:bg-red-800">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="1.5" stroke="currentColor" class="size-5">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                                            </svg>
+                                            <span class="pl-1">@lang('messages.delete')</span>
+                                        </x-primary-button>
+                                        <x-anchor-secondary href="{{ route('mitra.index') }}" tabindex="1"
+                                            autofocus>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="1.5" stroke="currentColor" class="size-5">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M6 18 18 6M6 6l12 12" />
+                                            </svg>
+                                            <span class="pl-1">@lang('messages.cancel')</span>
+                                        </x-anchor-secondary>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div
+                    class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                    <div class="p-4 space-y-2">
+
+                        <div class="flex flex-col lg:flex-row">
+                            <div class="w-full lg:w-1/2 px-2">
+
+                                <div class="w-auto pb-4">
+                                    <span for="nik"
+                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.nik')</span>
+                                    <x-text-span>{{ $datas->nik ? $datas->nik : '-' }}</x-text-span>
+                                </div>
+
+                                <div class="w-auto pb-4">
+                                    <span for="nama_lengkap"
+                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.fullname')</span>
+                                    <x-text-span>{{ $datas->nama_lengkap ? $datas->nama_lengkap : '-' }}</x-text-span>
+                                </div>
+
+                                <div class="w-auto pb-4">
+                                    <span for="nama_panggilan"
+                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.shortname')</span>
+                                    <x-text-span>{{ $datas->nama_panggilan ? $datas->nama_panggilan : '-' }}</x-text-span>
+                                </div>
+
+                                <div class="w-auto pb-4">
+                                    <span for="tempat_lahir"
+                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.birthplace')</span>
+                                    <x-text-span>{{ $datas->tempat_lahir ? $datas->tempat_lahir : '-' }}</x-text-span>
+                                </div>
+
+                                <div class="w-auto pb-4">
+                                    <span for="tanggal_lahir"
+                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.birthdate')</span>
+                                    <x-text-span>{{ date('d/m/Y', strtotime($datas->tanggal_lahir)) }}</x-text-span>
+                                </div>
+
+                                <div class="w-auto pb-4">
+                                    <span for="alamat_asal"
+                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.originaddress')</span>
+                                    <x-text-span>{{ $datas->alamat_asal ? $datas->alamat_asal : '-' }}</x-text-span>
+                                </div>
+                            </div>
+
+                            <div class="w-full lg:w-1/2 px-2 flex flex-col justify-start">
+                                <div class="w-auto pb-4">
+                                    <span for="nip"
+                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.nip')</span>
+                                    <x-text-span>{{ $datas->nip ? $datas->nip : '-' }}</x-text-span>
+                                </div>
+
+                                <div class="w-auto pb-4">
+                                    <span for="alamat_tinggal"
+                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.residentialaddress')</span>
+                                    <x-text-span>{{ $datas->alamat_tinggal ? $datas->alamat_tinggal : '-' }}</x-text-span>
+                                </div>
+
+                                <div class="w-auto pb-4">
+                                    <span for="telpon"
+                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.phonenumber')</span>
+                                    <x-text-span>{{ $datas->telpon ? $datas->telpon : '-' }}</x-text-span>
+                                </div>
+
+                                <div class="w-auto pb-4">
+                                    <span
+                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.gender')</span>
+                                    <x-text-span>{{ $datas->kelamin == 'L' ? 'Laki-laki' : 'Perempuan' }}</x-text-span>
+                                </div>
+
+                                <div class="w-auto pb-4">
+                                    <span for="email"
+                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.emailaddress')</span>
+                                    <x-text-span>{{ $datas->email ? $datas->email : '-' }}</x-text-span>
+                                </div>
+
+                                <div class="w-auto pb-4 lg:pb-12">
+                                    <span for="keterangan"
+                                        class="block mb-2 font-medium text-primary-600 dark:text-primary-500">@lang('messages.description')</span>
+                                    <x-text-span>{{ $datas->keterangan ? $datas->keterangan : '-' }}</x-text-span>
+                                </div>
+
+                                <div class="flex flex-row flex-wrap items-center justify-end gap-2 md:gap-4">
+                                    <div class="pr-2">
+                                        <div class="inline-flex items-center">
+                                            @if ($datas->isactive == '1')
+                                                <span>✔️</span>
+                                            @endif
+                                            @if ($datas->isactive == '0')
+                                                <span>❌</span>
+                                            @endif
+                                            <span class='pl-2'>@lang('messages.active')</span>
+                                        </div>
+                                    </div>
+
+                                    <x-anchor-secondary href="{{ route('mitra.index') }}" tabindex="7">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" class="size-5">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M6 18 18 6M6 6l12 12" />
+                                        </svg>
+                                        <span class="pl-1">@lang('messages.close')</span>
+                                    </x-anchor-secondary>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="flex flex-col lg:flex-row gap-4 px-4 py-2">
+        <div class="w-full">
+            <div class="flex flex-col items-center">
+
+                {{-- Jabatan --}}
+                <div
+                    class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                    <div class="p-4 space-y-2">
+                        <div class="flex flex-row items-center gap-2">
+                            <svg fill="currentColor" class="size-5" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M21.435,11.5h-.38V8.12a1.626,1.626,0,0,0-1.62-1.62h-.63V6.12a1.625,1.625,0,0,0-3.25,0V11.5H8.445V6.12a1.625,1.625,0,0,0-3.25,0V6.5h-.63a1.62,1.62,0,0,0-1.62,1.62V11.5h-.38a.5.5,0,1,0,0,1h.38v3.37a1.622,1.622,0,0,0,1.62,1.63H5.2v.37a1.625,1.625,0,1,0,3.25,0V12.5h7.11v5.37a1.625,1.625,0,1,0,3.25,0V17.5h.63a1.628,1.628,0,0,0,1.62-1.63V12.5h.38a.5.5,0,1,0,0-1ZM5.2,16.5h-.63a.625.625,0,0,1-.62-.63V8.12a.623.623,0,0,1,.62-.62H5.2Zm2.25,1.37a.634.634,0,0,1-.63.63.625.625,0,0,1-.62-.63V6.12a.623.623,0,0,1,.62-.62.632.632,0,0,1,.63.62Zm10.36,0a.625.625,0,1,1-1.25,0V6.12a.625.625,0,0,1,1.25,0Zm2.25-2a.625.625,0,0,1-.62.63h-.63v-9h.63a.623.623,0,0,1,.62.62Z" />
+                            </svg>
+                            <span class="block font-medium text-primary-600 dark:text-primary-500">
+                                @lang('messages.jobposition')
+                            </span>
+                        </div>
+
+                        <div
+                            class="border rounded-md border-primary-100 bg-primary-100 dark:border-primary-800 dark:bg-primary-850">
+                            <div class="p-2 overflow-scroll md:overflow-auto lg:overflow-hidden">
+                                <table id="jabatan_table" class="w-full border-separate border-spacing-2">
+                                    <thead>
+                                        <tr>
+                                            <th class="w-1/3">@lang('messages.jobposition')</th>
+                                            <th class="w-1/12">@lang('messages.startdate')</th>
+                                            <th class="w-1/12">@lang('messages.enddate')</th>
+                                            <th class="w-auto">@lang('messages.description')</th>
+                                            <th class="w-auto">@lang('messages.active')</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody id="jabatanBody">
+                                        @include('mitra.partials.details', [
+                                            $details,
+                                            'viewMode' => true,
+                                        ])
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="mt-4 mb-4 mr-4 flex flex-row flex-wrap justify-end gap-2 md:gap-4">
+                                <x-anchor-secondary href="{{ route('mitra.index') }}" tabindex="24">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="size-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M6 18 18 6M6 6l12 12" />
+                                    </svg>
+                                    <span class="pl-1">@lang('messages.close')</span>
+                                </x-anchor-secondary>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</x-app-layout>
