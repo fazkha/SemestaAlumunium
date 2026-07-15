@@ -1,0 +1,43 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class MitraOmzetPengeluaran extends Model
+{
+    protected $guarded = [];
+    protected $table = 'mitra_omzet_pengeluarans';
+    protected $connection = 'mysql2';
+
+    protected $fillable = [
+        'branch_id',
+        'user_id',
+        'product_id',
+        'tanggal',
+        'minggu',
+        'omzet',
+        'akum_omzet',
+        'pct_akum_omzet',
+        'pencapaian_jumlah_hari',
+        'pencapaian_sisa_hari',
+        'pencapaian_omzet_phari',
+        'sisa_adonan',
+        'delta_omzet',
+        'image_lokasi',
+        'image_nama',
+        'image_type',
+        'approved_omzet',
+        'approved_adonan',
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function details()
+    {
+        return $this->hasMany(MitraOmzetPengeluaranDetail::class, 'mitra_omzet_pengeluaran_id');
+    }
+}

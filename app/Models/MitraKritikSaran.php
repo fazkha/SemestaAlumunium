@@ -1,0 +1,28 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class MitraKritikSaran extends Model
+{
+    protected $guarded = [];
+    protected $table = 'mitra_kritik_sarans';
+    protected $connection = 'mysql';
+
+    protected $fillable = [
+        'user_id',
+        'product_id',
+        'tanggal',
+        'jenis',
+        'judul',
+        'keterangan',
+        'jawab_user_id',
+        'tanggal_jawab',
+        'keterangan_jawab',
+        'image_lokasi',
+        'image_nama',
+        'image_type',
+        'isactive',
+    ];
+}

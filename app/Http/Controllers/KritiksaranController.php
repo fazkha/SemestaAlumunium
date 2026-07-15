@@ -1,0 +1,193 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\MitraKritikSaran;
+use App\Http\Requests\KritiksaranRequest;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\File;
+use Illuminate\View\View;
+
+class KritiksaranController extends Controller implements HasMiddleware
+{
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('permission:kritiksaran-list', only: ['index', 'fetch']),
+            new Middleware('permission:kritiksaran-create', only: ['create', 'store']),
+            new Middleware('permission:kritiksaran-edit', only: ['edit', 'update']),
+            new Middleware('permission:kritiksaran-show', only: ['show']),
+            new Middleware('permission:kritiksaran-delete', only: ['delete', 'destroy']),
+        ];
+    }
+
+    public function index(Request $request)
+    {
+        if (!$request->session()->exists('kritiksaran_pp')) {
+            $request->session()->put('kritiksaran_pp', config('custom.list_per_page_opt_1'));
+        }
+        if (!$request->session()->exists('kritiksaran_isactive')) {
+            $request->session()->put('kritiksaran_isactive', 'all');
+        }
+        if (!$request->session()->exists('kritiksaran_judul')) {
+            $request->session()->put('kritiksaran_judul', '_');
+        }
+        if (!$request->session()->exists('kritiksaran_keterangan')) {
+            $request->session()->put('kritiksaran_keterangan', '_');
+        }
+
+        $search_arr = ['kritiksaran_isactive', 'kritiksaran_judul', 'kritiksaran_keterangan'];
+
+        $datas = MitraKritikSaran::query();
+
+        for ($i = 0; $i < count($search_arr); $i++) {
+            $field = substr($search_arr[$i], strlen('kritiksaran_'));
+
+            if ($search_arr[$i] == 'kritiksaran_isactive') {
+                if (session($search_arr[$i]) !== 'all') {
+                    $datas = $datas->where([$field => session($search_arr[$i])]);
+                }
+            } else {
+                if (session($search_arr[$i]) == '_' or session($search_arr[$i]) == '') {
+                } else {
+                    $like = '%' . session($search_arr[$i]) . '%';
+                    $datas = $datas->where($field, 'LIKE', $like);
+                }
+            }
+        }
+
+        // $datas = $datas->where('branch_id', auth()->user()->profile->branch_id);
+        $datas = $datas->orderBy('tanggal', 'desc')->orderBy('id', 'desc')->paginate(session('kritiksaran_pp'));
+        // $datas = $datas->latest()->paginate(session('kritiksaran_pp'));
+
+        if ($request->page && $datas->count() == 0) {
+            return redirect()->route('dashboard');
+        }
+
+        return view('kritiksaran.index', compact(['datas']))->with('i', (request()->input('page', 1) - 1) * session('kritiksaran_pp'));
+    }
+
+    public function fetchdb(Request $request): JsonResponse
+    {
+        $request->session()->put('kritiksaran_pp', $request->pp);
+        $request->session()->put('kritiksaran_isactive', $request->isactive);
+        $request->session()->put('kritiksaran_judul', $request->judul);
+        $request->session()->put('kritiksaran_keterangan', $request->keterangan);
+
+        $search_arr = ['kritiksaran_isactive', 'kritiksaran_judul', 'kritiksaran_keterangan'];
+
+        $datas = MitraKritikSaran::query();
+
+        for ($i = 0; $i < count($search_arr); $i++) {
+            $field = substr($search_arr[$i], strlen('kritiksaran_'));
+
+            if ($search_arr[$i] == 'kritiksaran_isactive') {
+                if (session($search_arr[$i]) !== 'all') {
+                    $datas = $datas->where([$field => session($search_arr[$i])]);
+                }
+            } else {
+                if (session($search_arr[$i]) == '_' or session($search_arr[$i]) == '') {
+                } else {
+                    $like = '%' . session($search_arr[$i]) . '%';
+                    $datas = $datas->where($field, 'LIKE', $like);
+                }
+            }
+        }
+
+        // $datas = $datas->where('branch_id', auth()->user()->profile->branch_id);
+        $datas = $datas->orderBy('tanggal', 'desc')->orderBy('id', 'desc')->paginate(session('kritiksaran_pp'));
+        // $datas = $datas->latest()->paginate(session('kritiksaran_pp'));
+
+        $datas->withPath('/human-resource/criticism'); // pagination url to
+
+        $view = view('kritiksaran.partials.table', compact(['datas']))->with('i', (request()->input('page', 1) - 1) * session('kritiksaran_pp'))->render();
+
+        if ($view) {
+            return response()->json($view, 200);
+        } else {
+            return response()->json(null, 400);
+        }
+    }
+
+    public function create()
+    {
+        //
+    }
+
+    public function store(Request $request)
+    {
+        //
+    }
+
+    public function show(Request $request): View
+    {
+        $datas = MitraKritikSaran::find(Crypt::decrypt($request->criticism));
+
+        return view('kritiksaran.show', compact(['datas']));
+    }
+
+    public function edit(Request $request): View
+    {
+        $branch_id = auth()->user()->profile->branch_id;
+        $datas = MitraKritikSaran::find(Crypt::decrypt($request->criticism));
+
+        return view('kritiksaran.edit', compact(['datas', 'branch_id']));
+    }
+
+    public function update(KritiksaranRequest $request): RedirectResponse
+    {
+        $kritiksaran = MitraKritikSaran::find(Crypt::decrypt($request->criticism));
+
+        if ($request->validated()) {
+            $kritiksaran->update([
+                'tanggal' => $request->tanggal,
+                'judul' => ucfirst($request->judul),
+                'keterangan' => ucfirst($request->keterangan),
+                'isactive' => ($request->isactive == 'on' ? 1 : 0),
+                'jawab_user_id' => auth()->user()->id,
+                'tanggal_jawab' => date("Y-m-d"),
+                'keterangan_jawab' => $request->keterangan_jawab,
+            ]);
+
+            return redirect()->back()->with('success', __('messages.successupdated') . ' 👉 ' . $request->judul);
+        } else {
+            return redirect()->back()->withInput()->with('error', 'Error occured while updating!');
+        }
+    }
+
+    public function delete(Request $request): View
+    {
+        $kritiksaran = MitraKritikSaran::find(Crypt::decrypt($request->criticism));
+
+        $datas = $kritiksaran;
+
+        return view('kritiksaran.delete', compact(['datas']));
+    }
+
+    public function destroy(Request $request): RedirectResponse
+    {
+        $kritiksaran = MitraKritikSaran::find(Crypt::decrypt($request->criticism));
+        $deleteName = $kritiksaran->image_nama ? $kritiksaran->image_nama : NULL;
+        $deletePath = $kritiksaran->image_lokasi ? $kritiksaran->image_lokasi : NULL;
+
+        try {
+            $kritiksaran->delete();
+            if ($deleteName && $deletePath) {
+                File::delete(public_path($deletePath) . '/' . $deleteName);
+            }
+        } catch (\Illuminate\Database\QueryException $e) {
+            if (str_contains($e->getMessage(), 'Integrity constraint violation')) {
+                return redirect()->route('criticism.index')->with('error', 'Integrity constraint violation');
+            }
+            return redirect()->route('criticism.index')->with('error', $e->getMessage());
+        }
+
+        return redirect()->route('criticism.index')
+            ->with('success', __('messages.successdeleted') . ' 👉 ' . $kritiksaran->judul);
+    }
+}

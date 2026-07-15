@@ -1,0 +1,17 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class AppSetting extends Model
+{
+    protected $guarded = [];
+    protected $table = 'app_settings';
+    protected $connection = 'mysql';
+
+    protected $fillable = [
+        'parm',
+        'value'
+    ];
+}

@@ -1,0 +1,2368 @@
+<?php
+
+namespace App\Http\Controllers\Api;
+
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\Api\MitraController;
+use App\Models\AppSettingJualan;
+use App\Models\Branch;
+use App\Models\Brandivjabmit;
+use App\Models\Brandivjabpeg;
+use App\Models\Gerobak;
+use App\Models\JenisPengeluaranCabang;
+use App\Models\KalenderHke;
+use App\Models\MitraAverageOmzet;
+use App\Models\MitraOmzetPengeluaran;
+use App\Models\MitraTargetBonus;
+use App\Models\MitraUbahHari;
+use App\Models\PcAverageOmzet;
+use App\Models\PcKasbon;
+use App\Models\PcOmzetHarian;
+use App\Models\PcBiaya;
+use App\Models\PcPettyCash;
+use App\Models\PcTargetBonus;
+use App\Models\Pegawai;
+use App\Models\Product;
+use App\Models\Profile;
+use App\Models\RuteGerobak;
+use App\Models\User;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Http;
+
+class CabangController extends Controller
+{
+    // public function db_switch(int $sw)
+    // {
+    //     if ($sw == 2) {
+    //         Config::set('database.connections.mysql.database', config('custom.db02_dbname'));
+    //         Config::set('database.connections.mysql.username', config('custom.db02_username'));
+    //         Config::set('database.connections.mysql.password', config('custom.db02_password'));
+    //     } elseif ($sw == 1) {
+    //         Config::set('database.connections.mysql.database', config('custom.db01_dbname'));
+    //         Config::set('database.connections.mysql.username', config('custom.db01_username'));
+    //         Config::set('database.connections.mysql.password', config('custom.db01_password'));
+    //     }
+
+    //     DB::purge('mysql');
+    //     DB::reconnect('mysql');
+    // }
+
+    public function currentYearAndWeek()
+    {
+        $date = Carbon::now();
+        $startOfWeek = $date->copy()->subDays(
+            ($date->dayOfWeek + 1) % 7
+        );
+        $saturdayWeek = $startOfWeek->weekOfYear;
+        $saturdayYear = $startOfWeek->year;
+        $padWeek = str_pad($saturdayWeek, 2, '0', STR_PAD_LEFT);
+        return $saturdayYear . $padWeek;
+    }
+
+    public function yearAndWeek(int $offsetWeek = 0)
+    {
+        $date = Carbon::now();
+        $startOfWeek = $date->copy()
+            ->subDays(($date->dayOfWeek + 1) % 7)
+            ->addWeeks($offsetWeek);
+
+        return
+            $startOfWeek->year .
+            str_pad($startOfWeek->weekOfYear, 2, '0', STR_PAD_LEFT);
+    }
+
+    public function getTargetBonusList(int $pc_id)
+    {
+        $target = null;
+        $product_id = 1;
+
+        $user = User::join('pegawais', 'users.email', '=', 'pegawais.email')
+            ->leftJoin('pegawai_gajis', 'pegawai_gajis.pegawai_id', '=', 'pegawais.id')
+            ->select('pegawai_gajis.gaji_pokok')
+            ->where('users.id', $pc_id)
+            ->first();
+
+        if ($user) {
+            $gapok = $user->gaji_pokok;
+            $target = PcTargetBonus::where('isactive', 1)
+                ->where('product_id', $product_id)
+                ->where('tipegaji', $gapok)
+                ->selectRaw('id, bonus as name, concat("Omzet: ", r2omzet, ", Hpp: ", round(hpp*100, 2), "%") as tambahan_nama')
+                ->orderBy('bonus')
+                ->orderBy('r2omzet')
+                ->get()
+                ->toJson();
+            // ->selectRaw('id, concat("Bonus: ", bonus, " - Omzet: ", r2omzet, " - Hpp: ", round(hpp*100, 2), "%") as name')
+        }
+
+        return [
+            'status' => 'success',
+            'data' => $target
+        ];
+    }
+
+    public function getMitraByPc(Request $request)
+    {
+        $product_id = 1;
+        $mitra = DB::connection('mysql2')->select("CALL sp_mitra_by_pc(?,?)", [$request->id, $product_id]);
+
+        return [
+            'status' => 'success',
+            'data' => $mitra[0]->result
+        ];
+    }
+
+    public function getCabangList(Request $request)
+    {
+        $cabang = Branch::where('isactive', 1)->where('id', '>', 1)->orderByRaw('kode')->selectRaw('id, kode as name')->get()->toJson();
+
+        return [
+            'status' => 'success',
+            'data' => $cabang
+        ];
+    }
+
+    public function getCabangLongList(Request $request)
+    {
+        // jabatan_id = 4 = pc
+        $cabang = Brandivjabpeg::join('brandivjabs', 'brandivjabpegs.brandivjab_id', '=', 'brandivjabs.id')
+            ->join('pegawais', 'brandivjabpegs.pegawai_id', '=', 'pegawais.id')
+            ->join('users', 'pegawais.email', '=', 'users.email')
+            ->join('branches', 'brandivjabs.branch_id', '=', 'branches.id')
+            ->where('users.id', $request->id)
+            ->where('brandivjabs.jabatan_id', 4)
+            ->where('brandivjabpegs.isactive', 1)
+            ->where('pegawais.isactive', 1)
+            ->where('branches.isactive', 1)
+            ->where('users.approved', 1)
+            ->orderByRaw('branches.nama')
+            ->selectRaw('branches.id, branches.nama as name, branches.kode as kode')
+            ->get()
+            ->toJson();
+
+        return [
+            'status' => 'success',
+            'data' => $cabang
+        ];
+    }
+
+    public function getCabangJabatanList(Request $request)
+    {
+        // jabatan_id = 4 = pc
+        $cabang = Brandivjabpeg::join('brandivjabs', 'brandivjabpegs.brandivjab_id', '=', 'brandivjabs.id')
+            ->join('pegawais', 'brandivjabpegs.pegawai_id', '=', 'pegawais.id')
+            ->join('users', 'pegawais.email', '=', 'users.email')
+            ->join('branches', 'brandivjabs.branch_id', '=', 'branches.id')
+            ->where('users.id', $request->id)
+            ->where('brandivjabs.jabatan_id', 4)
+            ->where('brandivjabpegs.isactive', 1)
+            ->where('pegawais.isactive', 1)
+            ->where('branches.isactive', 1)
+            ->where('users.approved', 1)
+            ->orderByRaw('branches.kode')
+            ->selectRaw('branches.id, branches.kode as name')
+            ->get()
+            ->toJson();
+
+        return [
+            'status' => 'success',
+            'data' => $cabang
+        ];
+    }
+
+    public function getGerobakByPc(Request $request)
+    {
+        $product_id = 1;
+        $mitra = DB::connection('mysql2')->select("CALL sp_gerobak_by_pc(?,?,?)", [$request->pc_id, $request->branch_id, $product_id]);
+
+        return [
+            'status' => 'success',
+            'data' => $mitra[0]->result
+        ];
+    }
+
+    public function getJenisPengeluaranList()
+    {
+        $jenis = JenisPengeluaranCabang::where('isactive', 1)->orderByRaw('kelompok, nama')->selectRaw('id, nama as name, kelompok, defjml')->get()->toJson();
+
+        return [
+            'status' => 'success',
+            'data' => $jenis
+        ];
+    }
+
+    public function getBarangToko(Request $request)
+    {
+        $barang = null;
+        $response = Http::get(config('custom.TLM_API') . '/toko/barang-list');
+
+        if ($response->successful()) {
+            $barang = $response->json();
+        }
+
+        return [
+            'status' => 'success',
+            'barang' => json_encode($barang['barang'])
+        ];
+    }
+
+    public function saveTargetBonus(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'user_id' => ['required', 'integer', 'exists:users,id'],
+            'target_id' => ['required', 'integer', 'exists:mysql2.pc_target_bonuses,id'],
+            'branch_id' => ['required', 'integer', 'exists:branches,id'],
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+
+            foreach ($errors->all() as $message) {
+                return response([
+                    'message' => $message
+                ], 422);
+            }
+        }
+
+        $data = $validator->validated();
+
+        $hpp = 0;
+        $rata2 = 0;
+        $bonus = 0;
+        $month = now()->month; // Example: 5 (May)
+        $year  = now()->year;  // Example: 2026
+        $result = [];
+        $product_id = 1;
+
+        $target = PcTargetBonus::where('id', $data['target_id'])->first();
+
+        if ($target) {
+            $result = $this->hitungBonus($data['user_id']);
+            $dataByBranch = collect($result)->keyBy('branch_id');
+            $dataBranch = $dataByBranch[$data['branch_id']] ?? null;
+
+            if ($dataBranch) {
+                $hpp = $dataBranch['hpp'];
+                $rata2 = $dataBranch['rata2'];
+                $bonus = $dataBranch['bonus'];
+            }
+
+            $pcAverageOmzet = PcAverageOmzet::where('user_id', $data['user_id'])
+                ->where('branch_id', $data['branch_id'])
+                ->where('product_id', $product_id)
+                ->where('tahun', $year)
+                ->where('bulan', $month)
+                ->first();
+
+            if ($pcAverageOmzet) {
+                $pcAverageOmzet->update([
+                    'target_id' => $data['target_id'],
+                    'hpp' => $hpp,
+                    'rata2' => $rata2,
+                    'bonus' => $bonus,
+                ]);
+            } else {
+                $pcAverageOmzet = PcAverageOmzet::create([
+                    'branch_id' => $data['branch_id'],
+                    'user_id' => $data['user_id'],
+                    'target_id' => $data['target_id'],
+                    'product_id' => $product_id,
+                    'tahun' => $year,
+                    'bulan' => $month,
+                    'hpp' => $hpp,
+                    'rata2' => $rata2,
+                    'bonus' => $bonus,
+                ]);
+            }
+        }
+
+        $targetBonus = PcAverageOmzet::join('pc_target_bonuses', 'pc_average_omzets.target_id', '=', 'pc_target_bonuses.id')
+            ->join('larisma7_db01.branches', 'larisma7_db01.branches.id', '=', 'pc_average_omzets.branch_id')
+            ->selectRaw('pc_average_omzets.target_id as id, pc_target_bonuses.omzet, pc_target_bonuses.r2omzet, pc_target_bonuses.hpp, pc_target_bonuses.bonus as name, larisma7_db01.branches.nama as branch')
+            ->where('pc_average_omzets.user_id', $data['user_id'])
+            ->where('pc_average_omzets.branch_id', $data['branch_id'])
+            ->where('pc_average_omzets.product_id', $product_id)
+            ->where('pc_average_omzets.tahun', $year)
+            ->where('pc_average_omzets.bulan', $month)
+            ->first();
+
+        return response()->json([
+            'status' => 'success',
+            'target_bonus' => $targetBonus,
+            'bonus' => $result,
+        ]);
+    }
+
+    public function loadPengumuman(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'id' => ['required', 'integer', 'exists:users,id'],
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+
+            return response([
+                'message' => $errors->first()
+            ], 422);
+        }
+
+        $data = $validator->validated();
+
+        $subquery = DB::table('brandivjabpegs as b1a')
+            ->join('brandivjabs as b2a', 'b2a.id', '=', 'b1a.brandivjab_id')
+            ->where('b2a.isactive', 1)
+            ->where('b1a.isactive', 1)
+            ->groupBy('b1a.pegawai_id')
+            ->select(
+                'b1a.pegawai_id',
+                DB::raw('MAX(b2a.branch_id) as branch_id')
+            );
+
+        $pengumuman = DB::table('users as u2')
+            ->join('pegawais as p1', 'p1.email', '=', 'u2.email')
+            ->joinSub($subquery, 'mx', function ($join) {
+                $join->on('mx.pegawai_id', '=', 'p1.id');
+            })
+            ->join('brandivjabpegs as b1', function ($join) {
+                $join->on('b1.pegawai_id', '=', 'p1.id')
+                    ->where('b1.isactive', 1);
+            })
+            ->join('brandivjabs as b2', function ($join) {
+                $join->on('b2.id', '=', 'b1.brandivjab_id')
+                    ->on('b2.branch_id', '=', 'mx.branch_id')
+                    ->where('b2.isactive', 1);
+            })
+            ->join('mitra_pengumumans as m1', function ($join) {
+                $join->where('m1.isactive', 1);
+            })
+            ->leftJoin('users as u1', 'u1.email', '=', 'm1.created_by')
+            ->where('u2.id', DB::raw($data['id']))
+            ->whereExists(function ($query) {
+                $query->select(DB::raw(1))
+                    ->from('mitra_pengumuman_untuks as m3')
+                    ->whereColumn('m3.mitra_pengumuman_id', 'm1.id')
+                    ->whereColumn('m3.jabatan_id', 'b2.jabatan_id');
+            })
+            ->select(
+                'm1.id',
+                'm1.tanggal',
+                'm1.judul',
+                'm1.keterangan',
+                'm1.lokasi',
+                'm1.gambar',
+                DB::raw('IFNULL(u1.name, "-") as penulis')
+            )
+            ->get();
+
+        // $sql = $pengumuman->toSql();
+        // $bindings = $pengumuman->getBindings();
+        // foreach ($bindings as $binding) {
+        //     $sql = preg_replace('/\?/', "'" . addslashes($binding) . "'", $sql, 1);
+        // }
+        // dd($sql);
+
+        return response()->json([
+            'status' => 'success',
+            'pengumuman' => $pengumuman,
+        ]);
+    }
+
+    public function loadOrderPc(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'pc_id' => ['required', 'integer', 'exists:users,id'],
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+
+            foreach ($errors->all() as $message) {
+                return response([
+                    'message' => $message
+                ], 422);
+            }
+        }
+
+        $data = $validator->validated();
+        $order = [];
+        $app_setting = AppSettingJualan::where('parm', 'pc_gagal_order_jika_nostock')->first();
+
+        $pc = User::where('id', $data['pc_id'])
+            ->where('approved', 1)
+            ->select('email')
+            ->first();
+
+        $response = Http::get(config('custom.TLM_API') . '/toko/order-cabang', [
+            'pc_email' => $pc->email,
+        ]);
+
+        if ($response->successful()) {
+            $order = $response->json();
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'order' => $order['order'],
+            'app_setting' => $app_setting->value,
+        ]);
+    }
+
+    public function saveOrderPc(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'pc_id' => ['required', 'integer', 'exists:users,id'],
+            'cabang_id' => ['required', 'integer', 'exists:branches,id'],
+            'hke' => ['required', 'integer'],
+            'tanggal' => ['required', 'date'],
+            'keterangan' => ['nullable', 'string'],
+            'barang' => ['required', 'integer'],
+            'gerobak' => ['nullable', 'integer', 'exists:mysql2.gerobaks,id'],
+            'qtyBarang' => ['required', 'numeric', 'between:0,9999.99'],
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+
+            foreach ($errors->all() as $message) {
+                return response([
+                    'message' => $message
+                ], 422);
+            }
+        }
+
+        $data = $validator->validated();
+        $order = null;
+
+        $pc = User::where('id', $data['pc_id'])
+            ->where('approved', 1)
+            ->select('email')
+            ->first();
+
+        $response = Http::post(config('custom.TLM_API') . '/toko/order-cabang', [
+            'cabang_id' => $data['cabang_id'],
+            'hke' => $data['hke'],
+            'tanggal' => $data['tanggal'],
+            'pc_email' => $pc->email,
+            'barang' => $data['barang'],
+            'gerobak' => $data['gerobak'],
+            'kuantiti' => $data['qtyBarang'],
+            'keterangan' => $data['keterangan'],
+        ]);
+
+        if ($response->successful()) {
+            $order = $response->json();
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'order' => $order['order'],
+        ]);
+    }
+
+    public function hapusOrderPc(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'pc_id' => ['required', 'integer', 'exists:users,id'],
+            'order_id' => ['required', 'integer'],
+            'grup' => ['required', 'integer', 'in:1,2'],
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+
+            foreach ($errors->all() as $message) {
+                return response([
+                    'message' => $message
+                ], 422);
+            }
+        }
+
+        $data = $validator->validated();
+
+        $pc = User::where('id', $data['pc_id'])
+            ->where('approved', 1)
+            ->select('email')
+            ->first();
+
+        $response = Http::delete(config('custom.TLM_API') . '/toko/order-cabang', [
+            'id' => $data['order_id'],
+            'pc_email' => $pc->email,
+            'grup' => $data['grup'],
+        ]);
+
+        if ($response->successful()) {
+            $order = $response->json();
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'order' => $order['order'],
+        ]);
+    }
+
+    public function receiveOrderPc(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'pc_id' => ['required', 'integer', 'exists:users,id'],
+            'detilorder_id' => ['required', 'integer'],
+            'grup' => ['required', 'integer', 'in:1,2'],
+            'checked' => ['required', 'integer', 'in:1,0'],
+            'keterangan' => ['nullable', 'string'],
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+
+            foreach ($errors->all() as $message) {
+                return response([
+                    'message' => $message
+                ], 422);
+            }
+        }
+
+        $data = $validator->validated();
+
+        $pc = User::where('id', $data['pc_id'])
+            ->where('approved', 1)
+            ->select('email')
+            ->first();
+
+        $response = Http::post(config('custom.TLM_API') . '/toko/order-cabang-receive', [
+            'detilorder_id' => $data['detilorder_id'],
+            'grup' => $data['grup'],
+            'pc_email' => $pc->email,
+            'checked' => $data['checked'],
+            'keterangan' => $data['keterangan'],
+        ]);
+
+        if ($response->successful()) {
+            $order = $response->json();
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'order' => $order['order'],
+        ]);
+    }
+
+    public function loadPettyCashRemaining(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'id' => ['required', 'integer', 'exists:users,id'],
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+
+            foreach ($errors->all() as $message) {
+                return response([
+                    'message' => $message
+                ], 422);
+            }
+        }
+
+        $data = $validator->validated();
+        $total = 0.0;
+        $sisakas = collect();
+        $bukti = NULL;
+        $product_id = 1;
+        // flowtype = 1 (dropping), 2 (uses), 3 (return)
+
+        $brandivjabpeg = Brandivjabpeg::join('pegawais', 'brandivjabpegs.pegawai_id', '=', 'pegawais.id')
+            ->join('users', 'pegawais.email', '=', 'users.email')
+            ->join('brandivjabs', 'brandivjabpegs.brandivjab_id', '=', 'brandivjabs.id')
+            ->where('users.id', $data['id'])
+            ->get();
+
+        foreach ($brandivjabpeg as $item) {
+            $latestIn = PcPettyCash::join('larisma7_db01.branches', 'pc_petty_cashes.branch_id', '=', 'larisma7_db01.branches.id')
+                ->where('pc_petty_cashes.user_id', $data['id'])
+                ->where('pc_petty_cashes.product_id', $product_id)
+                ->where('pc_petty_cashes.branch_id', $item->branch_id)
+                ->where('pc_petty_cashes.flowtype', 1)
+                ->where('pc_petty_cashes.approved_ma', 1)
+                ->where('pc_petty_cashes.approved_fin', 1)
+                ->select('pc_petty_cashes.*', 'larisma7_db01.branches.nama as nama_cabang')
+                ->latest()
+                ->first();
+
+            if ($latestIn) {
+                $latestOut = PcPettyCash::where('user_id', $data['id'])
+                    ->where('branch_id', $item->branch_id)
+                    ->where('product_id', $product_id)
+                    ->whereIn('flowtype', [2, 3])
+                    ->where('approved_ma', 1)
+                    ->where('approved_fin', 1)
+                    ->where('dropping_id', $latestIn->id)
+                    ->sum('nominal');
+
+                $total = $total + ($latestIn->nominal + $latestOut);
+                $sisakas->push([
+                    'cabang' => $latestIn->nama_cabang,
+                    'saldo' => number_format($latestIn->nominal + $latestOut, 1)
+                ]);
+
+                $bukti = PcPettyCash::where('user_id', $data['id'])
+                    ->where('branch_id', $item->branch_id)
+                    ->where('product_id', $product_id)
+                    ->where('flowtype', 3)
+                    ->where('approved_ma', 1)
+                    ->where('approved_fin', 1)
+                    ->where('dropping_id', $latestIn->id)
+                    ->selectRaw('CONCAT(image_lokasi, "/", image_nama) AS path')
+                    ->first();
+            }
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'total' => number_format($total, 1),
+            'sisakas' => $sisakas,
+            'bukti' => $bukti ? $bukti->path : null,
+        ]);
+    }
+
+    public function saveReturPettyCash(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'id' => ['required', 'integer', 'exists:users,id'],
+            'tanggal' => ['required', 'date'],
+            'nominal' => ['nullable'],
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+
+            foreach ($errors->all() as $message) {
+                return response([
+                    'message' => $message
+                ], 422);
+            }
+        }
+
+        $data = $validator->validated();
+        $total = 0.0;
+        $sisakas = collect();
+        $product_id = 1;
+
+        // flowtype: 1 - drop (in) // 2 - use (out) // 3 - retur (out)
+
+        $cabangpc = Brandivjabpeg::join('pegawais', 'brandivjabpegs.pegawai_id', '=', 'pegawais.id')
+            ->join('users', 'pegawais.email', '=', 'users.email')
+            ->join('brandivjabs', 'brandivjabpegs.brandivjab_id', '=', 'brandivjabs.id')
+            ->where('users.id', $data['id'])
+            ->select('brandivjabpegs.*', 'brandivjabs.branch_id', 'users.email')
+            ->get();
+
+        foreach ($cabangpc as $item) {
+            $dropping = PcPettyCash::join('larisma7_db01.branches', 'pc_petty_cashes.branch_id', '=', 'larisma7_db01.branches.id')
+                ->where('pc_petty_cashes.user_id', $data['id'])
+                ->where('pc_petty_cashes.branch_id', $item->branch_id)
+                ->where('pc_petty_cashes.product_id', $product_id)
+                ->where('pc_petty_cashes.flowtype', 1)
+                ->where('pc_petty_cashes.approved_ma', 1)
+                ->where('pc_petty_cashes.approved_fin', 1)
+                ->select('pc_petty_cashes.*', 'larisma7_db01.branches.nama as nama_cabang')
+                ->latest()
+                ->first();
+
+            if ($dropping) {
+                $pengeluaran = PcPettyCash::where('user_id', $data['id'])
+                    ->where('branch_id', $item->branch_id)
+                    ->where('product_id', $product_id)
+                    ->where('flowtype', 2)
+                    ->where('approved_ma', 1)
+                    ->where('approved_fin', 1)
+                    ->where('dropping_id', $dropping->id)
+                    ->sum('nominal');
+
+                $pettyCash = PcPettyCash::create([
+                    'branch_id' => $item->branch_id,
+                    'user_id' => $data['id'],
+                    'product_id' => $product_id,
+                    'tanggal' => $data['tanggal'],
+                    'nominal' => $dropping->nominal - $pengeluaran,
+                    'dropping_id' => $dropping->id,
+                    'flowtype' => 3,
+                    'approved_ma' => 1,
+                    'approved_fin' => 1,
+                    'created_by' => $item->email,
+                    'updated_by' => $item->email,
+                ]);
+
+                $latestOut = PcPettyCash::where('user_id', $data['id'])
+                    ->where('branch_id', $item->branch_id)
+                    ->where('product_id', $product_id)
+                    ->whereIn('flowtype', [2, 3])
+                    ->where('approved_ma', 1)
+                    ->where('approved_fin', 1)
+                    ->where('dropping_id', $dropping->id)
+                    ->sum('nominal');
+
+                $total = $total + ($dropping->nominal - $latestOut);
+                $sisakas->push([
+                    'cabang' => $dropping->nama_cabang,
+                    'saldo' => number_format($dropping->nominal - $latestOut, 1)
+                ]);
+            }
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'total' => number_format($total, 1),
+            'sisakas' => $sisakas,
+        ]);
+    }
+
+    public function uploadBuktiTransferSisaKas(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'id' => ['required', 'integer', 'exists:users,id'],
+            'foto' => 'required|image|mimes:jpg,jpeg|max:5120',
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+
+            foreach ($errors->all() as $message) {
+                return response([
+                    'message' => $message
+                ], 422);
+            }
+        }
+
+        $data = $validator->validated();
+        $bukti = NULL;
+        $product_id = 1;
+        // flowtype = 1 (dropping), 2 (uses), 3 (return)
+
+        $cabangpc = Brandivjabpeg::join('pegawais', 'brandivjabpegs.pegawai_id', '=', 'pegawais.id')
+            ->join('users', 'pegawais.email', '=', 'users.email')
+            ->join('brandivjabs', 'brandivjabpegs.brandivjab_id', '=', 'brandivjabs.id')
+            ->where('users.id', $data['id'])
+            ->select('brandivjabpegs.*', 'brandivjabs.branch_id', 'users.email')
+            ->get();
+
+        foreach ($cabangpc as $item) {
+            $dropping = PcPettyCash::join('larisma7_db01.branches', 'pc_petty_cashes.branch_id', '=', 'larisma7_db01.branches.id')
+                ->where('pc_petty_cashes.user_id', $data['id'])
+                ->where('pc_petty_cashes.branch_id', $item->branch_id)
+                ->where('pc_petty_cashes.product_id', $product_id)
+                ->where('pc_petty_cashes.flowtype', 1)
+                ->where('pc_petty_cashes.approved_ma', 1)
+                ->where('pc_petty_cashes.approved_fin', 1)
+                ->select('pc_petty_cashes.*', 'larisma7_db01.branches.nama as nama_cabang')
+                ->latest()
+                ->first();
+
+            if ($dropping) {
+                $hasFile = $request->hasFile('foto');
+
+                if ($hasFile) {
+                    $image = $request->file('foto');
+
+                    $pengembalian = PcPettyCash::where('user_id', $data['id'])
+                        ->where('branch_id', $item->branch_id)
+                        ->where('product_id', $product_id)
+                        ->where('flowtype', 3)
+                        ->where('approved_ma', 1)
+                        ->where('approved_fin', 1)
+                        ->where('dropping_id', $dropping->id)
+                        ->first();
+
+                    if ($pengembalian) {
+                        $imageName = $pengembalian->image_nama;
+                        $deleteName = $pengembalian->image_nama;
+                        $deletePath = $pengembalian->image_lokasi;
+
+                        if (!is_null($deleteName)) {
+                            File::delete(public_path($deletePath) . '/' . $deleteName);
+                        }
+
+                        $lokasi = $this->GetLokasiSisaKasUpload();
+                        $pathym = $lokasi['path'] . '/' . $lokasi['ym'];
+                        $imageName = $dropping->id . '_' . $image->hashName();
+                        $bukti = $pathym . '/' . $imageName;
+
+                        $pengembalian = PcPettyCash::where('user_id', $data['id'])
+                            ->where('branch_id', $item->branch_id)
+                            ->where('product_id', $product_id)
+                            ->where('flowtype', 3)
+                            ->where('approved_ma', 1)
+                            ->where('approved_fin', 1)
+                            ->where('dropping_id', $dropping->id)
+                            ->update([
+                                'image_lokasi' => $pathym,
+                                'image_nama' => $imageName,
+                                'image_type' => 'image/jpeg',
+                            ]);
+
+                        // $path = $request->file('foto')->storeAs($pathym, $imageName, 'public');
+                        if (!is_null($image)) {
+                            $dest = $this->compress_image($image, $image->path(), public_path($pathym), $imageName, 70);
+                        }
+                    }
+                }
+            }
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'bukti' => $bukti,
+        ]);
+    }
+
+    public function loadPengeluaran(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'id' => ['required', 'integer', 'exists:users,id'],
+            'tanggal' => ['required', 'date'],
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+
+            foreach ($errors->all() as $message) {
+                return response([
+                    'message' => $message
+                ], 422);
+            }
+        }
+
+        $data = $validator->validated();
+        $product_id = 1;
+
+        $pengeluaran = PcBiaya::join('jenis_pengeluaran_cabangs', 'pc_pengeluarans.jenis_pengeluaran_cabang_id', '=', 'jenis_pengeluaran_cabangs.id')
+            ->join('larisma7_db01.branches', 'larisma7_db01.branches.id', '=', 'pc_pengeluarans.branch_id')
+            ->where('user_id', $data['id'])
+            ->where('product_id', $product_id)
+            ->where('tanggal', $data['tanggal'])
+            ->selectRaw('pc_pengeluarans.id, pc_pengeluarans.branch_id, jenis_pengeluaran_cabangs.nama as keterangan, ROUND(pc_pengeluarans.harga, 2) AS harga, ROUND(pc_pengeluarans.jumlah, 2) AS jumlah, pc_pengeluarans.approved, pc_pengeluarans.approved_fin, pc_pengeluarans.image_nama, larisma7_db01.branches.kode as kode_cabang')
+            ->orderBy('larisma7_db01.branches.kode')
+            ->orderBy('jenis_pengeluaran_cabangs.nama')
+            ->get();
+
+        if ($pengeluaran == null) {
+            $pengeluaran = [];
+        } else {
+            $pengeluaran = $pengeluaran->toArray();
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'pengeluaran' => $pengeluaran,
+        ]);
+    }
+
+    public function savePengeluaran(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'id' => ['required', 'integer', 'exists:users,id'],
+            'tanggal' => ['required', 'date'],
+            'cabang' => ['nullable'],
+            'keterangan' => ['nullable'],
+            'harga' => ['nullable'],
+            'jumlah' => ['nullable'],
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+
+            foreach ($errors->all() as $message) {
+                return response([
+                    'message' => $message
+                ], 422);
+            }
+        }
+
+        $data = $validator->validated();
+
+        $pengeluaran = null;
+        $product_id = 1;
+        $profile = Profile::where('user_id', $data['id'])->first();
+
+        $jenis = JenisPengeluaranCabang::where('isactive', 1)
+            ->where('id', $data['keterangan'])
+            ->first();
+
+        if ($jenis) {
+            if ($jenis->nama == 'Kasbon') {
+                $date = Carbon::parse($data['tanggal']);
+
+                $weeksInMonth =
+                    $date->copy()->startOfMonth()->weekOfYear
+                    <= $date->copy()->endOfMonth()->weekOfYear
+                    ? $date->copy()->endOfMonth()->weekOfYear - $date->copy()->startOfMonth()->weekOfYear + 1
+                    : // year rollover (Dec → Jan)
+                    $date->copy()->endOfMonth()->weekOfYear
+                    + Carbon::create($date->year)->endOfYear()->weekOfYear
+                    - $date->copy()->startOfMonth()->weekOfYear + 1;
+
+                $week = $date->isoWeek();
+                $year = $date->isoWeekYear();
+                $prevWeek = $date->copy()->subWeek()->isoWeek();
+                $prevYear = $date->copy()->subWeek()->isoWeekYear();
+
+                $yearWeek = $year . str($week)->padLeft(2, '0');
+                $prevYearWeek = $prevYear . str($prevWeek)->padLeft(2, '0');
+
+                $app_plafon = AppSettingJualan::where('parm', 'pc_kasbon_plafon')->first();
+                $app_plafon_value = $app_plafon ? intval($app_plafon->value) : 0;
+                $app_plafon_value = $app_plafon_value / $weeksInMonth;
+
+                $prevKasbon = PcKasbon::where('isactive', 1)
+                    ->where('user_id', $data['id'])
+                    ->where('product_id', $product_id)
+                    ->where('minggu', $prevYearWeek)
+                    ->first();
+
+                if (!$prevKasbon && $week > 1) {
+                    $app_plafon_value = $week * $app_plafon_value;
+                }
+
+                $kasbon = PcKasbon::where('isactive', 1)
+                    ->where('user_id', $data['id'])
+                    ->where('product_id', $product_id)
+                    ->where('minggu', $yearWeek)
+                    ->first();
+
+                if ($kasbon) {
+                    if (intval($data['harga']) > $kasbon->sisa_plafon) {
+                        return response()->json([
+                            'status' => 'error',
+                            'message' => 'Tidak mencukupi. Sisa plafon kasbon anda Rp. ' . $kasbon->sisa_plafon,
+                        ]);
+                    }
+
+                    $newSisa = $kasbon->sisa_plafon - ($data['harga'] ?? 0);
+                    $kasbon->update([
+                        'sisa_plafon' => $newSisa,
+                    ]);
+                } else {
+
+                    $prevKasbon = PcKasbon::where('isactive', 1)
+                        ->where('user_id', $data['id'])
+                        ->where('product_id', $product_id)
+                        ->where('minggu', $prevYearWeek)
+                        ->first();
+
+                    if ($prevKasbon) {
+                        $app_plafon_value = $app_plafon_value + $prevKasbon->sisa_plafon;
+                    }
+
+                    if (intval($data['harga']) > $app_plafon_value) {
+                        return response()->json([
+                            'status' => 'error',
+                            'message' => 'Tidak mencukupi. Sisa plafon kasbon anda Rp. ' . $app_plafon_value,
+                        ]);
+                    }
+
+                    $newSisa = $app_plafon_value - ($data['harga'] ?? 0);
+
+                    $kasbon = PcKasbon::create([
+                        'user_id' => $data['id'],
+                        'product_id' => $product_id,
+                        'minggu' => $yearWeek,
+                        'plafon' => $app_plafon_value,
+                        'sisa_plafon' => $newSisa,
+                        'isactive' => 1,
+                    ]);
+                }
+            }
+        }
+
+        $pengeluaran = PcBiaya::where('user_id', $data['id'])
+            ->where('product_id', $product_id)
+            ->where('tanggal', $data['tanggal'])
+            ->where('branch_id', $data['cabang'])
+            ->where('jenis_pengeluaran_cabang_id', $jenis->id)
+            ->first();
+
+        if ($pengeluaran) {
+            $pengeluaran->update([
+                'harga' => $data['harga'] ?? ($detail->harga ?? null),
+            ]);
+        } else {
+            if (isset($data['keterangan'])) {
+                $detail = PcBiaya::create([
+                    'branch_id' => $data['cabang'],
+                    'product_id' => $product_id,
+                    'user_id' => $data['id'],
+                    'tanggal' => $data['tanggal'],
+                    'jenis_pengeluaran_cabang_id' => $jenis->id,
+                    'harga' => $data['harga'] ?? 0,
+                    'jumlah' => $data['jumlah'] ?? 1,
+                ]);
+            }
+        }
+
+        $pengeluaran = PcBiaya::join('jenis_pengeluaran_cabangs', 'pc_pengeluarans.jenis_pengeluaran_cabang_id', '=', 'jenis_pengeluaran_cabangs.id')
+            ->join('larisma7_db01.branches', 'larisma7_db01.branches.id', '=', 'pc_pengeluarans.branch_id')
+            ->where('user_id', $data['id'])
+            ->where('product_id', $product_id)
+            ->where('tanggal', $data['tanggal'])
+            ->selectRaw('pc_pengeluarans.id, pc_pengeluarans.branch_id, jenis_pengeluaran_cabangs.nama as keterangan, ROUND(pc_pengeluarans.harga, 2) AS harga, ROUND(pc_pengeluarans.jumlah, 2) AS jumlah, pc_pengeluarans.approved, pc_pengeluarans.approved_fin, pc_pengeluarans.image_nama, larisma7_db01.branches.kode as kode_cabang')
+            ->orderBy('larisma7_db01.branches.kode')
+            ->orderBy('jenis_pengeluaran_cabangs.nama')
+            ->get();
+
+        if ($pengeluaran == null) {
+            $pengeluaran = [];
+        } else {
+            $pengeluaran = $pengeluaran->toArray();
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'pengeluaran' => $pengeluaran,
+        ]);
+    }
+
+    public function hapusPengeluaran(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'id' => ['required', 'integer', 'exists:users,id'],
+            'tanggal' => ['required', 'date'],
+            'cabang' => ['required', 'integer', 'exists:branches,id'],
+            'keterangan' => ['required', 'string', 'exists:mysql2.jenis_pengeluaran_cabangs,nama'],
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+
+            foreach ($errors->all() as $message) {
+                return response([
+                    'message' => $message
+                ], 422);
+            }
+        }
+
+        $data = $validator->validated();
+        $product_id = 1;
+
+        $jenis = JenisPengeluaranCabang::where('nama', $data['keterangan'])->first();
+
+        if ($jenis) {
+            $pengeluaran = PcBiaya::where('user_id', $data['id'])
+                ->where('tanggal', $data['tanggal'])
+                ->where('branch_id', $data['cabang'])
+                ->where('product_id', $product_id)
+                ->where('jenis_pengeluaran_cabang_id', $jenis->id)
+                ->first();
+
+            if ($pengeluaran && $pengeluaran->approved_fin == 0) {
+                $deleteName = $pengeluaran->image_nama ? $pengeluaran->image_nama : NULL;
+                $deletePath = $pengeluaran->image_lokasi ? $pengeluaran->image_lokasi : NULL;
+                $harga = $pengeluaran->harga ? $pengeluaran->harga : 0;
+                $deleteSuccess = false;
+
+                try {
+                    $pengeluaran->delete();
+                    if ($deleteName && $deletePath) {
+                        File::delete(public_path($deletePath) . '/' . $deleteName);
+                    }
+                    $deleteSuccess = true;
+                } catch (\Illuminate\Database\QueryException $e) {
+
+                    return response()->json([
+                        'status' => 'error',
+                        'message' => $e->getMessage(),
+                    ]);
+                }
+
+                if ($deleteSuccess) {
+                    $date = Carbon::parse($data['tanggal']);
+                    $week = $date->isoWeek();
+                    $year = $date->isoWeekYear();
+                    $yearWeek = $year . str($week)->padLeft(2, '0');
+
+                    $kasbon = PcKasbon::where('isactive', 1)
+                        ->where('user_id', $data['id'])
+                        ->where('product_id', $product_id)
+                        ->where('minggu', $yearWeek)
+                        ->first();
+
+                    if ($kasbon && $jenis->nama == 'Kasbon') {
+                        $kasbon->update([
+                            'sisa_plafon' => $kasbon->sisa_plafon + $harga,
+                        ]);
+                    }
+                }
+            }
+        }
+
+        $pengeluaran = PcBiaya::join('jenis_pengeluaran_cabangs', 'pc_pengeluarans.jenis_pengeluaran_cabang_id', '=', 'jenis_pengeluaran_cabangs.id')
+            ->join('larisma7_db01.branches', 'larisma7_db01.branches.id', '=', 'pc_pengeluarans.branch_id')
+            ->where('user_id', $data['id'])
+            ->where('product_id', $product_id)
+            ->where('tanggal', $data['tanggal'])
+            ->selectRaw('pc_pengeluarans.id, pc_pengeluarans.branch_id, jenis_pengeluaran_cabangs.nama as keterangan, ROUND(pc_pengeluarans.harga, 2) AS harga, ROUND(pc_pengeluarans.jumlah, 2) AS jumlah, pc_pengeluarans.approved, pc_pengeluarans.approved_fin, pc_pengeluarans.image_nama, larisma7_db01.branches.kode as kode_cabang')
+            ->orderBy('larisma7_db01.branches.kode')
+            ->orderBy('jenis_pengeluaran_cabangs.nama')
+            ->get();
+
+        if ($pengeluaran == null) {
+            $pengeluaran = [];
+        } else {
+            $pengeluaran = $pengeluaran->toArray();
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'pengeluaran' => $pengeluaran,
+        ]);
+    }
+
+    public function loadPendingIzin(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'id' => ['required', 'integer', 'exists:users,id'],
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+
+            foreach ($errors->all() as $message) {
+                return response([
+                    'message' => $message
+                ], 422);
+            }
+        }
+
+        $data = $validator->validated();
+
+        $lineup = DB::select("CALL sp_pending_izin_mitra(?)", [$data['id']]);
+
+        return response()->json([
+            'status' => 'success',
+            'lineup' => $lineup,
+        ]);
+    }
+
+    public function loadLineupMitra(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'id' => ['required', 'integer', 'exists:users,id'],
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+
+            foreach ($errors->all() as $message) {
+                return response([
+                    'message' => $message
+                ], 422);
+            }
+        }
+
+        $data = $validator->validated();
+
+        $lineup = DB::select("CALL sp_lineup_mitra(?)", [$data['id']]);
+
+        return response()->json([
+            'status' => 'success',
+            'lineup' => $lineup,
+        ]);
+    }
+
+    public function saveSetupGerobak(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'id' => ['required', 'integer', 'exists:brandivjabmits,id'],
+            'pc_id' => ['required', 'integer', 'exists:users,id'],
+            'gerobak' => ['required', 'string', 'exists:mysql2.gerobaks,kode'],
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+
+            foreach ($errors->all() as $message) {
+                return response([
+                    'message' => $message
+                ], 422);
+            }
+        }
+
+        $data = $validator->validated();
+
+        $gerobak = Gerobak::where('kode', $data['gerobak'])->first();
+
+        if ($gerobak) {
+            $update = Brandivjabmit::where('id', $data['id'])->update(['gerobak_id' => $gerobak->id]);
+        }
+
+        $lineup = DB::select("CALL sp_lineup_mitra(?)", [$data['pc_id']]);
+
+        return response()->json([
+            'status' => 'success',
+            'lineup' => $lineup,
+        ]);
+    }
+
+    public function loadPengeluaranBulanan(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'id' => ['required', 'integer', 'exists:users,id'],
+            'bulan' => ['required', 'integer'],
+            'tahun' => ['required', 'integer'],
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+
+            foreach ($errors->all() as $message) {
+                return response([
+                    'message' => $message
+                ], 422);
+            }
+        }
+
+        $data = $validator->validated();
+        $product_id = 1;
+
+        $rekap = DB::connection('mysql2')->select("CALL sp_pc_pengeluaran_bulanan(?,?,?,?)", [$data['id'], $data['bulan'], $data['tahun'], $product_id]);
+
+        return response()->json([
+            'status' => 'success',
+            'rekap' => $rekap,
+        ]);
+    }
+
+    public function loadOmzetBulanan(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'id' => ['required', 'integer', 'exists:users,id'],
+            'bulan' => ['required', 'integer'],
+            'tahun' => ['required', 'integer'],
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+
+            foreach ($errors->all() as $message) {
+                return response([
+                    'message' => $message
+                ], 422);
+            }
+        }
+
+        $data = $validator->validated();
+        $product_id = 1;
+
+        $rekap = DB::connection('mysql2')->select("CALL sp_pc_omzet_bulanan(?,?,?,?)", [$data['id'], $data['bulan'], $data['tahun'], $product_id]);
+
+        // menghitung gaji pokok untuk perhitungan bonus
+        $hitung = $this->hitungBonus($data['id']);
+        // (END) menghitung gaji pokok untuk perhitungan bonus
+
+        return response()->json([
+            'status' => 'success',
+            'rekap' => $rekap,
+            'bonus' => $hitung,
+        ]);
+    }
+
+    public function hitungBonus(String $pc_id)
+    {
+        $pct = 0;
+        $pct_hpp = 0;
+        $pct_omzet = 0;
+        $rata2 = 0;
+        $tomzet = 0;
+        $hpp = 0;
+        $jh = 0;
+        $bonus = 0;
+        $results = [];
+        $product_id = 1;
+
+        $app_pembagi = AppSettingJualan::where('parm', 'mitra_pembagi_rata2_omzet')->first();
+        $val_pembagi = $app_pembagi ? intval($app_pembagi->value) : 0;
+
+        $app_minimal_hari = AppSettingJualan::where('parm', 'pc_minimal_perhitungan_hari')->first();
+        $val_minimal_hari = $app_minimal_hari ? intval($app_minimal_hari->value) : 0;
+
+        $app_hari_pbulan = AppSettingJualan::where('parm', 'jumlah_hari_perbulan')->first();
+        $val_hari_pbulan = $app_hari_pbulan ? intval($app_hari_pbulan->value) : 0;
+
+        $gaji_pokok = DB::table('users as u')
+            ->join('pegawais as p1', 'p1.email', '=', 'u.email')
+            ->join('pegawai_gajis as p2', 'p2.pegawai_id', '=', 'p1.id')
+            ->where('u.id', $pc_id)
+            ->value('p2.gaji_pokok');
+
+        $gapok = $gaji_pokok ?? 0;
+
+        $data_omzet = DB::table('users as u1')
+            ->join('pegawais as p1', function ($join) {
+                $join->on('p1.email', '=', 'u1.email')
+                    ->where('p1.isactive', 1);
+            })
+            ->join('brandivjabpegs as b1', function ($join) {
+                $join->on('b1.pegawai_id', '=', 'p1.id')
+                    ->where('b1.isactive', 1);
+            })
+            ->join('brandivjabs as b2', function ($join) {
+                $join->on('b2.id', '=', 'b1.brandivjab_id')
+                    ->where('b2.jabatan_id', 4)
+                    ->where('b2.isactive', 1);
+            })
+            ->join('brandivjabs as b3', function ($join) {
+                $join->on('b3.branch_id', '=', 'b2.branch_id')
+                    ->where('b3.jabatan_id', 3)
+                    ->where('b3.isactive', 1);
+            })
+            ->join('brandivjabmits as b4', function ($join) {
+                $join->on('b4.brandivjab_id', '=', 'b3.id')
+                    ->where('b4.isactive', 1);
+            })
+            ->join('branches as b5', function ($join) {
+                $join->on('b5.id', '=', 'b3.branch_id');
+            })
+            ->join('mitras as m1', function ($join) {
+                $join->on('m1.id', '=', 'b4.mitra_id')
+                    ->where('m1.isactive', 1);
+            })
+            ->join('users as u2', 'u2.email', '=', 'm1.email')
+            ->join('larisma7_jualankeliling.mitra_omzet_pengeluarans as m2', function ($join) {
+                $join->on('m2.user_id', '=', 'u2.id')
+                    ->where('m2.approved_omzet', '=', 1)
+                    ->whereMonth('m2.tanggal', Carbon::now()->month)
+                    ->whereYear('m2.tanggal', Carbon::now()->year);
+            })
+            ->where('u1.id', $pc_id)
+            ->where('u1.approved', 1)
+            ->selectRaw('b3.branch_id, b5.kode, SUM(m2.omzet) AS tomzet, COUNT(DISTINCT m2.tanggal) AS jhari')
+            ->groupBy('b3.branch_id', 'b5.kode')
+            ->orderBy('b5.kode')
+            ->get();
+
+        $tanggal_terakhir = Carbon::now()->endOfMonth()->toDateString();
+
+        $hke = KalenderHke::where('tanggal', $tanggal_terakhir)->value('hke');
+        if ($hke) {
+            $hke = intval($hke);
+        } else {
+            $hke = $val_hari_pbulan;
+        }
+
+        $today = now();
+        $duaHariLalu = now()->subDays(2);
+        $samaBulan = $today->year === $duaHariLalu->year && $today->month === $duaHariLalu->month;
+
+        if ($data_omzet) {
+            foreach ($data_omzet as $item) {
+                $pct = 0;
+                $pct_hpp = 0;
+                $pct_omzet = 0;
+                $hpp = 0;
+                $bonus = 0;
+
+                $to = intval($item->tomzet);
+                $jh = intval($item->jhari) > 0 ? intval($item->jhari) : 1;
+                $pct = round($jh / $hke, 2);
+                $tomzet = $to;
+
+                if ($jh < $val_minimal_hari) {
+                    // $rata2 = round((($to / $val_hari_pbulan) * $jh) / $val_pembagi, 0);
+                    $rata2 = round($to / $jh / $val_pembagi, 0);
+                } else {
+                    $rata2 = round($to / $jh / $val_pembagi, 0);
+                }
+
+                if ($samaBulan) {
+                    $startDate = Carbon::now()->startOfMonth()->toDateString();
+                    $endDate = Carbon::now()->endOfMonth()->toDateString();
+                } else {
+                    $startDate = Carbon::now()->subDays(2)->startOfDay()->toDateString();
+                    $endDate = Carbon::now()->endOfDay()->toDateString();
+                }
+
+                $data = null;
+                $response = Http::get(config('custom.TLM_API') . '/toko/modal-cabang', [
+                    'start_date' => $startDate,
+                    'end_date' => $endDate,
+                    'branch_id' => $item->branch_id
+                ]);
+
+                if ($response->successful()) {
+                    $data = $response->json();
+                }
+
+                $modal = $data['modal'][0]['branch_id'] ? floatval($data['modal'][0]['total_modal']) : 0;
+
+                if ($rata2 > 0) {
+                    $hpp = round($modal / $rata2, 2);
+                }
+
+                $target_id = PcAverageOmzet::where('user_id', $pc_id)
+                    ->where('tahun', now()->year)
+                    ->where('bulan', now()->month)
+                    ->where('branch_id', $item->branch_id)
+                    ->where('product_id', $product_id)
+                    ->value('target_id');
+
+                if ($target_id) {
+                    $target = PcTargetBonus::where('id', $target_id)
+                        ->select('r2omzet', 'hpp')
+                        ->first();
+
+                    if ($target) {
+                        if ($target->r2omzet > 0) {
+                            $pct_omzet = round($rata2 / $target->r2omzet, 2);
+                        }
+
+                        if ($target->hpp > 0) {
+                            $pct_hpp = round($hpp / $target->hpp, 2);
+                        }
+                    }
+
+                    if ($modal > 0 && $rata2 > 0 && $hpp > 0) {
+                        $result = DB::connection('mysql2')->select("CALL sp_pc_target_bonus(?,?,?)", [$rata2, $gapok, $hpp]);
+
+                        if ($hpp <= 0.30 && $hpp >= 0.25) {
+                            $bonus = $result ? ($result[0]->bonus ?? 0) : 0;
+                        }
+
+                        $target = PcAverageOmzet::where('user_id', $pc_id)
+                            ->where('tahun', now()->year)
+                            ->where('bulan', now()->month)
+                            ->where('branch_id', $item->branch_id)
+                            ->where('product_id', $product_id)
+                            ->update(['bonus' => $bonus]);
+                    }
+                }
+
+                // 'pct_hpp' => $pct_hpp,
+                $results[] = [
+                    'branch_id' => $item->branch_id,
+                    'pct_hpp' => 0,
+                    'pct_omzet' => $pct_omzet,
+                    'modal' => $modal,
+                    'rata2' => $rata2,
+                    'tomzet' => $tomzet,
+                    'hpp' => $hpp,
+                    'jh' => $jh,
+                    'hke' => $hke,
+                    'bonus' => $bonus,
+                ];
+            }
+
+            // dd(
+            //     '$rata2: ' . $rata2,
+            //     '$target->r2omzet: ' . $target->r2omzet,
+            //     '$pct_omzet: ' . $pct_omzet,
+            //     '$hpp: ' . $hpp,
+            //     '$target->hpp: ' . $target->hpp,
+            //     '$pct_hpp: ' . $pct_hpp
+            // );
+        }
+
+        return $results;
+    }
+
+    public function loadPetaPc(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'id' => ['required', 'integer', 'exists:users,id'],
+            'product' => ['required', 'string'],
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+
+            foreach ($errors->all() as $message) {
+                return response([
+                    'message' => $message
+                ], 422);
+            }
+        }
+
+        $data = $validator->validated();
+
+        $result = [];
+        $product = Product::where('kode', $data['product'])
+            ->where('isactive', 1)
+            ->first();
+
+        if ($product) {
+            $result = DB::connection('mysql2')->select("CALL sp_pc_rute_gerobak(?,?)", [$data['id'], $product->id]);
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'geojson' => json_decode($result[0]->geojson),
+        ]);
+    }
+
+    public function loadOmzetTanggal(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'id' => ['required', 'integer', 'exists:users,id'],
+            'tanggal' => ['required', 'date'],
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+
+            foreach ($errors->all() as $message) {
+                return response([
+                    'message' => $message
+                ], 422);
+            }
+        }
+
+        $data = $validator->validated();
+        $omzet = null;
+        $product_id = 1;
+
+        $omzet = DB::connection('mysql2')->select("CALL sp_omzetharianpc(?,?,?)", [$data['id'], $data['tanggal'], $product_id]);
+
+        return response()->json([
+            'status' => 'success',
+            'omzet' => $omzet,
+        ]);
+    }
+
+    public function loadOmzetHarian(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'id' => ['required', 'integer', 'exists:users,id'],
+            'tanggal' => ['required', 'date'],
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+
+            foreach ($errors->all() as $message) {
+                return response([
+                    'message' => $message
+                ], 422);
+            }
+        }
+
+        $data = $validator->validated();
+        $omzet = null;
+        $month = now()->month; // Example: 5 (May)
+        $year  = now()->year;  // Example: 2026
+        $product_id = 1;
+
+        $omzet = DB::connection('mysql2')->select("CALL sp_omzetharianpc(?,?,?)", [$data['id'], $data['tanggal'], $product_id]);
+        // dd($omzet);
+
+        // $rekap = DB::connection('mysql2')->select("CALL sp_pc_omzet_bulanan(?,?,?,?)", [$data['id'], date('n', strtotime($data['tanggal'])), date('Y', strtotime($data['tanggal'])), $product_id]);
+        // dd($rekap);
+
+        $target_bonus = PcAverageOmzet::join('pc_target_bonuses', 'pc_target_bonuses.id', '=', 'pc_average_omzets.target_id')
+            ->join('larisma7_db01.branches', 'larisma7_db01.branches.id', '=', 'pc_average_omzets.branch_id')
+            ->selectRaw('pc_average_omzets.target_id as id, pc_target_bonuses.omzet, pc_target_bonuses.r2omzet, pc_target_bonuses.hpp, pc_target_bonuses.bonus as name, larisma7_db01.branches.kode as branch')
+            ->where('pc_average_omzets.user_id', $data['id'])
+            ->where('pc_average_omzets.product_id', $product_id)
+            ->where('pc_average_omzets.tahun', $year)
+            ->where('pc_average_omzets.bulan', $month)
+            ->get();
+        // dd($target_bonus);
+
+        $json_target_bonus = json_decode(json_encode($target_bonus), true);
+
+        // menghitung gaji pokok untuk perhitungan bonus
+        $hitung = $this->hitungBonus($data['id']);
+        // (END) menghitung gaji pokok untuk perhitungan bonus
+        // dd($hitung);
+
+        return response()->json([
+            'status' => 'success',
+            'omzet' => $omzet,
+            'target_bonus' => $json_target_bonus,
+            'bonus' => $hitung,
+        ]);
+        // 'rekap' => $rekap,
+    }
+
+    public function loadBiayaHarian(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'id' => ['required', 'integer', 'exists:users,id'],
+            'tanggal' => ['required', 'date'],
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+
+            foreach ($errors->all() as $message) {
+                return response([
+                    'message' => $message
+                ], 422);
+            }
+        }
+
+        $data = $validator->validated();
+        $product_id = 1;
+
+        $biaya = DB::connection('mysql2')->select("CALL sp_pc_pengeluaran_harian(?,?,?)", [$data['id'], $data['tanggal'], $product_id]);
+
+        return response()->json([
+            'status' => 'success',
+            'biaya' => $biaya,
+        ]);
+    }
+
+    public function approveOmzetHarian(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'id' => ['required', 'integer', 'exists:mysql2.mitra_omzet_pengeluarans,id'],
+            'pc_id' => ['required', 'integer', 'exists:users,id'],
+            'tanggal' => ['required', 'date'],
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+
+            foreach ($errors->all() as $message) {
+                return response([
+                    'message' => $message
+                ], 422);
+            }
+        }
+
+        $data = $validator->validated();
+        $omzet = null;
+        $target_akum_omzet = 0;
+        $target_omzet_phari = 0;
+        $pct_akum_omzet = 0;
+        $pencapaian_sisa_hari = 0;
+        $pencapaian_omzet_phari = 0;
+        $hitung = [];
+        $rekap = [];
+        $product_id = 1;
+
+        $carbon = Carbon::parse($data['tanggal']);
+        $bulan = $carbon->month;
+        $tahun = $carbon->year;
+
+        $found = MitraOmzetPengeluaran::where('id', $data['id'])->first();
+        // dd($found);
+
+        $mitra_user_id = $found ? $found->user_id : null;
+        $tanggal = $found ? $found->tanggal : $data['tanggal'];
+        $sisa_adonan = $found ? $found->sisa_adonan : 0;
+        $omzet_hari_ini = $found ? $found->omzet : 0;
+        $approved_omzet = $found ? $found->approved_omzet : 0;
+        $approved_adonan = $found ? $found->approved_adonan : 0;
+
+        // Status omzet dan target bonus dan pencapaian
+        $app_adonan = AppSettingJualan::where('parm', 'mitra_limit_adonan')->first();
+        $app_omzet = AppSettingJualan::where('parm', 'mitra_limit_omzet')->first();
+        $val_adonan = $app_adonan ? intval($app_adonan->value) : 0;
+        $val_omzet = $app_omzet ? intval($app_omzet->value) : 0;
+        $app_delta = null;
+
+        $gerobak = DB::table('users as u1')
+            ->join('mitras as m1', 'm1.email', '=', 'u1.email')
+            ->join('brandivjabmits as b1', 'b1.mitra_id', '=', 'm1.id')
+            ->join('brandivjabs as b2', 'b2.id', '=', 'b1.brandivjab_id')
+            ->select('b1.gerobak_id', 'b2.branch_id')
+            ->where('u1.id', $mitra_user_id)
+            ->where('u1.approved', 1)
+            ->where('m1.isactive', 1)
+            ->where('b1.isactive', 1)
+            ->first();
+
+        $tanggal = Carbon::parse($tanggal)->subDays(2)->toDateString();
+        $p1 = $gerobak ? $gerobak->branch_id : '_';
+        $p2 = $gerobak ? $gerobak->gerobak_id : '_';
+
+        $response = Http::get(config('custom.TLM_API') . '/toko/order-mitra', [
+            'branch_id' => $p1,
+            'gerobak_id' => $p2,
+            'tanggal' => $tanggal,
+        ]);
+
+        if ($response->successful()) {
+            $order = $response->json();
+
+            if ($order) {
+                $kuantiti = $order->kuantiti ?? 0;
+                $rumus1 = $kuantiti * $val_adonan;
+                $rumus2 = $rumus1 - $sisa_adonan;
+                $rumus3 = $rumus2 / $val_adonan;
+                $rumus4 = $rumus3 * $val_omzet;
+                $app_delta = $omzet_hari_ini - $rumus4;
+            }
+        }
+
+        $yearWeek = $this->currentYearAndWeek();
+
+        $app_pembagi = AppSettingJualan::where('parm', 'mitra_pembagi_rata2_omzet')->first();
+        $val_pembagi = $app_pembagi ? intval($app_pembagi->value) : 0;
+
+        $today = Carbon::today();
+        $dayOfWeek = $today->dayOfWeek;
+        // Hitung mundur ke Sabtu terdekat
+        $startDate = $today->copy()->subDays(($dayOfWeek + 1) % 7)->startOfDay();
+        // Akhir minggu = Jumat
+        $endDate = $startDate->copy()->addDays($val_pembagi)->endOfDay();
+
+        $result = MitraOmzetPengeluaran::where('approved_omzet', 1)
+            ->whereBetween('tanggal', [$startDate, $endDate])
+            ->where('user_id', $mitra_user_id)
+            ->where('product_id', $product_id)
+            ->selectRaw('SUM(omzet) as total_omzet, COUNT(tanggal) as jumlah_hari')
+            ->first();
+
+        $total_omzet = $result->total_omzet;
+        $jumlah_hari = $result->jumlah_hari;
+
+        $mitraAverageOmzet = MitraAverageOmzet::where('user_id', $mitra_user_id)
+            ->where('minggu', $yearWeek)
+            ->where('product_id', $product_id)
+            ->select('target_akum_omzet')
+            ->first();
+
+        if ($mitraAverageOmzet == null) {
+            $target = MitraTargetBonus::where('product_id', $product_id)
+                ->orderBy('id')
+                ->first();
+
+            if ($target) {
+                $target_akum_omzet = $target->target * $val_pembagi;
+                $target_omzet_phari = $target->target;
+
+                $mitraAverageOmzet = MitraAverageOmzet::create([
+                    'user_id' => $mitra_user_id,
+                    'target_id' => 1,
+                    'product_id' => $product_id,
+                    'minggu' => $yearWeek,
+                    'target_akum_omzet' => $target_akum_omzet,
+                    'target_omzet_phari' => $target_omzet_phari,
+                    'trend' => 'same',
+                    'pct' => 0,
+                    'target_approved' => 1,
+                ]);
+            }
+        }
+
+        $target_akum_omzet = $mitraAverageOmzet ? $mitraAverageOmzet->target_akum_omzet : 0;
+        if ($target_akum_omzet > 0) {
+            $pct_akum_omzet = ($total_omzet / $target_akum_omzet) * 100;
+        }
+        $pencapaian_sisa_hari = intval($today->diffInDays($endDate, false)) - 1;
+        $pencapaian_sisa_hari = $pencapaian_sisa_hari < 0 ? 0 : $pencapaian_sisa_hari;
+        $pencapaian_omzet_phari = $target_akum_omzet > 0 ? abs($target_akum_omzet - $total_omzet) / ($pencapaian_sisa_hari <= 0 ? 1 : $pencapaian_sisa_hari) : 0;
+        // (END) Status omzet dan target bonus dan pencapaian
+
+        if ($found) {
+            $found->update([
+                'approved_omzet' => $approved_omzet == 1 ? 0 : 1,
+                'approved_adonan' => $approved_adonan == 1 ? 0 : 1,
+            ]);
+
+            $result = MitraOmzetPengeluaran::where('approved_omzet', 1)
+                ->whereBetween('tanggal', [$startDate, $endDate])
+                ->where('user_id', $mitra_user_id)
+                ->where('product_id', $product_id)
+                ->selectRaw('SUM(omzet) as total_omzet, COUNT(tanggal) as jumlah_hari')
+                ->first();
+
+            $total_omzet = $result->total_omzet;
+            $jumlah_hari = $result->jumlah_hari;
+
+            $mitraAverageOmzet = MitraAverageOmzet::where('user_id', $mitra_user_id)
+                ->where('minggu', $yearWeek)
+                ->where('product_id', $product_id)
+                ->select('target_akum_omzet')
+                ->first();
+
+            $target_akum_omzet = $mitraAverageOmzet ? $mitraAverageOmzet->target_akum_omzet : 0;
+            if ($target_akum_omzet > 0) {
+                $pct_akum_omzet = ($total_omzet / $target_akum_omzet) * 100;
+            }
+            $pencapaian_omzet_phari = $target_akum_omzet > 0 ? abs($target_akum_omzet - $total_omzet) / ($pencapaian_sisa_hari <= 0 ? 1 : $pencapaian_sisa_hari) : 0;
+
+            $found->update([
+                'delta_omzet' => $app_delta,
+                'akum_omzet' => $total_omzet,
+                'pct_akum_omzet' => $pct_akum_omzet,
+                'pencapaian_jumlah_hari' => $jumlah_hari,
+                'pencapaian_sisa_hari' => $pencapaian_sisa_hari,
+                'pencapaian_omzet_phari' => $pencapaian_omzet_phari,
+            ]);
+
+            $omzet = DB::connection('mysql2')->select("CALL sp_omzetharianpc(?,?,?)", [$data['pc_id'], $data['tanggal'], $product_id]);
+
+            // if ($found->approved_omzet == 1) {
+            // menghitung gaji pokok untuk perhitungan bonus
+            $hitung = $this->hitungBonus($data['pc_id']);
+            // (END) menghitung gaji pokok untuk perhitungan bonus
+            // }
+        }
+
+        $controller = new MitraController();
+        $request = new Request([
+            'id' => $mitra_user_id,
+        ]);
+        $controller->loadOmzetPekanan($request);
+
+        return response()->json([
+            'status' => 'success',
+            'omzet' => $omzet,
+            'bonus' => $hitung,
+        ]);
+    }
+
+    public function approveTargetBonus(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'user_id' => ['required', 'integer', 'exists:users,id'],
+            'tanggal' => ['required', 'date'],
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+
+            foreach ($errors->all() as $message) {
+                return response([
+                    'message' => $message
+                ], 422);
+            }
+        }
+
+        $data = $validator->validated();
+
+        $yearWeek = $this->currentYearAndWeek();
+        $product_id = 1;
+
+        $mitraAverageOmzet = MitraAverageOmzet::where('user_id', $data['user_id'])
+            ->where('minggu', $yearWeek)
+            ->where('product_id', $product_id)
+            ->first();
+
+        if ($mitraAverageOmzet) {
+            $mitraAverageOmzet->update([
+                'target_approved' => 1,
+            ]);
+        }
+
+        $pc = DB::table('users as u1')
+            ->join('mitras as m1', 'm1.email', '=', 'u1.email')
+            ->join('brandivjabmits as b1', 'b1.mitra_id', '=', 'm1.id')
+            ->join('brandivjabs as b2', function ($join) {
+                $join->on('b2.id', '=', 'b1.brandivjab_id')
+                    ->where('b2.jabatan_id', 3);
+            })
+            ->join('brandivjabs as b3', function ($join) {
+                $join->on('b3.branch_id', '=', 'b2.branch_id')
+                    ->where('b3.jabatan_id', 4);
+            })
+            ->join('brandivjabpegs as b4', 'b4.brandivjab_id', '=', 'b3.id')
+            ->join('pegawais as p1', 'p1.id', '=', 'b4.pegawai_id')
+            ->join('users as u2', 'u2.email', '=', 'p1.email')
+            ->where('u1.id', $data['user_id'])
+            ->where('b1.isactive', 1)
+            ->where('b2.isactive', 1)
+            ->where('b3.isactive', 1)
+            ->where('b4.isactive', 1)
+            ->where('p1.isactive', 1)
+            ->selectRaw('u2.id')
+            ->first();
+
+        $omzet = DB::connection('mysql2')->select("CALL sp_omzetharianpc(?,?,?)", [$pc->id, $data['tanggal'], $product_id]);
+
+        return response()->json([
+            'status' => 'success',
+            'omzet' => $omzet,
+        ]);
+    }
+
+    public function uploadBuktiTransfer(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'pc_id' => ['required', 'integer', 'exists:users,id'],
+            'cabang_id' => ['required', 'integer', 'exists:branches,id'],
+            'tanggal' => ['required', 'date'],
+            'foto' => 'required|image|mimes:jpg,jpeg|max:5120',
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+
+            foreach ($errors->all() as $message) {
+                return response([
+                    'message' => $message
+                ], 422);
+            }
+        }
+
+        $data = $validator->validated();
+        $image = NULL;
+        $path = NULL;
+        $omzet = NULL;
+        $id_p3 = NULL;
+        $product_id = 1;
+
+        $user = User::where('id', $data['pc_id'])->where('approved', 1)->first();
+
+        if ($user) {
+            $pegawai = Pegawai::where('email', $user->email)->first();
+
+            if ($pegawai) {
+                $omzet = PcOmzetHarian::where('pegawai_id', $pegawai->id)
+                    ->where('product_id', $product_id)
+                    ->where('tanggal', $data['tanggal'])
+                    ->where('branch_id', $data['cabang_id'])
+                    ->first();
+
+                if ($omzet) {
+                    $id_p3 = $omzet->id;
+                    $hasFile = $request->hasFile('foto');
+
+                    if ($hasFile) {
+                        $image = $request->file('foto');
+
+                        $imageName = $omzet->image_nama;
+                        $deleteName = $omzet->image_nama;
+                        $deletePath = $omzet->image_lokasi;
+
+                        if (!is_null($deleteName)) {
+                            File::delete(public_path($deletePath) . '/' . $deleteName);
+                        }
+
+                        $lokasi = $this->GetLokasiUpload();
+                        $pathym = $lokasi['path'] . '/' . $lokasi['ym'];
+                        $imageName = $omzet->tanggal . '_' . $image->hashName();
+                        $path = $pathym . '/' . $imageName;
+
+                        $omzet = PcOmzetHarian::where('pegawai_id', $pegawai->id)
+                            ->where('product_id', $product_id)
+                            ->where('tanggal', $data['tanggal'])
+                            ->where('branch_id', $data['cabang_id'])
+                            ->update([
+                                'image_lokasi' => $pathym,
+                                'image_nama' => $imageName,
+                                'image_type' => 'image/jpeg',
+                            ]);
+
+                        // $path = $request->file('foto')->storeAs($pathym, $imageName, 'public');
+                        if (!is_null($image)) {
+                            $dest = $this->compress_image($image, $image->path(), public_path($pathym), $imageName, 70);
+                        }
+
+                        $omzet = DB::connection('mysql2')->select("CALL sp_omzetharianpc(?,?,?)", [$data['pc_id'], $data['tanggal'], $product_id]);
+                    }
+                }
+            }
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'path' => $path,
+            'omzet' => $omzet,
+        ]);
+    }
+
+    public function loadImagePengeluaran(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'id' => ['required', 'integer', 'exists:mysql2.pc_pengeluarans,id'],
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+
+            foreach ($errors->all() as $message) {
+                return response([
+                    'message' => $message
+                ], 422);
+            }
+        }
+
+        $data = $validator->validated();
+
+        $pengeluaran = PcBiaya::find($data['id']);
+
+        if ($pengeluaran) {
+            $image = $pengeluaran->image_lokasi . '/' . $pengeluaran->image_nama;
+        } else {
+            $image = null;
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'image' => $image,
+        ]);
+    }
+
+    public function uploadImagePengeluaran(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'id' => ['required', 'integer', 'exists:users,id'],
+            'tanggal' => ['required', 'date'],
+            'cabang' => ['required', 'integer', 'exists:branches,id'],
+            'keterangan' => ['required', 'string', 'max:50'],
+            'foto' => 'required|image|max:5120',
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+
+            foreach ($errors->all() as $message) {
+                return response([
+                    'message' => $message
+                ], 422);
+            }
+        }
+
+        $data = $validator->validated();
+        $image = NULL;
+        $path = NULL;
+        $product_id = 1;
+
+        $jenis = JenisPengeluaranCabang::where('isactive', 1)
+            ->where('nama', $data['keterangan'])
+            ->first();
+
+        if ($jenis) {
+            $pengeluaran = PcBiaya::where('user_id', $data['id'])
+                ->where('tanggal', $data['tanggal'])
+                ->where('branch_id', $data['cabang'])
+                ->where('product_id', $product_id)
+                ->where('jenis_pengeluaran_cabang_id', $jenis->id)
+                ->first();
+
+            if ($pengeluaran) {
+                $hasFile = $request->hasFile('foto');
+
+                if ($hasFile) {
+                    $image = $request->file('foto');
+
+                    $imageName = $pengeluaran->image_nama;
+                    $deleteName = $pengeluaran->image_nama;
+                    $deletePath = $pengeluaran->image_lokasi;
+
+                    if (!is_null($deleteName)) {
+                        File::delete(public_path($deletePath) . '/' . $deleteName);
+                    }
+
+                    $lokasi = $this->GetLokasiPengeluaranUpload();
+                    $pathym = $lokasi['path'] . '/' . $lokasi['ym'];
+                    $imageName = $pengeluaran->id . '_' . $image->hashName();
+                    $path = $pathym . '/' . $imageName;
+
+                    $pengeluaran->update([
+                        'image_lokasi' => $pathym,
+                        'image_nama' => $imageName,
+                        'image_type' => 'image/jpeg',
+                    ]);
+
+                    // $path = $request->file('foto')->storeAs($pathym, $imageName, 'public');
+                    if (!is_null($image)) {
+                        $dest = $this->compress_image($image, $image->path(), public_path($pathym), $imageName, 70);
+                    }
+                }
+
+                $pengeluaran = PcBiaya::join('jenis_pengeluaran_cabangs', 'pc_pengeluarans.jenis_pengeluaran_cabang_id', '=', 'jenis_pengeluaran_cabangs.id')
+                    ->join('larisma7_db01.branches', 'larisma7_db01.branches.id', '=', 'pc_pengeluarans.branch_id')
+                    ->where('user_id', $data['id'])
+                    ->where('product_id', $product_id)
+                    ->where('tanggal', $data['tanggal'])
+                    ->selectRaw('pc_pengeluarans.id, pc_pengeluarans.branch_id, jenis_pengeluaran_cabangs.nama as keterangan, ROUND(pc_pengeluarans.harga, 2) AS harga, ROUND(pc_pengeluarans.jumlah, 2) AS jumlah, pc_pengeluarans.approved, pc_pengeluarans.approved_fin, pc_pengeluarans.image_nama, larisma7_db01.branches.kode as kode_cabang')
+                    ->get();
+
+                if ($pengeluaran == null) {
+                    $pengeluaran = [];
+                } else {
+                    $pengeluaran = $pengeluaran->toArray();
+                }
+            }
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'path' => $path,
+            'pengeluaran' => $pengeluaran,
+        ]);
+    }
+
+    public function gerobakAktif(Request $request)
+    {
+        $min = 'min:' . date("Y") - 1;
+        $max = 'max:' . date("Y");
+
+        $validator = Validator::make($request->all(), [
+            'tanggal' => ['required', 'integer', 'min:1', 'max:31'],
+            'bulan' => ['required', 'integer', 'min:1', 'max:12'],
+            'tahun' => ['required', 'integer', $min, $max],
+            'mitra' => ['required', 'integer', 'exists:users,id'],
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+
+            foreach ($errors->all() as $message) {
+                return response([
+                    'message' => $message
+                ], 422);
+            }
+        }
+
+        $data = $validator->validated();
+        $rute = null;
+        $prev = null;
+        $tgblth = $data['tahun'] . '-' . str_pad($data['bulan'], 2, "0", STR_PAD_LEFT) . '-' . $data['tanggal'];
+
+        try {
+            $rute = RuteGerobak::join('larisma7_db01.users', 'rute_gerobaks.user_id', '=', 'larisma7_db01.users.id')
+                ->join('larisma7_db01.profiles', 'larisma7_db01.users.id', '=', 'larisma7_db01.profiles.user_id')
+                ->join('larisma7_db01.branches', 'larisma7_db01.profiles.branch_id', '=', 'larisma7_db01.branches.id')
+                ->where('rute_gerobaks.user_id', $data['mitra'])
+                ->whereDay('rute_gerobaks.tanggal', $data['tanggal'])
+                ->whereMonth('rute_gerobaks.tanggal', $data['bulan'])
+                ->whereYear('rute_gerobaks.tanggal', $data['tahun'])
+                ->where('rute_gerobaks.isactive', 1)
+                ->where('rute_gerobaks.status', 'onmove')
+                ->whereNotNull('rute_gerobaks.latitude')
+                ->selectRaw('rute_gerobaks.latitude as latitude, rute_gerobaks.longitude as longitude, larisma7_db01.branches.nama as cabang, larisma7_db01.users.name as mitra, DATE(FROM_UNIXTIME(rute_gerobaks.timesaved)) as tanggal, TIME_FORMAT(TIME(FROM_UNIXTIME(rute_gerobaks.timesaved)), "%H:%i") as jam, rute_gerobaks.timesaved as time')
+                ->orderBy('rute_gerobaks.id')
+                ->get()
+                ->toArray();
+        } catch (QueryException $e) {
+            // dd($e->getMessage());
+
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->getMessage(),
+            ]);
+        }
+
+        $maxOmzet = DB::connection('mysql2')->table('mitra_omzet_pengeluarans')
+            ->where('user_id', $data['mitra'])
+            ->whereRaw('DAYNAME(tanggal) = DAYNAME(?) AND tanggal < DATE(?)', [$tgblth, $tgblth])
+            ->groupBy(DB::raw('DATE(tanggal)'))
+            ->orderBy(DB::raw('DATE(tanggal)'), 'desc')
+            ->selectRaw('DATE(tanggal) as tanggal, MAX(omzet) as max_omzet')
+            ->first();
+
+        try {
+            if ($maxOmzet) {
+                $prev = RuteGerobak::join('larisma7_db01.users', 'rute_gerobaks.user_id', '=', 'larisma7_db01.users.id')
+                    ->join('larisma7_db01.profiles', 'larisma7_db01.users.id', '=', 'larisma7_db01.profiles.user_id')
+                    ->join('larisma7_db01.branches', 'larisma7_db01.profiles.branch_id', '=', 'larisma7_db01.branches.id')
+                    ->where('rute_gerobaks.user_id', $data['mitra'])
+                    ->whereRaw('rute_gerobaks.tanggal = DATE(?)', [$maxOmzet->tanggal])
+                    ->where('rute_gerobaks.isactive', 1)
+                    ->where('rute_gerobaks.status', 'onmove')
+                    ->whereNotNull('rute_gerobaks.latitude')
+                    ->selectRaw('rute_gerobaks.latitude as latitude, rute_gerobaks.longitude as longitude, larisma7_db01.branches.nama as cabang, larisma7_db01.users.name as mitra, DATE(FROM_UNIXTIME(rute_gerobaks.timesaved)) as tanggal, TIME(FROM_UNIXTIME(rute_gerobaks.timesaved)) as jam, rute_gerobaks.timesaved as time')
+                    ->orderBy('rute_gerobaks.id')
+                    ->get()
+                    ->toArray();
+            }
+        } catch (QueryException $e) {
+            // dd($e->getMessage());
+
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->getMessage(),
+            ]);
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'rute' => $rute,
+            'prev' => $prev,
+            'prev_omzet' => $maxOmzet ? $maxOmzet->max_omzet : null,
+        ]);
+    }
+
+    public function loadUbahHari(Request $request)
+    {
+        $user = User::where('id', $request->pc_id)->first();
+        $mitraubah = null;
+
+        if ($user) {
+            $mitraubah = DB::connection('mysql2')->select("CALL sp_tambah_hari(?)", [$request->pc_id]);
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'mitraubah' => $mitraubah,
+        ]);
+    }
+
+    public function saveUbahHari(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'pc_id' => ['required', 'integer', 'exists:users,id'],
+            'user_id' => ['required', 'integer', 'exists:users,id'],
+            'branch_id' => ['required', 'integer', 'exists:branches,id'],
+            'tanggal' => ['required', 'date'],
+            'jenis' => ['required', 'integer', 'in:1,2'],
+            'keterangan' => ['required', 'string', 'max:100'],
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+
+            foreach ($errors->all() as $message) {
+                return response([
+                    'message' => $message
+                ], 422);
+            }
+        }
+
+        $data = $validator->validated();
+
+        $user = User::where('id', $data['pc_id'])->first();
+        $mitraubah = null;
+        $product_id = 1;
+
+        if ($user) {
+            $mitraubah = MitraUbahHari::where('created_by', $user->email)
+                ->where('approved_hrd', 0)
+                ->where('branch_id', $data['branch_id'])
+                ->where('user_id', $data['user_id'])
+                ->where('product_id', $product_id)
+                ->first();
+
+            if ($mitraubah) {
+                $mitraubah->update([
+                    'tanggal' => $data['tanggal'],
+                    'product_id' => $product_id,
+                    'keterangan' => $data['keterangan'],
+                    'jenis_ubah' => $data['jenis'],
+                    'approved_hrd' => $data['jenis'] == 1 ? 1 : $mitraubah->approved_hrd,
+                    'updated_by' => $user->email,
+                ]);
+            } else {
+                $mitraubah = MitraUbahHari::create([
+                    'branch_id' => $data['branch_id'],
+                    'user_id' => $data['user_id'],
+                    'product_id' => $product_id,
+                    'tanggal' => $data['tanggal'],
+                    'keterangan' => $data['keterangan'],
+                    'jenis_ubah' => $data['jenis'],
+                    'approved_hrd' => $data['jenis'] == 1 ? 1 : 0,
+                    'created_by' => $user->email,
+                ]);
+            }
+
+            $mitraubah = DB::connection('mysql2')->select("CALL sp_tambah_hari(?)", [$data['pc_id']]);
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'mitraubah' => $mitraubah,
+        ]);
+    }
+
+    public function GetLokasiSisaKasUpload()
+    {
+        $path = 'storage/uploads/cabang/pengembaliansisakas';
+        $ym = date('Ym');
+        $dir = $path . '/' . $ym;
+        $is_dir = is_dir($dir);
+
+        if (!$is_dir) {
+            mkdir($dir, 0755);
+        }
+
+        return ['path' => $path, 'ym' => $ym];
+    }
+
+    public function GetLokasiPengeluaranUpload()
+    {
+        $path = 'storage/uploads/cabang/pengeluaran';
+        $ym = date('Ym');
+        $dir = $path . '/' . $ym;
+        $is_dir = is_dir($dir);
+
+        if (!$is_dir) {
+            mkdir($dir, 0755);
+        }
+
+        return ['path' => $path, 'ym' => $ym];
+    }
+
+    public function GetLokasiUpload()
+    {
+        $path = 'storage/uploads/cabang/buktitf';
+        $ym = date('Ym');
+        $dir = $path . '/' . $ym;
+        $is_dir = is_dir($dir);
+
+        if (!$is_dir) {
+            mkdir($dir, 0755);
+        }
+
+        return ['path' => $path, 'ym' => $ym];
+    }
+
+    public function compress_image($image, $src, $dest, $filename, $quality)
+    {
+        $info = getimagesize($src);
+        $targetWidth = 360; // 540, 720
+        $targetHeight = 640; // 960, 1280
+
+        if ($info['mime'] == 'image/jpeg' || $info['mime'] == 'image/jpg') {
+            $image = imagecreatefromjpeg($src);
+
+            $srcWidth = imagesx($image);
+            $srcHeight = imagesy($image);
+
+            $srcRatio = $srcWidth / $srcHeight;
+            $targetRatio = $targetWidth / $targetHeight;
+
+            if ($srcRatio > $targetRatio) {
+                // crop kiri kanan
+                $newHeight = $srcHeight;
+                $newWidth = $srcHeight * $targetRatio;
+                $srcX = ($srcWidth - $newWidth) / 2;
+                $srcY = 0;
+            } else {
+                // crop atas bawah
+                $newWidth = $srcWidth;
+                $newHeight = $srcWidth / $targetRatio;
+                $srcX = 0;
+                $srcY = ($srcHeight - $newHeight) / 2;
+            }
+
+            $newImage = imagecreatetruecolor($targetWidth, $targetHeight);
+            imagecopyresampled(
+                $newImage,
+                $image,
+                0,
+                0,
+                $srcX,
+                $srcY,
+                $targetWidth,
+                $targetHeight,
+                $newWidth,
+                $newHeight
+            );
+
+            $pathfile = $dest . '/' . $filename;
+            imagejpeg($newImage, $pathfile, $quality);
+        } elseif ($info['mime'] == 'image/gif') {
+            $image->storeAs($dest, $image->hashName());
+            // $image = imagecreatefromgif($src);
+            // imagejpeg($image, $dest, $quality);
+        } elseif ($info['mime'] == 'image/png') {
+            $image->storeAs($dest, $image->hashName());
+            // $image = imagecreatefrompng($src);
+            // imagepng($image, $dest, 5);
+        } else {
+            die('Unknown image file format');
+        }
+
+        //compress and save file to jpg
+        //usage
+        // $compressed = compress_image('boy.jpg', 'destination.jpg', 70);
+        //return destination file
+        return $dest;
+    }
+}

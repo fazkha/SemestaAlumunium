@@ -1,0 +1,54 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class MitraPermintaanIzin extends Model
+{
+    protected $guarded = [];
+    protected $table = 'mitra_permintaan_izins';
+    protected $connection = 'mysql';
+
+    protected $fillable = [
+        'branch_id',
+        'mitra_id',
+        'jenis_izin_pegawai_id',
+        'product_id',
+        'tanggal_mulai',
+        'tanggal_selesai',
+        'keterangan',
+        'penanganan',
+        'approved_hrd',
+        'image_lokasi',
+        'image_nama',
+        'image_type',
+        'created_by',
+        'updated_by',
+    ];
+
+    public function getTanggalMulaiAttribute($value)
+    {
+        return \Carbon\Carbon::parse($value)->timezone('Asia/Jakarta');
+    }
+
+    public function getTanggalSelesaiAttribute($value)
+    {
+        return \Carbon\Carbon::parse($value)->timezone('Asia/Jakarta');
+    }
+
+    public function branch()
+    {
+        return $this->belongsTo(Branch::class, 'branch_id');
+    }
+
+    public function mitra()
+    {
+        return $this->belongsTo(Mitra::class, 'mitra_id');
+    }
+
+    public function jenis()
+    {
+        return $this->belongsTo(JenisIzinPegawai::class, 'jenis_izin_pegawai_id');
+    }
+}

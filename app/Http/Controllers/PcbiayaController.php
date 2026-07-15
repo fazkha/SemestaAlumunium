@@ -1,0 +1,225 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Branch;
+use App\Models\PcBiaya;
+use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\View\View;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\DB;
+
+class PcbiayaController extends Controller implements HasMiddleware
+{
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('permission:pcbiaya-list', only: ['index', 'fetch']),
+            new Middleware('permission:pcbiaya-create', only: ['create', 'store']),
+            new Middleware('permission:pcbiaya-edit', only: ['edit', 'update', 'editt', 'updatee']),
+            new Middleware('permission:pcbiaya-show', only: ['show']),
+            new Middleware('permission:pcbiaya-delete', only: ['delete', 'destroy']),
+        ];
+    }
+
+    public function index(Request $request)
+    {
+        if (!$request->session()->exists('pcbiaya_pp')) {
+            $request->session()->put('pcbiaya_pp', config('custom.list_per_page_opt_1'));
+        }
+        if (!$request->session()->exists('pcbiaya_branch_id')) {
+            $request->session()->put('pcbiaya_branch_id', 'all');
+        }
+        if (!$request->session()->exists('pcbiaya_tanggal')) {
+            $request->session()->put('pcbiaya_tanggal', '_');
+        }
+
+        $search_arr = ['pcbiaya_branch_id', 'pcbiaya_tanggal'];
+
+        $branches = Branch::where('isactive', 1)->orderBy('nama')->pluck('nama', 'id');
+        // $datas = PcBiaya::join('branches', 'branches.id', '=', 'pc_pengeluarans.branch_id')
+        //     ->join('users', 'users.id', '=', 'pc_pengeluarans.user_id')
+        //     ->groupBy('pc_pengeluarans.tanggal', 'branches.nama', 'branches.id', 'users.name')
+        //     ->orderBy('pc_pengeluarans.tanggal', 'desc')
+        //     ->orderBy('branches.nama')
+        //     ->selectRaw('pc_pengeluarans.tanggal, branches.id as branch_id, branches.nama as branch_nama, users.name as pc_nama, round(sum(pc_pengeluarans.harga * pc_pengeluarans.jumlah), 2) as total_biaya');
+
+        $datas = DB::table('larisma7_jualankeliling.pc_pengeluarans as p1')
+            ->join('branches as b1', 'b1.id', '=', 'p1.branch_id')
+            ->join('users as u1', 'u1.id', '=', 'p1.user_id')
+            ->select(
+                'p1.tanggal',
+                'b1.id as branch_id',
+                'b1.nama as branch_nama',
+                'u1.name as pc_nama',
+                DB::raw('ROUND(SUM(p1.harga * p1.jumlah), 2) as total_biaya'),
+                DB::raw('COUNT(p1.id) as c1'),
+                DB::raw('SUM(p1.approved_fin) as c2')
+            );
+
+        for ($i = 0; $i < count($search_arr); $i++) {
+            $field = substr($search_arr[$i], strlen('pcbiaya_'));
+
+            if ($search_arr[$i] == 'pcbiaya_branch_id') {
+                if (session($search_arr[$i]) != 'all') {
+                    $datas = $datas->where([$field => session($search_arr[$i])]);
+                }
+            } else {
+                if (session($search_arr[$i]) == '_' or session($search_arr[$i]) == '') {
+                } else {
+                    $like = '%' . session($search_arr[$i]) . '%';
+                    $datas = $datas->where($field, 'LIKE', $like);
+                }
+            }
+        }
+        // $datas = $datas->where('user_id', auth()->user()->id);
+        $datas = $datas->groupBy('p1.tanggal', 'b1.nama', 'b1.id', 'u1.name')
+            ->havingRaw('COUNT(p1.id) > SUM(p1.approved_fin)')
+            ->orderByDesc('p1.tanggal')
+            ->orderBy('pc_nama');
+
+        $datas = $datas->paginate(session('pcbiaya_pp'));
+
+        if ($request->page && $datas->count() == 0) {
+            return redirect()->route('dashboard');
+        }
+
+        return view('pcbiaya.index', compact(['datas', 'branches']))->with('i', (request()->input('page', 1) - 1) * session('pcbiaya_pp'));
+    }
+
+    public function fetchdb(Request $request): JsonResponse
+    {
+        $request->session()->put('pcbiaya_pp', $request->pp);
+        $request->session()->put('pcbiaya_branch_id', $request->branch);
+        $request->session()->put('pcbiaya_tanggal', $request->tanggal);
+
+        $search_arr = ['pcbiaya_branch_id', 'pcbiaya_tanggal'];
+
+        $branches = Branch::where('isactive', 1)->orderBy('nama')->pluck('nama', 'id');
+        // $datas = PcBiaya::join('branches', 'branches.id', '=', 'pc_pengeluarans.branch_id')
+        //     ->join('users', 'users.id', '=', 'pc_pengeluarans.user_id')
+        //     ->groupBy('pc_pengeluarans.tanggal', 'branches.nama', 'branches.id', 'users.name')
+        //     ->orderBy('pc_pengeluarans.tanggal', 'desc')
+        //     ->orderBy('branches.nama')
+        //     ->selectRaw('pc_pengeluarans.tanggal, branches.id as branch_id, branches.nama as branch_nama, users.name as pc_nama, round(sum(pc_pengeluarans.harga * pc_pengeluarans.jumlah), 2) as total_biaya');
+
+        $datas = DB::table('larisma7_jualankeliling.pc_pengeluarans as p1')
+            ->join('branches as b1', 'b1.id', '=', 'p1.branch_id')
+            ->join('users as u1', 'u1.id', '=', 'p1.user_id')
+            ->select(
+                'p1.tanggal',
+                'b1.id as branch_id',
+                'b1.nama as branch_nama',
+                'u1.name as pc_nama',
+                DB::raw('ROUND(SUM(p1.harga * p1.jumlah), 2) as total_biaya'),
+                DB::raw('COUNT(p1.id) as c1'),
+                DB::raw('SUM(p1.approved_fin) as c2')
+            );
+
+        for ($i = 0; $i < count($search_arr); $i++) {
+            $field = substr($search_arr[$i], strlen('pcbiaya_'));
+
+            if ($search_arr[$i] == 'pcbiaya_branch_id') {
+                if (session($search_arr[$i]) != 'all') {
+                    $datas = $datas->where([$field => session($search_arr[$i])]);
+                }
+            } else {
+                if (session($search_arr[$i]) == '_' or session($search_arr[$i]) == '') {
+                } else {
+                    $like = '%' . session($search_arr[$i]) . '%';
+                    $datas = $datas->where($field, 'LIKE', $like);
+                }
+            }
+        }
+        // $datas = $datas->where('user_id', auth()->user()->id);
+        $datas = $datas->groupBy('p1.tanggal', 'b1.nama', 'b1.id', 'u1.name')
+            ->havingRaw('COUNT(p1.id) > SUM(p1.approved_fin)')
+            ->orderByDesc('p1.tanggal')
+            ->orderBy('pc_nama');
+
+        $datas = $datas->paginate(session('pcbiaya_pp'));
+
+        $datas->withPath('/finance/pcbiaya'); // pagination url to
+
+        $view = view('pcbiaya.partials.table', compact(['datas', 'branches']))->with('i', (request()->input('page', 1) - 1) * session('pcbiaya_pp'))->render();
+
+        if ($view) {
+            return response()->json($view, 200);
+        } else {
+            return response()->json(null, 400);
+        }
+    }
+
+    public function create()
+    {
+        //
+    }
+
+    public function store(Request $request)
+    {
+        //
+    }
+
+    public function show(Request $request)
+    {
+        //
+    }
+
+    public function edit(Request $request)
+    {
+        //
+    }
+
+    public function update(Request $request)
+    {
+        //
+    }
+
+    public function editt(Request $request): View
+    {
+        $details = PcBiaya::join('larisma7_db01.users', 'users.id', '=', 'pc_pengeluarans.user_id')
+            ->join('jenis_pengeluaran_cabangs', 'jenis_pengeluaran_cabangs.id', '=', 'pc_pengeluarans.jenis_pengeluaran_cabang_id')
+            ->join('larisma7_db01.products', 'larisma7_db01.products.id', '=', 'pc_pengeluarans.product_id')
+            ->where('pc_pengeluarans.branch_id', Crypt::decrypt($request->branch_id))
+            ->where('pc_pengeluarans.tanggal', Crypt::decrypt($request->tanggal))
+            ->select('pc_pengeluarans.*', 'larisma7_db01.users.name as pc_nama', 'jenis_pengeluaran_cabangs.nama as jenis_nama', 'larisma7_db01.products.nama as product_nama')
+            ->get();
+
+        return view('pcbiaya.edit', compact(['details']));
+    }
+
+    public function updatee(Request $request): RedirectResponse
+    {
+        $ids = $request->input('detail_id');
+        $approved_fins = $request->input('approved_fin', []);
+        $i = 0;
+
+        foreach ($ids as $id) {
+            $biaya = PcBiaya::find($id);
+
+            $biaya->update([
+                'approved' => isset($approved_fins[$i]) ? 1 : 0,
+                'approved_fin' => isset($approved_fins[$i]) ? 1 : 0,
+            ]);
+
+            $i++;
+        }
+
+        return redirect()->back()->with('success', __('messages.successupdated'));
+    }
+
+    public function delete(Request $request)
+    {
+        //
+    }
+
+    public function destroy(Request $request)
+    {
+        //
+    }
+}

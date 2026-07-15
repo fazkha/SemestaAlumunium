@@ -1,0 +1,42 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class PcPettyCash extends Model
+{
+    protected $guarded = [];
+    protected $table = 'pc_petty_cashes';
+    protected $connection = 'mysql2';
+
+    protected $fillable = [
+        'branch_id',
+        'user_id',
+        'product_id',
+        'dropping_id',
+        'pc_pengeluaran_id',
+        'mitra_op_detail_id',
+        'tanggal',
+        'nominal',
+        'flowtype',
+        'approved_ma',
+        'approved_fin',
+        'image_lokasi',
+        'image_nama',
+        'image_type',
+        'created_by',
+        'updated_by',
+    ];
+    // flowtype : 1 - drop (in) // 2 - use (out) // 3 - retur (out)
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function cabang()
+    {
+        return $this->belongsTo(Branch::class, 'branch_id');
+    }
+}

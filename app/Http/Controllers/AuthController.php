@@ -1,0 +1,690 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\AppSettingJualan;
+use App\Models\Brandivjab;
+use App\Models\Brandivjabmit;
+use App\Models\Brandivjabpeg;
+use App\Models\Mitra;
+use App\Models\PasswordReset;
+use App\Models\Pegawai;
+use App\Models\Profile;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Laravel\Sanctum\PersonalAccessToken;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
+
+class AuthController extends Controller
+{
+    public function register(Request $request)
+    {
+        $appname = $request->appname;
+
+        switch ($appname) {
+            case 'GerobakTracker':
+                $site = 'MITRA';
+                $validator = Validator::make($request->all(), [
+                    'cabang' => ['required', 'integer', 'exists:branches,id'],
+                    'name' => ['required', 'string', 'max:255'],
+                    'email' => ['nullable', 'email'],
+                    'nohp' => ['required', 'min:10', 'max:255'],
+                    'password' => ['required', 'min:6', 'max:50', 'confirmed'],
+                    'appname' => ['required', 'string', 'max:50'],
+                    'appVersion' => ['nullable', 'string', 'max:50'],
+                ]);
+                break;
+            default:
+                $site = 'CABANG';
+                $validator = Validator::make($request->all(), [
+                    'cabang' => ['required', 'integer', 'exists:branches,id'],
+                    'name' => ['required', 'string', 'max:255'],
+                    'email' => ['required', 'email', 'unique:users'],
+                    'nohp' => ['required', 'min:10', 'max:255'],
+                    'password' => ['required', 'min:6', 'max:50', 'confirmed'],
+                    'appname' => ['required', 'string', 'max:50'],
+                    'appVersion' => ['nullable', 'string', 'max:50'],
+                ]);
+                break;
+        }
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+
+            foreach ($errors->all() as $message) {
+                return response([
+                    'message' => $message
+                ], 422);
+            }
+        }
+
+        $data = $validator->validated();
+        $randomMail = Str::replace(' ', '.', strtolower($request->name)) . '@mail.' . strtolower(config('custom.company_short'));
+        $product_id = 1;
+        // dd($request->appVersion ? $appname . '-' . $request->appVersion : 'postman');
+
+        switch ($appname) {
+            case 'GerobakTracker':
+                $userCount = User::whereRaw('LOWER(name) = ?', strtolower($request->name))->count();
+                break;
+            default:
+                $userCount = User::where('email', $request->email)
+                    ->orWhereRaw('LOWER(name) = ?', [strtolower($request->name)])
+                    ->count();
+                break;
+        }
+
+        // if ($userCount > 0) {
+        //     return response([
+        //         'message' => 'Pengguna dengan nama atau email yang sama, sudah ada dalam database. Coba kembali.'
+        //     ], 422);
+        // }
+
+        switch ($appname) {
+            case 'GerobakTracker':
+                $pegawai = Mitra::whereRaw('LOWER(nama_lengkap) = ?', trim(strtolower($request->name)))->first();
+                break;
+            default:
+                $pegawai = Pegawai::where('email', trim($request->email))
+                    ->orWhereRaw('LOWER(nama_lengkap) = ?', trim(strtolower($request->name)))
+                    ->first();
+                break;
+        }
+
+        if ($pegawai) {
+            $namafix = (strlen(trim($pegawai->nama_lengkap)) >= strlen(trim($data['name']))) ? trim($pegawai->nama_lengkap) : trim($data['name']);
+
+            // if ($pegawai->nama_lengkap <> trim($pegawai->nama_lengkap)) {
+            $pegawai->update([
+                'nama_lengkap' => trim($pegawai->nama_lengkap),
+                'email' => ($pegawai->email == '-' || $pegawai->email == null) ? trim($data['email']) : trim($pegawai->email),
+            ]);
+            // }
+        } else {
+            $namafix = trim($data['name']);
+
+            switch ($appname) {
+                case 'GerobakTracker':
+                    $pegawai = Mitra::create([
+                        'nama_lengkap' => $namafix,
+                        'nama_panggilan' => $namafix,
+                        'telpon' => $data['nohp'] ? $data['nohp'] : '-',
+                        'kelamin' => 'L',
+                        'email' => $randomMail,
+                        'isactive' => 0,
+                        'created_by' => 'self-register',
+                        'updated_by' => 'self-register',
+                    ]);
+                    break;
+                default:
+                    $pegawai = Pegawai::create([
+                        'nama_lengkap' => $namafix,
+                        'nama_panggilan' => $namafix,
+                        'alamat_tinggal' => '-',
+                        'telpon' => $data['nohp'] ? $data['nohp'] : '-',
+                        'kelamin' => 'L',
+                        'email' => trim($data['email']),
+                        'isactive' => 0,
+                        'created_by' => 'self-register',
+                        'updated_by' => 'self-register',
+                    ]);
+                    break;
+            }
+        }
+
+        switch ($appname) {
+            case 'GerobakTracker':
+                $user = User::create([
+                    'name' => $namafix,
+                    'email' => $randomMail,
+                    'password' => Hash::make($data['password']),
+                ]);
+                break;
+            default:
+                $user = User::where('email', trim($request->email))
+                    ->orWhereRaw('LOWER(name) = ?', trim(strtolower($request->name)))
+                    ->first();
+
+                if ($user) {
+                    $user->update([
+                        'name' => $namafix,
+                    ]);
+                    // 'email' => trim($data['email']),
+                } else {
+                    $user = User::create([
+                        'name' => $namafix,
+                        'email' => trim($data['email']),
+                        'password' => Hash::make($data['password']),
+                    ]);
+                }
+                break;
+        }
+
+        if (!$user) {
+            return response([
+                'message' => 'Create user failed.'
+            ], 500);
+        }
+
+        switch ($appname) {
+            case 'GerobakTracker':
+                $cabang_id = $data['cabang'];
+                $jabatan_id = 3; // Mitra
+
+                $jabpeg = Brandivjabmit::where('mitra_id', $pegawai->id)->first();
+
+                if ($jabpeg) {
+                    $branjab = Brandivjab::where('id', $jabpeg->brandivjab_id)->first();
+
+                    if ($branjab) {
+                        $cabang_id = $branjab->branch_id;
+                        $jabatan_id = $branjab->jabatan_id;
+                    } else {
+                        $branjab = Brandivjab::create([
+                            'branch_id' => $cabang_id,
+                            'jabatan_id' => $jabatan_id,
+                            'product_id' => $product_id,
+                            'isactive' => 1,
+                            'created_by' => 'self-register',
+                            'updated_by' => 'self-register',
+                        ]);
+
+                        if ($branjab) {
+                            $jabpeg = Brandivjabmit::create([
+                                'brandivjab_id' => $branjab->id,
+                                'mitra_id' => $pegawai->id,
+                                'gerobak_id' => 1,
+                                'tanggal_mulai' => date('Y-m-d'),
+                                'isactive' => 1,
+                                'created_by' => 'self-register',
+                                'updated_by' => 'self-register',
+                            ]);
+                        }
+                    }
+                } else {
+                    $branjab = Brandivjab::where('branch_id', $cabang_id)
+                        ->where('jabatan_id', $jabatan_id)
+                        ->where('product_id', $product_id)
+                        ->first();
+
+                    if (!$branjab) {
+                        $branjab = Brandivjab::create([
+                            'branch_id' => $cabang_id,
+                            'jabatan_id' => $jabatan_id,
+                            'product_id' => $product_id,
+                            'isactive' => 1,
+                            'created_by' => 'self-register',
+                            'updated_by' => 'self-register',
+                        ]);
+                    }
+
+                    if ($branjab) {
+                        $jabpeg = Brandivjabmit::create([
+                            'brandivjab_id' => $branjab->id,
+                            'mitra_id' => $pegawai->id,
+                            'gerobak_id' => 1,
+                            'tanggal_mulai' => date('Y-m-d'),
+                            'isactive' => 1,
+                            'created_by' => 'self-register',
+                            'updated_by' => 'self-register',
+                        ]);
+                    }
+                }
+                break;
+
+            default:
+                $jabpeg = Brandivjabpeg::where('pegawai_id', $pegawai->id)->first();
+
+                if ($jabpeg) {
+                    $branjab = Brandivjab::where('id', $jabpeg->brandivjab_id)->first();
+
+                    if ($branjab) {
+                        $cabang_id = $branjab->branch_id;
+                        $jabatan_id = $branjab->jabatan_id;
+                    } else {
+                        $cabang_id = $data['cabang'];
+                        $jabatan_id = 4; // PC
+
+                        $branjab = Brandivjab::create([
+                            'branch_id' => $cabang_id,
+                            'jabatan_id' => $jabatan_id,
+                            'product_id' => $product_id,
+                            'isactive' => 1,
+                            'created_by' => 'self-register',
+                            'updated_by' => 'self-register',
+                        ]);
+
+                        if ($branjab) {
+                            $jabpeg = Brandivjabpeg::create([
+                                'brandivjab_id' => $branjab->id,
+                                'pegawai_id' => $pegawai->id,
+                                'tanggal_mulai' => date('Y-m-d'),
+                                'isactive' => 1,
+                                'created_by' => 'self-register',
+                                'updated_by' => 'self-register',
+                            ]);
+                        }
+                    }
+                } else {
+                    $cabang_id = $data['cabang'];
+                    $jabatan_id = 4; // PC
+
+                    $branjab = Brandivjab::where('branch_id', $cabang_id)
+                        ->where('jabatan_id', $jabatan_id)
+                        ->where('product_id', $product_id)
+                        ->first();
+
+                    if (!$branjab) {
+                        $branjab = Brandivjab::create([
+                            'branch_id' => $cabang_id,
+                            'jabatan_id' => $jabatan_id,
+                            'product_id' => $product_id,
+                            'isactive' => 1,
+                            'created_by' => 'self-register',
+                            'updated_by' => 'self-register',
+                        ]);
+                    }
+
+                    if ($branjab) {
+                        $jabpeg = Brandivjabpeg::create([
+                            'brandivjab_id' => $branjab->id,
+                            'pegawai_id' => $pegawai->id,
+                            'tanggal_mulai' => date('Y-m-d'),
+                            'isactive' => 1,
+                            'created_by' => 'self-register',
+                            'updated_by' => 'self-register',
+                        ]);
+                    }
+                }
+                break;
+        }
+
+        $profile = Profile::where('user_id', $user->id)->first();
+
+        if ($profile) {
+            $profile->update([
+                'branch_id' => $cabang_id,
+                'jabatan_id' =>  $jabatan_id,
+                'isactive' => 1,
+                'nohp' => $request->nohp,
+                'app_version' => $request->appVersion ? $appname . '-' . $request->appVersion : 'postman',
+                'updated_by' => 'self-register',
+            ]);
+        } else {
+            $profile = Profile::create([
+                'user_id' => $user->id,
+                'branch_id' => $cabang_id,
+                'jabatan_id' =>  $jabatan_id,
+                'site' => $site,
+                'isactive' => 1,
+                'tanggal_gabung' => date('Y-m-d'),
+                'nohp' => $request->nohp,
+                'app_version' => $request->appVersion ? $appname . '-' . $request->appVersion : 'postman',
+                'created_by' => 'self-register',
+                'updated_by' => 'self-register',
+            ]);
+        }
+
+        // $device = $request->appname ? ' on ' . $request->appname : '';
+        // $token = $user->createToken($user->name . $device)->plainTextToken;
+
+        // 'token' => $token,
+        return [
+            'user' => $user,
+            'profile' => $profile,
+        ];
+    }
+
+    public function login(Request $request)
+    {
+        $appname = $request->appname;
+
+        switch ($appname) {
+            case 'GerobakTracker':
+                $validator = Validator::make($request->all(), [
+                    'nama' => ['required', 'string', 'max:50'],
+                    'password' => ['required', 'min:6'],
+                    'appname' => ['required', 'string', 'max:50'],
+                ]);
+                break;
+            default:
+                $validator = Validator::make($request->all(), [
+                    'email' => ['required', 'email', 'exists:users'],
+                    'password' => ['required', 'min:6'],
+                    'appname' => ['required', 'string', 'max:50'],
+                ]);
+                break;
+        }
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+
+            foreach ($errors->all() as $message) {
+                return response([
+                    'message' => $message
+                ], 422);
+            }
+        }
+
+        $data = $validator->validated();
+
+        switch ($appname) {
+            case 'GerobakTracker':
+                $user = User::whereRaw('LOWER(name) = ?', strtolower(trim($request->nama)))->first();
+                break;
+            default:
+                $user = User::where('email', $request->email)->first();
+                break;
+        }
+
+        if (!$user || !Hash::check($request->password, $user->password)) {
+            return response([
+                'message' => 'The provided credentials are incorrect.'
+            ], 401);
+        }
+
+        if ($user->approved == 0) {
+            return response([
+                'message' => 'Akun anda belum aktif. Mohon hubungi Admin.'
+            ], 401);
+        }
+
+        $profile = Profile::where('user_id', $user->id)->first();
+
+        if (!$profile) {
+            return response([
+                'message' => 'The provided credentials are incorrect.'
+            ], 401);
+        }
+
+        if ($data['appname'] == 'SaleSupervisor' && $profile->jabatan_id == 3) {
+            return response([
+                'message' => 'Mitra tidak diperkenankan. Mohon hubungi Admin.'
+            ], 401);
+        }
+
+        $profile->update([
+            'app_version' => $request->appVersion,
+        ]);
+
+        $device = $request->appname ? ' on ' . $request->appname : '';
+        $token = $user->createToken($user->name . $device)->plainTextToken;
+
+        $app_settings = AppSettingJualan::whereIn('parm', [
+            'mitra_dagang_awal_jam',
+            'mitra_dagang_awal_menit',
+            'mitra_dagang_akhir_jam',
+            'mitra_dagang_akhir_menit',
+        ])
+            ->select('parm', 'value')
+            ->get()
+            ->toArray();
+
+        return [
+            'user' => $user,
+            'profile' => $profile,
+            'token' => $token,
+            'app_settings' => $app_settings,
+        ];
+    }
+
+    public function logout(Request $request)
+    {
+        // $request->user()->currentAccessToken()->delete();
+        // $request->user()->tokens()->delete();
+
+        $token = $request->token;
+
+        $dbtoken = PersonalAccessToken::findToken($token);
+
+        if ($dbtoken == null) {
+            return [
+                'message' => 'You are logged out.'
+            ];
+        }
+
+        if (!$dbtoken) {
+            return response([
+                'message' => 'The provided credentials are incorrect.'
+            ], 401);
+        }
+
+        // PersonalAccessToken::where('id', $dbtoken->id)->delete();
+        PersonalAccessToken::where('name', $dbtoken->name)->delete();
+
+        return [
+            'message' => 'You are logged out.'
+        ];
+    }
+
+    public function changePassword(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => ['required', 'email', 'exists:users'],
+            'oldPassword' => ['required', 'min:6', 'max:50'],
+            'password' => ['required', 'min:6', 'max:50', 'confirmed']
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+
+            foreach ($errors->all() as $message) {
+                return response([
+                    'message' => $message
+                ], 422);
+            }
+        }
+
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user || !Hash::check($request->oldPassword, $user->password)) {
+            return response([
+                'message' => 'The provided credentials are incorrect.'
+            ], 401);
+        }
+
+        $user->update([
+            'password' => Hash::make($request->password),
+        ]);
+
+        $profile = Profile::where('user_id', $user->id)->first();
+        $profile->update([
+            'app_version' => $request->appVersion,
+        ]);
+
+        return [
+            'message' => 'Password has been changed.'
+        ];
+    }
+
+    public function checkUser(Request $request)
+    {
+        $token = $request->token;
+        $user_id = $request->user;
+
+        $dbtoken = PersonalAccessToken::findToken($token);
+
+        if (!$dbtoken) {
+            return response([
+                'message' => 'The provided credentials are incorrect.'
+            ], 401);
+        }
+
+        $valid = false;
+        $user = User::where('id', $user_id)->first();
+
+        if ($user) {
+            $valid = $user->approved == 1 ? true : false;
+        }
+
+        return [
+            'valid' => $valid,
+            'user' => $dbtoken->name
+        ];
+    }
+
+    public function getFormattedDate()
+    {
+        $timezone = time() + (60 * 60 * 7);
+
+        return [
+            'message' => 'success',
+            'tanggal' => gmdate('d', $timezone) . '-' . gmdate('m', $timezone) . '-' . gmdate('Y', $timezone)
+        ];
+    }
+
+    public function getFormattedTime()
+    {
+        $timezone = time() + (60 * 60 * 7);
+
+        return [
+            'message' => 'success',
+            'jam' => gmdate('H', $timezone) . ':' . gmdate('i', $timezone) . ':' . gmdate('s', $timezone)
+        ];
+    }
+
+    public function saveGoogleAuth(Request $request)
+    {
+        $email = $request->email;
+        $gtoken = $request->token;
+
+        $user = User::where('email', $email)->first();
+
+        if (!$user) {
+            return response([
+                'message' => 'The provided credentials are incorrect.'
+            ], 401);
+        }
+
+        $user->update(['google_auth_id' => $gtoken]);
+        $token = $user->createToken($user->name . ' on google')->plainTextToken;
+
+        return [
+            'message' => 'Google Auth Information saved.',
+            'token' => $token
+        ];
+    }
+
+    public function forgotPassword(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email'
+        ]);
+
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user) {
+            return response()->json([
+                'message' => 'Email tidak ditemukan'
+            ], 404);
+        }
+
+        $otp = rand(100000, 999999);
+
+        $passreset = PasswordReset::where('email', $request->email)
+            ->where('expired_at', '<=', now())
+            ->first();
+
+        if ($passreset) {
+            $passreset->update([
+                'email' => $request->email,
+                'otp' => $otp,
+                'hashed_otp' => Hash::make($otp),
+                'verified' => 0,
+                'expired_at' => now()->addMinutes(10)
+            ]);
+        } else {
+            $passreset = PasswordReset::where('email', $request->email)
+                ->first();
+
+            if (!$passreset) {
+                $passreset = PasswordReset::create([
+                    'email' => $request->email,
+                    'otp' => $otp,
+                    'hashed_otp' => Hash::make($otp),
+                    'verified' => 0,
+                    'expired_at' => now()->addMinutes(10)
+                ]);
+            }
+        }
+
+        // dd($passreset);
+
+        // Mail::raw(
+        //     "Kode OTP reset password Anda: $otp",
+        //     function ($message) use ($request) {
+        //         $message->to($request->email)
+        //             ->subject('Reset Password');
+        //     }
+        // );
+
+        return response()->json([
+            'message' => 'OTP berhasil dikirim',
+            'otp' => $passreset->otp,
+        ]);
+    }
+
+    public function verifyOtp(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'otp' => 'required'
+        ]);
+
+        $reset = PasswordReset::where('email', $request->email)
+            ->where('otp', $request->otp)
+            ->first();
+
+        if (!$reset) {
+            return response()->json([
+                'message' => 'OTP tidak valid'
+            ], 400);
+        }
+
+        if (now()->gt($reset->expired_at)) {
+            return response()->json([
+                'message' => 'OTP telah kadaluarsa'
+            ], 400);
+        }
+
+        $reset->update([
+            'verified' => 1
+        ]);
+
+        return response()->json([
+            'message' => 'OTP valid'
+        ]);
+    }
+
+    public function resetPassword(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|min:8|confirmed'
+        ]);
+
+        $reset = PasswordReset::where('email', $request->email)
+            ->where('verified', true)
+            ->first();
+
+        if (!$reset) {
+            return response()->json([
+                'message' => 'OTP belum diverifikasi'
+            ], 400);
+        }
+
+        $user = User::where('email', $request->email)->first();
+
+        $user->update([
+            'password' => Hash::make($request->password)
+        ]);
+
+        $reset->delete();
+
+        return response()->json([
+            'message' => 'Password berhasil diubah'
+        ]);
+    }
+}
