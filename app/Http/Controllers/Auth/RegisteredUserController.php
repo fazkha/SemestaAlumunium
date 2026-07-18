@@ -43,12 +43,12 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        // branch_id = 73 = Semesta Alumunium
-        $branch_id = 73;
+        // bidangusaha_id = 3 = Semesta Alumunium
+        $bidangusaha_id = 3;
 
         $profile = Profile::create([
             'user_id' => $user->id,
-            'branch_id' => $branch_id,
+            'bidangusaha_id' => $bidangusaha_id,
             'jabatan_id' => 2,
             'site' => 'SAL',
             'tanggal_gabung' => date('Y-m-d'),

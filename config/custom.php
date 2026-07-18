@@ -27,13 +27,14 @@ return [
     // menu aplikasi
     'menu_urusanumum' => true,
     'menu_kepegawaian' => true,
-    'menu_keuangan' => true,
-    'menu_pemasaran' => true,
-    'menu_gudang' => false,
-    'menu_pembelian' => false,
+    'menu_keuangan' => false,
+    'menu_pemasaran' => false,
+    'menu_gudang' => true,
+    'menu_pembelian' => true,
     'menu_penjualan' => false,
     'menu_produksi' => false,
-    'menu_pengiriman' => false,
+    'menu_pelayanan' => true,
+    'menu_pengiriman' => true,
 
     // list per page
     'list_per_page_opt_1' => 15,

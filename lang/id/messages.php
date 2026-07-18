@@ -3,6 +3,9 @@
 return [
     'maintenance' => 'Perbaikan',
     'maintenancewarning' => 'Kami akan segera kembali dalam waktu dekat.',
+    'services' => 'Pelayanan',
+    'maintenance_2' => 'Perawatan',
+    'repair' => 'Perbaikan',
     'purchase' => 'Pembelian',
     'supplier' => 'Pemasok',
     'suppliercode' => 'Kode Pemasok',

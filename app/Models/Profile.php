@@ -16,6 +16,7 @@ class Profile extends Model
     protected $fillable = [
         'user_id',
         'branch_id',
+        'bidangusaha_id',
         'jabatan_id',
         'site',
         'nohp',

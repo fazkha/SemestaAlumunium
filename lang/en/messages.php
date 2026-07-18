@@ -3,6 +3,9 @@
 return [
     'maintenance' => 'Maintenance',
     'maintenancewarning' => 'We should be back shortly.',
+    'services' => 'Services',
+    'maintenance_2' => 'Maintenance',
+    'repair' => 'Repair',
     'purchase' => 'Purchase',
     'supplier' => 'Supplier',
     'suppliercode' => 'Supplier Code',
