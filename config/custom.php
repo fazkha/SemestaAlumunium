@@ -9,11 +9,12 @@ return [
     'company_name' => 'Laris Manis Gemilang Jaya',
 
     // Product name
-    'product_short' => 'KP',
-    'product_name' => 'Kantor Pusat',
+    'product_short' => 'SAL',
+    'product_name' => 'Semesta Alumunium',
 
     // API toko
     'TLM_API' => env('TLM_API', 'https://www.tobakumas.com/api'),
+    'LMGM_API' => env('LMGM_API', 'https://www.larismanisgemilangjaya.com/api'),
 
     // Database
     'db01_dbname' => 'lmgm',
