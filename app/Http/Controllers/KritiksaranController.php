@@ -59,7 +59,7 @@ class KritiksaranController extends Controller implements HasMiddleware
                 }
             } else if ($search_arr[$i] == 'kritiksaran_branch_id' || $search_arr[$i] == 'kritiksaran_user_id') {
                 if ($search_arr[$i] == 'kritiksaran_user_id') {
-                    $field = 'kritiksarans.user_id';
+                    $field = 'mitra_kritik_sarans.user_id';
                 }
                 if (session($search_arr[$i]) != 'all') {
                     $datas = $datas->where([$field => session($search_arr[$i])]);
@@ -106,7 +106,7 @@ class KritiksaranController extends Controller implements HasMiddleware
                 }
             } else if ($search_arr[$i] == 'kritiksaran_branch_id' || $search_arr[$i] == 'kritiksaran_user_id') {
                 if ($search_arr[$i] == 'kritiksaran_user_id') {
-                    $field = 'kritiksarans.user_id';
+                    $field = 'mitra_kritik_sarans.user_id';
                 }
                 if (session($search_arr[$i]) != 'all') {
                     $datas = $datas->where([$field => session($search_arr[$i])]);
