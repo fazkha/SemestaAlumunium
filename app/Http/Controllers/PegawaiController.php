@@ -226,7 +226,7 @@ class PegawaiController extends Controller implements HasMiddleware
     public function edit(Request $request): View
     {
         $datas = Pegawai::find(Crypt::decrypt($request->employee));
-        $penggajian = PegawaiGaji::find(Crypt::decrypt($request->employee));
+        $penggajian =   ::where('pegawai_id', Crypt::decrypt($request->employee))->first();
         $details = Brandivjabpeg::where('brandivjabpegs.pegawai_id', Crypt::decrypt($request->employee))
             ->join('brandivjabs', 'brandivjabs.id', 'brandivjabpegs.brandivjab_id')
             ->join('branches', 'branches.id', 'brandivjabs.branch_id')
