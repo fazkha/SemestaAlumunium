@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\MitraKritikSaran;
 use App\Http\Requests\KritiksaranRequest;
+use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -34,6 +35,9 @@ class KritiksaranController extends Controller implements HasMiddleware
         if (!$request->session()->exists('kritiksaran_isactive')) {
             $request->session()->put('kritiksaran_isactive', 'all');
         }
+        if (!$request->session()->exists('kritiksaran_user_id')) {
+            $request->session()->put('kritiksaran_user_id', 'all');
+        }
         if (!$request->session()->exists('kritiksaran_judul')) {
             $request->session()->put('kritiksaran_judul', '_');
         }
@@ -41,8 +45,9 @@ class KritiksaranController extends Controller implements HasMiddleware
             $request->session()->put('kritiksaran_keterangan', '_');
         }
 
-        $search_arr = ['kritiksaran_isactive', 'kritiksaran_judul', 'kritiksaran_keterangan'];
+        $search_arr = ['kritiksaran_isactive', 'kritiksaran_user_id', 'kritiksaran_judul', 'kritiksaran_keterangan'];
 
+        $users = User::where('approved', 1)->join('pegawais', 'pegawais.email', 'users.email')->where('pegawais.isactive', 1)->orderBy('users.name')->pluck('users.name', 'users.id');
         $datas = MitraKritikSaran::query();
 
         for ($i = 0; $i < count($search_arr); $i++) {
@@ -50,6 +55,13 @@ class KritiksaranController extends Controller implements HasMiddleware
 
             if ($search_arr[$i] == 'kritiksaran_isactive') {
                 if (session($search_arr[$i]) !== 'all') {
+                    $datas = $datas->where([$field => session($search_arr[$i])]);
+                }
+            } else if ($search_arr[$i] == 'kritiksaran_branch_id' || $search_arr[$i] == 'kritiksaran_user_id') {
+                if ($search_arr[$i] == 'kritiksaran_user_id') {
+                    $field = 'kritiksarans.user_id';
+                }
+                if (session($search_arr[$i]) != 'all') {
                     $datas = $datas->where([$field => session($search_arr[$i])]);
                 }
             } else {
@@ -69,18 +81,20 @@ class KritiksaranController extends Controller implements HasMiddleware
             return redirect()->route('dashboard');
         }
 
-        return view('kritiksaran.index', compact(['datas']))->with('i', (request()->input('page', 1) - 1) * session('kritiksaran_pp'));
+        return view('kritiksaran.index', compact(['datas', 'users']))->with('i', (request()->input('page', 1) - 1) * session('kritiksaran_pp'));
     }
 
     public function fetchdb(Request $request): JsonResponse
     {
         $request->session()->put('kritiksaran_pp', $request->pp);
         $request->session()->put('kritiksaran_isactive', $request->isactive);
+        $request->session()->put('kritiksaran_user_id', $request->user);
         $request->session()->put('kritiksaran_judul', $request->judul);
         $request->session()->put('kritiksaran_keterangan', $request->keterangan);
 
-        $search_arr = ['kritiksaran_isactive', 'kritiksaran_judul', 'kritiksaran_keterangan'];
+        $search_arr = ['kritiksaran_isactive', 'kritiksaran_user_id', 'kritiksaran_judul', 'kritiksaran_keterangan'];
 
+        $users = User::where('approved', 1)->join('pegawais', 'pegawais.email', 'users.email')->where('pegawais.isactive', 1)->orderBy('users.name')->pluck('users.name', 'users.id');
         $datas = MitraKritikSaran::query();
 
         for ($i = 0; $i < count($search_arr); $i++) {
@@ -88,6 +102,13 @@ class KritiksaranController extends Controller implements HasMiddleware
 
             if ($search_arr[$i] == 'kritiksaran_isactive') {
                 if (session($search_arr[$i]) !== 'all') {
+                    $datas = $datas->where([$field => session($search_arr[$i])]);
+                }
+            } else if ($search_arr[$i] == 'kritiksaran_branch_id' || $search_arr[$i] == 'kritiksaran_user_id') {
+                if ($search_arr[$i] == 'kritiksaran_user_id') {
+                    $field = 'kritiksarans.user_id';
+                }
+                if (session($search_arr[$i]) != 'all') {
                     $datas = $datas->where([$field => session($search_arr[$i])]);
                 }
             } else {
@@ -105,7 +126,7 @@ class KritiksaranController extends Controller implements HasMiddleware
 
         $datas->withPath('/human-resource/criticism'); // pagination url to
 
-        $view = view('kritiksaran.partials.table', compact(['datas']))->with('i', (request()->input('page', 1) - 1) * session('kritiksaran_pp'))->render();
+        $view = view('kritiksaran.partials.table', compact(['datas', 'users']))->with('i', (request()->input('page', 1) - 1) * session('kritiksaran_pp'))->render();
 
         if ($view) {
             return response()->json($view, 200);
