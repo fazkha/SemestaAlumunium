@@ -444,12 +444,12 @@ class PegawaiController extends Controller implements HasMiddleware
             $pegawai->delete();
         } catch (\Illuminate\Database\QueryException $e) {
             if (str_contains($e->getMessage(), 'Integrity constraint violation')) {
-                return redirect()->route('pegawai.index')->with('error', 'Integrity constraint violation');
+                return redirect()->route('employee.index')->with('error', 'Integrity constraint violation');
             }
-            return redirect()->route('pegawai.index')->with('error', $e->getMessage());
+            return redirect()->route('employee.index')->with('error', $e->getMessage());
         }
 
-        return redirect()->route('pegawai.index')
+        return redirect()->route('employee.index')
             ->with('success', __('messages.successdeleted') . ' 👉 ' . $pegawai->nama_lengkap);
     }
 
