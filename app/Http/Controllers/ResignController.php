@@ -12,8 +12,6 @@ use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Crypt;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\DB;
 
 class ResignController extends Controller implements HasMiddleware
 {
@@ -48,8 +46,8 @@ class ResignController extends Controller implements HasMiddleware
 
         $search_arr = ['resign_show', 'resign_branch_id', 'resign_user_id', 'resign_tanggal'];
 
-        $branches = Branch::where('isactive', 1)->orderBy('nama')->pluck('nama', 'id');
-        $users = User::where('approved', 1)->orderBy('name')->pluck('name', 'id');
+        $branches = Branch::where('isactive', 1)->where('wilayah_id', 5)->orderBy('nama')->pluck('nama', 'id');
+        $users = User::where('approved', 1)->join('pegawais', 'pegawais.email', 'users.email')->where('pegawais.isactive', 1)->orderBy('users.name')->pluck('users.name', 'users.id');
         $datas = Resign::join('users', 'users.id', '=', 'resigns.user_id')
             ->join('profiles', 'profiles.user_id', '=', 'users.id')
             ->join('branches', 'branches.id', '=', 'profiles.branch_id')
@@ -105,8 +103,8 @@ class ResignController extends Controller implements HasMiddleware
 
         $search_arr = ['resign_show', 'resign_branch_id', 'resign_user_id', 'resign_tanggal'];
 
-        $branches = Branch::where('isactive', 1)->orderBy('nama')->pluck('nama', 'id');
-        $users = User::where('approved', 1)->orderBy('name')->pluck('name', 'id');
+        $branches = Branch::where('isactive', 1)->where('wilayah_id', 5)->orderBy('nama')->pluck('nama', 'id');
+        $users = User::where('approved', 1)->join('pegawais', 'pegawais.email', 'users.email')->where('pegawais.isactive', 1)->orderBy('users.name')->pluck('users.name', 'users.id');
         $datas = Resign::join('users', 'users.id', '=', 'resigns.user_id')
             ->join('profiles', 'profiles.user_id', '=', 'users.id')
             ->join('branches', 'branches.id', '=', 'profiles.branch_id')

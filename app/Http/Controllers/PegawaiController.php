@@ -62,7 +62,7 @@ class PegawaiController extends Controller implements HasMiddleware
 
         $search_arr = ['pegawai_isactive', 'pegawai_kelamin', 'pegawai_nama_lengkap', 'pegawai_alamat_tinggal', 'pegawai_telpon', 'pegawai_cabang_id', 'pegawai_jabatan_id'];
 
-        $cabangs = Branch::where('isactive', 1)->orderBy('nama')->pluck('nama', 'id');
+        $cabangs = Branch::where('isactive', 1)->where('wilayah_id', 5)->orderBy('nama')->pluck('nama', 'id');
         $jabatans = Jabatan::where('isactive', 1)->orderBy('islevel')->pluck('nama', 'id');
         $datas = Pegawai::query();
         $datas = $datas->select('pegawais.*', 'branches.nama as nama_cabang')
@@ -124,7 +124,7 @@ class PegawaiController extends Controller implements HasMiddleware
 
         $search_arr = ['pegawai_isactive', 'pegawai_kelamin', 'pegawai_nama_lengkap', 'pegawai_alamat_tinggal', 'pegawai_telpon', 'pegawai_cabang_id', 'pegawai_jabatan_id'];
 
-        $cabangs = Branch::where('isactive', 1)->orderBy('nama')->pluck('nama', 'id');
+        $cabangs = Branch::where('isactive', 1)->where('wilayah_id', 5)->orderBy('nama')->pluck('nama', 'id');
         $jabatans = Jabatan::where('isactive', 1)->orderBy('islevel')->pluck('nama', 'id');
         $datas = Pegawai::query();
         $datas = $datas->select('pegawais.*', 'branches.nama as nama_cabang')

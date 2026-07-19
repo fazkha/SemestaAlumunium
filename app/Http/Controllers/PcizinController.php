@@ -12,8 +12,6 @@ use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Crypt;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\DB;
 
 class PcizinController extends Controller implements HasMiddleware
 {
@@ -48,7 +46,7 @@ class PcizinController extends Controller implements HasMiddleware
 
         $search_arr = ['pcizin_show', 'pcizin_branch_id', 'pcizin_pegawai_id', 'pcizin_tanggal_mulai'];
 
-        $branches = Branch::where('isactive', 1)->orderBy('nama')->pluck('nama', 'id');
+        $branches = Branch::where('isactive', 1)->where('wilayah_id', 5)->orderBy('nama')->pluck('nama', 'id');
         $pegawais = Pegawai::where('isactive', 1)->orderBy('nama_lengkap')->pluck('nama_lengkap', 'id');
         $datas = PcIzin::join('branches', 'branches.id', '=', 'pc_permintaan_izins.branch_id')
             ->join('pegawais', 'pegawais.id', '=', 'pc_permintaan_izins.pegawai_id')
@@ -103,7 +101,7 @@ class PcizinController extends Controller implements HasMiddleware
 
         $search_arr = ['pcizin_show', 'pcizin_branch_id', 'pcizin_pegawai_id', 'pcizin_tanggal_mulai'];
 
-        $branches = Branch::where('isactive', 1)->orderBy('nama')->pluck('nama', 'id');
+        $branches = Branch::where('isactive', 1)->where('wilayah_id', 5)->orderBy('nama')->pluck('nama', 'id');
         $pegawais = Pegawai::where('isactive', 1)->orderBy('nama_lengkap')->pluck('nama_lengkap', 'id');
         $datas = PcIzin::join('branches', 'branches.id', '=', 'pc_permintaan_izins.branch_id')
             ->join('pegawais', 'pegawais.id', '=', 'pc_permintaan_izins.pegawai_id')
