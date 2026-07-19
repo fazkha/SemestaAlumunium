@@ -64,10 +64,12 @@
                 window.localStorage.setItem('dark', value)
             }
             const getLang = () => {
-                if (window.localStorage.getItem('enLang')) {} else {
-                    window.localStorage.setItem('enLang', !0)
-                }
-                return JSON.parse(window.localStorage.getItem('enLang'))
+                // if (window.localStorage.getItem('enLang') === null) {
+                //     window.localStorage.setItem('enLang', false);
+                // }
+
+                // return JSON.parse(window.localStorage.getItem('enLang'));
+                return @json(app()->getLocale() === 'en');
             }
             const setLang = (value) => {
                 window.localStorage.setItem('enLang', value)
