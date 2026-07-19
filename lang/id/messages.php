@@ -294,7 +294,7 @@ return [
     'pcpettycash' => 'Petty Cash',
     'pcbiaya' => 'Biaya PC',
     'mitraizin' => 'Izin Mitra',
-    'pcizin' => 'Izin PC',
+    'pcizin' => 'Izin',
     'nominal' => 'Nominal',
     'thousands' => 'Ribuan',
     'pcname' => 'Nama PC',
@@ -308,4 +308,5 @@ return [
     'pendingonly' => 'Hanya Tertunda',
     'mitraubah' => 'Ganti Hari',
     'type' => 'Jenis',
+    'component' => 'Komponen'
 ];

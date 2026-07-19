@@ -295,7 +295,7 @@ return [
     'pcpettycash' => 'Petty Cash',
     'pcbiaya' => 'PC Cost',
     'mitraizin' => 'Partner Permission',
-    'pcizin' => 'PC Permission',
+    'pcizin' => 'Permission',
     'nominal' => 'Nominal',
     'thousands' => 'Thousands',
     'pcname' => 'PC Name',
@@ -309,4 +309,5 @@ return [
     'pendingonly' => 'Pending Only',
     'mitraubah' => 'Day Replacement',
     'type' => 'Type',
+    'component' => 'Component'
 ];

@@ -25,7 +25,7 @@ return [
     'db02_password' => '',
 
     // menu aplikasi
-    'menu_urusanumum' => true,
+    'menu_urusanumum' => false,
     'menu_kepegawaian' => true,
     'menu_keuangan' => false,
     'menu_pemasaran' => false,
@@ -33,6 +33,7 @@ return [
     'menu_pembelian' => true,
     'menu_penjualan' => false,
     'menu_produksi' => false,
+    'menu_inspeksi' => true,
     'menu_pelayanan' => true,
     'menu_pengiriman' => true,
 
