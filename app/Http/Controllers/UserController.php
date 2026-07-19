@@ -150,7 +150,7 @@ class UserController extends Controller implements HasMiddleware
     {
         $datas = User::find(Crypt::decrypt($request->user));
         $roles = Role::all();
-        $branches = Branch::where('isactive', 1)->pluck('nama', 'id');
+        $branches = Branch::where('isactive', 1)->where('wilayah_id', 5)->pluck('nama', 'id');
         $profile = Profile::where('user_id', Crypt::decrypt($request->user))->first();
 
         return view('users.edit', compact(['datas', 'roles', 'branches', 'profile']));
