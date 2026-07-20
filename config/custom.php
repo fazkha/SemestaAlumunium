@@ -25,7 +25,7 @@ return [
     'db02_password' => '',
 
     // menu aplikasi
-    'menu_urusanumum' => false,
+    'menu_urusanumum' => true,
     'menu_kepegawaian' => true,
     'menu_keuangan' => false,
     'menu_pemasaran' => false,
