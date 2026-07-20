@@ -35,8 +35,7 @@
                         @include('barang.partials.feedback')
                     </div>
 
-                    <div
-                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
+                    <div class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
                         <div class="p-4 space-y-2">
 
                             <div class="flex flex-col lg:flex-row">
@@ -224,9 +223,7 @@
                                             <x-text-span id="profit">{!! $dprof !!}</x-text-span>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="w-full lg:w-1/2 px-2 flex flex-col justify-start">
                                     <div class="w-auto pb-4">
                                         <label for="keterangan"
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.description')</label>
@@ -236,6 +233,29 @@
                                             value="{{ old('keterangan', $datas->keterangan) }}" />
 
                                         <x-input-error class="mt-2" :messages="$errors->get('keterangan')" />
+                                    </div>
+                                </div>
+
+                                <div class="w-full lg:w-1/2 px-2 flex flex-col justify-start">
+                                    <div class="flex flex-row flex-wrap md:justify-between">
+                                        <div class="w-1/2 md:w-1/3 pb-4">
+                                            <span for="stock"
+                                                class="block mb-2 font-medium text-primary-600">@lang('messages.stock')</span>
+                                            <x-text-span
+                                                class="{{ $datas->stock < $datas->minstock ? 'text-white bg-red-700' : 'text-gray-900 bg-primary-50' }} {{ $datas->stock < $datas->minstock ? 'dark:text-white' : 'dark:text-white' }}">{{ $datas->stock }}</x-text-span>
+                                        </div>
+
+                                        <div class="w-1/2 md:w-1/3 pb-4">
+                                            <span for="minstock"
+                                                class="block mb-2 font-medium text-primary-600">@lang('messages.minstock')</span>
+                                            <x-text-span>{{ $datas->minstock }}</x-text-span>
+                                        </div>
+
+                                        <div class="w-1/2 md:w-1/3 pb-4">
+                                            <span for="satuan_stock_id"
+                                                class="block mb-2 font-medium text-primary-600">@lang('messages.unit')</span>
+                                            <x-text-span>{{ $datas->satuan_stock_id ? $datas->satuan_stock->nama_lengkap : '-' }}</x-text-span>
+                                        </div>
                                     </div>
 
                                     <div class="w-auto pb-4 lg:pb-12">

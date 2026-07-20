@@ -8,8 +8,7 @@
     modalTitle: 'Title'
 }" class="w-full overflow-x-auto">
     <div class="w-full overflow-x-auto">
-        <div
-            class="inline-block min-w-full shadow-md overflow-hidden rounded-md border border-solid border-primary-100">
+        <div class="inline-block min-w-full shadow-md overflow-hidden rounded-md border border-solid border-primary-100">
             <table class="min-w-full leading-normal">
                 <thead>
                     <tr>
@@ -58,14 +57,12 @@
 
                     @foreach ($datas as $data)
                         <tr>
-                            <td
-                                class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
+                            <td class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
                                 <p class="text-center text-gray-900 whitespace-no-wrap">
                                     {{ ++$i }}
                                 </p>
                             </td>
-                            <td
-                                class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
+                            <td class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
                                 <div class="flex items-center justify-center">
                                     <button
                                         @click="openModal = true; modalTitle = '{{ $data->nama }}'; $refs.imgRef.src = '{{ $data->gambar ? asset($data->lokasi . '/' . $data->gambar) : asset('images/0cd6be830e32f80192d496e50cfa9dbc.jpg') }}'">
@@ -75,20 +72,16 @@
                                     </button>
                                 </div>
                             </td>
-                            <td
-                                class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
+                            <td class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
                                 <span class="text-gray-900">{{ $data->tanggal }}</span>
                             </td>
-                            <td
-                                class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
+                            <td class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
                                 <span class="text-gray-900">{{ $data->judul }}</span>
                             </td>
-                            <td
-                                class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
+                            <td class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
                                 <span class="text-gray-900">{{ $data->keterangan }}</span>
                             </td>
-                            <td
-                                class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
+                            <td class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
                                 @php
                                     $untuks = App\Models\MitraPengumumanUntuk::where('mitra_pengumuman_id', $data->id)
                                         ->orderBy('jabatan_id')
@@ -103,8 +96,7 @@
                                     @endforeach
                                 </div>
                             </td>
-                            <td
-                                class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
+                            <td class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
                                 <span class="flex items-center justify-center">
                                     @if ($data->isactive == '1')
                                         <span>✔️</span>
@@ -170,8 +162,7 @@
                     @endforeach
                 </tbody>
             </table>
-            <div
-                class="px-5 py-5 bg-primary-50 items-center xs:justify-between border-t border-primary-100">
+            <div class="px-5 py-5 bg-primary-50 items-center xs:justify-between border-t border-primary-100">
                 <div class="mt-2 xs:mt-0">
                     {{ $datas->links() }}
                 </div>
@@ -196,7 +187,7 @@
                 </button>
             </div>
             <div class="flex items-center justify-center overflow-hidden rounded-lg">
-                <img x-ref="imgRef" src="" class="w-auto h-full max-h-96" />
+                <img x-ref="imgRef" src="" class="w-auto h-auto max-h-[90dvh] object-contain" />
             </div>
         </div>
     </div>

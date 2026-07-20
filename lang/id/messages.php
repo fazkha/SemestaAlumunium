@@ -155,7 +155,7 @@ return [
     'locationname' => 'Nama Lokasi',
     'locationaddress' => 'Alamat Lokasi',
     'stock' => 'Persediaan',
-    'minstock' => 'Persediaan Minimum',
+    'minstock' => 'Min. Persediaan',
     'stockopname' => 'Hitung Persediaan',
     'adjustment' => 'Penyesuaian',
     'stockadjustment' => 'Penyesuaian Stok',

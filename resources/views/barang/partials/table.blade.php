@@ -8,8 +8,7 @@
     modalTitle: 'Title'
 }" class="w-full overflow-x-auto">
     <div class="w-full overflow-x-auto">
-        <div
-            class="inline-block min-w-full shadow-md overflow-hidden rounded-md border border-solid border-primary-100">
+        <div class="inline-block min-w-full shadow-md overflow-hidden rounded-md border border-solid border-primary-100">
             <table class="min-w-full leading-normal">
                 <thead>
                     <tr>
@@ -18,7 +17,7 @@
                             #
                         </th>
                         <th
-                            class="hidden px-3 py-1 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50">
+                            class="px-3 py-1 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50">
                             &nbsp;
                         </th>
                         <th
@@ -67,47 +66,40 @@
 
                     @foreach ($datas as $data)
                         <tr>
-                            <td
-                                class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
+                            <td class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
                                 <p class="text-center text-gray-900 whitespace-no-wrap">
                                     {{ ++$i }}
                                 </p>
                             </td>
-                            <td
-                                class="hidden px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
+                            <td class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
                                 <div class="flex items-center justify-center">
                                     <button
                                         @click="openModal = true; modalTitle = '{{ $data->nama }}'; $refs.imgRef.src = '{{ $data->gambar ? asset($data->lokasi . '/' . $data->gambar) : asset('images/0cd6be830e32f80192d496e50cfa9dbc.jpg') }}'">
-                                        <img class="w-20 h-auto rounded-md"
+                                        <img class="w-10 h-auto rounded-md"
                                             src="{{ $data->gambar ? asset($data->lokasi . '/' . $data->gambar) : asset('images/0cd6be830e32f80192d496e50cfa9dbc.jpg') }}"
                                             alt="o.o" />
                                     </button>
                                 </div>
                             </td>
-                            <td
-                                class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
+                            <td class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
                                 <span class="text-gray-900">{{ $data->jenis_barang->nama }}</span>
                             </td>
-                            <td
-                                class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
+                            <td class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
                                 <span class="text-gray-900">{{ $data->nama }}</span>
                             </td>
-                            <td
-                                class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
+                            <td class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
                                 <span class="text-gray-900">{{ $data->merk }}</span>
                             </td>
-                            <td
-                                class="text-center px-3 py-3 text-sm border-b border-primary-100 bg-primary-20">
+                            <td class="text-center px-3 py-3 text-sm border-b border-primary-100 bg-primary-20">
                                 <div class="flex flex-row gap-2 text-gray-900 whitespace-no-wrap">
                                     <span
                                         class="w-1/2 text-right">{{ $data->harga_satuan ? (is_int($data->harga_satuan) ? Number::forHumans($data->harga_satuan, abbreviate: true) : Number::forHumans($data->harga_satuan, precision: 1, abbreviate: true)) : 0 }}</span>
-                                    <span>📱</span>
+                                    <span>💵</span>
                                     <span
                                         class="w-1/2 text-left">{{ $data->harga_satuan_jual ? (is_int($data->harga_satuan_jual) ? Number::forHumans($data->harga_satuan_jual, abbreviate: true) : Number::forHumans($data->harga_satuan_jual, precision: 1, abbreviate: true)) : 0 }}</span>
                                 </div>
                             </td>
-                            <td
-                                class="text-center px-3 py-3 text-sm border-b border-primary-100 bg-primary-20">
+                            <td class="text-center px-3 py-3 text-sm border-b border-primary-100 bg-primary-20">
                                 <div class="flex flex-row gap-2 text-gray-900 whitespace-no-wrap">
                                     <span
                                         class="w-1/2 text-right">{{ number_format($data->stock, '1', ',', '.') }}</span>
@@ -115,8 +107,7 @@
                                         class="w-1/2 text-left">{{ $data->satuan_stock_id ? $data->satuan_stock->nama_lengkap : '-' }}</span>
                                 </div>
                             </td>
-                            <td
-                                class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
+                            <td class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
                                 <span class="flex items-center justify-center">
                                     @if ($data->isactive == '1')
                                         <span>✔️</span>
@@ -206,8 +197,7 @@
                     @endforeach
                 </tbody>
             </table>
-            <div
-                class="px-5 py-5 bg-primary-50 items-center xs:justify-between border-t border-primary-100">
+            <div class="px-5 py-5 bg-primary-50 items-center xs:justify-between border-t border-primary-100">
                 <div class="mt-2 xs:mt-0">
                     {{ $datas->links() }}
                 </div>
@@ -232,7 +222,7 @@
                 </button>
             </div>
             <div class="flex items-center justify-center overflow-hidden rounded-lg">
-                <img x-ref="imgRef" src="" class="w-auto h-full max-h-96" />
+                <img x-ref="imgRef" src="" class="w-auto h-auto max-h-[90dvh] object-contain" />
             </div>
         </div>
     </div>

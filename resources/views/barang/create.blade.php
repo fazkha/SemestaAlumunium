@@ -30,8 +30,7 @@
                         @include('barang.partials.feedback')
                     </div>
 
-                    <div
-                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
+                    <div class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
                         <div class="p-4 space-y-2">
 
                             <div class="flex flex-col lg:flex-row">
@@ -220,9 +219,7 @@
                                             <x-text-span id="profit">&nbsp;</x-text-span>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="w-full lg:w-1/2 px-2 flex flex-col justify-start">
                                     <div class="w-auto pb-4">
                                         <label for="keterangan"
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.description')</label>
@@ -233,7 +230,9 @@
 
                                         <x-input-error class="mt-2" :messages="$errors->get('keterangan')" />
                                     </div>
+                                </div>
 
+                                <div class="w-full lg:w-1/2 px-2 flex flex-col justify-start">
                                     <div class="w-auto pb-4 lg:pb-12">
                                         <label for="gambar"
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.picture')</label>

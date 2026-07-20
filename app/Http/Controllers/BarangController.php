@@ -244,7 +244,7 @@ class BarangController extends Controller implements HasMiddleware
             ]);
 
             if (!is_null($image)) {
-                $dest = $this->compress_image($image, $image->path(), public_path($pathym), $imageName, 50);
+                $dest = $this->compress_image($image, $image->path(), public_path($pathym), $imageName, 70);
             }
 
             if ($barang) {
@@ -344,6 +344,10 @@ class BarangController extends Controller implements HasMiddleware
                 'updated_by' => auth()->user()->email,
             ]);
 
+            if (!is_null($image)) {
+                $dest = $this->compress_image($image, $image->path(), public_path($pathym), $imageName, 70);
+            }
+
             return redirect()->back()->with('success', __('messages.successupdated') . ' 👉 ' . $request->nama);
         } else {
             return redirect()->back()->withInput()->with('error', 'Error occured while updating!');
@@ -410,6 +414,70 @@ class BarangController extends Controller implements HasMiddleware
         //compress and save file to jpg
         //usage
         // $compressed = compress_image('boy.jpg', 'destination.jpg', 50);
+        //return destination file
+        return $dest;
+    }
+
+    public function compress_image2($image, $src, $dest, $filename, $quality)
+    {
+        $info = getimagesize($src);
+        $targetWidth = 360; // 540, 720
+        $targetHeight = 640; // 960, 1280
+
+        if ($info['mime'] == 'image/jpeg' || $info['mime'] == 'image/jpg') {
+            $image = imagecreatefromjpeg($src);
+
+            $srcWidth = imagesx($image);
+            $srcHeight = imagesy($image);
+
+            $srcRatio = $srcWidth / $srcHeight;
+            $targetRatio = $targetWidth / $targetHeight;
+
+            if ($srcRatio > $targetRatio) {
+                // crop kiri kanan
+                $newHeight = $srcHeight;
+                $newWidth = $srcHeight * $targetRatio;
+                $srcX = ($srcWidth - $newWidth) / 2;
+                $srcY = 0;
+            } else {
+                // crop atas bawah
+                $newWidth = $srcWidth;
+                $newHeight = $srcWidth / $targetRatio;
+                $srcX = 0;
+                $srcY = ($srcHeight - $newHeight) / 2;
+            }
+
+            $newImage = imagecreatetruecolor($targetWidth, $targetHeight);
+            imagecopyresampled(
+                $newImage,
+                $image,
+                0,
+                0,
+                $srcX,
+                $srcY,
+                $targetWidth,
+                $targetHeight,
+                $newWidth,
+                $newHeight
+            );
+
+            $pathfile = $dest . '/' . $filename;
+            imagejpeg($newImage, $pathfile, $quality);
+        } elseif ($info['mime'] == 'image/gif') {
+            $image->storeAs($dest, $image->hashName());
+            // $image = imagecreatefromgif($src);
+            // imagejpeg($image, $dest, $quality);
+        } elseif ($info['mime'] == 'image/png') {
+            $image->storeAs($dest, $image->hashName());
+            // $image = imagecreatefrompng($src);
+            // imagepng($image, $dest, 5);
+        } else {
+            die('Unknown image file format');
+        }
+
+        //compress and save file to jpg
+        //usage
+        // $compressed = compress_image('boy.jpg', 'destination.jpg', 70);
         //return destination file
         return $dest;
     }
