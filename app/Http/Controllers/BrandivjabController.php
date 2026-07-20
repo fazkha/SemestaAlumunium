@@ -48,7 +48,7 @@ class BrandivjabController extends Controller implements HasMiddleware
 
         $search_arr = ['brandivjab_isactive', 'brandivjab_branch_id', 'brandivjab_division_id', 'brandivjab_jabatan_id'];
 
-        $branches = Branch::where('isactive', 1)->orderBy('nama')->pluck('nama', 'id');
+        $branches = Branch::where('isactive', 1)->where('wilayah_id', 5)->orderBy('nama')->pluck('nama', 'id');
         $divisions = Division::where('isactive', 1)->orderBy('nama')->pluck('nama', 'id');
         $jabatans = Jabatan::where('isactive', 1)->orderBy('islevel')->orderBy('nama')->pluck('nama', 'id');
         $datas = Brandivjab::query();
@@ -101,7 +101,7 @@ class BrandivjabController extends Controller implements HasMiddleware
 
         $search_arr = ['brandivjab_isactive', 'brandivjab_branch_id', 'brandivjab_division_id', 'brandivjab_jabatan_id'];
 
-        $branches = Branch::where('isactive', 1)->orderBy('nama')->pluck('nama', 'id');
+        $branches = Branch::where('isactive', 1)->where('wilayah_id', 5)->orderBy('nama')->pluck('nama', 'id');
         $divisions = Division::where('isactive', 1)->orderBy('nama')->pluck('nama', 'id');
         $jabatans = Jabatan::where('isactive', 1)->orderBy('islevel')->orderBy('nama')->pluck('nama', 'id');
         $datas = Brandivjab::query();
@@ -150,7 +150,7 @@ class BrandivjabController extends Controller implements HasMiddleware
 
     public function create(): View
     {
-        $branches = Branch::where('isactive', 1)->orderBy('nama')->pluck('nama', 'id');
+        $branches = Branch::where('isactive', 1)->where('wilayah_id', 5)->orderBy('nama')->pluck('nama', 'id');
         $divisions = Division::where('isactive', 1)->orderBy('nama')->pluck('nama', 'id');
         $jabatans = Jabatan::where('isactive', 1)->orderBy('nama')->pluck('nama', 'id');
         $atasans = Brandivjab::where('isactive', 1)->orderBy('jabatan_id')->get();
@@ -166,6 +166,7 @@ class BrandivjabController extends Controller implements HasMiddleware
                 'division_id' => $request->division_id,
                 'jabatan_id' => $request->jabatan_id,
                 'atasan_id' => $request->atasan_id,
+                'product_id' => 1,
                 'keterangan' => $request->keterangan,
                 'isactive' => ($request->isactive == 'on' ? 1 : 0),
                 'created_by' => auth()->user()->email,
@@ -191,7 +192,7 @@ class BrandivjabController extends Controller implements HasMiddleware
     public function edit(Request $request): View
     {
         $datas = Brandivjab::find(Crypt::decrypt($request->brandivjab));
-        $branches = Branch::where('isactive', 1)->orderBy('nama')->pluck('nama', 'id');
+        $branches = Branch::where('isactive', 1)->where('wilayah_id', 5)->orderBy('nama')->pluck('nama', 'id');
         $divisions = Division::where('isactive', 1)->orderBy('nama')->pluck('nama', 'id');
         $jabatans = Jabatan::where('isactive', 1)->orderBy('nama')->pluck('nama', 'id');
         $atasans = Brandivjab::where('isactive', 1)->orderBy('jabatan_id')->get();

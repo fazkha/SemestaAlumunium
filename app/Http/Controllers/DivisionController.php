@@ -39,7 +39,7 @@ class DivisionController extends Controller implements HasMiddleware
 
         $search_arr = ['division_isactive', 'division_nama'];
 
-        $datas = Division::query();
+        $datas = Division::orderBy('nama');
 
         for ($i = 0; $i < count($search_arr); $i++) {
             $field = substr($search_arr[$i], strlen('division_'));
@@ -74,7 +74,7 @@ class DivisionController extends Controller implements HasMiddleware
 
         $search_arr = ['division_isactive', 'division_nama'];
 
-        $datas = Division::query();
+        $datas = Division::orderBy('nama');
 
         for ($i = 0; $i < count($search_arr); $i++) {
             $field = substr($search_arr[$i], strlen('division_'));

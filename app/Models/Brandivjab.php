@@ -15,6 +15,7 @@ class Brandivjab extends Model
         'division_id',
         'jabatan_id',
         'atasan_id',
+        'product_id',
         'keterangan',
         'isactive',
         'created_by',

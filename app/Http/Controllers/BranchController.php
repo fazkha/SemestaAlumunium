@@ -65,7 +65,7 @@ class BranchController extends Controller implements HasMiddleware
             }
         }
         // $datas = $datas->where('user_id', auth()->user()->id);
-        $datas = $datas->latest()->paginate(session('branch_pp'));
+        $datas = $datas->whereNot('wilayah_id', 5)->latest()->paginate(session('branch_pp'));
 
         if ($request->page && $datas->count() == 0) {
             return redirect()->route('dashboard');
@@ -101,7 +101,7 @@ class BranchController extends Controller implements HasMiddleware
             }
         }
         // $datas = $datas->where('user_id', auth()->user()->id);
-        $datas = $datas->latest()->paginate(session('branch_pp'));
+        $datas = $datas->whereNot('wilayah_id', 5)->latest()->paginate(session('branch_pp'));
 
         $datas->withPath('/general-affair/branch'); // pagination url to
 
