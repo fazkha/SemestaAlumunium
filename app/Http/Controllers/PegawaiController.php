@@ -73,6 +73,7 @@ class PegawaiController extends Controller implements HasMiddleware
             ->leftJoin('brandivjabs', 'brandivjabs.id', 'brandivjabpegs.brandivjab_id')
             ->leftJoin('branches', 'branches.id', 'brandivjabs.branch_id')
             ->leftJoin('jabatans', 'jabatans.id', 'brandivjabs.jabatan_id')
+            ->whereNot('pegawais.id', 1)
             ->orderByRaw('jabatans.islevel, pegawais.nama_lengkap');
         // ->groupByRaw('brandivjabs.jabatan_id, brandivjabs.branch_id, pegawais.id, jabatans.islevel, pegawais.nama_lengkap')
 
@@ -135,7 +136,7 @@ class PegawaiController extends Controller implements HasMiddleware
             ->leftJoin('brandivjabs', 'brandivjabs.id', 'brandivjabpegs.brandivjab_id')
             ->leftJoin('branches', 'branches.id', 'brandivjabs.branch_id')
             ->leftJoin('jabatans', 'jabatans.id', 'brandivjabs.jabatan_id')
-            ->where('brandivjabpegs.isactive', 1)
+            ->whereNot('pegawais.id', 1)
             ->orderByRaw('jabatans.islevel, pegawais.nama_lengkap');
         // ->groupByRaw('brandivjabs.jabatan_id, brandivjabs.branch_id, pegawais.id, jabatans.islevel, pegawais.nama_lengkap')
 
