@@ -30,8 +30,7 @@
                     @include('roles.partials.feedback')
                 </div>
 
-                <div
-                    class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
+                <div class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
                     <div class="p-6 space-y-2 md:space-y-2 sm:p-8">
                         <form action="{{ route('roles.store') }}" class="space-y-4 md:space-y-6" method="POST"
                             enctype="multipart/form-data">
@@ -51,15 +50,16 @@
                                 <label for="permissions"
                                     class="block mb-2 font-medium text-primary-600">@lang('messages.permission')</label>
                                 <x-text-span>
-                                    @foreach ($permissions as $permission)
-                                        <div class="pb-2">
-                                            <input type="checkbox" id="permissions[{{ $permission->name }}]"
-                                                name="permissions[{{ $permission->name }}]" tabindex="2"
-                                                value="{{ $permission->name }}" />
-                                            <label for="permissions[{{ $permission->name }}]"
-                                                class="pl-2">{{ $permission->name }}</label>
-                                        </div>
-                                    @endforeach
+                                    <div class="grid gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+                                        @foreach ($permissions as $permission)
+                                            <label class="flex items-center gap-2">
+                                                <input type="checkbox" id="permissions[{{ $permission->name }}]"
+                                                    name="permissions[{{ $permission->name }}]" tabindex="2"
+                                                    value="{{ $permission->name }}" />
+                                                <span class="pl-2">{{ $permission->name }}</span>
+                                            </label>
+                                        @endforeach
+                                    </div>
                                 </x-text-span>
                             </div>
 

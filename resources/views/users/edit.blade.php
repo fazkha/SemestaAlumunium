@@ -35,8 +35,7 @@
                     @include('users.partials.feedback')
                 </div>
 
-                <div
-                    class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
+                <div class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
                     <div class="p-6 space-y-2 md:space-y-2 sm:p-8">
                         <form action="{{ route('users.update', Crypt::Encrypt($datas->id)) }}"
                             class="space-y-4 md:space-y-6" method="POST" enctype="multipart/form-data">
@@ -104,19 +103,19 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="roles"
-                                    class="block mb-2 font-medium text-primary-600">@lang('messages.choose')
+                                <label for="roles" class="block mb-2 font-medium text-primary-600">@lang('messages.choose')
                                     @lang('messages.role')</label>
                                 <x-text-span>
-                                    @foreach ($roles as $role)
-                                        <div class="pb-2">
-                                            <input type="checkbox" id="roles[{{ $role->name }}]"
-                                                name="roles[{{ $role->name }}]" value="{{ $role->name }}"
-                                                {{ $datas->hasRole($role->name) ? 'checked' : '' }} />
-                                            <label for="roles[{{ $role->name }}]"
-                                                class="pl-2">{{ $role->name }}</label>
-                                        </div>
-                                    @endforeach
+                                    <div class="grid gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+                                        @foreach ($roles as $role)
+                                            <label class="flex items-center gap-2">
+                                                <input type="checkbox" id="roles[{{ $role->name }}]"
+                                                    name="roles[{{ $role->name }}]" value="{{ $role->name }}"
+                                                    {{ $datas->hasRole($role->name) ? 'checked' : '' }} />
+                                                <span class="pl-2">{{ $role->name }}</span>
+                                            </label>
+                                        @endforeach
+                                    </div>
                                 </x-text-span>
 
                                 <x-input-error class="mt-2" :messages="$errors->get('roles')" />
