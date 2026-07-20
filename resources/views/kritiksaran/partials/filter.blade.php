@@ -64,6 +64,23 @@
                             class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                         </div>
                     </div>
+
+                    <div class="relative shadow-md mr-2 mb-2">
+                        <span
+                            class="w-24 text-xs h-full absolute inset-y-0 left-0 flex items-center px-2 border-r border-primary-100">@lang('messages.branch')</span>
+                        <select id="branch-dropdown"
+                            class="text-sm px-2 leading-tight pl-28 pr-9 py-2 appearance-none w-full h-full rounded-md border block bg-primary-20 border-primary-100 text-gray-700">
+                            <option {{ session('resign_branch_id') == 'all' ? 'selected' : '' }} value="all">
+                                @lang('messages.all')</option>
+                            @foreach ($branches as $id => $name)
+                                <option {{ session('resign_branch_id') == $id ? 'selected' : '' }}
+                                    value="{{ $id }}">{{ $name }}</option>
+                            @endforeach
+                        </select>
+                        <div
+                            class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                        </div>
+                    </div>
                 </div>
 
                 <div class="flex-row justify-start">

@@ -157,7 +157,7 @@ Route::prefix('human-resource')->middleware('auth')->group(function () {
 
     Route::resource('criticism', KritiksaranController::class);
     Route::get('criticism/{criticism}/delete', [KritiksaranController::class, 'delete'])->name('criticism.delete');
-    Route::get('criticism/fetchdb/{pp}/{isactive}/{user}/{judul}/{keterangan}', [KritiksaranController::class, 'fetchdb'])->defaults('judul', '_')->defaults('keterangan', '_');
+    Route::get('criticism/fetchdb/{pp}/{isactive}/{branch}/{user}/{judul}/{keterangan}', [KritiksaranController::class, 'fetchdb'])->defaults('judul', '_')->defaults('keterangan', '_');
 
     Route::resource('mitraizin', MitraizinController::class);
     Route::get('mitraizin/{mitraizin}/delete', [MitraizinController::class, 'delete'])->name('mitraizin.delete');

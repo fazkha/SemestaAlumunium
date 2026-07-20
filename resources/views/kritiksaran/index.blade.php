@@ -38,10 +38,11 @@
     @push('scripts')
         <script type="text/javascript">
             $(document).ready(function(e) {
-                $("#pp-dropdown, #isactive-dropdown, #user-dropdown, #search-judul, #search-keterangan")
+                $("#pp-dropdown, #isactive-dropdown, #user-dropdown, #branch-dropdown, #search-judul, #search-keterangan")
                     .on("change keyup paste", function() {
                         var xpp = $('#pp-dropdown option:selected').val();
                         var xisactive = $('#isactive-dropdown option:selected').val();
+                        var xbr = $('#branch-dropdown option:selected').val();
                         var xpg = $('#user-dropdown option:selected').val();
                         var xjudul = $('#search-judul').val();
                         var xketerangan = $('#search-keterangan').val();
@@ -64,7 +65,7 @@
 
                         $.ajax({
                             url: "{{ url('/human-resource/criticism/fetchdb') }}" + "/" + xpp + "/" +
-                                xisactive + "/" + xpg + "/" + xjudul + "/" + xketerangan,
+                                xisactive + "/" + xbr + "/" + xpg + "/" + xjudul + "/" + xketerangan,
                             type: "GET",
                             dataType: 'json',
                             success: function(result) {
