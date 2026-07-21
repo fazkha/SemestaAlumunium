@@ -1,7 +1,7 @@
 <div class="my-2">
     <div class="flex flex-col-reverse md:flex-row gap-4 justify-between">
         <div
-            class="p-2 md:p-4 border rounded-md shadow-md bg-primary-50 border-primary-100">
+            class="p-2 md:p-4 border rounded-md shadow-md bg-primary-50 border-primary-100 dark:bg-primary-900 dark:border-primary-800">
 
             <div class="relative flex flex-row gap-2 mb-2 md:mb-4">
                 <div id="filter-loading" class="absolute top-[0%] right-[2%] z-10 hidden">
@@ -30,10 +30,10 @@
                     <div class="flex-row justify-start">
                         <div class="relative shadow-md mr-2 mb-2">
                             <span
-                                class="w-24 text-xs h-full absolute inset-y-0 left-0 flex items-center px-2 border-r border-primary-100">Per
+                                class="w-24 text-xs h-full absolute inset-y-0 left-0 flex items-center px-2 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">Per
                                 @lang('messages.page')</span>
                             <select id="pp-dropdown" name="pp-dropdown"
-                                class="text-sm px-2 leading-tight pl-28 pr-9 py-2 appearance-none w-full h-full rounded-md border block bg-primary-20 border-primary-100 text-gray-700">
+                                class="text-sm px-2 leading-tight pl-28 pr-9 py-2 appearance-none w-full h-full rounded-md border block bg-primary-20 border-primary-100 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
                                 <option
                                     {{ session('production-order_pp') == config('custom.list_per_page_opt_1') ? 'selected' : '' }}
                                     value="{{ config('custom.list_per_page_opt_1') }}">
@@ -54,9 +54,9 @@
 
                         <div class="relative shadow-md mr-2 mb-2">
                             <span
-                                class="w-24 text-xs h-full absolute inset-y-0 left-0 flex items-center px-2 border-r border-primary-100">@lang('messages.productionfinish')</span>
+                                class="w-24 text-xs h-full absolute inset-y-0 left-0 flex items-center px-2 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">@lang('messages.productionfinish')</span>
                             <select id="produksi-dropdown" name="produksi-dropdown"
-                                class="text-sm px-2 leading-tight pl-28 pr-9 py-2 appearance-none w-full h-full rounded-md border block bg-primary-20 border-primary-100 text-gray-700">
+                                class="text-sm px-2 leading-tight pl-28 pr-9 py-2 appearance-none w-full h-full rounded-md border block bg-primary-20 border-primary-100 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
                                 <option {{ session('production-order_selesai') == 'all' ? 'selected' : '' }}
                                     value="all">
                                     @lang('messages.all')</option>
@@ -74,28 +74,28 @@
 
                         <div class="relative shadow-md mr-2 mb-2">
                             <span
-                                class="w-24 text-xs h-full absolute inset-y-0 left-0 flex items-center px-2 border-r border-primary-100">@lang('messages.ordernumber')</span>
+                                class="w-24 text-xs h-full absolute inset-y-0 left-0 flex items-center px-2 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">@lang('messages.ordernumber')</span>
                             <input id="search-nomor" name="search-nomor" placeholder="@lang('messages.search')"
                                 value="{{ session('production-order_nomor') == '_' ? '' : session('production-order_nomor') }}"
-                                class="text-sm pl-28 pr-6 pt-1.5 pb-2 appearance-none rounded-md border block w-full bg-primary-20 border-primary-100 placeholder-gray-400 text-gray-700" />
+                                class="text-sm pl-28 pr-6 pt-1.5 pb-2 appearance-none rounded-md border block w-full bg-primary-20 border-primary-100 placeholder-gray-400 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300 dark:placeholder-gray-600" />
                         </div>
                     </div>
 
                     <div class="flex-row justify-start">
                         <div class="relative shadow-md mr-2 mb-2">
                             <span
-                                class="w-24 text-xs h-full absolute inset-y-0 left-0 flex items-center px-2 border-r border-primary-100">@lang('calendar.date')</span>
+                                class="w-24 text-xs h-full absolute inset-y-0 left-0 flex items-center px-2 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">@lang('calendar.date')</span>
                             <input id="search-tanggal" name="search-tanggal" type="date"
                                 placeholder="@lang('messages.search')"
                                 value="{{ session('production-order_tanggal') == '_' ? '' : session('production-order_tanggal') }}"
-                                class="text-sm pl-28 pr-6 pt-1.5 pb-2 appearance-none rounded-md border block w-full bg-primary-20 border-primary-100 placeholder-gray-400 text-gray-700" />
+                                class="text-sm pl-28 pr-6 pt-1.5 pb-2 appearance-none rounded-md border block w-full bg-primary-20 border-primary-100 placeholder-gray-400 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300 dark:placeholder-gray-600" />
                         </div>
 
                         <div class="relative shadow-md mr-2 mb-2">
                             <span
-                                class="w-24 text-xs h-full absolute inset-y-0 left-0 flex items-center px-2 border-r border-primary-100">@lang('calendar.month')</span>
+                                class="w-24 text-xs h-full absolute inset-y-0 left-0 flex items-center px-2 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">@lang('calendar.month')</span>
                             <select id="bulan-dropdown" name="bulan-dropdown"
-                                class="text-sm px-2 leading-tight pl-28 pr-9 py-2 appearance-none w-full h-full rounded-md border block bg-primary-20 border-primary-100 text-gray-700">
+                                class="text-sm px-2 leading-tight pl-28 pr-9 py-2 appearance-none w-full h-full rounded-md border block bg-primary-20 border-primary-100 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
                                 <option {{ session('production-order_periode_bulan') == 'all' ? 'selected' : '' }}
                                     value="all">
                                     @lang('messages.all')
@@ -112,18 +112,18 @@
 
                         <div class="relative shadow-md mr-2 mb-2">
                             <span
-                                class="w-24 text-xs h-full absolute inset-y-0 left-0 flex items-center px-2 border-r border-primary-100">@lang('calendar.year')</span>
+                                class="w-24 text-xs h-full absolute inset-y-0 left-0 flex items-center px-2 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">@lang('calendar.year')</span>
                             <input id="search-tahun" name="search-tahun" type="number" min="0"
                                 placeholder="@lang('messages.search')"
                                 value="{{ session('production-order_periode_tahun') == '_' ? date('Y') : session('production-order_periode_tahun') }}"
-                                class="text-sm pl-28 pr-6 pt-1.5 pb-2 appearance-none rounded-md border block w-full bg-primary-20 border-primary-100 placeholder-gray-400 text-gray-700" />
+                                class="text-sm pl-28 pr-6 pt-1.5 pb-2 appearance-none rounded-md border block w-full bg-primary-20 border-primary-100 placeholder-gray-400 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300 dark:placeholder-gray-600" />
                         </div>
 
                         <div class="relative shadow-md mr-2 mb-2">
                             <span
-                                class="w-24 text-xs h-full absolute inset-y-0 left-0 flex items-center px-2 border-r border-primary-100">@lang('messages.customer')</span>
+                                class="w-24 text-xs h-full absolute inset-y-0 left-0 flex items-center px-2 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">@lang('messages.customer')</span>
                             <select id="customer-dropdown" name="customer-dropdown"
-                                class="text-sm px-2 leading-tight pl-28 pr-9 py-2 appearance-none w-full h-full rounded-md border block bg-primary-20 border-primary-100 text-gray-700">
+                                class="text-sm px-2 leading-tight pl-28 pr-9 py-2 appearance-none w-full h-full rounded-md border block bg-primary-20 border-primary-100 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
                                 <option {{ session('purchase-order_customer') == 'all' ? 'selected' : '' }}
                                     value="all">
                                     @lang('messages.all')
@@ -170,8 +170,7 @@
             </div>
 
             @can('prodo-show')
-                <div
-                    class="hidden w-full p-2 md:p-4 border rounded-md bg-primary-50 border-primary-100">
+                <div class="hidden w-full p-2 md:p-4 border rounded-md bg-primary-50 border-primary-100">
 
                     <div class="relative flex flex-row gap-2 mb-2 md:mb-4">
                         <div id="filter-loading" class="absolute top-[0%] right-[2%] z-10 hidden">

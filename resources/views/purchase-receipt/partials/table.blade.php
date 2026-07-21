@@ -4,44 +4,44 @@
 
 <div class="w-full overflow-x-auto">
     <div
-        class="inline-block min-w-full shadow-md overflow-hidden rounded-md border border-solid border-primary-100">
+        class="inline-block min-w-full shadow-md overflow-hidden rounded-md border border-solid border-primary-100 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
         <table class="min-w-full leading-normal">
             <thead>
                 <tr>
                     <th
-                        class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50">
+                        class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 bg-primary-50 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
                         #
                     </th>
                     <th
-                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50">
+                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 bg-primary-50 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
                         @lang('messages.ordernumber')
                     </th>
                     <th
-                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50">
+                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 bg-primary-50 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
                         @lang('messages.transactiondate')
                     </th>
                     <th
-                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50">
+                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 bg-primary-50 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
                         @lang('messages.supplier')
                     </th>
                     <th
-                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50">
+                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 bg-primary-50 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
                         @lang('messages.payment')
                     </th>
                     <th
-                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50">
+                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 bg-primary-50 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
                         @lang('messages.receiptdate')
                     </th>
                     <th
-                        class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50">
+                        class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 bg-primary-50 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
                         @lang('messages.isaccepted')
                     </th>
                     <th
-                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50">
+                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 bg-primary-50 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
                         @lang('messages.receiptdescription')
                     </th>
                     <th
-                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50">
+                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 bg-primary-50 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
                         &nbsp;
                     </th>
                 </tr>
@@ -49,7 +49,8 @@
             <tbody>
                 @if ($datas->count() == 0)
                     <tr>
-                        <td colspan="9" class="text-sm bg-primary-20">
+                        <td colspan="9"
+                            class="text-sm bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
                             <div class="flex items-center justify-center p-5">@lang('messages.datanotavailable')</div>
                         </td>
                     </tr>
@@ -58,36 +59,35 @@
                 @foreach ($datas as $data)
                     <tr>
                         <td
-                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
-                            <p class="text-center text-gray-900 whitespace-no-wrap">
+                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
+                            <p class="text-center text-gray-900 whitespace-no-wrap dark:text-gray-300">
                                 {{ ++$i }}
                             </p>
                         </td>
                         <td
-                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
-                            <span class="text-gray-900">{{ $data->no_order }}</span>
+                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
+                            <span class="text-gray-900 dark:text-gray-300">{{ $data->no_order }}</span>
                         </td>
                         <td
-                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
+                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
                             <span
-                                class="text-gray-900">{{ date_format(date_create($data->tanggal), 'd/m/Y') }}</span>
+                                class="text-gray-900 dark:text-gray-300">{{ date_format(date_create($data->tanggal), 'd/m/Y') }}</span>
                         </td>
                         <td
-                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
-                            <span class="text-gray-900">{{ $data->supplier->nama }}</span>
+                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
+                            <span class="text-gray-900 dark:text-gray-300">{{ $data->supplier->nama }}</span>
                         </td>
                         <td
-                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
+                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
                             <span
-                                class="text-gray-900">{{ $data->tunai == 1 ? __('messages.cash') : __('messages.credit') }}</span>
+                                class="text-gray-900 dark:text-gray-300">{{ $data->tunai == 1 ? __('messages.cash') : __('messages.credit') }}</span>
                         </td>
-                        <td
-                            class="px-3 py-3 text-sm border-b border-primary-100 bg-primary-20">
+                        <td class="px-3 py-3 text-sm border-b border-primary-100 bg-primary-20">
                             <span
-                                class="text-gray-900">{{ $data->tanggal_terima ? date_format(date_create($data->tanggal_terima), 'd/m/Y') : '' }}</span>
+                                class="text-gray-900 dark:text-gray-300">{{ $data->tanggal_terima ? date_format(date_create($data->tanggal_terima), 'd/m/Y') : '' }}</span>
                         </td>
                         <td
-                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
+                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
                             <span class="flex items-center justify-center">
                                 @if ($data->isaccepted == '1')
                                     <span>✔️</span>
@@ -98,19 +98,19 @@
                             </span>
                         </td>
                         <td
-                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
-                            <span class="text-gray-900">{{ $data->keterangan_terima }}</span>
+                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
+                            <span class="text-gray-900 dark:text-gray-300">{{ $data->keterangan_terima }}</span>
                         </td>
-                        <td class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20"
+                        <td class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300"
                             style="vertical-align: middle;">
                             <div class="flex items-center justify-center">
                                 @can('purchasereceipt-show')
                                     <a href="{{ route('purchase-receipt.show', Crypt::Encrypt($data->id)) }}"
                                         title="@lang('messages.view')">
                                         <span
-                                            class="relative inline-block px-2 py-2 font-semibold text-blue-800 leading-tight">
+                                            class="relative inline-block px-2 py-2 font-semibold text-blue-800 leading-tight dark:text-blue-300">
                                             <span aria-hidden
-                                                class="absolute inset-0 bg-blue-200 hover:bg-blue-400 hover:dark:bg-blue-700 opacity-50 rounded-full"></span>
+                                                class="absolute inset-0 bg-blue-200 hover:bg-blue-400 hover:dark:bg-blue-700 opacity-50 rounded-full dark:bg-blue-700"></span>
                                             <svg class="size-5" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
                                                 fill="currentColor">
                                                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -125,9 +125,9 @@
                                         <a href="{{ route('purchase-receipt.edit', Crypt::Encrypt($data->id)) }}"
                                             title="@lang('messages.edit')" class="ml-2">
                                             <span
-                                                class="relative inline-block px-2 py-2 font-semibold text-green-800 leading-tight">
+                                                class="relative inline-block px-2 py-2 font-semibold text-green-800 leading-tight dark:text-green-300">
                                                 <span aria-hidden
-                                                    class="absolute inset-0 bg-green-200 hover:bg-green-400 hover:dark:bg-green-700 opacity-50 rounded-full"></span>
+                                                    class="absolute inset-0 bg-green-200 hover:bg-green-400 hover:dark:bg-green-700 opacity-50 rounded-full dark:bg-green-700"></span>
                                                 <svg class="size-5" xmlns="http://www.w3.org/2000/svg" fill="none"
                                                     viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -142,9 +142,9 @@
                                     <a href="{{ route('purchase-receipt.index', Crypt::Encrypt($data->id)) }}"
                                         title="@lang('messages.delete')" class="ml-2">
                                         <span
-                                            class="relative inline-block px-2 py-2 font-semibold text-red-800 leading-tight">
+                                            class="relative inline-block px-2 py-2 font-semibold text-red-800 leading-tight dark:text-red-300">
                                             <span aria-hidden
-                                                class="absolute inset-0 bg-red-200 hover:bg-red-400 hover:dark:bg-red-700 opacity-50 rounded-full"></span>
+                                                class="absolute inset-0 bg-red-200 hover:bg-red-400 hover:dark:bg-red-700 opacity-50 rounded-full dark:bg-red-700"></span>
                                             <svg class="size-5" xmlns="http://www.w3.org/2000/svg" fill="none"
                                                 viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -160,7 +160,7 @@
             </tbody>
         </table>
         <div
-            class="px-3 py-3 bg-primary-50 items-center xs:justify-between border-t border-primary-100">
+            class="px-3 py-3 bg-primary-50 items-center xs:justify-between border-t border-primary-100 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
             <div class="mt-2 xs:mt-0">
                 {{ $datas->links() }}
             </div>

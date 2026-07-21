@@ -371,7 +371,8 @@
                                             @endforeach
                                         @else
                                             <tr>
-                                                <td colspan="3" class="text-sm bg-primary-20">
+                                                <td colspan="3"
+                                                    class="text-sm bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
                                                     <div class="flex items-center justify-center p-5">
                                                         @lang('messages.datanotavailable')</div>
                                                 </td>

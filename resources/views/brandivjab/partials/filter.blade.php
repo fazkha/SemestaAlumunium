@@ -1,7 +1,7 @@
 <div class="my-2">
     <div class="flex flex-col-reverse md:flex-row gap-4 justify-between">
         <div
-            class="p-2 md:p-4 border rounded-md shadow-md bg-primary-50 border-primary-100">
+            class="p-2 md:p-4 border rounded-md shadow-md bg-primary-50 border-primary-100 dark:bg-primary-900 dark:border-primary-800">
 
             <div class="relative flex flex-row gap-2 mb-2 md:mb-4">
                 <div id="filter-loading" class="absolute top-[0%] right-[2%] z-10 hidden">
@@ -27,10 +27,10 @@
                 <div class="flex-row justify-start">
                     <div class="relative shadow-md mr-2 mb-2">
                         <span
-                            class="w-24 text-xs h-full absolute inset-y-0 left-0 flex items-center px-2 border-r border-primary-100">Per
+                            class="w-24 text-xs h-full absolute inset-y-0 left-0 flex items-center px-2 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">Per
                             @lang('messages.page')</span>
                         <select id="pp-dropdown"
-                            class="text-sm px-2 leading-tight pl-28 pr-9 py-2 appearance-none w-full h-full rounded-md border block bg-primary-20 border-primary-100 text-gray-700">
+                            class="text-sm px-2 leading-tight pl-28 pr-9 py-2 appearance-none w-full h-full rounded-md border block bg-primary-20 border-primary-100 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
                             <option
                                 {{ session('brandivjab_pp') == config('custom.list_per_page_opt_1') ? 'selected' : '' }}
                                 value="{{ config('custom.list_per_page_opt_1') }}">
@@ -51,9 +51,9 @@
 
                     <div class="relative shadow-md mr-2 mb-2">
                         <span
-                            class="w-24 text-xs h-full absolute inset-y-0 left-0 flex items-center px-2 border-r border-primary-100">@lang('messages.active')</span>
+                            class="w-24 text-xs h-full absolute inset-y-0 left-0 flex items-center px-2 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">@lang('messages.active')</span>
                         <select id="isactive-dropdown"
-                            class="text-sm px-2 leading-tight pl-28 pr-9 py-2 appearance-none w-full h-full rounded-md border block bg-primary-20 border-primary-100 text-gray-700">
+                            class="text-sm px-2 leading-tight pl-28 pr-9 py-2 appearance-none w-full h-full rounded-md border block bg-primary-20 border-primary-100 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
                             <option {{ session('brandivjab_isactive') == 'all' ? 'selected' : '' }} value="all">
                                 @lang('messages.all')</option>
                             <option {{ session('brandivjab_isactive') == '1' ? 'selected' : '' }} value="1">
@@ -70,9 +70,9 @@
                 <div class="flex-row justify-start">
                     <div class="relative shadow-md mr-2 mb-2">
                         <span
-                            class="w-24 text-xs h-full absolute inset-y-0 left-0 flex items-center px-2 border-r border-primary-100">@lang('messages.branch')</span>
+                            class="w-24 text-xs h-full absolute inset-y-0 left-0 flex items-center px-2 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">@lang('messages.branch')</span>
                         <select id="branch-dropdown"
-                            class="text-sm px-2 leading-tight pl-28 pr-9 py-2 appearance-none w-full h-full rounded-md border block bg-primary-20 border-primary-100 text-gray-700">
+                            class="text-sm px-2 leading-tight pl-28 pr-9 py-2 appearance-none w-full h-full rounded-md border block bg-primary-20 border-primary-100 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
                             <option {{ session('brandivjab_branch_id') == 'all' ? 'selected' : '' }} value="all">
                                 @lang('messages.all')</option>
                             @foreach ($branches as $id => $name)
@@ -87,9 +87,9 @@
 
                     <div class="relative shadow-md mr-2 mb-2">
                         <span
-                            class="w-24 text-xs h-full absolute inset-y-0 left-0 flex items-center px-2 border-r border-primary-100">@lang('messages.division')</span>
+                            class="w-24 text-xs h-full absolute inset-y-0 left-0 flex items-center px-2 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">@lang('messages.division')</span>
                         <select id="division-dropdown"
-                            class="text-sm px-2 leading-tight pl-28 pr-9 py-2 appearance-none w-full h-full rounded-md border block bg-primary-20 border-primary-100 text-gray-700">
+                            class="text-sm px-2 leading-tight pl-28 pr-9 py-2 appearance-none w-full h-full rounded-md border block bg-primary-20 border-primary-100 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
                             <option {{ session('brandivjab_division_id') == 'all' ? 'selected' : '' }} value="all">
                                 @lang('messages.all')</option>
                             @foreach ($divisions as $id => $name)
@@ -104,9 +104,9 @@
 
                     <div class="relative shadow-md mr-2 mb-2">
                         <span
-                            class="w-24 text-xs h-full absolute inset-y-0 left-0 flex items-center px-2 border-r border-primary-100">@lang('messages.jobposition')</span>
+                            class="w-24 text-xs h-full absolute inset-y-0 left-0 flex items-center px-2 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">@lang('messages.jobposition')</span>
                         <select id="jabatan-dropdown"
-                            class="text-sm px-2 leading-tight pl-28 pr-9 py-2 appearance-none w-full h-full rounded-md border block bg-primary-20 border-primary-100 text-gray-700">
+                            class="text-sm px-2 leading-tight pl-28 pr-9 py-2 appearance-none w-full h-full rounded-md border block bg-primary-20 border-primary-100 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
                             <option {{ session('brandivjab_jabatan_id') == 'all' ? 'selected' : '' }} value="all">
                                 @lang('messages.all')</option>
                             @foreach ($jabatans as $id => $name)

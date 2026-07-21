@@ -4,40 +4,40 @@
 
 <div class="w-full overflow-x-auto">
     <div
-        class="inline-block min-w-full shadow-md overflow-hidden rounded-md border border-solid border-primary-100">
+        class="inline-block min-w-full shadow-md overflow-hidden rounded-md border border-solid border-primary-100 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
         <table class="min-w-full leading-normal">
             <thead>
                 <tr>
                     <th
-                        class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50">
+                        class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 bg-primary-50 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
                         #
                     </th>
                     <th
-                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50">
+                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 bg-primary-50 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
                         @lang('messages.branch')
                     </th>
                     <th
-                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50">
+                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 bg-primary-50 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
                         @lang('messages.employee')
                     </th>
                     <th
-                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50">
+                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 bg-primary-50 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
                         @lang('messages.date')
                     </th>
                     <th
-                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50">
+                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 bg-primary-50 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
                         @lang('messages.type')
                     </th>
                     <th
-                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50">
+                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 bg-primary-50 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
                         @lang('messages.description')
                     </th>
                     <th
-                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50">
+                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 bg-primary-50 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
                         @lang('messages.status')
                     </th>
                     <th
-                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50">
+                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 bg-primary-50 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
                         &nbsp;
                     </th>
                 </tr>
@@ -45,7 +45,8 @@
             <tbody>
                 @if ($datas->count() == 0)
                     <tr>
-                        <td colspan="7" class="text-sm bg-primary-20">
+                        <td colspan="7"
+                            class="text-sm bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
                             <div class="flex items-center justify-center p-5">@lang('messages.datanotavailable')</div>
                         </td>
                     </tr>
@@ -54,47 +55,48 @@
                 @foreach ($datas as $data)
                     <tr>
                         <td
-                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
-                            <p class="text-center text-gray-900 whitespace-no-wrap">{{ ++$i }}
+                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
+                            <p class="text-center text-gray-900 whitespace-no-wrap dark:text-gray-300">
+                                {{ ++$i }}
                             </p>
                         </td>
                         <td
-                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
-                            <span class="text-gray-900">{{ $data->branch_nama }}</span>
+                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
+                            <span class="text-gray-900 dark:text-gray-300">{{ $data->branch_nama }}</span>
                         </td>
                         <td
-                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
-                            <span class="text-gray-900">{{ $data->user_nama }}</span>
+                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
+                            <span class="text-gray-900 dark:text-gray-300">{{ $data->user_nama }}</span>
                         </td>
                         <td
-                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
+                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
                             <span
-                                class="text-gray-900">{{ \Carbon\Carbon::parse($data->tanggal)->translatedFormat('l, d F Y') }}</span>
+                                class="text-gray-900 dark:text-gray-300">{{ \Carbon\Carbon::parse($data->tanggal)->translatedFormat('l, d F Y') }}</span>
                         </td>
                         <td
-                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
+                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
                             <span
-                                class="text-gray-900">{{ $data->jenis_ubah == 1 ? 'Tambah Hari' : 'Ganti Hari' }}</span>
+                                class="text-gray-900 dark:text-gray-300">{{ $data->jenis_ubah == 1 ? 'Tambah Hari' : 'Ganti Hari' }}</span>
                         </td>
                         <td
-                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
-                            <span class="text-gray-900">{{ $data->keterangan }}</span>
+                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
+                            <span class="text-gray-900 dark:text-gray-300">{{ $data->keterangan }}</span>
                         </td>
                         <td
-                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
+                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
                             <span
                                 class="{{ $data->approved_hrd == 1 ? 'text-green-600' : ($data->approved_hrd == 2 ? 'text-red-600' : 'text-gray-900') }}">{{ $data->approved_hrd == 1 ? '✔️' . __('messages.approved') : ($data->approved_hrd == 2 ? '❌' . __('messages.notapproved') : '⏳' . __('messages.pending')) }}</span>
                         </td>
-                        <td class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20"
+                        <td class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300"
                             style="vertical-align: middle;">
                             <div class="flex items-center justify-center">
                                 @can('mitraubah-edit')
                                     <a href="{{ route('mitraubah.edit', Crypt::Encrypt($data->id)) }}"
                                         title="{{ __('messages.edit') }}" class="ml-2">
                                         <span
-                                            class="relative inline-block px-2 py-2 font-semibold text-green-800 leading-tight">
+                                            class="relative inline-block px-2 py-2 font-semibold text-green-800 leading-tight dark:text-green-300">
                                             <span aria-hidden
-                                                class="absolute inset-0 bg-green-200 hover:bg-green-400 hover:dark:bg-green-700 opacity-50 rounded-full"></span>
+                                                class="absolute inset-0 bg-green-200 hover:bg-green-400 hover:dark:bg-green-700 opacity-50 rounded-full dark:bg-green-700"></span>
                                             <svg class="size-5" xmlns="http://www.w3.org/2000/svg" fill="none"
                                                 viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -110,7 +112,7 @@
             </tbody>
         </table>
         <div
-            class="px-3 py-3 bg-primary-50 items-center xs:justify-between border-t border-primary-100">
+            class="px-3 py-3 bg-primary-50 items-center xs:justify-between border-t border-primary-100 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
             <div class="mt-2 xs:mt-0">
                 {{ $datas->links() }}
             </div>

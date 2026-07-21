@@ -4,7 +4,7 @@
 
 <div class="w-full overflow-x-auto">
     <div
-        class="inline-block min-w-full shadow-md overflow-hidden rounded-md border border-solid border-primary-100">
+        class="inline-block min-w-full shadow-md overflow-hidden rounded-md border border-solid border-primary-100 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
         <table class="min-w-full leading-normal">
             <thead>
                 <tr>
@@ -33,7 +33,8 @@
             <tbody>
                 @if ($users->count() == 0)
                     <tr>
-                        <td colspan="5" class="text-sm bg-primary-20">
+                        <td colspan="5"
+                            class="text-sm bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
                             <div class="flex items-center justify-center p-5">@lang('messages.datanotavailable')</div>
                         </td>
                     </tr>
@@ -42,20 +43,21 @@
                 @foreach ($users as $user)
                     <tr>
                         <td
-                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
-                            <p class="text-center text-gray-900 whitespace-no-wrap">{{ ++$i }}
+                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
+                            <p class="text-center text-gray-900 whitespace-no-wrap dark:text-gray-300">
+                                {{ ++$i }}
                             </p>
                         </td>
                         <td
-                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
-                            <span class="text-gray-900">{{ $user->name }}</span>
+                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
+                            <span class="text-gray-900 dark:text-gray-300">{{ $user->name }}</span>
                         </td>
                         <td
-                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
-                            <span class="text-gray-900">{{ $user->email }}</span>
+                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
+                            <span class="text-gray-900 dark:text-gray-300">{{ $user->email }}</span>
                         </td>
                         <td
-                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
+                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
                             <div class="flex flex-col flex-wrap lg:flex-row gap-2 text-gray-900">
                                 @foreach ($user->getRoleNames() as $role)
                                     <div
@@ -66,15 +68,15 @@
                             </div>
                         </td>
                         <td
-                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
+                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
                             <div class="flex flex-row items-center justify-center">
                                 @can('user-show')
                                     <a href="{{ route('users.show', Crypt::Encrypt($user->id)) }}"
                                         title="{{ __('messages.view') }}">
                                         <span
-                                            class="relative inline-block px-2 py-2 font-semibold text-blue-800 leading-tight">
+                                            class="relative inline-block px-2 py-2 font-semibold text-blue-800 leading-tight dark:text-blue-300">
                                             <span aria-hidden
-                                                class="absolute inset-0 bg-blue-200 hover:bg-blue-400 hover:dark:bg-blue-700 opacity-50 rounded-full"></span>
+                                                class="absolute inset-0 bg-blue-200 hover:bg-blue-400 hover:dark:bg-blue-700 opacity-50 rounded-full dark:bg-blue-700"></span>
                                             <svg class="size-5" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
                                                 fill="currentColor">
                                                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -88,9 +90,9 @@
                                     <a href="{{ route('users.edit', Crypt::Encrypt($user->id)) }}"
                                         title="{{ __('messages.edit') }}" class="ml-2">
                                         <span
-                                            class="relative inline-block px-2 py-2 font-semibold text-green-800 leading-tight">
+                                            class="relative inline-block px-2 py-2 font-semibold text-green-800 leading-tight dark:text-green-300">
                                             <span aria-hidden
-                                                class="absolute inset-0 bg-green-200 hover:bg-green-400 hover:dark:bg-green-700 opacity-50 rounded-full"></span>
+                                                class="absolute inset-0 bg-green-200 hover:bg-green-400 hover:dark:bg-green-700 opacity-50 rounded-full dark:bg-green-700"></span>
                                             <svg class="size-5" xmlns="http://www.w3.org/2000/svg" fill="none"
                                                 viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -104,9 +106,9 @@
                                     <a href="{{ route('users.delete', Crypt::Encrypt($user->id)) }}"
                                         title="{{ __('messages.delete') }}" class="ml-2">
                                         <span
-                                            class="relative inline-block px-2 py-2 font-semibold text-red-800 leading-tight">
+                                            class="relative inline-block px-2 py-2 font-semibold text-red-800 leading-tight dark:text-red-300">
                                             <span aria-hidden
-                                                class="absolute inset-0 bg-red-200 hover:bg-red-400 hover:dark:bg-red-700 opacity-50 rounded-full"></span>
+                                                class="absolute inset-0 bg-red-200 hover:bg-red-400 hover:dark:bg-red-700 opacity-50 rounded-full dark:bg-red-700"></span>
                                             <svg class="size-5" xmlns="http://www.w3.org/2000/svg" fill="none"
                                                 viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -122,7 +124,7 @@
             </tbody>
         </table>
         <div
-            class="px-3 py-3 bg-primary-50 items-center xs:justify-between border-t border-primary-100">
+            class="px-3 py-3 bg-primary-50 items-center xs:justify-between border-t border-primary-100 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
             <div class="mt-2 xs:mt-0">
                 {{ $users->links() }}
             </div>
