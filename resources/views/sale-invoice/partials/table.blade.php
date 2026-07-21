@@ -8,38 +8,38 @@
                 <thead>
                     <tr>
                         <th
-                            class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 bg-primary-50 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
+                            class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
                             <div>
                                 <input type="checkbox" id="isprintall" name="isprintall" tabindex="0"
                                     class="dark:border-white-400/20 transition-all duration-500 ease-in-out w-5 h-5 rounded-lg shadow-md">
                             </div>
                         </th>
                         <th
-                            class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 bg-primary-50 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
+                            class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
                             @lang('messages.ordernumber')
                         </th>
                         <th
-                            class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 bg-primary-50 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
+                            class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
                             @lang('calendar.date')
                         </th>
                         <th
-                            class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 bg-primary-50 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
+                            class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
                             @lang('messages.customer')
                         </th>
                         <th
-                            class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 bg-primary-50 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
+                            class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
                             @lang('messages.totalprice') (@lang('messages.currencysymbol'))
                         </th>
                         <th
-                            class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 bg-primary-50 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
+                            class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
                             @lang('messages.payment')
                         </th>
                         <th
-                            class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 bg-primary-50 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
+                            class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
                             @lang('messages.active')
                         </th>
                         <th
-                            class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 bg-primary-50 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
+                            class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
                             <div class="flex items-center justify-center">
                                 <svg fill="currentColor" class="w-5 h-5" viewBox="0 0 256 256" id="Flat"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -49,7 +49,7 @@
                             </div>
                         </th>
                         <th
-                            class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 bg-primary-50 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
+                            class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
                             <div class="flex items-center justify-center">
                                 <svg fill="currentColor" class="w-5 h-5" viewBox="0 0 256 256" id="Flat"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -59,7 +59,7 @@
                             </div>
                         </th>
                         <th
-                            class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 bg-primary-50 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
+                            class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
                             &nbsp;
                         </th>
                     </tr>
@@ -155,7 +155,7 @@
                 </tbody>
             </table>
             <div
-                class="px-3 py-3 bg-primary-50 items-center xs:justify-between border-t border-primary-100 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
+                class="px-3 py-3 bg-primary-50 items-center xs:justify-between border-t border-primary-100 dark:text-white dark:bg-primary-800 dark:border-primary-800">
                 <div class="mt-2 xs:mt-0">
                     {{ $datas->links() }}
                 </div>
