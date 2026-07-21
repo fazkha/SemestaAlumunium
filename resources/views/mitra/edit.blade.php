@@ -4,7 +4,7 @@
 @section('title', __('messages.partner'))
 
 <x-app-layout>
-    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6">
+    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 dark:border-primary-800 lg:py-6">
         <h1 class="text-xl flex items-center justify-center">
             <a href="{{ route('mitra.index') }}" class="flex items-center justify-center">
                 <svg fill="currentColor" class="size-7" viewBox="0 0 32 32" version="1.1"
@@ -38,7 +38,7 @@
                     @method('PUT')
 
                     <div
-                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
+                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
                         <div class="p-4 space-y-2">
 
                             <div class="flex flex-col lg:flex-row">
@@ -143,8 +143,7 @@
                                     </div>
 
                                     <div class="w-auto pb-4">
-                                        <span
-                                            class="block mb-2 font-medium text-primary-600">@lang('messages.gender')</span>
+                                        <span class="block mb-2 font-medium text-primary-600">@lang('messages.gender')</span>
                                         <x-text-span>
                                             <div class="flex flex-row gap-6">
                                                 <label class="relative flex items-center cursor-pointer">
@@ -331,8 +330,7 @@
                                     <div class="image-set">
                                         <div class="flex flex-row flex-wrap gap-4 md:gap-6 text-center justify-center">
                                             <div class="w-1/3 md:w-1/4 lg:w-1/6">
-                                                <span
-                                                    class="block mb-2 font-medium text-primary-600">
+                                                <span class="block mb-2 font-medium text-primary-600">
                                                     <span>@lang('messages.picture')-1</span>
                                                     <a data-title="{{ __('messages.picture') }}-1"
                                                         href="{{ $datas->gambar_1_nama ? asset($datas->gambar_1_lokasi . '/' . $datas->gambar_1_nama) : url('/images/0cd6be830e32f80192d496e50cfa9dbc.jpg') }}">
@@ -348,8 +346,7 @@
                                             </div>
 
                                             <div class="w-1/3 md:w-1/4 lg:w-1/6">
-                                                <span
-                                                    class="block mb-2 font-medium text-primary-600">
+                                                <span class="block mb-2 font-medium text-primary-600">
                                                     <span>@lang('messages.picture')-2</span>
                                                     <a data-title="{{ __('messages.picture') }}-2"
                                                         href="{{ $datas->gambar_2_nama ? asset($datas->gambar_2_lokasi . '/' . $datas->gambar_2_nama) : url('/images/0cd6be830e32f80192d496e50cfa9dbc.jpg') }}">
@@ -365,8 +362,7 @@
                                             </div>
 
                                             <div class="w-1/3 md:w-1/4 lg:w-1/6">
-                                                <span
-                                                    class="block mb-2 font-medium text-primary-600">
+                                                <span class="block mb-2 font-medium text-primary-600">
                                                     <span>@lang('messages.picture')-3</span>
                                                     <a data-title="{{ __('messages.picture') }}-3"
                                                         href="{{ $datas->gambar_3_nama ? asset($datas->gambar_3_lokasi . '/' . $datas->gambar_3_nama) : url('/images/0cd6be830e32f80192d496e50cfa9dbc.jpg') }}">
@@ -382,8 +378,7 @@
                                             </div>
 
                                             <div class="w-1/3 md:w-1/4 lg:w-1/6">
-                                                <span
-                                                    class="block mb-2 font-medium text-primary-600">
+                                                <span class="block mb-2 font-medium text-primary-600">
                                                     <span>@lang('messages.picture')-4</span>
                                                     <a data-title="{{ __('messages.picture') }}-4"
                                                         href="{{ $datas->gambar_4_nama ? asset($datas->gambar_4_lokasi . '/' . $datas->gambar_4_nama) : url('/images/0cd6be830e32f80192d496e50cfa9dbc.jpg') }}">
@@ -399,8 +394,7 @@
                                             </div>
 
                                             <div class="w-1/3 md:w-1/4 lg:w-1/6">
-                                                <span
-                                                    class="block mb-2 font-medium text-primary-600">
+                                                <span class="block mb-2 font-medium text-primary-600">
                                                     <span>@lang('messages.picture')-5</span>
                                                     <a data-title="{{ __('messages.picture') }}-5"
                                                         href="{{ $datas->gambar_5_nama ? asset($datas->gambar_5_lokasi . '/' . $datas->gambar_5_nama) : url('/images/0cd6be830e32f80192d496e50cfa9dbc.jpg') }}">
@@ -464,7 +458,7 @@
 
                         {{-- Jabatan --}}
                         <div
-                            class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100">
+                            class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100 dark:bg-primary-900 dark:border-primary-800">
                             <div class="p-4 space-y-2">
                                 <div class="flex flex-row items-center gap-2">
                                     <svg fill="currentColor" class="size-5" viewBox="0 0 24 24"
@@ -478,7 +472,7 @@
                                 </div>
 
                                 <div
-                                    class="border rounded-md border-primary-100 bg-primary-100">
+                                    class="border rounded-md border-primary-100 bg-primary-100 dark:bg-primary-900 dark:border-primary-800">
                                     <div class="p-2 overflow-scroll md:overflow-auto lg:overflow-hidden">
                                         <table id="jabatan_table" class="w-full border-separate border-spacing-2">
                                             <thead>
@@ -505,7 +499,7 @@
                                                             value="{{ $datas->id }}" />
                                                         <select name="brandivjab_id" id="brandivjab_id"
                                                             tabindex="25" required
-                                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
+                                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
                                                             <option value="">@lang('messages.choose')...
                                                             </option>
                                                             @foreach ($brandivjabs as $brandivjab)
@@ -529,7 +523,7 @@
                                                     <td>
                                                         <select name="gerobak_id" id="gerobak_id" tabindex="28"
                                                             required
-                                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
+                                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
                                                             <option value="">@lang('messages.choose')...
                                                             </option>
                                                             @foreach ($gerobaks as $gerobak)
@@ -539,13 +533,13 @@
                                                                 </option>
                                                             @endforeach
                                                         </select>
-    
+
                                                         <x-input-error class="mt-2" :messages="$errors->get('gerobak_id')" />
                                                     </td>
                                                     <td class="text-center">
                                                         <div class="w-auto">
                                                             <select name="isactive" id="isactive" tabindex="29"
-                                                                class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
+                                                                class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
                                                                 <option value="1" selected>@lang('messages.active')
                                                                 </option>
                                                                 <option value="2">@lang('messages.relocate')</option>

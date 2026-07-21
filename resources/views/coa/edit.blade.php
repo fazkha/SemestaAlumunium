@@ -4,7 +4,7 @@
 @section('title', __('messages.chartofaccount'))
 
 <x-app-layout>
-    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6">
+    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 dark:border-primary-800 lg:py-6">
         <h1 class="text-xl flex items-center justify-center">
             <a href="{{ route('coa.index') }}" class="flex items-center justify-center">
                 <svg class="w-7 h-7" viewBox="0 0 1024 1024" fill="currentColor" class="icon" version="1.1"
@@ -44,7 +44,7 @@
                         </div>
 
                         <div
-                            class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100">
+                            class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100 dark:bg-primary-900 dark:border-primary-800">
                             <div class="p-4 space-y-2">
 
                                 <div class="flex flex-col
@@ -88,7 +88,7 @@
                                                 class="block mb-2 font-medium text-primary-600">Educational
                                                 Level</label>
                                             <select name="educationlevel_id" id="educationlevel_id"
-                                                class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
+                                                class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
                                                 <option value="">Choose level...</option>
                                                 @foreach ($educlvl as $id => $name)
                                                     <option value="{{ $id }}"
@@ -163,17 +163,16 @@
                             </div>
 
                             <div
-                                class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100">
+                                class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100 dark:bg-primary-900 dark:border-primary-800">
                                 <div class="p-4 space-y-2">
                                     <div
                                         class="flex flex-row
                                 items-center justify-between">
-                                        <span
-                                            class="block font-medium text-primary-600">Question(s)</span>
+                                        <span class="block font-medium text-primary-600">Question(s)</span>
                                     </div>
 
                                     <div
-                                        class="border rounded-md border-primary-100 bg-primary-100">
+                                        class="border rounded-md border-primary-100 bg-primary-100 dark:bg-primary-900 dark:border-primary-800">
                                         <div id="table-question-container" class="p-0 lg:p-4">
                                             @include('coa.partials.table-question', $questions)
                                         </div>
@@ -198,8 +197,8 @@
                         <span>Choices</span>
                     </h4>
                     <button @click="openModal = false; fetchquestion(questionId, questionIndex);" class="ml-4">
-                        <svg class="w-5 h-5 text-gray-900" viewBox="0 0 24 24"
-                            fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="w-5 h-5 text-gray-900" viewBox="0 0 24 24" fill="currentColor"
+                            xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M5.293 5.293a1 1 0 0 1 1.414 0L12 10.586l5.293-5.293a1 1 0 1 1 1.414 1.414L13.414 12l5.293 5.293a1 1 0 0 1-1.414 1.414L12 13.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L10.586 12 5.293 6.707a1 1 0 0 1 0-1.414z"
                                 fill="currentColor" />
@@ -223,8 +222,7 @@
                 <div id="panels" class="relative overflow-auto flex flex-col-reverse lg:flex-row gap-4">
                     <div id="left-panel"
                         class="relative min-w-96 w-96 p-2 rounded-lg border border-primary-500 bg-primary-50">
-                        <div
-                            class="h-full overflow-auto flex flex-col rounded-lg border border-primary-500 bg-white">
+                        <div class="h-full overflow-auto flex flex-col rounded-lg border border-primary-500 bg-white">
                             <div id="pertanyaan" x-html="modalTitle" class="px-6 py-4 text-sm"></div>
                             <div id="gambar" class="px-6 py-4 relative">
                                 <form id="form-gambar" enctype="multipart/form-data">
@@ -238,10 +236,9 @@
                                 </form>
                                 <div class="absolute top-6 right-2 flex flex-col gap-1">
                                     <button id="triggerBtn"
-                                        class="p-2 rounded-full border border-primary-500 bg-blue-400"
-                                        title="Assign">
-                                        <svg class="size-4 text-white bg-blue-400"
-                                            viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        class="p-2 rounded-full border border-primary-500 bg-blue-400" title="Assign">
+                                        <svg class="size-4 text-white bg-blue-400" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
                                             <path d="M15.5 10a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"
                                                 fill="currentColor" />
                                             <path
@@ -250,11 +247,10 @@
                                         </svg>
                                     </button>
                                     <button @click="pasangGambar(questionId, 'hapus');" id="removeBtn"
-                                        class="p-2 rounded-full border border-primary-500 bg-red-400"
-                                        title="Remove">
-                                        <svg class="size-4 text-white bg-red-400"
-                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            stroke-width="1.5" stroke="currentColor">
+                                        class="p-2 rounded-full border border-primary-500 bg-red-400" title="Remove">
+                                        <svg class="size-4 text-white bg-red-400" xmlns="http://www.w3.org/2000/svg"
+                                            fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                            stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                 d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
                                         </svg>
@@ -276,8 +272,7 @@
                         </div>
 
                         <div id="table-choice-container" class="relative overflow-auto">
-                            <div
-                                class="border border-primary-500 bg-primary-50">
+                            <div class="border border-primary-500 bg-primary-50">
                                 <div class="flex items-center justify-center">
                                     <form id="choice-form" class="w-full p-2">
                                         @csrf

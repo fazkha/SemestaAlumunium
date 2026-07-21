@@ -1,7 +1,7 @@
 @section('title', __('messages.chartofaccount'))
 
 <x-app-layout>
-    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6">
+    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 dark:border-primary-800 lg:py-6">
         <h1 class="text-xl flex items-center justify-center">
             <a href="{{ route('coa.index') }}" class="flex items-center justify-center">
                 <svg class="w-7 h-7" viewBox="0 0 1024 1024" fill="currentColor" class="icon" version="1.1"

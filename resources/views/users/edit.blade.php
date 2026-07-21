@@ -9,7 +9,7 @@
 @section('title', __('messages.user'))
 
 <x-app-layout>
-    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6">
+    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 dark:border-primary-800 lg:py-6">
         <h1 class="text-xl flex items-center justify-center">
             <a href="{{ route('users.index') }}" class="flex items-center justify-center">
                 <svg fill="currentColor" class="w-7 h-7" viewBox="-2 -1.5 24 24" xmlns="http://www.w3.org/2000/svg"
@@ -35,7 +35,8 @@
                     @include('users.partials.feedback')
                 </div>
 
-                <div class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
+                <div
+                    class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
                     <div class="p-6 space-y-2 md:space-y-2 sm:p-8">
                         <form action="{{ route('users.update', Crypt::Encrypt($datas->id)) }}"
                             class="space-y-4 md:space-y-6" method="POST" enctype="multipart/form-data">
@@ -90,7 +91,7 @@
                                         <label for="branch_id"
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.branch')</label>
                                         <select name="branch_id" id="branch_id" tabindex="4" required
-                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
+                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
                                             <option value="">@lang('messages.choose')...</option>
                                             @foreach ($branches as $id => $name)
                                                 <option value="{{ $id }}"

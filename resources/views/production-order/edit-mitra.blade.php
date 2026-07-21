@@ -4,7 +4,7 @@
 @section('title', __('messages.production'))
 
 <x-app-layout>
-    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6">
+    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 dark:border-primary-800 lg:py-6">
         <h1 class="text-xl flex items-center justify-center">
             <a href="{{ route('production-order.index') }}" class="flex items-center justify-center">
                 <svg class="size-7" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" version="1.1">
@@ -51,7 +51,7 @@
 
                     {{-- Master --}}
                     <div
-                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
+                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
                         <div class="p-4 space-y-2">
 
                             <div class="flex flex-col lg:flex-row">
@@ -118,7 +118,7 @@
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.officer')
                                             1</label>
                                         <select name="petugas_1_id" id="petugas_1_id" tabindex="5"
-                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
+                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
                                             <option value="">@lang('messages.choose')...</option>
                                             @foreach ($petugas as $id => $name)
                                                 <option value="{{ $id }}"
@@ -135,7 +135,7 @@
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.officer')
                                             2</label>
                                         <select name="petugas_2_id" id="petugas_2_id" tabindex="6"
-                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
+                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
                                             <option value="">@lang('messages.choose')...</option>
                                             @foreach ($petugas as $id => $name)
                                                 <option value="{{ $id }}"
@@ -151,7 +151,7 @@
                                         <label for="tanggungjawab_id"
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.supervisor')</label>
                                         <select name="tanggungjawab_id" id="tanggungjawab_id" tabindex="7"
-                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
+                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
                                             <option value="">@lang('messages.choose')...</option>
                                             @foreach ($petugas2 as $id => $name)
                                                 <option value="{{ $id }}"
@@ -206,7 +206,7 @@
                 <div class="flex flex-col items-center gap-4">
 
                     <div
-                        class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100">
+                        class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100 dark:bg-primary-900 dark:border-primary-800">
                         <div class="p-4 space-y-2">
                             <div class="flex flex-row items-center gap-2">
                                 <svg class="size-5" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
@@ -241,7 +241,7 @@
                     </div>
 
                     <div
-                        class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100">
+                        class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100 dark:bg-primary-900 dark:border-primary-800">
                         <div class="p-4 space-y-2">
                             <div class="flex flex-row items-center gap-2">
                                 <svg class="size-5" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
@@ -275,7 +275,7 @@
 
                         {{-- Detail --}}
                         <div
-                            class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100">
+                            class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100 dark:bg-primary-900 dark:border-primary-800">
                             <div class="p-4 space-y-2">
                                 <div class="flex flex-row items-center gap-2">
                                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 48 48"
@@ -302,7 +302,7 @@
 
                                 @if (count($details) > 0)
                                     <div
-                                        class="border rounded-md border-primary-100 bg-primary-100">
+                                        class="border rounded-md border-primary-100 bg-primary-100 dark:bg-primary-900 dark:border-primary-800">
                                         <div class="p-2 overflow-scroll md:overflow-auto lg:overflow-hidden">
                                             <table id="order_table" class="w-full border-separate border-spacing-2">
                                                 <thead>

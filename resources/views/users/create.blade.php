@@ -1,7 +1,7 @@
 @section('title', __('messages.user'))
 
 <x-app-layout>
-    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6">
+    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 dark:border-primary-800 lg:py-6">
         <h1 class="text-xl flex items-center justify-center">
             <a href="{{ route('users.index') }}" class="flex items-center justify-center">
                 <svg fill="currentColor" class="w-7 h-7" viewBox="-2 -1.5 24 24" xmlns="http://www.w3.org/2000/svg"
@@ -28,7 +28,7 @@
                 </div>
 
                 <div
-                    class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
+                    class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
                     <div class="p-6 space-y-2 md:space-y-2 sm:p-8">
                         <form action="{{ route('users.store') }}" class="space-y-4 md:space-y-6" method="POST"
                             enctype="multipart/form-data">
@@ -55,8 +55,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="password"
-                                    class="block mb-2 font-medium text-primary-600">Password</label>
+                                <label for="password" class="block mb-2 font-medium text-primary-600">Password</label>
                                 <x-text-input type="password" name="password" id="password"
                                     placeholder="{{ __('messages.enter') }} Password" required
                                     value="{{ old('password') }}" />
@@ -65,8 +64,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="roles"
-                                    class="block mb-2 font-medium text-primary-600">@lang('messages.choose')
+                                <label for="roles" class="block mb-2 font-medium text-primary-600">@lang('messages.choose')
                                     @lang('messages.role')</label>
                                 <x-text-span>
                                     @foreach ($roles as $role)

@@ -1,7 +1,7 @@
 @section('title', __('messages.goods'))
 
 <x-app-layout>
-    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6">
+    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 dark:border-primary-800 lg:py-6">
         <h1 class="text-xl flex items-center justify-center">
             <a href="{{ route('goods.index') }}" class="flex items-center justify-center">
                 <svg fill="currentColor" class="w-7 h-7" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg">
@@ -28,7 +28,7 @@
                 </div>
 
                 <div
-                    class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
+                    class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
                     <div class="p-4 space-y-2">
 
                         <div class="flex flex-col lg:flex-row">

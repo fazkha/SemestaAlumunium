@@ -1,7 +1,7 @@
 @section('title', __('messages.division'))
 
 <x-app-layout>
-    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6">
+    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 dark:border-primary-800 lg:py-6">
         <h1 class="text-xl flex items-center justify-center">
             <a href="{{ route('division.index') }}" class="flex items-center justify-center">
                 <svg fill="currentColor" class="size-7" version="1.1" xmlns="http://www.w3.org/2000/svg"

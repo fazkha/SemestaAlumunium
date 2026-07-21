@@ -1,7 +1,7 @@
 @section('title', __('messages.delivery'))
 
 <x-app-layout>
-    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6">
+    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 dark:border-primary-800 lg:py-6">
         <h1 class="text-xl flex items-center justify-center">
             <a href="{{ route('delivery-order.index') }}" class="flex items-center justify-center">
                 <svg class="size-7" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -36,7 +36,7 @@
 
                 {{-- Master --}}
                 <div
-                    class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
+                    class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
                     <div class="p-4 space-y-2">
 
                         <div class="flex flex-col lg:flex-row">
@@ -122,7 +122,7 @@
             <div class="w-full">
                 <div class="flex flex-col items-center">
                     <div
-                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
+                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
                         <div class="p-4 space-y-2">
                             <div class="flex flex-row items-center gap-2">
                                 <svg class="size-5" viewBox="0 0 16 16" version="1.1"
@@ -143,8 +143,7 @@
                                     @endphp
                                     <div
                                         class="flex flex-row items-center justify-start shadow rounded-md border border-solid border-primary-100">
-                                        <div
-                                            class="px-4 py-2 border border-primary-100 bg-primary-20">
+                                        <div class="px-4 py-2 border border-primary-100 bg-primary-20">
                                             <span class="text-sm font-bold">{{ $name }}</span>
                                         </div>
                                         <div class="px-4 py-2 flex flex-col gap-2">
@@ -168,7 +167,7 @@
 
                     {{-- Detail --}}
                     <div
-                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
+                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
                         <div class="p-4 space-y-2">
                             <div class="flex flex-row items-center gap-2">
                                 <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5"
@@ -192,7 +191,7 @@
                             </div>
 
                             <div
-                                class="border rounded-md border-primary-100 bg-primary-100">
+                                class="border rounded-md border-primary-100 bg-primary-100 dark:bg-primary-900 dark:border-primary-800">
                                 <div class="p-2 overflow-scroll md:overflow-auto lg:overflow-hidden">
                                     <table id="order_table" class="w-full border-separate border-spacing-2">
                                         <thead>
@@ -248,7 +247,7 @@
                 <div class="flex flex-col items-center">
 
                     <div
-                        class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100">
+                        class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100 dark:bg-primary-900 dark:border-primary-800">
                         <div class="p-4 space-y-2">
                             <div class="flex flex-row items-center gap-2">
                                 <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none"
@@ -276,7 +275,7 @@
                             </div>
 
                             <div
-                                class="border rounded-md border-primary-100 bg-primary-100">
+                                class="border rounded-md border-primary-100 bg-primary-100 dark:bg-primary-900 dark:border-primary-800">
                                 <div class="p-2 overflow-scroll md:overflow-auto lg:overflow-hidden">
                                     <table id="order_table" class="w-full border-separate border-spacing-2">
                                         <thead>
@@ -336,7 +335,7 @@
                 <div class="flex flex-col items-center">
 
                     <div
-                        class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100">
+                        class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100 dark:bg-primary-900 dark:border-primary-800">
                         <div class="p-4 space-y-2">
                             <div class="flex flex-row items-center gap-2">
                                 <svg class="size-5" viewBox="0 0 16 16" version="1.1"

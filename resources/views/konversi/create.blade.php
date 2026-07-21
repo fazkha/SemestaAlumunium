@@ -1,7 +1,7 @@
 @section('title', __('messages.conversion'))
 
 <x-app-layout>
-    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6">
+    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 dark:border-primary-800 lg:py-6">
         <h1 class="text-xl flex items-center justify-center">
             <a href="{{ route('conversions.index') }}" class="flex items-center justify-center">
                 <svg class="size-7" viewBox="0 0 17 17" version="1.1" xmlns="http://www.w3.org/2000/svg"
@@ -33,7 +33,7 @@
                     </div>
 
                     <div
-                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
+                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
                         <div class="p-4 space-y-2">
 
                             <div class="flex flex-col lg:flex-row">
@@ -43,7 +43,7 @@
                                         <label for="satuan_id"
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.usedunit')</label>
                                         <select name="satuan_id" id="satuan_id" tabindex="1" required autofocus
-                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
+                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
                                             <option value="">@lang('messages.choose')...</option>
                                             @foreach ($satuans as $id => $name)
                                                 <option value="{{ $id }}"
@@ -59,7 +59,7 @@
                                         <label for="satuan2_id"
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.desiredunit')</label>
                                         <select name="satuan2_id" id="satuan2_id" tabindex="2" required
-                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
+                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
                                             <option value="">@lang('messages.choose')...</option>
                                             @foreach ($satuans as $id => $name)
                                                 <option value="{{ $id }}"
@@ -77,7 +77,7 @@
                                         <label for="operator"
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.operator')</label>
                                         <select name="operator" id="operator" tabindex="3" required
-                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
+                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
                                             <option value="">@lang('messages.choose')...</option>
                                             <option value="{{ config('custom.nilai_tambah') }}"
                                                 {{ old('operator') == config('custom.nilai_tambah') ? 'selected' : '' }}>

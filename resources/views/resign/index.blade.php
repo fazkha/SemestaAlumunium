@@ -1,7 +1,7 @@
 @section('title', __('messages.resign'))
 
 <x-app-layout>
-    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6">
+    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 dark:border-primary-800 lg:py-6">
         <h1 class="text-xl flex items-center justify-center">
             <a href="{{ route('resign.index') }}" class="flex items-center justify-center">
                 <svg fill="currentColor" class="size-5" viewBox="0 0 24 24" id="sign-out-double-arrow-left"

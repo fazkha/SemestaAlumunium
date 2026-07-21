@@ -6,7 +6,7 @@
 @section('title', __('messages.delivery'))
 
 <x-app-layout>
-    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6">
+    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 dark:border-primary-800 lg:py-6">
         <h1 class="text-xl flex items-center justify-center">
             <a href="{{ route('delivery-order.index') }}" class="flex items-center justify-center">
                 <svg class="size-7" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -46,7 +46,7 @@
 
                     {{-- Master --}}
                     <div
-                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
+                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
                         <div class="p-4 space-y-2">
 
                             <div class="flex flex-col lg:flex-row">
@@ -171,7 +171,7 @@
 
                         {{-- Package --}}
                         <div
-                            class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
+                            class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
                             <div class="p-4 space-y-2">
                                 <div class="flex flex-row items-center gap-2">
                                     <svg class="size-5" version="1.1" id="Capa_1"
@@ -187,7 +187,7 @@
                                 </div>
 
                                 <div
-                                    class="border rounded-md border-primary-100 bg-primary-100">
+                                    class="border rounded-md border-primary-100 bg-primary-100 dark:bg-primary-900 dark:border-primary-800">
                                     <div class="p-2 overflow-scroll md:overflow-auto lg:overflow-hidden">
                                         <table id="order_table" class="w-full border-separate border-spacing-2">
                                             <thead>
@@ -215,7 +215,7 @@
                                                             name="delivery_officer_id" value="{{ $datas->id }}" />
                                                         <select id="barang_id" name="barang_id" required
                                                             tabindex="9"
-                                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
+                                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
                                                             <option value="">@lang('messages.choose')...</option>
                                                             @foreach ($barangs as $id => $name)
                                                                 <option value="{{ $id }}">
@@ -230,7 +230,7 @@
                                                     <td class="align-top">
                                                         <select id="satuan_id" name="satuan_id" required
                                                             tabindex="11" disabled
-                                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
+                                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
                                                             <option value="">@lang('messages.choose')...</option>
                                                             @foreach ($satuans as $id => $name)
                                                                 <option value="{{ $id }}">
@@ -302,7 +302,7 @@
 
                     {{-- Delivery Items --}}
                     <div
-                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
+                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
                         <div class="p-4 space-y-2">
                             <div class="flex flex-row items-center gap-2">
                                 <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5"
@@ -325,8 +325,7 @@
                                 </span>
                             </div>
 
-                            <div
-                                class="border rounded-md shadow-md border-primary-100 bg-primary-20">
+                            <div class="border rounded-md shadow-md border-primary-100 bg-primary-20">
                                 <div class="p-2 overflow-scroll md:overflow-auto lg:overflow-hidden">
                                     <div class="p-2 flex flex-col gap-2">
                                         @foreach ($customers as $customer)

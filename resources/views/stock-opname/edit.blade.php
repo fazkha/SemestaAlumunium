@@ -1,7 +1,7 @@
 @section('title', __('messages.stockopname'))
 
 <x-app-layout>
-    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6">
+    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 dark:border-primary-800 lg:py-6">
         <h1 class="text-xl flex items-center justify-center">
             <a href="{{ route('stock-opname.index') }}" class="flex items-center justify-center">
                 <svg class="w-7 h-7" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg"
@@ -37,7 +37,7 @@
 
                     {{-- Master --}}
                     <div
-                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
+                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
                         <div class="p-4 space-y-2">
 
                             <div class="flex flex-col lg:flex-row">
@@ -48,7 +48,7 @@
                                         <label for="gudang_id"
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.warehouse')</label>
                                         <select name="gudang_id" id="gudang_id" tabindex="1" required autofocus
-                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
+                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
                                             <option value="">@lang('messages.choose')...</option>
                                             @foreach ($gudangs as $id => $name)
                                                 <option value="{{ $id }}"
@@ -87,7 +87,7 @@
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.officer')
                                             1</label>
                                         <select name="petugas_1_id" id="petugas_1_id" tabindex="4"
-                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
+                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
                                             <option value="">@lang('messages.choose')...</option>
                                             @foreach ($petugas as $id => $name)
                                                 <option value="{{ $id }}"
@@ -104,7 +104,7 @@
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.officer')
                                             2</label>
                                         <select name="petugas_2_id" id="petugas_2_id" tabindex="5"
-                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
+                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
                                             <option value="">@lang('messages.choose')...</option>
                                             @foreach ($petugas as $id => $name)
                                                 <option value="{{ $id }}"
@@ -120,7 +120,7 @@
                                         <label for="tanggungjawab_id"
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.supervisor')</label>
                                         <select name="tanggungjawab_id" id="tanggungjawab_id" tabindex="6"
-                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
+                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
                                             <option value="">@lang('messages.choose')...</option>
                                             @foreach ($petugas2 as $id => $name)
                                                 <option value="{{ $id }}"
@@ -226,7 +226,7 @@
                         <input type="hidden" id="adjust_satuan_id" name="adjust_satuan_id" />
                         <input type="hidden" id="adjust_stock" name="adjust_stock" />
                         <div
-                            class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100">
+                            class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100 dark:bg-primary-900 dark:border-primary-800">
                             <div class="p-4 space-y-2">
                                 <div class="flex flex-row items-center gap-2">
                                     <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5"
@@ -250,7 +250,7 @@
                                 </div>
 
                                 <div
-                                    class="border rounded-md border-primary-100 bg-primary-100">
+                                    class="border rounded-md border-primary-100 bg-primary-100 dark:bg-primary-900 dark:border-primary-800">
                                     <div class="p-2">
                                         <table id="order_table" class="w-full border-separate border-spacing-2">
                                             <thead>
@@ -308,7 +308,7 @@
                                                     <td class="align-top">
                                                         <select id="satuan_id" name="satuan_id" required
                                                             tabindex="10"
-                                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
+                                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
                                                             <option value="">@lang('messages.choose')...</option>
                                                             @foreach ($satuans as $id => $name)
                                                                 <option value="{{ $id }}">

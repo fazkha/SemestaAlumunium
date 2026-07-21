@@ -4,7 +4,7 @@
 @section('title', __('messages.branch'))
 
 <x-app-layout>
-    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6">
+    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 dark:border-primary-800 lg:py-6">
         <h1 class="text-xl flex items-center justify-center">
             <a href="{{ route('branch.index') }}" class="flex items-center justify-center">
                 <svg fill="currentColor" class="size-7" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
@@ -36,7 +36,7 @@
                     </div>
 
                     <div
-                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
+                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
                         <div class="p-4 space-y-2">
 
                             <div class="flex flex-col lg:flex-row">
@@ -46,7 +46,7 @@
                                         <label for="wilayah_id"
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.region')</label>
                                         <select name="wilayah_id" id="wilayah_id" tabindex="1" required autofocus
-                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
+                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
                                             <option value="">@lang('messages.choose')...</option>
                                             @foreach ($wilayahs as $id => $name)
                                                 <option value="{{ $id }}"
@@ -114,7 +114,7 @@
                                         <label for="propinsi_id"
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.propinsi')</label>
                                         <select name="propinsi_id" id="propinsi_id" tabindex="4" required
-                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
+                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
                                             <option value="">@lang('messages.choose')...</option>
                                             @foreach ($propinsis as $id => $name)
                                                 <option value="{{ $id }}"
@@ -130,7 +130,7 @@
                                         <label for="kabupaten_id"
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.kabupaten')</label>
                                         <select name="kabupaten_id" id="kabupaten_id" tabindex="5" required
-                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
+                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
                                             <option value="">@lang('messages.choose')...</option>
                                             @foreach ($kabupatens as $id => $name)
                                                 <option value="{{ $id }}"
@@ -146,7 +146,7 @@
                                         <label for="kecamatan_id"
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.kecamatan')</label>
                                         <select name="kecamatan_id" id="kecamatan_id" tabindex="5" required
-                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
+                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
                                             <option value="">@lang('messages.choose')...</option>
                                             @foreach ($kecamatans as $id => $name)
                                                 <option value="{{ $id }}"
@@ -234,8 +234,7 @@
                                 </div>
 
                                 <div class="w-full lg:w-1/2 px-2">
-                                    <div
-                                        class="flex flex-row gap-2 pb-2 mb-4 border-b-2 border-primary-100">
+                                    <div class="flex flex-row gap-2 pb-2 mb-4 border-b-2 border-primary-100">
                                         <h1 class="text-xl font-bold leading-tight">
                                             @lang('messages.partner') (@lang('messages.active'))</h1>
                                         <span>/&nbsp;telpon</span>
@@ -260,7 +259,7 @@
                 <div class="flex flex-col items-center">
 
                     <div
-                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
+                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
                         <div class="p-4 space-y-2">
                             <div class="flex flex-col lg:flex-row">
                                 <div class="w-full lg:w-1/2 px-2">

@@ -4,7 +4,7 @@
 @section('title', __('messages.employee'))
 
 <x-app-layout>
-    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6">
+    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 dark:border-primary-800 lg:py-6">
         <h1 class="text-xl flex items-center justify-center">
             <a href="{{ route('employee.index') }}" class="flex items-center justify-center">
                 <svg fill="currentColor" class="size-7" viewBox="0 0 32 32" version="1.1"
@@ -49,8 +49,7 @@
                                     <p class="text-gray-600 font-bold text-sm">@lang('messages.deleteitemwarning').</p>
                                     <p class="text-gray-600 text-sm mb-5">@lang('messages.deleteitemconfirm')?</p>
                                     <div class="flex flex-col md:flex-row gap-2 justify-between">
-                                        <x-primary-button type="submit"
-                                            class="bg-red-600 hover:bg-red-700">
+                                        <x-primary-button type="submit" class="bg-red-600 hover:bg-red-700">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                 stroke-width="1.5" stroke="currentColor" class="size-5">
                                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -75,7 +74,7 @@
                 </div>
 
                 <div
-                    class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
+                    class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
                     <div class="p-4 space-y-2">
 
                         <div class="flex flex-col lg:flex-row">
@@ -138,8 +137,7 @@
                                 </div>
 
                                 <div class="w-auto pb-4">
-                                    <span
-                                        class="block mb-2 font-medium text-primary-600">@lang('messages.gender')</span>
+                                    <span class="block mb-2 font-medium text-primary-600">@lang('messages.gender')</span>
                                     <x-text-span>{{ $datas->kelamin == 'L' ? 'Laki-laki' : 'Perempuan' }}</x-text-span>
                                 </div>
 
@@ -192,7 +190,7 @@
 
                 {{-- Jabatan --}}
                 <div
-                    class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100">
+                    class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100 dark:bg-primary-900 dark:border-primary-800">
                     <div class="p-4 space-y-2">
                         <div class="flex flex-row items-center gap-2">
                             <svg fill="currentColor" class="size-5" viewBox="0 0 24 24"
@@ -206,7 +204,7 @@
                         </div>
 
                         <div
-                            class="border rounded-md border-primary-100 bg-primary-100">
+                            class="border rounded-md border-primary-100 bg-primary-100 dark:bg-primary-900 dark:border-primary-800">
                             <div class="p-2 overflow-scroll md:overflow-auto lg:overflow-hidden">
                                 <table id="jabatan_table" class="w-full border-separate border-spacing-2">
                                     <thead>

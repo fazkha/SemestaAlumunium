@@ -5,7 +5,7 @@
 @section('title', __('messages.plan'))
 
 <x-app-layout>
-    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6">
+    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 dark:border-primary-800 lg:py-6">
         <h1 class="text-xl flex items-center justify-center">
             <a href="{{ route('purchase-plan.index') }}" class="flex items-center justify-center">
                 <svg class="size-7" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -34,7 +34,7 @@
 
                 {{-- Master --}}
                 <div
-                    class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
+                    class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
                     <div class="p-4 space-y-2">
 
                         <div class="flex flex-col lg:flex-row">
@@ -99,7 +99,7 @@
 
                     {{-- Detail --}}
                     <div
-                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
+                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
                         <div class="p-4 space-y-2">
                             <div class="flex flex-row items-center gap-2">
                                 <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5"
@@ -123,7 +123,7 @@
                             </div>
 
                             <div
-                                class="border rounded-md border-primary-100 bg-primary-100">
+                                class="border rounded-md border-primary-100 bg-primary-100 dark:bg-primary-900 dark:border-primary-800">
                                 <div class="p-2 overflow-scroll md:overflow-auto lg:overflow-hidden">
                                     <table id="order_table" class="w-full border-separate border-spacing-2">
                                         <thead>

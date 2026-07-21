@@ -1,7 +1,7 @@
 @section('title', __('messages.saleorder'))
 
 <x-app-layout>
-    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6">
+    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 dark:border-primary-800 lg:py-6">
         <h1 class="text-xl flex items-center justify-center">
             <a href="{{ route('sale-order.index') }}" class="flex items-center justify-center">
                 <svg fill="currentColor" class="w-7 h-7" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
@@ -33,7 +33,7 @@
 
                     {{-- Master --}}
                     <div
-                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100">
+                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
                         <div class="p-4 space-y-2">
 
                             <div class="flex flex-col lg:flex-row">
@@ -44,7 +44,7 @@
                                         <label for="customer_id"
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.customer')</label>
                                         <select name="customer_id" id="customer_id" tabindex="1" required autofocus
-                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
+                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
                                             <option value="">@lang('messages.choose')...</option>
                                             @foreach ($customers as $id => $name)
                                                 <option value="{{ $id }}"
@@ -70,7 +70,7 @@
                                         <label for="tunai"
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.payment')</label>
                                         <select name="tunai" id="tunai" tabindex="3" required
-                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
+                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
                                             <option value="">@lang('messages.choose')...</option>
                                             <option value="1" {{ old('tunai') == 1 ? 'selected' : '' }}>
                                                 @lang('messages.cash')</option>
@@ -176,7 +176,7 @@
 
                         {{-- Detail --}}
                         <div
-                            class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100">
+                            class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100 dark:bg-primary-900 dark:border-primary-800">
                             <div class="p-4 space-y-2">
                                 <div class="flex flex-row items-center gap-2">
                                     <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5"
@@ -200,7 +200,7 @@
                                 </div>
 
                                 <div
-                                    class="border rounded-md border-primary-100 bg-primary-100">
+                                    class="border rounded-md border-primary-100 bg-primary-100 dark:bg-primary-900 dark:border-primary-800">
                                     <div class="p-2 overflow-scroll md:overflow-auto lg:overflow-hidden">
                                         <table id="order_table" class="w-full border-separate border-spacing-2">
                                             <thead>
@@ -231,7 +231,7 @@
 
                         {{-- Adonan --}}
                         <div
-                            class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100">
+                            class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100 dark:bg-primary-900 dark:border-primary-800">
                             <div class="p-4 space-y-2">
                                 <div class="flex flex-row items-center gap-2">
                                     <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none"
@@ -259,7 +259,7 @@
                                 </div>
 
                                 <div
-                                    class="border rounded-md border-primary-100 bg-primary-100">
+                                    class="border rounded-md border-primary-100 bg-primary-100 dark:bg-primary-900 dark:border-primary-800">
                                     <div class="p-2 overflow-scroll md:overflow-auto lg:overflow-hidden">
                                         <table id="order_table" class="w-full border-separate border-spacing-2">
                                             <thead>
