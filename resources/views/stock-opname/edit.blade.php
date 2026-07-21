@@ -250,7 +250,7 @@
                                 </div>
 
                                 <div
-                                    class="border rounded-md border-primary-100 bg-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                                    class="border rounded-md border-primary-100 bg-primary-100 dark:bg-primary-850 dark:border-primary-800">
                                     <div class="p-2">
                                         <table id="order_table" class="w-full border-separate border-spacing-2">
                                             <thead>
@@ -258,7 +258,7 @@
                                                     <th rowspan="2" class="w-1/5">@lang('messages.goods')</th>
                                                     <th rowspan="2" class="w-auto">@lang('messages.unit')</th>
                                                     <th colspan="3"
-                                                        class="w-auto border-b border-1 border-primary-500">
+                                                        class="w-auto border-b border-1 border-primary-500 dark:border-primary-800">
                                                         @lang('messages.stock')
                                                     </th>
                                                     <th rowspan="2" class="w-auto">@lang('messages.description')</th>
@@ -287,13 +287,13 @@
                                                             data-hs-select='{
   "hasSearch": true,
   "searchPlaceholder": "{!! __('messages.search') . '...' !!}",
-  "searchClasses": "block w-full py-1.5 sm:py-2 px-3 sm:text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 text-gray-700 border-primary-100 bg-primary-20 before:absolute before:inset-0 before:z-1",
-  "searchWrapperClasses": "sticky -top-1 p-2 -mx-1 bg-primary-100",
+  "searchClasses": "block w-full py-1.5 sm:py-2 px-3 sm:text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 text-gray-700 border-primary-100 bg-primary-50 dark:bg-primary-700 before:absolute before:inset-0 before:z-1",
+  "searchWrapperClasses": "sticky -top-1 p-2 -mx-1 bg-primary-20 dark:bg-primary-900",
   "placeholder": "{!! __('messages.choose') . '...' !!}",
   "toggleTag": "<button type=\"button\" aria-expanded=\"false\"></button>",
-  "toggleClasses": "hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 relative py-2 px-3 pe-9 flex text-nowrap w-full cursor-pointer bg-primary-20 border border-gray-200 rounded-lg text-start text-sm focus:border-blue-500 focus:ring-blue-500 before:absolute before:inset-0 before:z-1",
-  "dropdownClasses": "mt-2 z-50 w-full max-h-72 p-1 space-y-0.5 border bg-primary-20 border-primary-500 rounded-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-primary-500 [&::-webkit-scrollbar-thumb]:bg-gray-300",
-  "optionClasses": "py-2 px-4 w-full text-sm text-gray-800 cursor-pointer hover:bg-primary-100 rounded-lg focus:outline-hidden focus:bg-gray-100",
+  "toggleClasses": "hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 relative py-2 px-3 pe-9 flex text-nowrap w-full cursor-pointer bg-primary-20 dark:bg-primary-700 border border-gray-200 dark:border-gray-900 rounded-lg text-start text-sm focus:border-blue-500 focus:ring-blue-500 before:absolute before:inset-0 before:z-1",
+  "dropdownClasses": "mt-2 z-50 w-full max-h-72 p-1 space-y-0.5 border bg-primary-20 dark:bg-primary-900 border-primary-500 dark:border-primary-800 rounded-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-primary-500 [&::-webkit-scrollbar-thumb]:bg-gray-300",
+  "optionClasses": "py-2 px-4 w-full text-sm text-gray-800 dark:text-gray-500 cursor-pointer hover:bg-primary-50 dark:hover:bg-primary-700 rounded-lg focus:outline-hidden focus:bg-gray-100",
   "optionTemplate": "<div class=\"flex justify-between items-center w-full\"><span data-title></span><span class=\"hidden hs-selected:block\"><svg class=\"shrink-0 size-3.5 text-blue-600 \" xmlns=\"http:.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"20 6 9 17 4 12\"/></svg></span></div>",
   "extraMarkup": "<div class=\"absolute top-1/2 end-3 -translate-y-1/2\"><svg class=\"shrink-0 size-3.5 text-gray-500 \" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m7 15 5 5 5-5\"/><path d=\"m7 9 5-5 5 5\"/></svg></div>"
 }'
@@ -382,150 +382,150 @@
     @endpush
 
     @push('scripts')
-        <script type="text/javascript">
-            $(document).ready(function(e) {
-                function getInitialFormValues(formId) {
-                    const form = document.getElementById(formId);
-                    const initialValues = {};
-                    for (let i = 0; i < form.elements.length; i++) {
-                        const element = form.elements[i];
-                        if (element.name) {
-                            if (element.type === 'checkbox' || element.type === 'radio') {
-                                initialValues[element.name] = element.checked;
-                            } else {
-                                initialValues[element.name] = element.value;
-                            }
+    <script type="text/javascript">
+        $(document).ready(function(e) {
+            function getInitialFormValues(formId) {
+                const form = document.getElementById(formId);
+                const initialValues = {};
+                for (let i = 0; i < form.elements.length; i++) {
+                    const element = form.elements[i];
+                    if (element.name) {
+                        if (element.type === 'checkbox' || element.type === 'radio') {
+                            initialValues[element.name] = element.checked;
+                        } else {
+                            initialValues[element.name] = element.value;
                         }
                     }
-                    return initialValues;
                 }
+                return initialValues;
+            }
 
-                function isFormDirty(formId, initialValues) {
-                    const form = document.getElementById(formId);
-                    for (let i = 0; i < form.elements.length; i++) {
-                        const element = form.elements[i];
-                        if (element.name) {
-                            let currentValue;
-                            if (element.type === 'checkbox' || element.type === 'radio') {
-                                currentValue = element.checked;
-                            } else {
-                                currentValue = element.value;
-                            }
+            function isFormDirty(formId, initialValues) {
+                const form = document.getElementById(formId);
+                for (let i = 0; i < form.elements.length; i++) {
+                    const element = form.elements[i];
+                    if (element.name) {
+                        let currentValue;
+                        if (element.type === 'checkbox' || element.type === 'radio') {
+                            currentValue = element.checked;
+                        } else {
+                            currentValue = element.value;
+                        }
 
-                            if (initialValues[element.name] !== currentValue) {
-                                return true;
-                            }
+                        if (initialValues[element.name] !== currentValue) {
+                            return true;
                         }
                     }
-                    return false;
                 }
+                return false;
+            }
 
-                const myFormInitialValues = getInitialFormValues('master-form');
+            const myFormInitialValues = getInitialFormValues('master-form');
 
-                deleteDetail = function(detailId) {
-                    let idname = '#a-delete-detail-' + detailId;
+            deleteDetail = function(detailId) {
+                let idname = '#a-delete-detail-' + detailId;
 
-                    var confirmation = confirm("Are you sure you want to delete this?");
-                    if (confirmation) {
-                        $(idname).closest("tr").remove();
-                        $.ajax({
-                            url: '{{ url('/warehouse/stock-opname/delete-detail') }}' + '/' + detailId,
-                            type: 'delete',
-                            dataType: 'json',
-                            data: {
-                                '_token': '{{ csrf_token() }}',
-                            },
-                            success: function(result) {
-                                if (result.status !== 'Not Found') {
-                                    $('#detailBody').html(result.view);
-                                    flasher.error("{{ __('messages.successdeleted') }}!", "Success");
-                                }
-                                $('#form-order')[0].reset();
-                            },
-                            error: function(xhr) {
-                                console.log(xhr.responseText);
-                            }
-                        });
-                    }
-                };
-
-                $("#stock").on("change keyup paste", function() {
-                    var xst1 = $('#stock').val();
-                    var xst2 = $('#before_stock').val();
-                    var xadjust = xst1 - xst2;
-                    $('#selisih_stock').val(xadjust);
-                    $('#adjust_stock').val(xadjust);
-                });
-
-                $("#barang_id").on("change keyup paste", function() {
-                    var xbar = $('#barang_id option:selected').val();
-
+                var confirmation = confirm("Are you sure you want to delete this?");
+                if (confirmation) {
+                    $(idname).closest("tr").remove();
                     $.ajax({
-                        url: '{{ url('/warehouse/goods/get-goods-stock') }}' + "/" + xbar,
-                        type: "GET",
+                        url: '{{ url('/warehouse/stock-opname/delete-detail') }}' + '/' + detailId,
+                        type: 'delete',
                         dataType: 'json',
-                        success: function(result) {
-                            var p1 = result.p1;
-                            var p2 = result.p2;
-                            var p3 = result.p3;
-                            var p4 = result.p4;
-                            $('#satuan_id').val(p1);
-                            $('#before_satuan_id').val(p1);
-                            $('#selisih_satuan_id').val(p1);
-                            $('#adjust_satuan_id').val(p1);
-                            $('#before_stock').val(p2);
-                            $('#minstock').val(p3);
-                            $('#harga_beli').val(p4);
-                            $('#stock').val(0);
-                            $('#selisih_stock').val(0);
-                            $('#adjust_stock').val(0);
-                            $('#stock').focus();
-                        }
-                    });
-                });
-
-                $("#print-laporan").on("click", function(e) {
-                    e.preventDefault();
-                    $('#print-icon').addClass('animate-spin');
-
-                    $.ajax({
-                        url: '{{ route('stock-opname.print', Crypt::encrypt($datas->id)) }}',
-                        type: 'get',
-                        success: function(result) {
-                            if (result.status !== 'Not Found') {
-                                var namafile = result.namafile;
-                                $("#iframe-laporan").attr('src', namafile);
-                                window.open(namafile, '_blank');
-                            }
-                            $('#print-icon').removeClass('animate-spin');
-                        }
-                    });
-                });
-
-                $("#submit-detail").on("click", function(e) {
-                    e.preventDefault();
-                    let key = $('#master_id').val();
-
-                    $.ajax({
-                        url: '{{ url('/warehouse/stock-opname/store-detail') }}' + '/' + key,
-                        type: 'post',
-                        dataType: 'json',
-                        data: $('form#form-order').serialize(),
+                        data: {
+                            '_token': '{{ csrf_token() }}',
+                        },
                         success: function(result) {
                             if (result.status !== 'Not Found') {
                                 $('#detailBody').html(result.view);
-                                $('#jumlahdetail').text(result.jmlbrs);
-                                $('#form-order')[0].reset();
-                                flasher.success("{{ __('messages.successsaved') }}!", "Success");
+                                flasher.error("{{ __('messages.successdeleted') }}!", "Success");
                             }
+                            $('#form-order')[0].reset();
+                        },
+                        error: function(xhr) {
+                            console.log(xhr.responseText);
                         }
                     });
+                }
+            };
 
-                    if (isFormDirty('master-form', myFormInitialValues)) {
-                        $('form#master-form').submit();
+            $("#stock").on("change keyup paste", function() {
+                var xst1 = $('#stock').val();
+                var xst2 = $('#before_stock').val();
+                var xadjust = xst1 - xst2;
+                $('#selisih_stock').val(xadjust);
+                $('#adjust_stock').val(xadjust);
+            });
+
+            $("#barang_id").on("change keyup paste", function() {
+                var xbar = $('#barang_id option:selected').val();
+
+                $.ajax({
+                    url: '{{ url('/warehouse/goods/get-goods-stock') }}' + "/" + xbar,
+                    type: "GET",
+                    dataType: 'json',
+                    success: function(result) {
+                        var p1 = result.p1;
+                        var p2 = result.p2;
+                        var p3 = result.p3;
+                        var p4 = result.p4;
+                        $('#satuan_id').val(p1);
+                        $('#before_satuan_id').val(p1);
+                        $('#selisih_satuan_id').val(p1);
+                        $('#adjust_satuan_id').val(p1);
+                        $('#before_stock').val(p2);
+                        $('#minstock').val(p3);
+                        $('#harga_beli').val(p4);
+                        $('#stock').val(0);
+                        $('#selisih_stock').val(0);
+                        $('#adjust_stock').val(0);
+                        $('#stock').focus();
                     }
                 });
             });
-        </script>
+
+            $("#print-laporan").on("click", function(e) {
+                e.preventDefault();
+                $('#print-icon').addClass('animate-spin');
+
+                $.ajax({
+                    url: '{{ route('stock-opname.print', Crypt::encrypt($datas->id)) }}',
+                    type: 'get',
+                    success: function(result) {
+                        if (result.status !== 'Not Found') {
+                            var namafile = result.namafile;
+                            $("#iframe-laporan").attr('src', namafile);
+                            window.open(namafile, '_blank');
+                        }
+                        $('#print-icon').removeClass('animate-spin');
+                    }
+                });
+            });
+
+            $("#submit-detail").on("click", function(e) {
+                e.preventDefault();
+                let key = $('#master_id').val();
+
+                $.ajax({
+                    url: '{{ url('/warehouse/stock-opname/store-detail') }}' + '/' + key,
+                    type: 'post',
+                    dataType: 'json',
+                    data: $('form#form-order').serialize(),
+                    success: function(result) {
+                        if (result.status !== 'Not Found') {
+                            $('#detailBody').html(result.view);
+                            $('#jumlahdetail').text(result.jmlbrs);
+                            $('#form-order')[0].reset();
+                            flasher.success("{{ __('messages.successsaved') }}!", "Success");
+                        }
+                    }
+                });
+
+                if (isFormDirty('master-form', myFormInitialValues)) {
+                    $('form#master-form').submit();
+                }
+            });
+        });
+    </script>
     @endpush
 </x-app-layout>

@@ -155,7 +155,7 @@
                             </div>
 
                             <div
-                                class="border rounded-md border-primary-100 bg-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                                class="border rounded-md border-primary-100 bg-primary-100 dark:bg-primary-850 dark:border-primary-800">
                                 <div class="p-2 overflow-scroll md:overflow-auto lg:overflow-hidden">
 
                                     <form id="form-order" method="POST" enctype="multipart/form-data" class="w-full">

@@ -172,7 +172,7 @@
                                     </div>
 
                                     <div
-                                        class="border rounded-md border-primary-100 bg-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                                        class="border rounded-md border-primary-100 bg-primary-100 dark:bg-primary-850 dark:border-primary-800">
                                         <div id="table-question-container" class="p-0 lg:p-4">
                                             @include('coa.partials.table-question', $questions)
                                         </div>

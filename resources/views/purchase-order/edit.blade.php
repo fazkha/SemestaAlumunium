@@ -214,7 +214,7 @@
                                 </div>
 
                                 <div
-                                    class="border rounded-md border-primary-100 bg-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                                    class="border rounded-md border-primary-100 bg-primary-100 dark:bg-primary-850 dark:border-primary-800">
                                     <div class="p-2">
                                         <table id="order_table" class="w-full border-separate border-spacing-2">
                                             <thead>
@@ -245,13 +245,13 @@
                                                             data-hs-select='{
   "hasSearch": true,
   "searchPlaceholder": "{!! __('messages.search') . '...' !!}",
-  "searchClasses": "block w-full py-1.5 sm:py-2 px-3 sm:text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 text-gray-700 border-primary-100 bg-primary-20 before:absolute before:inset-0 before:z-1",
-  "searchWrapperClasses": "sticky -top-1 p-2 -mx-1 bg-primary-100",
+  "searchClasses": "block w-full py-1.5 sm:py-2 px-3 sm:text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 text-gray-700 border-primary-100 bg-primary-50 dark:bg-primary-700 before:absolute before:inset-0 before:z-1",
+  "searchWrapperClasses": "sticky -top-1 p-2 -mx-1 bg-primary-20 dark:bg-primary-900",
   "placeholder": "{!! __('messages.choose') . '...' !!}",
   "toggleTag": "<button type=\"button\" aria-expanded=\"false\"></button>",
-  "toggleClasses": "hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 relative py-2 px-3 pe-9 flex text-nowrap w-full cursor-pointer bg-primary-20 border border-gray-200 rounded-lg text-start text-sm focus:border-blue-500 focus:ring-blue-500 before:absolute before:inset-0 before:z-1",
-  "dropdownClasses": "mt-2 z-50 w-full max-h-72 p-1 space-y-0.5 border bg-primary-20 border-primary-500 rounded-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-primary-500 [&::-webkit-scrollbar-thumb]:bg-gray-300",
-  "optionClasses": "py-2 px-4 w-full text-sm text-gray-800 cursor-pointer hover:bg-primary-100 rounded-lg focus:outline-hidden focus:bg-gray-100",
+  "toggleClasses": "hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 relative py-2 px-3 pe-9 flex text-nowrap w-full cursor-pointer bg-primary-20 dark:bg-primary-700 border border-gray-200 dark:border-gray-900 rounded-lg text-start text-sm focus:border-blue-500 focus:ring-blue-500 before:absolute before:inset-0 before:z-1",
+  "dropdownClasses": "mt-2 z-50 w-full max-h-72 p-1 space-y-0.5 border bg-primary-20 dark:bg-primary-900 border-primary-500 dark:border-primary-800 rounded-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-primary-500 [&::-webkit-scrollbar-thumb]:bg-gray-300",
+  "optionClasses": "py-2 px-4 w-full text-sm text-gray-800 dark:text-gray-500 cursor-pointer hover:bg-primary-50 dark:hover:bg-primary-700 rounded-lg focus:outline-hidden focus:bg-gray-100",
   "optionTemplate": "<div class=\"flex justify-between items-center w-full\"><span data-title></span><span class=\"hidden hs-selected:block\"><svg class=\"shrink-0 size-3.5 text-blue-600 \" xmlns=\"http:.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"20 6 9 17 4 12\"/></svg></span></div>",
   "extraMarkup": "<div class=\"absolute top-1/2 end-3 -translate-y-1/2\"><svg class=\"shrink-0 size-3.5 text-gray-500 \" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m7 15 5 5 5-5\"/><path d=\"m7 9 5-5 5 5\"/></svg></div>"
 }'
@@ -345,231 +345,231 @@
     </div>
 
     @push('styles')
-        <style>
-            .readonly-select {
-                cursor: not-allowed;
-                opacity: 1;
-            }
-        </style>
+    <style>
+        .readonly-select {
+            cursor: not-allowed;
+            opacity: 1;
+        }
+    </style>
     @endpush
 
     @push('scripts')
-        <script type="text/javascript" src="{{ url('js/jquery.maskMoney.min.js') }}"></script>
-        <script type="text/javascript">
-            $(document).ready(function(e) {
-                $("#satuan_id").on("mousedown", function(e) {
-                    e.preventDefault();
-                    this.blur();
-                    window.focus();
-                });
+    <script type="text/javascript" src="{{ url('js/jquery.maskMoney.min.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function(e) {
+            $("#satuan_id").on("mousedown", function(e) {
+                e.preventDefault();
+                this.blur();
+                window.focus();
+            });
 
-                function getInitialFormValues(formId) {
-                    const form = document.getElementById(formId);
-                    const initialValues = {};
-                    for (let i = 0; i < form.elements.length; i++) {
-                        const element = form.elements[i];
-                        if (element.name) {
-                            if (element.type === 'checkbox' || element.type === 'radio') {
-                                initialValues[element.name] = element.checked;
-                            } else {
-                                initialValues[element.name] = element.value;
-                            }
+            function getInitialFormValues(formId) {
+                const form = document.getElementById(formId);
+                const initialValues = {};
+                for (let i = 0; i < form.elements.length; i++) {
+                    const element = form.elements[i];
+                    if (element.name) {
+                        if (element.type === 'checkbox' || element.type === 'radio') {
+                            initialValues[element.name] = element.checked;
+                        } else {
+                            initialValues[element.name] = element.value;
                         }
                     }
-                    return initialValues;
                 }
+                return initialValues;
+            }
 
-                function isFormDirty(formId, initialValues) {
-                    const form = document.getElementById(formId);
-                    for (let i = 0; i < form.elements.length; i++) {
-                        const element = form.elements[i];
-                        if (element.name) {
-                            let currentValue;
-                            if (element.type === 'checkbox' || element.type === 'radio') {
-                                currentValue = element.checked;
-                            } else {
-                                currentValue = element.value;
-                            }
+            function isFormDirty(formId, initialValues) {
+                const form = document.getElementById(formId);
+                for (let i = 0; i < form.elements.length; i++) {
+                    const element = form.elements[i];
+                    if (element.name) {
+                        let currentValue;
+                        if (element.type === 'checkbox' || element.type === 'radio') {
+                            currentValue = element.checked;
+                        } else {
+                            currentValue = element.value;
+                        }
 
-                            if (initialValues[element.name] !== currentValue) {
-                                return true;
-                            }
+                        if (initialValues[element.name] !== currentValue) {
+                            return true;
                         }
                     }
-                    return false;
                 }
+                return false;
+            }
 
-                const myFormInitialValues = getInitialFormValues('master-form');
+            const myFormInitialValues = getInitialFormValues('master-form');
 
-                $(function() {
-                    $('#total_harga').maskMoney({
-                        prefix: 'Rp. ',
-                        allowNegative: false,
-                        thousands: '.',
-                        decimal: ',',
-                        precision: 0,
-                        affixesStay: false
-                    });
-                    $('#biaya_angkutan').maskMoney({
-                        prefix: 'Rp. ',
-                        allowNegative: false,
-                        thousands: '.',
-                        decimal: ',',
-                        precision: 0,
-                        affixesStay: false
-                    });
-                })
-
-                $('input[name^="items["]').on('change', function() {
-                    var inputName = $(this).attr('name');
-                    var inputValue = $(this).val();
-
-                    var match = inputName.match(/\[(\d+)\]\[(.*?)\]/);
-                    if (match) {
-                        var row = match[1];
-                        var column = match[2];
-
-                        $.ajax({
-                            url: '{{ url('/purchase/order/update-detail') }}' + "/" + row + "/" +
-                                column + "/" + inputValue,
-                            type: "GET",
-                            dataType: 'json',
-                            success: function(result) {
-                                if (result.status !== 'Not Found') {
-                                    var _input_hargasatuan = 'input[name="items[' + row +
-                                        '][harga_satuan]"]';
-                                    var harga_satuan = $(_input_hargasatuan).val();
-                                    var _input_kuantiti = 'input[name="items[' + row +
-                                        '][kuantiti]"]';
-                                    var kuantiti = $(_input_kuantiti).val();
-                                    var _input_discount = 'input[name="items[' + row +
-                                        '][discount]"]';
-                                    var discount = $(_input_discount).val();
-                                    var _input_pajak = 'input[name="items[' + row +
-                                        '][pajak]"]';
-                                    var pajak = $(_input_pajak).val();
-                                    var xsub = (harga_satuan * (1 + (pajak / 100) - (discount /
-                                        100))) * kuantiti;
-                                    var formattedNumber = new Intl.NumberFormat('de-DE').format(
-                                        xsub);
-                                    var _subtotal = '#subtotal_' + row;
-                                    $(_subtotal).html(formattedNumber);
-                                    flasher.success("{{ __('messages.successsaved') }}!",
-                                        "Success");
-                                }
-                            }
-                        });
-                    }
+            $(function() {
+                $('#total_harga').maskMoney({
+                    prefix: 'Rp. ',
+                    allowNegative: false,
+                    thousands: '.',
+                    decimal: ',',
+                    precision: 0,
+                    affixesStay: false
                 });
-
-                deleteDetail = function(detailId) {
-                    let idname = '#a-delete-detail-' + detailId;
-
-                    var confirmation = confirm("Are you sure you want to delete this?");
-                    if (confirmation) {
-                        $(idname).closest("tr").remove();
-                        $.ajax({
-                            url: '{{ url('/purchase/order/delete-detail') }}' + '/' + detailId,
-                            type: 'delete',
-                            dataType: 'json',
-                            data: {
-                                '_token': '{{ csrf_token() }}',
-                            },
-                            success: function(result) {
-                                if (result.status !== 'Not Found') {
-                                    $('#detailBody').html(result.view);
-                                }
-                                $('#form-order')[0].reset();
-                                $('#disp-total_harga-master').html(result.total_harga_master
-                                    .toLocaleString('de-DE'));
-                                $('#disp-total_harga-detail').html(result.total_harga_detail
-                                    .toLocaleString('de-DE'));
-                                flasher.error("{{ __('messages.successdeleted') }}!", "Success");
-                            },
-                            error: function(xhr) {
-                                console.log(xhr.responseText);
-                            }
-                        });
-                    }
-                };
-
-                $("#harga_satuan, #kuantiti, #discount, #pajak").on("change keyup paste", function() {
-                    var _xhs = $('#harga_satuan').val();
-                    var _xku = $('#kuantiti').val();
-                    var _xdc = $('#discount').val();
-                    var _xpj = $('#pajak').val();
-                    var xhs = (_xhs > 0) ? _xhs : 0;
-                    var xku = (_xku > 0) ? _xku : 0;
-                    var xdc = (_xdc > 0) ? _xdc : 0;
-                    var xpj = (_xpj > 0) ? _xpj : 0;
-                    var xsub = (xhs * (1 + (xpj / 100) - (xdc / 100))) * xku;
-                    var formattedNumber = new Intl.NumberFormat('de-DE').format(xsub);
-
-                    $("#disp-sub_harga").html(formattedNumber);
+                $('#biaya_angkutan').maskMoney({
+                    prefix: 'Rp. ',
+                    allowNegative: false,
+                    thousands: '.',
+                    decimal: ',',
+                    precision: 0,
+                    affixesStay: false
                 });
+            })
 
-                $("#tunai").on("change keyup paste", function() {
-                    var _xtunai = $('#tunai').val();
+            $('input[name^="items["]').on('change', function() {
+                var inputName = $(this).attr('name');
+                var inputValue = $(this).val();
 
-                    if (_xtunai === '2') {
-                        var now = new Date();
-                        var day = ("0" + now.getDate()).slice(-2);
-                        var month = ("0" + (now.getMonth() + 1)).slice(-2);
-                        var year = now.getFullYear();
-                        var today = year + "-" + month + "-" + day;
-                        $("#div-jatuhtempo").show();
-                        $("#jatuhtempo").val(today);
-                    } else {
-                        $("#jatuhtempo").val("");
-                        $("#div-jatuhtempo").hide();
-                    }
-                });
-
-                $("#barang_id").on("change keyup paste", function() {
-                    var xbar = $('#barang_id option:selected').val();
+                var match = inputName.match(/\[(\d+)\]\[(.*?)\]/);
+                if (match) {
+                    var row = match[1];
+                    var column = match[2];
 
                     $.ajax({
-                        url: '{{ url('/warehouse/goods/get-goods-buy') }}' + "/" + xbar,
+                        url: '{{ url('/purchase/order/update-detail') }}' + "/" + row + "/" +
+                            column + "/" + inputValue,
                         type: "GET",
                         dataType: 'json',
                         success: function(result) {
-                            var p1 = result.p1;
-                            var p2 = result.p2;
-                            $('#harga_satuan').val(p1);
-                            $('#satuan_id').val(p2);
-                            $('#kuantiti').focus();
-                        }
-                    });
-                });
-
-                $("#submit-detail").on("click", function(e) {
-                    e.preventDefault();
-                    let key = $('#order_id').val();
-
-                    $.ajax({
-                        url: '{{ url('/purchase/order/store-detail') }}' + '/' + key,
-                        type: 'post',
-                        dataType: 'json',
-                        data: $('form#form-order').serialize(),
-                        success: function(result) {
                             if (result.status !== 'Not Found') {
-                                $('#detailBody').html(result.view);
-                                $('#disp-total_harga-master').html(result.total_harga_master
-                                    .toLocaleString('de-DE'));
-                                $('#disp-total_harga-detail').html(result.total_harga_detail
-                                    .toLocaleString('de-DE'));
-                                $('#form-order')[0].reset();
-                                $("#disp-sub_harga").html(0);
-                                flasher.success("{{ __('messages.successsaved') }}!", "Success");
+                                var _input_hargasatuan = 'input[name="items[' + row +
+                                    '][harga_satuan]"]';
+                                var harga_satuan = $(_input_hargasatuan).val();
+                                var _input_kuantiti = 'input[name="items[' + row +
+                                    '][kuantiti]"]';
+                                var kuantiti = $(_input_kuantiti).val();
+                                var _input_discount = 'input[name="items[' + row +
+                                    '][discount]"]';
+                                var discount = $(_input_discount).val();
+                                var _input_pajak = 'input[name="items[' + row +
+                                    '][pajak]"]';
+                                var pajak = $(_input_pajak).val();
+                                var xsub = (harga_satuan * (1 + (pajak / 100) - (discount /
+                                    100))) * kuantiti;
+                                var formattedNumber = new Intl.NumberFormat('de-DE').format(
+                                    xsub);
+                                var _subtotal = '#subtotal_' + row;
+                                $(_subtotal).html(formattedNumber);
+                                flasher.success("{{ __('messages.successsaved') }}!",
+                                    "Success");
                             }
                         }
                     });
+                }
+            });
 
-                    if (isFormDirty('master-form', myFormInitialValues)) {
-                        $('form#master-form').submit();
+            deleteDetail = function(detailId) {
+                let idname = '#a-delete-detail-' + detailId;
+
+                var confirmation = confirm("Are you sure you want to delete this?");
+                if (confirmation) {
+                    $(idname).closest("tr").remove();
+                    $.ajax({
+                        url: '{{ url('/purchase/order/delete-detail') }}' + '/' + detailId,
+                        type: 'delete',
+                        dataType: 'json',
+                        data: {
+                            '_token': '{{ csrf_token() }}',
+                        },
+                        success: function(result) {
+                            if (result.status !== 'Not Found') {
+                                $('#detailBody').html(result.view);
+                            }
+                            $('#form-order')[0].reset();
+                            $('#disp-total_harga-master').html(result.total_harga_master
+                                .toLocaleString('de-DE'));
+                            $('#disp-total_harga-detail').html(result.total_harga_detail
+                                .toLocaleString('de-DE'));
+                            flasher.error("{{ __('messages.successdeleted') }}!", "Success");
+                        },
+                        error: function(xhr) {
+                            console.log(xhr.responseText);
+                        }
+                    });
+                }
+            };
+
+            $("#harga_satuan, #kuantiti, #discount, #pajak").on("change keyup paste", function() {
+                var _xhs = $('#harga_satuan').val();
+                var _xku = $('#kuantiti').val();
+                var _xdc = $('#discount').val();
+                var _xpj = $('#pajak').val();
+                var xhs = (_xhs > 0) ? _xhs : 0;
+                var xku = (_xku > 0) ? _xku : 0;
+                var xdc = (_xdc > 0) ? _xdc : 0;
+                var xpj = (_xpj > 0) ? _xpj : 0;
+                var xsub = (xhs * (1 + (xpj / 100) - (xdc / 100))) * xku;
+                var formattedNumber = new Intl.NumberFormat('de-DE').format(xsub);
+
+                $("#disp-sub_harga").html(formattedNumber);
+            });
+
+            $("#tunai").on("change keyup paste", function() {
+                var _xtunai = $('#tunai').val();
+
+                if (_xtunai === '2') {
+                    var now = new Date();
+                    var day = ("0" + now.getDate()).slice(-2);
+                    var month = ("0" + (now.getMonth() + 1)).slice(-2);
+                    var year = now.getFullYear();
+                    var today = year + "-" + month + "-" + day;
+                    $("#div-jatuhtempo").show();
+                    $("#jatuhtempo").val(today);
+                } else {
+                    $("#jatuhtempo").val("");
+                    $("#div-jatuhtempo").hide();
+                }
+            });
+
+            $("#barang_id").on("change keyup paste", function() {
+                var xbar = $('#barang_id option:selected').val();
+
+                $.ajax({
+                    url: '{{ url('/warehouse/goods/get-goods-buy') }}' + "/" + xbar,
+                    type: "GET",
+                    dataType: 'json',
+                    success: function(result) {
+                        var p1 = result.p1;
+                        var p2 = result.p2;
+                        $('#harga_satuan').val(p1);
+                        $('#satuan_id').val(p2);
+                        $('#kuantiti').focus();
                     }
                 });
             });
-        </script>
+
+            $("#submit-detail").on("click", function(e) {
+                e.preventDefault();
+                let key = $('#order_id').val();
+
+                $.ajax({
+                    url: '{{ url('/purchase/order/store-detail') }}' + '/' + key,
+                    type: 'post',
+                    dataType: 'json',
+                    data: $('form#form-order').serialize(),
+                    success: function(result) {
+                        if (result.status !== 'Not Found') {
+                            $('#detailBody').html(result.view);
+                            $('#disp-total_harga-master').html(result.total_harga_master
+                                .toLocaleString('de-DE'));
+                            $('#disp-total_harga-detail').html(result.total_harga_detail
+                                .toLocaleString('de-DE'));
+                            $('#form-order')[0].reset();
+                            $("#disp-sub_harga").html(0);
+                            flasher.success("{{ __('messages.successsaved') }}!", "Success");
+                        }
+                    }
+                });
+
+                if (isFormDirty('master-form', myFormInitialValues)) {
+                    $('form#master-form').submit();
+                }
+            });
+        });
+    </script>
     @endpush
 </x-app-layout>

@@ -47,13 +47,13 @@
                                             data-hs-select='{
   "hasSearch": true,
   "searchPlaceholder": "{!! __('messages.search') . '...' !!}",
-  "searchClasses": "block w-full py-1.5 sm:py-2 px-3 sm:text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 text-gray-700 border-primary-100 bg-primary-20 before:absolute before:inset-0 before:z-1",
-  "searchWrapperClasses": "sticky -top-1 p-2 -mx-1 bg-primary-100",
+  "searchClasses": "block w-full py-1.5 sm:py-2 px-3 sm:text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 text-gray-700 border-primary-100 bg-primary-50 dark:bg-primary-700 before:absolute before:inset-0 before:z-1",
+  "searchWrapperClasses": "sticky -top-1 p-2 -mx-1 bg-primary-20 dark:bg-primary-900",
   "placeholder": "{!! __('messages.choose') . '...' !!}",
   "toggleTag": "<button type=\"button\" aria-expanded=\"false\"></button>",
-  "toggleClasses": "hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 relative py-2 px-3 pe-9 flex text-nowrap w-full cursor-pointer bg-primary-20 border border-gray-200 rounded-lg text-start text-sm focus:border-blue-500 focus:ring-blue-500 before:absolute before:inset-0 before:z-1",
-  "dropdownClasses": "mt-2 z-50 w-full max-h-72 p-1 space-y-0.5 border bg-primary-20 border-primary-500 rounded-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-primary-500 [&::-webkit-scrollbar-thumb]:bg-gray-300",
-  "optionClasses": "py-2 px-4 w-full text-sm text-gray-800 cursor-pointer hover:bg-primary-100 rounded-lg focus:outline-hidden focus:bg-gray-100",
+  "toggleClasses": "hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 relative py-2 px-3 pe-9 flex text-nowrap w-full cursor-pointer bg-primary-20 dark:bg-primary-700 border border-gray-200 dark:border-gray-900 rounded-lg text-start text-sm focus:border-blue-500 focus:ring-blue-500 before:absolute before:inset-0 before:z-1",
+  "dropdownClasses": "mt-2 z-50 w-full max-h-72 p-1 space-y-0.5 border bg-primary-20 dark:bg-primary-900 border-primary-500 dark:border-primary-800 rounded-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-primary-500 [&::-webkit-scrollbar-thumb]:bg-gray-300",
+  "optionClasses": "py-2 px-4 w-full text-sm text-gray-800 dark:text-gray-500 cursor-pointer hover:bg-primary-50 dark:hover:bg-primary-700 rounded-lg focus:outline-hidden focus:bg-gray-100",
   "optionTemplate": "<div class=\"flex justify-between items-center w-full\"><span data-title></span><span class=\"hidden hs-selected:block\"><svg class=\"shrink-0 size-3.5 text-blue-600 \" xmlns=\"http:.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"20 6 9 17 4 12\"/></svg></span></div>",
   "extraMarkup": "<div class=\"absolute top-1/2 end-3 -translate-y-1/2\"><svg class=\"shrink-0 size-3.5 text-gray-500 \" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m7 15 5 5 5-5\"/><path d=\"m7 9 5-5 5 5\"/></svg></div>"
 }'
@@ -234,7 +234,7 @@
                                 </div>
 
                                 <div
-                                    class="border rounded-md border-primary-100 bg-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                                    class="border rounded-md border-primary-100 bg-primary-100 dark:bg-primary-850 dark:border-primary-800">
                                     <div class="p-2 overflow-scroll md:overflow-auto lg:overflow-hidden">
                                         <table id="order_table" class="w-full border-separate border-spacing-2">
                                             <thead>
@@ -293,7 +293,7 @@
                                 </div>
 
                                 <div
-                                    class="border rounded-md border-primary-100 bg-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                                    class="border rounded-md border-primary-100 bg-primary-100 dark:bg-primary-850 dark:border-primary-800">
                                     <div class="p-2 overflow-scroll md:overflow-auto lg:overflow-hidden">
                                         <table id="order_table" class="w-full border-separate border-spacing-2">
                                             <thead>
@@ -322,61 +322,61 @@
     </form>
 
     @push('scripts')
-        <script type="text/javascript" src="{{ url('js/jquery.maskMoney.min.js') }}"></script>
-        <script type="text/javascript">
-            $(document).ready(function(e) {
-                $(function() {
-                    $('#total_harga').maskMoney({
-                        prefix: 'Rp. ',
-                        allowNegative: false,
-                        thousands: '.',
-                        decimal: ',',
-                        precision: 0,
-                        affixesStay: false
-                    });
-                    $('#biaya_angkutan').maskMoney({
-                        prefix: 'Rp. ',
-                        allowNegative: false,
-                        thousands: '.',
-                        decimal: ',',
-                        precision: 0,
-                        affixesStay: false
-                    });
-                    $('#pajak').maskMoney({
-                        prefix: '% ',
-                        allowNegative: false,
-                        thousands: '.',
-                        decimal: ',',
-                        precision: 2,
-                        affixesStay: false
-                    });
-
-                    $('#gambar').change(function() {
-                        let reader = new FileReader();
-                        reader.onload = (e) => {
-                            $('#image-preview').attr('src', e.target.result);
-                        }
-                        reader.readAsDataURL(this.files[0]);
-                    });
-                })
-
-                $("#tunai").on("change keyup paste", function() {
-                    var _xtunai = $('#tunai').val();
-
-                    if (_xtunai === '2') {
-                        var now = new Date();
-                        var day = ("0" + now.getDate()).slice(-2);
-                        var month = ("0" + (now.getMonth() + 1)).slice(-2);
-                        var year = now.getFullYear();
-                        var today = year + "-" + month + "-" + day;
-                        $("#div-jatuhtempo").show();
-                        $("#jatuhtempo").val(today);
-                    } else {
-                        $("#jatuhtempo").val("");
-                        $("#div-jatuhtempo").hide();
-                    }
+    <script type="text/javascript" src="{{ url('js/jquery.maskMoney.min.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function(e) {
+            $(function() {
+                $('#total_harga').maskMoney({
+                    prefix: 'Rp. ',
+                    allowNegative: false,
+                    thousands: '.',
+                    decimal: ',',
+                    precision: 0,
+                    affixesStay: false
                 });
+                $('#biaya_angkutan').maskMoney({
+                    prefix: 'Rp. ',
+                    allowNegative: false,
+                    thousands: '.',
+                    decimal: ',',
+                    precision: 0,
+                    affixesStay: false
+                });
+                $('#pajak').maskMoney({
+                    prefix: '% ',
+                    allowNegative: false,
+                    thousands: '.',
+                    decimal: ',',
+                    precision: 2,
+                    affixesStay: false
+                });
+
+                $('#gambar').change(function() {
+                    let reader = new FileReader();
+                    reader.onload = (e) => {
+                        $('#image-preview').attr('src', e.target.result);
+                    }
+                    reader.readAsDataURL(this.files[0]);
+                });
+            })
+
+            $("#tunai").on("change keyup paste", function() {
+                var _xtunai = $('#tunai').val();
+
+                if (_xtunai === '2') {
+                    var now = new Date();
+                    var day = ("0" + now.getDate()).slice(-2);
+                    var month = ("0" + (now.getMonth() + 1)).slice(-2);
+                    var year = now.getFullYear();
+                    var today = year + "-" + month + "-" + day;
+                    $("#div-jatuhtempo").show();
+                    $("#jatuhtempo").val(today);
+                } else {
+                    $("#jatuhtempo").val("");
+                    $("#div-jatuhtempo").hide();
+                }
             });
-        </script>
+        });
+    </script>
     @endpush
 </x-app-layout>
