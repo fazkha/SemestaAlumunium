@@ -52,7 +52,8 @@
                                 {{ ++$i }}
                             </p>
                         </td>
-                        <td class="text-center px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
+                        <td
+                            class="text-center px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
                             <span class="text-gray-900 dark:text-gray-300">{{ $data->islevel }}</span>
                         </td>
                         <td

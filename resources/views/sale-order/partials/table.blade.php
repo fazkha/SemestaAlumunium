@@ -114,10 +114,12 @@
                                 @endif
                             </span>
                         </td>
-                        <td class="text-center px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
+                        <td
+                            class="text-center px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
                             <span>{{ $data->isready == 1 ? '✔️' : '❓' }}</span>
                         </td>
-                        <td class="text-center px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
+                        <td
+                            class="text-center px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
                             <span>{{ $data->ispackaged == 1 ? '✔️' : '❓' }}</span>
                         </td>
                         <td class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300"

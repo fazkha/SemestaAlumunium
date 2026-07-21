@@ -76,7 +76,8 @@
 
                     @foreach ($datas as $data)
                         <tr>
-                            <td class="text-center px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
+                            <td
+                                class="text-center px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
                                 <div>
                                     <input type="checkbox" name="isprint[]" value="{{ $data->id }}" tabindex="0"
                                         class="dark:border-white-400/20 transition-all duration-500 ease-in-out w-5 h-5 rounded-lg shadow-md">
@@ -116,10 +117,12 @@
                                     @endif
                                 </span>
                             </td>
-                            <td class="text-center px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
+                            <td
+                                class="text-center px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
                                 <span>{{ $data->isready == 1 ? '✔️' : '❓' }}</span>
                             </td>
-                            <td class="text-center px-3 py-1 text-sm border-b border-primary-100 bg-primary-20">
+                            <td
+                                class="text-center px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
                                 <span>{{ $data->ispackaged == 1 ? '✔️' : '❓' }}</span>
                             </td>
                             <td class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300"

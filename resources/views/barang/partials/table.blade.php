@@ -14,44 +14,44 @@
                 <thead>
                     <tr>
                         <th
-                            class="px-3 py-1 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50">
+                            class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
                             #
                         </th>
                         <th
-                            class="px-3 py-1 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50">
+                            class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
                             &nbsp;
                         </th>
                         <th
-                            class="px-3 py-1 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50">
+                            class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
                             @lang('messages.typeofdesignation')
                         </th>
                         <th
-                            class="px-3 py-1 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50">
+                            class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
                             @lang('messages.nameofgoods')
                         </th>
                         <th
-                            class="px-3 py-1 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50">
+                            class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
                             @lang('messages.brand')
                         </th>
                         <th
-                            class="px-3 py-1 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50">
+                            class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
                             <div class="flex flex-col ">
                                 <span>@lang('messages.unitprice') (@lang('messages.currencysymbol'))</span>
                                 <span>@lang('messages.buy&sell')</span>
                             </div>
                         </th>
                         <th
-                            class="px-3 py-1 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50">
+                            class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
                             <div class="flex flex-col ">
                                 <span>@lang('messages.stock')</span>
                             </div>
                         </th>
                         <th
-                            class="px-3 py-1 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50">
+                            class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
                             @lang('messages.active')
                         </th>
                         <th
-                            class="px-3 py-1 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50">
+                            class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
                             &nbsp;
                         </th>
                     </tr>
@@ -97,8 +97,9 @@
                                 class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
                                 <span class="text-gray-900 dark:text-gray-300">{{ $data->merk }}</span>
                             </td>
-                            <td class="text-center px-3 py-3 text-sm border-b border-primary-100 bg-primary-20">
-                                <div class="flex flex-row gap-2 text-gray-900 whitespace-no-wrap">
+                            <td
+                                class="text-center px-3 py-3 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
+                                <div class="flex flex-row gap-2 whitespace-no-wrap">
                                     <span
                                         class="w-1/2 text-right">{{ $data->harga_satuan ? (is_int($data->harga_satuan) ? Number::forHumans($data->harga_satuan, abbreviate: true) : Number::forHumans($data->harga_satuan, precision: 1, abbreviate: true)) : 0 }}</span>
                                     <span>💵</span>
@@ -106,8 +107,9 @@
                                         class="w-1/2 text-left">{{ $data->harga_satuan_jual ? (is_int($data->harga_satuan_jual) ? Number::forHumans($data->harga_satuan_jual, abbreviate: true) : Number::forHumans($data->harga_satuan_jual, precision: 1, abbreviate: true)) : 0 }}</span>
                                 </div>
                             </td>
-                            <td class="text-center px-3 py-3 text-sm border-b border-primary-100 bg-primary-20">
-                                <div class="flex flex-row gap-2 text-gray-900 whitespace-no-wrap">
+                            <td
+                                class="text-center px-3 py-3 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
+                                <div class="flex flex-row gap-2 whitespace-no-wrap">
                                     <span
                                         class="w-1/2 text-right">{{ number_format($data->stock, '1', ',', '.') }}</span>
                                     <span
