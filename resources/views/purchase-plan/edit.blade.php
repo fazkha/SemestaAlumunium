@@ -199,7 +199,7 @@
                                                             data-hs-select='{
   "hasSearch": true,
   "searchPlaceholder": "{!! __('messages.search') . '...' !!}",
-  "searchClasses": "block w-full py-1.5 sm:py-2 px-3 sm:text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 text-gray-700 border-primary-100 bg-primary-50 dark:bg-primary-700 before:absolute before:inset-0 before:z-1",
+  "searchClasses": "block w-full py-1.5 sm:py-2 px-3 sm:text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 text-gray-700 dark:text-gray-300 border-primary-100 bg-primary-50 dark:bg-primary-700 before:absolute before:inset-0 before:z-1",
   "searchWrapperClasses": "sticky -top-1 p-2 -mx-1 bg-primary-20 dark:bg-primary-900",
   "placeholder": "{!! __('messages.choose') . '...' !!}",
   "toggleTag": "<button type=\"button\" aria-expanded=\"false\"></button>",
@@ -346,116 +346,116 @@
     </div>
 
     @push('scripts')
-    <script type="text/javascript">
-        $(document).ready(function(e) {
-            function getInitialFormValues(formId) {
-                const form = document.getElementById(formId);
-                const initialValues = {};
-                for (let i = 0; i < form.elements.length; i++) {
-                    const element = form.elements[i];
-                    if (element.name) {
-                        if (element.type === 'checkbox' || element.type === 'radio') {
-                            initialValues[element.name] = element.checked;
-                        } else {
-                            initialValues[element.name] = element.value;
+        <script type="text/javascript">
+            $(document).ready(function(e) {
+                function getInitialFormValues(formId) {
+                    const form = document.getElementById(formId);
+                    const initialValues = {};
+                    for (let i = 0; i < form.elements.length; i++) {
+                        const element = form.elements[i];
+                        if (element.name) {
+                            if (element.type === 'checkbox' || element.type === 'radio') {
+                                initialValues[element.name] = element.checked;
+                            } else {
+                                initialValues[element.name] = element.value;
+                            }
                         }
                     }
+                    return initialValues;
                 }
-                return initialValues;
-            }
 
-            function isFormDirty(formId, initialValues) {
-                const form = document.getElementById(formId);
-                for (let i = 0; i < form.elements.length; i++) {
-                    const element = form.elements[i];
-                    if (element.name) {
-                        let currentValue;
-                        if (element.type === 'checkbox' || element.type === 'radio') {
-                            currentValue = element.checked;
-                        } else {
-                            currentValue = element.value;
-                        }
+                function isFormDirty(formId, initialValues) {
+                    const form = document.getElementById(formId);
+                    for (let i = 0; i < form.elements.length; i++) {
+                        const element = form.elements[i];
+                        if (element.name) {
+                            let currentValue;
+                            if (element.type === 'checkbox' || element.type === 'radio') {
+                                currentValue = element.checked;
+                            } else {
+                                currentValue = element.value;
+                            }
 
-                        if (initialValues[element.name] !== currentValue) {
-                            return true;
+                            if (initialValues[element.name] !== currentValue) {
+                                return true;
+                            }
                         }
                     }
+                    return false;
                 }
-                return false;
-            }
 
-            const myFormInitialValues = getInitialFormValues('master-form');
+                const myFormInitialValues = getInitialFormValues('master-form');
 
-            deleteDetail = function(detailId) {
-                let idname = '#a-delete-detail-' + detailId;
+                deleteDetail = function(detailId) {
+                    let idname = '#a-delete-detail-' + detailId;
 
-                var confirmation = confirm("Are you sure you want to delete this?");
-                if (confirmation) {
-                    $(idname).closest("tr").remove();
+                    var confirmation = confirm("Are you sure you want to delete this?");
+                    if (confirmation) {
+                        $(idname).closest("tr").remove();
+                        $.ajax({
+                            url: '{{ url('/purchase/plan/delete-detail') }}' + '/' + detailId,
+                            type: 'delete',
+                            dataType: 'json',
+                            data: {
+                                '_token': '{{ csrf_token() }}',
+                            },
+                            success: function(result) {
+                                if (result.status !== 'Not Found') {
+                                    $('#detailBody').html(result.view);
+                                }
+                                $('#form-order')[0].reset();
+                                flasher.error("{{ __('messages.successdeleted') }}!", "Success");
+                            },
+                            error: function(xhr) {
+                                console.log(xhr.responseText);
+                            }
+                        });
+                    }
+                };
+
+                $("#barang_id").on("change keyup paste", function() {
+                    var xbar = $('#barang_id option:selected').val();
+
                     $.ajax({
-                        url: '{{ url('/purchase/plan/delete-detail') }}' + '/' + detailId,
-                        type: 'delete',
+                        url: '{{ url('/warehouse/goods/get-goods-buy') }}' + "/" + xbar,
+                        type: "GET",
                         dataType: 'json',
-                        data: {
-                            '_token': '{{ csrf_token() }}',
-                        },
+                        success: function(result) {
+                            var p1 = result.p1;
+                            var p2 = result.p2;
+                            var p3 = result.p3;
+                            var p4 = result.p4;
+                            $('#satuan_id').val(p2);
+                            $('#stock').val(p3);
+                            $('#minstock').val(p4);
+                            $('#kuantiti').focus();
+                        }
+                    });
+                });
+
+                $("#submit-detail").on("click", function(e) {
+                    e.preventDefault();
+                    let key = $('#order_id').val();
+
+                    $.ajax({
+                        url: '{{ url('/purchase/plan/store-detail') }}' + '/' + key,
+                        type: 'post',
+                        dataType: 'json',
+                        data: $('form#form-order').serialize(),
                         success: function(result) {
                             if (result.status !== 'Not Found') {
                                 $('#detailBody').html(result.view);
+                                $('#form-order')[0].reset();
+                                flasher.success("{{ __('messages.successsaved') }}!", "Success");
                             }
-                            $('#form-order')[0].reset();
-                            flasher.error("{{ __('messages.successdeleted') }}!", "Success");
-                        },
-                        error: function(xhr) {
-                            console.log(xhr.responseText);
                         }
                     });
-                }
-            };
 
-            $("#barang_id").on("change keyup paste", function() {
-                var xbar = $('#barang_id option:selected').val();
-
-                $.ajax({
-                    url: '{{ url('/warehouse/goods/get-goods-buy') }}' + "/" + xbar,
-                    type: "GET",
-                    dataType: 'json',
-                    success: function(result) {
-                        var p1 = result.p1;
-                        var p2 = result.p2;
-                        var p3 = result.p3;
-                        var p4 = result.p4;
-                        $('#satuan_id').val(p2);
-                        $('#stock').val(p3);
-                        $('#minstock').val(p4);
-                        $('#kuantiti').focus();
+                    if (isFormDirty('master-form', myFormInitialValues)) {
+                        $('form#master-form').submit();
                     }
                 });
             });
-
-            $("#submit-detail").on("click", function(e) {
-                e.preventDefault();
-                let key = $('#order_id').val();
-
-                $.ajax({
-                    url: '{{ url('/purchase/plan/store-detail') }}' + '/' + key,
-                    type: 'post',
-                    dataType: 'json',
-                    data: $('form#form-order').serialize(),
-                    success: function(result) {
-                        if (result.status !== 'Not Found') {
-                            $('#detailBody').html(result.view);
-                            $('#form-order')[0].reset();
-                            flasher.success("{{ __('messages.successsaved') }}!", "Success");
-                        }
-                    }
-                });
-
-                if (isFormDirty('master-form', myFormInitialValues)) {
-                    $('form#master-form').submit();
-                }
-            });
-        });
-    </script>
+        </script>
     @endpush
 </x-app-layout>

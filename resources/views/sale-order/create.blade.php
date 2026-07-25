@@ -47,7 +47,7 @@
                                             data-hs-select='{
   "hasSearch": true,
   "searchPlaceholder": "{!! __('messages.search') . '...' !!}",
-  "searchClasses": "block w-full py-1.5 sm:py-2 px-3 sm:text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 text-gray-700 border-primary-100 bg-primary-50 dark:bg-primary-700 before:absolute before:inset-0 before:z-1",
+  "searchClasses": "block w-full py-1.5 sm:py-2 px-3 sm:text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 text-gray-700 dark:text-gray-300 border-primary-100 bg-primary-50 dark:bg-primary-700 before:absolute before:inset-0 before:z-1",
   "searchWrapperClasses": "sticky -top-1 p-2 -mx-1 bg-primary-20 dark:bg-primary-900",
   "placeholder": "{!! __('messages.choose') . '...' !!}",
   "toggleTag": "<button type=\"button\" aria-expanded=\"false\"></button>",
@@ -322,61 +322,61 @@
     </form>
 
     @push('scripts')
-    <script type="text/javascript" src="{{ url('js/jquery.maskMoney.min.js') }}"></script>
-    <script type="text/javascript">
-        $(document).ready(function(e) {
-            $(function() {
-                $('#total_harga').maskMoney({
-                    prefix: 'Rp. ',
-                    allowNegative: false,
-                    thousands: '.',
-                    decimal: ',',
-                    precision: 0,
-                    affixesStay: false
-                });
-                $('#biaya_angkutan').maskMoney({
-                    prefix: 'Rp. ',
-                    allowNegative: false,
-                    thousands: '.',
-                    decimal: ',',
-                    precision: 0,
-                    affixesStay: false
-                });
-                $('#pajak').maskMoney({
-                    prefix: '% ',
-                    allowNegative: false,
-                    thousands: '.',
-                    decimal: ',',
-                    precision: 2,
-                    affixesStay: false
-                });
+        <script type="text/javascript" src="{{ url('js/jquery.maskMoney.min.js') }}"></script>
+        <script type="text/javascript">
+            $(document).ready(function(e) {
+                $(function() {
+                    $('#total_harga').maskMoney({
+                        prefix: 'Rp. ',
+                        allowNegative: false,
+                        thousands: '.',
+                        decimal: ',',
+                        precision: 0,
+                        affixesStay: false
+                    });
+                    $('#biaya_angkutan').maskMoney({
+                        prefix: 'Rp. ',
+                        allowNegative: false,
+                        thousands: '.',
+                        decimal: ',',
+                        precision: 0,
+                        affixesStay: false
+                    });
+                    $('#pajak').maskMoney({
+                        prefix: '% ',
+                        allowNegative: false,
+                        thousands: '.',
+                        decimal: ',',
+                        precision: 2,
+                        affixesStay: false
+                    });
 
-                $('#gambar').change(function() {
-                    let reader = new FileReader();
-                    reader.onload = (e) => {
-                        $('#image-preview').attr('src', e.target.result);
+                    $('#gambar').change(function() {
+                        let reader = new FileReader();
+                        reader.onload = (e) => {
+                            $('#image-preview').attr('src', e.target.result);
+                        }
+                        reader.readAsDataURL(this.files[0]);
+                    });
+                })
+
+                $("#tunai").on("change keyup paste", function() {
+                    var _xtunai = $('#tunai').val();
+
+                    if (_xtunai === '2') {
+                        var now = new Date();
+                        var day = ("0" + now.getDate()).slice(-2);
+                        var month = ("0" + (now.getMonth() + 1)).slice(-2);
+                        var year = now.getFullYear();
+                        var today = year + "-" + month + "-" + day;
+                        $("#div-jatuhtempo").show();
+                        $("#jatuhtempo").val(today);
+                    } else {
+                        $("#jatuhtempo").val("");
+                        $("#div-jatuhtempo").hide();
                     }
-                    reader.readAsDataURL(this.files[0]);
                 });
-            })
-
-            $("#tunai").on("change keyup paste", function() {
-                var _xtunai = $('#tunai').val();
-
-                if (_xtunai === '2') {
-                    var now = new Date();
-                    var day = ("0" + now.getDate()).slice(-2);
-                    var month = ("0" + (now.getMonth() + 1)).slice(-2);
-                    var year = now.getFullYear();
-                    var today = year + "-" + month + "-" + day;
-                    $("#div-jatuhtempo").show();
-                    $("#jatuhtempo").val(today);
-                } else {
-                    $("#jatuhtempo").val("");
-                    $("#div-jatuhtempo").hide();
-                }
             });
-        });
-    </script>
+        </script>
     @endpush
 </x-app-layout>

@@ -199,7 +199,7 @@
                                                             data-hs-select='{
   "hasSearch": true,
   "searchPlaceholder": "{!! __('messages.search') . '...' !!}",
-  "searchClasses": "block w-full py-1.5 sm:py-2 px-3 sm:text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 text-gray-700 border-primary-100 bg-primary-50 dark:bg-primary-700 before:absolute before:inset-0 before:z-1",
+  "searchClasses": "block w-full py-1.5 sm:py-2 px-3 sm:text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 text-gray-700 dark:text-gray-300 border-primary-100 bg-primary-50 dark:bg-primary-700 before:absolute before:inset-0 before:z-1",
   "searchWrapperClasses": "sticky -top-1 p-2 -mx-1 bg-primary-20 dark:bg-primary-900",
   "placeholder": "{!! __('messages.choose') . '...' !!}",
   "toggleTag": "<button type=\"button\" aria-expanded=\"false\"></button>",
@@ -345,7 +345,7 @@
                                                             data-hs-select='{
   "hasSearch": true,
   "searchPlaceholder": "{!! __('messages.search') . '...' !!}",
-  "searchClasses": "block w-full py-1.5 sm:py-2 px-3 sm:text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 text-gray-700 border-primary-100 bg-primary-50 dark:bg-primary-700 before:absolute before:inset-0 before:z-1",
+  "searchClasses": "block w-full py-1.5 sm:py-2 px-3 sm:text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 text-gray-700 dark:text-gray-300 border-primary-100 bg-primary-50 dark:bg-primary-700 before:absolute before:inset-0 before:z-1",
   "searchWrapperClasses": "sticky -top-1 p-2 -mx-1 bg-primary-20 dark:bg-primary-900",
   "placeholder": "{!! __('messages.choose') . '...' !!}",
   "toggleTag": "<button type=\"button\" aria-expanded=\"false\"></button>",
@@ -422,288 +422,288 @@
     </div>
 
     @push('styles')
-    <style>
-        .readonly-select {
-            cursor: not-allowed;
-            opacity: 1;
-        }
-    </style>
+        <style>
+            .readonly-select {
+                cursor: not-allowed;
+                opacity: 1;
+            }
+        </style>
     @endpush
 
     @push('scripts')
-    <script type="text/javascript">
-        $(document).ready(function(e) {
-            $("#satuan_id_ingoods, #satuan_id_outgoods").on("mousedown", function(e) {
-                e.preventDefault();
-                this.blur();
-                window.focus();
-            });
+        <script type="text/javascript">
+            $(document).ready(function(e) {
+                $("#satuan_id_ingoods, #satuan_id_outgoods").on("mousedown", function(e) {
+                    e.preventDefault();
+                    this.blur();
+                    window.focus();
+                });
 
-            function getInitialFormValues(formId) {
-                const form = document.getElementById(formId);
-                const initialValues = {};
-                for (let i = 0; i < form.elements.length; i++) {
-                    const element = form.elements[i];
-                    if (element.name) {
-                        if (element.type === 'checkbox' || element.type === 'radio') {
-                            initialValues[element.name] = element.checked;
-                        } else {
-                            initialValues[element.name] = element.value;
+                function getInitialFormValues(formId) {
+                    const form = document.getElementById(formId);
+                    const initialValues = {};
+                    for (let i = 0; i < form.elements.length; i++) {
+                        const element = form.elements[i];
+                        if (element.name) {
+                            if (element.type === 'checkbox' || element.type === 'radio') {
+                                initialValues[element.name] = element.checked;
+                            } else {
+                                initialValues[element.name] = element.value;
+                            }
+                        }
+                    }
+                    return initialValues;
+                }
+
+                function isFormDirty(formId, initialValues) {
+                    const form = document.getElementById(formId);
+                    for (let i = 0; i < form.elements.length; i++) {
+                        const element = form.elements[i];
+                        if (element.name) {
+                            let currentValue;
+                            if (element.type === 'checkbox' || element.type === 'radio') {
+                                currentValue = element.checked;
+                            } else {
+                                currentValue = element.value;
+                            }
+
+                            if (initialValues[element.name] !== currentValue) {
+                                return true;
+                            }
+                        }
+                    }
+                    return false;
+                }
+
+                const myFormInitialValues = getInitialFormValues('master-form');
+
+                copyFrom = function() {
+                    var confirmation = confirm("Are you sure you want to import this?");
+                    if (confirmation) {
+                        var xcopy_recipe = $('#copy_recipe option:selected').val();
+                        var xtoId = '{{ $datas->id }}';
+
+                        if (xcopy_recipe.trim().length > 0) {
+                            $.ajax({
+                                url: '{{ url('/production/recipe/import-from') }}' + '/' + xcopy_recipe +
+                                    '/' + xtoId,
+                                type: 'get',
+                                dataType: 'json',
+                                success: function(result) {
+                                    if (result.status !== 'Not Found') {
+                                        $('form#master-form').submit();
+                                    }
+                                }
+                            });
                         }
                     }
                 }
-                return initialValues;
-            }
 
-            function isFormDirty(formId, initialValues) {
-                const form = document.getElementById(formId);
-                for (let i = 0; i < form.elements.length; i++) {
-                    const element = form.elements[i];
-                    if (element.name) {
-                        let currentValue;
-                        if (element.type === 'checkbox' || element.type === 'radio') {
-                            currentValue = element.checked;
-                        } else {
-                            currentValue = element.value;
-                        }
+                deleteIngoods = function(detailId) {
+                    let idname = '#a-delete-ingoods-' + detailId;
 
-                        if (initialValues[element.name] !== currentValue) {
-                            return true;
-                        }
-                    }
-                }
-                return false;
-            }
-
-            const myFormInitialValues = getInitialFormValues('master-form');
-
-            copyFrom = function() {
-                var confirmation = confirm("Are you sure you want to import this?");
-                if (confirmation) {
-                    var xcopy_recipe = $('#copy_recipe option:selected').val();
-                    var xtoId = '{{ $datas->id }}';
-
-                    if (xcopy_recipe.trim().length > 0) {
+                    var confirmation = confirm("Are you sure you want to delete this?");
+                    if (confirmation) {
+                        $(idname).closest("tr").remove();
                         $.ajax({
-                            url: '{{ url('/production/recipe/import-from') }}' + '/' + xcopy_recipe +
-                                '/' + xtoId,
-                            type: 'get',
+                            url: '{{ url('/production/recipe/delete-ingoods') }}' + '/' + detailId,
+                            type: 'delete',
                             dataType: 'json',
+                            data: {
+                                '_token': '{{ csrf_token() }}',
+                            },
                             success: function(result) {
                                 if (result.status !== 'Not Found') {
-                                    $('form#master-form').submit();
+                                    $('#ingoodsBody').html(result.view);
                                 }
+                                flasher.error("{{ __('messages.successdeleted') }}!", "Success");
+                                var formattedNumber = new Intl.NumberFormat('de-DE').format(result
+                                    .total_ingoods);
+                                $("#total_ingoods").html(formattedNumber);
+                                $('#total_ingoods_value').val(result.total_ingoods);
+                                $('#ingoods-form')[0].reset();
+                            },
+                            error: function(xhr) {
+                                console.log(xhr.responseText);
                             }
                         });
                     }
-                }
-            }
+                };
 
-            deleteIngoods = function(detailId) {
-                let idname = '#a-delete-ingoods-' + detailId;
+                $("#submit-ingoods").on("click", function(e) {
+                    e.preventDefault();
+                    let key = $('#master_id').val();
 
-                var confirmation = confirm("Are you sure you want to delete this?");
-                if (confirmation) {
-                    $(idname).closest("tr").remove();
                     $.ajax({
-                        url: '{{ url('/production/recipe/delete-ingoods') }}' + '/' + detailId,
-                        type: 'delete',
+                        url: '{{ url('/production/recipe/store-ingoods') }}' + '/' + key,
+                        type: 'post',
                         dataType: 'json',
-                        data: {
-                            '_token': '{{ csrf_token() }}',
-                        },
+                        data: $('form#ingoods-form').serialize(),
                         success: function(result) {
                             if (result.status !== 'Not Found') {
                                 $('#ingoodsBody').html(result.view);
+                                $('#ingoods-form')[0].reset();
+                                var formattedNumber = new Intl.NumberFormat('de-DE').format(result
+                                    .total_ingoods);
+                                $("#total_ingoods").html(formattedNumber);
+                                $('#total_ingoods_value').val(result.total_ingoods);
+                                flasher.success("{{ __('messages.successsaved') }}!", "Success");
                             }
-                            flasher.error("{{ __('messages.successdeleted') }}!", "Success");
-                            var formattedNumber = new Intl.NumberFormat('de-DE').format(result
-                                .total_ingoods);
-                            $("#total_ingoods").html(formattedNumber);
-                            $('#total_ingoods_value').val(result.total_ingoods);
-                            $('#ingoods-form')[0].reset();
-                        },
-                        error: function(xhr) {
-                            console.log(xhr.responseText);
                         }
                     });
-                }
-            };
 
-            $("#submit-ingoods").on("click", function(e) {
-                e.preventDefault();
-                let key = $('#master_id').val();
-
-                $.ajax({
-                    url: '{{ url('/production/recipe/store-ingoods') }}' + '/' + key,
-                    type: 'post',
-                    dataType: 'json',
-                    data: $('form#ingoods-form').serialize(),
-                    success: function(result) {
-                        if (result.status !== 'Not Found') {
-                            $('#ingoodsBody').html(result.view);
-                            $('#ingoods-form')[0].reset();
-                            var formattedNumber = new Intl.NumberFormat('de-DE').format(result
-                                .total_ingoods);
-                            $("#total_ingoods").html(formattedNumber);
-                            $('#total_ingoods_value').val(result.total_ingoods);
-                            flasher.success("{{ __('messages.successsaved') }}!", "Success");
-                        }
+                    if (isFormDirty('master-form', myFormInitialValues)) {
+                        $('form#master-form').submit();
                     }
                 });
 
-                if (isFormDirty('master-form', myFormInitialValues)) {
-                    $('form#master-form').submit();
-                }
-            });
+                deleteOutgoods = function(detailId) {
+                    let idname = '#a-delete-outgoods-' + detailId;
 
-            deleteOutgoods = function(detailId) {
-                let idname = '#a-delete-outgoods-' + detailId;
+                    var confirmation = confirm("Are you sure you want to delete this?");
+                    if (confirmation) {
+                        $(idname).closest("tr").remove();
+                        $.ajax({
+                            url: '{{ url('/production/recipe/delete-outgoods') }}' + '/' + detailId,
+                            type: 'delete',
+                            dataType: 'json',
+                            data: {
+                                '_token': '{{ csrf_token() }}',
+                            },
+                            success: function(result) {
+                                if (result.status !== 'Not Found') {
+                                    $('#outgoodsBody').html(result.view);
+                                }
+                                flasher.error("{{ __('messages.successdeleted') }}!", "Success");
+                                var formattedNumber = new Intl.NumberFormat('de-DE').format(result
+                                    .total_outgoods);
+                                $("#total_outgoods").html(formattedNumber);
+                                $('#outgoods-form')[0].reset();
+                            },
+                            error: function(xhr) {
+                                console.log(xhr.responseText);
+                            }
+                        });
+                    }
+                };
 
-                var confirmation = confirm("Are you sure you want to delete this?");
-                if (confirmation) {
-                    $(idname).closest("tr").remove();
+                $("#submit-outgoods").on("click", function(e) {
+                    e.preventDefault();
+                    let key = $('#master_id').val();
+
                     $.ajax({
-                        url: '{{ url('/production/recipe/delete-outgoods') }}' + '/' + detailId,
-                        type: 'delete',
+                        url: '{{ url('/production/recipe/store-outgoods') }}' + '/' + key,
+                        type: 'post',
                         dataType: 'json',
-                        data: {
-                            '_token': '{{ csrf_token() }}',
-                        },
+                        data: $('form#outgoods-form').serialize(),
                         success: function(result) {
                             if (result.status !== 'Not Found') {
                                 $('#outgoodsBody').html(result.view);
+                                $('#outgoods-form')[0].reset();
+                                var formattedNumber = new Intl.NumberFormat('de-DE').format(result
+                                    .total_outgoods);
+                                $("#total_outgoods").html(formattedNumber);
+                                flasher.success("{{ __('messages.successsaved') }}!", "Success");
                             }
-                            flasher.error("{{ __('messages.successdeleted') }}!", "Success");
-                            var formattedNumber = new Intl.NumberFormat('de-DE').format(result
-                                .total_outgoods);
-                            $("#total_outgoods").html(formattedNumber);
-                            $('#outgoods-form')[0].reset();
-                        },
-                        error: function(xhr) {
-                            console.log(xhr.responseText);
                         }
                     });
-                }
-            };
 
-            $("#submit-outgoods").on("click", function(e) {
-                e.preventDefault();
-                let key = $('#master_id').val();
-
-                $.ajax({
-                    url: '{{ url('/production/recipe/store-outgoods') }}' + '/' + key,
-                    type: 'post',
-                    dataType: 'json',
-                    data: $('form#outgoods-form').serialize(),
-                    success: function(result) {
-                        if (result.status !== 'Not Found') {
-                            $('#outgoodsBody').html(result.view);
-                            $('#outgoods-form')[0].reset();
-                            var formattedNumber = new Intl.NumberFormat('de-DE').format(result
-                                .total_outgoods);
-                            $("#total_outgoods").html(formattedNumber);
-                            flasher.success("{{ __('messages.successsaved') }}!", "Success");
-                        }
+                    if (isFormDirty('master-form', myFormInitialValues)) {
+                        $('form#master-form').submit();
                     }
                 });
 
-                if (isFormDirty('master-form', myFormInitialValues)) {
-                    $('form#master-form').submit();
-                }
-            });
+                deleteDetail = function(detailId) {
+                    let idname = '#a-delete-detail-' + detailId;
 
-            deleteDetail = function(detailId) {
-                let idname = '#a-delete-detail-' + detailId;
+                    var confirmation = confirm("Are you sure you want to delete this?");
+                    if (confirmation) {
+                        $(idname).closest("tr").remove();
+                        $.ajax({
+                            url: '{{ url('/production/recipe/delete-detail') }}' + '/' + detailId,
+                            type: 'delete',
+                            dataType: 'json',
+                            data: {
+                                '_token': '{{ csrf_token() }}',
+                            },
+                            success: function(result) {
+                                if (result.status !== 'Not Found') {
+                                    $('#detailBody').html(result.view);
+                                }
+                                flasher.error("{{ __('messages.successdeleted') }}!", "Success");
+                                $('#detail-form')[0].reset();
+                            },
+                            error: function(xhr) {
+                                console.log(xhr.responseText);
+                            }
+                        });
+                    }
+                };
 
-                var confirmation = confirm("Are you sure you want to delete this?");
-                if (confirmation) {
-                    $(idname).closest("tr").remove();
+                $("#submit-detail").on("click", function(e) {
+                    e.preventDefault();
+                    let key = $('#master_id').val();
+
+                    // let data = $("form#detail-form").serializeArray();
+                    // let key = data[2].value;
+                    // jQuery.each(data, function(i, data) {});
+
                     $.ajax({
-                        url: '{{ url('/production/recipe/delete-detail') }}' + '/' + detailId,
-                        type: 'delete',
+                        url: '{{ url('/production/recipe/store-detail') }}' + '/' + key,
+                        type: 'post',
                         dataType: 'json',
-                        data: {
-                            '_token': '{{ csrf_token() }}',
-                        },
+                        data: $('form#detail-form').serialize(),
                         success: function(result) {
                             if (result.status !== 'Not Found') {
                                 $('#detailBody').html(result.view);
+                                $('#detail-form')[0].reset();
+                                flasher.success("{{ __('messages.successsaved') }}!", "Success");
                             }
-                            flasher.error("{{ __('messages.successdeleted') }}!", "Success");
-                            $('#detail-form')[0].reset();
-                        },
-                        error: function(xhr) {
-                            console.log(xhr.responseText);
                         }
                     });
-                }
-            };
 
-            $("#submit-detail").on("click", function(e) {
-                e.preventDefault();
-                let key = $('#master_id').val();
+                    if (isFormDirty('master-form', myFormInitialValues)) {
+                        $('form#master-form').submit();
+                    }
+                });
 
-                // let data = $("form#detail-form").serializeArray();
-                // let key = data[2].value;
-                // jQuery.each(data, function(i, data) {});
+                $("#barang_id_ingoods").on("change keyup paste", function() {
+                    var xbar = $('#barang_id_ingoods option:selected').val();
 
-                $.ajax({
-                    url: '{{ url('/production/recipe/store-detail') }}' + '/' + key,
-                    type: 'post',
-                    dataType: 'json',
-                    data: $('form#detail-form').serialize(),
-                    success: function(result) {
-                        if (result.status !== 'Not Found') {
-                            $('#detailBody').html(result.view);
-                            $('#detail-form')[0].reset();
-                            flasher.success("{{ __('messages.successsaved') }}!", "Success");
+                    $.ajax({
+                        url: '{{ url('/warehouse/goods/get-goods-stock') }}' + "/" + xbar,
+                        type: "GET",
+                        dataType: 'json',
+                        success: function(result) {
+                            var p1 = result.p1;
+                            var p5 = result.p5;
+                            $('#satuan_id_ingoods').val(p1);
+                            $('#harga_satuan_ingoods').val(p5);
+                            $('#kuantiti_ingoods').focus();
                         }
-                    }
+                    });
                 });
 
-                if (isFormDirty('master-form', myFormInitialValues)) {
-                    $('form#master-form').submit();
-                }
-            });
+                $("#barang_id_outgoods").on("change keyup paste", function() {
+                    var xbar = $('#barang_id_outgoods option:selected').val();
+                    var xharga_satuan = $('#total_ingoods_value').val();
 
-            $("#barang_id_ingoods").on("change keyup paste", function() {
-                var xbar = $('#barang_id_ingoods option:selected').val();
-
-                $.ajax({
-                    url: '{{ url('/warehouse/goods/get-goods-stock') }}' + "/" + xbar,
-                    type: "GET",
-                    dataType: 'json',
-                    success: function(result) {
-                        var p1 = result.p1;
-                        var p5 = result.p5;
-                        $('#satuan_id_ingoods').val(p1);
-                        $('#harga_satuan_ingoods').val(p5);
-                        $('#kuantiti_ingoods').focus();
-                    }
+                    $.ajax({
+                        url: '{{ url('/warehouse/goods/get-goods-stock') }}' + "/" + xbar,
+                        type: "GET",
+                        dataType: 'json',
+                        success: function(result) {
+                            var p1 = result.p1;
+                            var p6 = result.p6;
+                            $('#satuan_id_outgoods').val(p1);
+                            $('#harga_satuan_outgoods').val(p6);
+                            $('#harga_satuan_outgoods').val(xharga_satuan);
+                            $('#kuantiti_outgoods').focus();
+                        }
+                    });
                 });
+
             });
-
-            $("#barang_id_outgoods").on("change keyup paste", function() {
-                var xbar = $('#barang_id_outgoods option:selected').val();
-                var xharga_satuan = $('#total_ingoods_value').val();
-
-                $.ajax({
-                    url: '{{ url('/warehouse/goods/get-goods-stock') }}' + "/" + xbar,
-                    type: "GET",
-                    dataType: 'json',
-                    success: function(result) {
-                        var p1 = result.p1;
-                        var p6 = result.p6;
-                        $('#satuan_id_outgoods').val(p1);
-                        $('#harga_satuan_outgoods').val(p6);
-                        $('#harga_satuan_outgoods').val(xharga_satuan);
-                        $('#kuantiti_outgoods').focus();
-                    }
-                });
-            });
-
-        });
-    </script>
+        </script>
     @endpush
 </x-app-layout>

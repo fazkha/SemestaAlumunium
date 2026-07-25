@@ -275,7 +275,7 @@
                                                             data-hs-select='{
   "hasSearch": true,
   "searchPlaceholder": "{!! __('messages.search') . '...' !!}",
-  "searchClasses": "block w-full py-1.5 sm:py-2 px-3 sm:text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 text-gray-700 border-primary-100 bg-primary-50 dark:bg-primary-700 before:absolute before:inset-0 before:z-1",
+  "searchClasses": "block w-full py-1.5 sm:py-2 px-3 sm:text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 text-gray-700 dark:text-gray-300 border-primary-100 bg-primary-50 dark:bg-primary-700 before:absolute before:inset-0 before:z-1",
   "searchWrapperClasses": "sticky -top-1 p-2 -mx-1 bg-primary-20 dark:bg-primary-900",
   "placeholder": "{!! __('messages.choose') . '...' !!}",
   "toggleTag": "<button type=\"button\" aria-expanded=\"false\"></button>",
@@ -550,334 +550,334 @@
     </div>
 
     @push('styles')
-    <style>
-        .readonly-select {
-            cursor: not-allowed;
-            opacity: 1;
-        }
-
-        @media (max-width: 768px) {
-            .field-large-show {
-                display: none;
+        <style>
+            .readonly-select {
+                cursor: not-allowed;
+                opacity: 1;
             }
-        }
 
-        @media (min-width: 769px) {
-            .field-large-show {
-                display: block;
+            @media (max-width: 768px) {
+                .field-large-show {
+                    display: none;
+                }
             }
-        }
-    </style>
+
+            @media (min-width: 769px) {
+                .field-large-show {
+                    display: block;
+                }
+            }
+        </style>
     @endpush
 
     @push('scripts')
-    <script type="text/javascript" src="{{ url('js/jquery.maskMoney.min.js') }}"></script>
-    <script type="text/javascript">
-        $(document).ready(function(e) {
-            $("#satuan_id, #satuan_id_adonan").on("mousedown", function(e) {
-                e.preventDefault();
-                this.blur();
-                window.focus();
-            });
+        <script type="text/javascript" src="{{ url('js/jquery.maskMoney.min.js') }}"></script>
+        <script type="text/javascript">
+            $(document).ready(function(e) {
+                $("#satuan_id, #satuan_id_adonan").on("mousedown", function(e) {
+                    e.preventDefault();
+                    this.blur();
+                    window.focus();
+                });
 
-            function getInitialFormValues(formId) {
-                const form = document.getElementById(formId);
-                const initialValues = {};
-                for (let i = 0; i < form.elements.length; i++) {
-                    const element = form.elements[i];
-                    if (element.name) {
-                        if (element.type === 'checkbox' || element.type === 'radio') {
-                            initialValues[element.name] = element.checked;
-                        } else {
-                            initialValues[element.name] = element.value;
+                function getInitialFormValues(formId) {
+                    const form = document.getElementById(formId);
+                    const initialValues = {};
+                    for (let i = 0; i < form.elements.length; i++) {
+                        const element = form.elements[i];
+                        if (element.name) {
+                            if (element.type === 'checkbox' || element.type === 'radio') {
+                                initialValues[element.name] = element.checked;
+                            } else {
+                                initialValues[element.name] = element.value;
+                            }
                         }
                     }
+                    return initialValues;
                 }
-                return initialValues;
-            }
 
-            function isFormDirty(formId, initialValues) {
-                const form = document.getElementById(formId);
-                for (let i = 0; i < form.elements.length; i++) {
-                    const element = form.elements[i];
-                    if (element.name) {
-                        let currentValue;
-                        if (element.type === 'checkbox' || element.type === 'radio') {
-                            currentValue = element.checked;
-                        } else {
-                            currentValue = element.value;
-                        }
+                function isFormDirty(formId, initialValues) {
+                    const form = document.getElementById(formId);
+                    for (let i = 0; i < form.elements.length; i++) {
+                        const element = form.elements[i];
+                        if (element.name) {
+                            let currentValue;
+                            if (element.type === 'checkbox' || element.type === 'radio') {
+                                currentValue = element.checked;
+                            } else {
+                                currentValue = element.value;
+                            }
 
-                        if (initialValues[element.name] !== currentValue) {
-                            return true;
+                            if (initialValues[element.name] !== currentValue) {
+                                return true;
+                            }
                         }
                     }
+                    return false;
                 }
-                return false;
-            }
 
-            const myFormInitialValues = getInitialFormValues('master-form');
+                const myFormInitialValues = getInitialFormValues('master-form');
 
-            $(function() {
-                $('#total_harga').maskMoney({
-                    prefix: 'Rp. ',
-                    allowNegative: false,
-                    allowZerro: true,
-                    thousands: '.',
-                    decimal: ',',
-                    precision: 0,
-                });
-                $('#biaya_angkutan').maskMoney({
-                    prefix: 'Rp. ',
-                    allowNegative: false,
-                    allowZerro: true,
-                    thousands: '.',
-                    decimal: ',',
-                    precision: 0,
-                });
+                $(function() {
+                    $('#total_harga').maskMoney({
+                        prefix: 'Rp. ',
+                        allowNegative: false,
+                        allowZerro: true,
+                        thousands: '.',
+                        decimal: ',',
+                        precision: 0,
+                    });
+                    $('#biaya_angkutan').maskMoney({
+                        prefix: 'Rp. ',
+                        allowNegative: false,
+                        allowZerro: true,
+                        thousands: '.',
+                        decimal: ',',
+                        precision: 0,
+                    });
 
-                $('#gambar').change(function() {
-                    let reader = new FileReader();
-                    reader.onload = (e) => {
-                        $('#image-preview').attr('src', e.target.result);
+                    $('#gambar').change(function() {
+                        let reader = new FileReader();
+                        reader.onload = (e) => {
+                            $('#image-preview').attr('src', e.target.result);
+                        }
+                        reader.readAsDataURL(this.files[0]);
+                    });
+                })
+
+                deleteAdonan = function(detailId) {
+                    let idname = '#a-delete-adonan-' + detailId;
+
+                    var confirmation = confirm("Are you sure you want to delete this?");
+                    if (confirmation) {
+                        $(idname).closest("tr").remove();
+                        $.ajax({
+                            url: '{{ url('/sale/order/delete-adonan') }}' + '/' + detailId,
+                            type: 'delete',
+                            dataType: 'json',
+                            data: {
+                                '_token': '{{ csrf_token() }}',
+                            },
+                            success: function(result) {
+                                if (result.status !== 'Not Found') {
+                                    $('#adonanBody').html(result.view);
+                                    flasher.error("{{ __('messages.successdeleted') }}!", "Success");
+                                }
+                                $('#adonan-form')[0].reset();
+                                $('#disp-total_harga-master').html(result.total_harga_master
+                                    .toLocaleString('de-DE'));
+                                $('#disp-total_harga-adonan').html(result.total_harga_adonan
+                                    .toLocaleString('de-DE'));
+                            },
+                            error: function(xhr) {
+                                console.log(xhr.responseText);
+                            }
+                        });
                     }
-                    reader.readAsDataURL(this.files[0]);
+                };
+
+                deleteDetail = function(detailId) {
+                    let idname = '#a-delete-detail-' + detailId;
+
+                    var confirmation = confirm("Are you sure you want to delete this?");
+                    if (confirmation) {
+                        $(idname).closest("tr").remove();
+                        $.ajax({
+                            url: '{{ url('/sale/order/delete-detail') }}' + '/' + detailId,
+                            type: 'delete',
+                            dataType: 'json',
+                            data: {
+                                '_token': '{{ csrf_token() }}',
+                            },
+                            success: function(result) {
+                                if (result.status !== 'Not Found') {
+                                    $('#detailBody').html(result.view);
+                                    flasher.error("{{ __('messages.successdeleted') }}!", "Success");
+                                }
+                                $('#form-order')[0].reset();
+                                $('#disp-total_harga-master').html(result.total_harga_master
+                                    .toLocaleString('de-DE'));
+                                $('#disp-total_harga-detail').html(result.total_harga_detail
+                                    .toLocaleString('de-DE'));
+                            },
+                            error: function(xhr) {
+                                console.log(xhr.responseText);
+                            }
+                        });
+                    }
+                };
+
+                $("#harga_satuan_adonan, #kuantiti_adonan, #pajak_adonan").on("change keyup paste", function() {
+                    var _xhs = $('#harga_satuan_adonan').val();
+                    var _xku = $('#kuantiti_adonan').val();
+                    var _xpj = $('#pajak_adonan').val();
+                    var xhs = (_xhs > 0) ? _xhs : 0;
+                    var xku = (_xku > 0) ? _xku : 0;
+                    var xpj = (_xpj > 0) ? _xpj : 0;
+                    var xsub = (xhs * (1 + (xpj / 100))) * xku;
+                    var formattedNumber = new Intl.NumberFormat('de-DE').format(xsub);
+
+                    $("#disp-sub_harga-adonan").html(formattedNumber);
                 });
-            })
 
-            deleteAdonan = function(detailId) {
-                let idname = '#a-delete-adonan-' + detailId;
+                $("#harga_satuan, #kuantiti, #pajak").on("change keyup paste", function() {
+                    var _xhs = $('#harga_satuan').val();
+                    var _xku = $('#kuantiti').val();
+                    var _xst = $('#stock').val();
+                    var _xpj = $('#pajak').val();
+                    var xhs = (_xhs > 0) ? _xhs : 0;
+                    var xku = (_xku > 0) ? _xku : 0;
+                    var xst = (_xst > 0) ? _xst : 0;
+                    var xpj = (_xpj > 0) ? _xpj : 0;
+                    var xsub = (xhs * (1 + (xpj / 100))) * xku;
+                    var formattedNumber = new Intl.NumberFormat('de-DE').format(xsub);
 
-                var confirmation = confirm("Are you sure you want to delete this?");
-                if (confirmation) {
-                    $(idname).closest("tr").remove();
+                    $("#disp-sub_harga").html(formattedNumber);
+
+                    if ((xku * 1) > (xst * 1)) {
+                        $("#disp-stock")
+                            .removeClass("text-gray-900 bg-primary-50")
+                            .addClass("text-white bg-red-700");
+                    } else {
+                        $("#disp-stock")
+                            .removeClass("text-white bg-red-700")
+                            .addClass("text-gray-900 bg-primary-50");
+                    }
+                });
+
+                $("#gerobak_id").on("change keyup paste", function() {
+                    $('#barang_id_adonan').prop('selectedIndex', 1).trigger('change');
+                });
+
+                $("#barang_id_adonan").on("change keyup paste", function() {
+                    var xbar = $('#barang_id_adonan option:selected').val();
+
                     $.ajax({
-                        url: '{{ url('/sale/order/delete-adonan') }}' + '/' + detailId,
-                        type: 'delete',
+                        url: '{{ url('/warehouse/goods/get-goods-sell') }}' + "/" + xbar,
+                        type: "GET",
                         dataType: 'json',
-                        data: {
-                            '_token': '{{ csrf_token() }}',
-                        },
+                        success: function(result) {
+                            var p1 = result.p1;
+                            var p2 = result.p2;
+                            $('#harga_satuan_adonan').val(p1);
+                            $('#satuan_id_adonan').val(p2);
+                            $('#kuantiti_adonan').focus();
+                        }
+                    });
+                });
+
+                $("#tunai").on("change keyup paste", function() {
+                    var _xtunai = $('#tunai').val();
+
+                    if (_xtunai === '2') {
+                        var now = new Date();
+                        var day = ("0" + now.getDate()).slice(-2);
+                        var month = ("0" + (now.getMonth() + 1)).slice(-2);
+                        var year = now.getFullYear();
+                        var today = year + "-" + month + "-" + day;
+                        $("#div-jatuhtempo").show();
+                        $("#jatuhtempo").val(today);
+                    } else {
+                        $("#jatuhtempo").val("");
+                        $("#div-jatuhtempo").hide();
+                    }
+                });
+
+                $("#barang_id").on("change keyup paste", function() {
+                    var xbar = $('#barang_id option:selected').val();
+
+                    $.ajax({
+                        url: '{{ url('/warehouse/goods/get-goods-sell') }}' + "/" + xbar,
+                        type: "GET",
+                        dataType: 'json',
+                        success: function(result) {
+                            var p1 = result.p1;
+                            var p2 = result.p2;
+                            var p3 = result.p3;
+                            $('#harga_satuan').val(p1);
+                            $('#satuan_id').val(p2);
+                            $('#stock').val(p3);
+                            $('#disp-stock').html(p3.toLocaleString('de-DE'));
+                            $('#kuantiti').focus();
+                        }
+                    });
+                });
+
+                $("#submit-adonan").on("click", function(e) {
+                    e.preventDefault();
+                    let key = $('#order_id').val();
+
+                    $.ajax({
+                        url: '{{ url('/sale/order/store-adonan') }}' + '/' + key,
+                        type: 'post',
+                        dataType: 'json',
+                        data: $('form#adonan-form').serialize(),
                         success: function(result) {
                             if (result.status !== 'Not Found') {
                                 $('#adonanBody').html(result.view);
-                                flasher.error("{{ __('messages.successdeleted') }}!", "Success");
+                                $('#disp-total_harga-master').html(result.total_harga_master
+                                    .toLocaleString('de-DE'));
+                                $('#disp-total_harga-adonan').html(result.total_harga_adonan
+                                    .toLocaleString('de-DE'));
+                                $('#adonan-form')[0].reset();
+                                $("span.truncate").text('{{ __('messages.choose') . '...' }}');
+                                $("#disp-sub_harga-adonan").html(0);
+
+                                $('#pegawai_id').empty();
+                                $('#pegawai_id').append($('<option>', {
+                                    value: null,
+                                    text: "{{ __('messages.choose') }}..."
+                                }));
+                                var data = result.pegawais;
+
+                                $.each(data, function(index, item) {
+                                    $('#pegawai_id').append($('<option>', {
+                                        value: item.id,
+                                        text: item.nama
+                                    }));
+                                });
+                                $("#pegawai_id").focus();
+
+                                flasher.success("{{ __('messages.successsaved') }}!", "Success");
                             }
-                            $('#adonan-form')[0].reset();
-                            $('#disp-total_harga-master').html(result.total_harga_master
-                                .toLocaleString('de-DE'));
-                            $('#disp-total_harga-adonan').html(result.total_harga_adonan
-                                .toLocaleString('de-DE'));
-                        },
-                        error: function(xhr) {
-                            console.log(xhr.responseText);
                         }
                     });
-                }
-            };
 
-            deleteDetail = function(detailId) {
-                let idname = '#a-delete-detail-' + detailId;
+                    if (isFormDirty('master-form', myFormInitialValues)) {
+                        $('form#master-form').submit();
+                    }
+                });
 
-                var confirmation = confirm("Are you sure you want to delete this?");
-                if (confirmation) {
-                    $(idname).closest("tr").remove();
+                $("#submit-detail").on("click", function(e) {
+                    e.preventDefault();
+                    let key = $('#order_id').val();
+
                     $.ajax({
-                        url: '{{ url('/sale/order/delete-detail') }}' + '/' + detailId,
-                        type: 'delete',
+                        url: '{{ url('/sale/order/store-detail') }}' + '/' + key,
+                        type: 'post',
                         dataType: 'json',
-                        data: {
-                            '_token': '{{ csrf_token() }}',
-                        },
+                        data: $('form#form-order').serialize(),
                         success: function(result) {
                             if (result.status !== 'Not Found') {
                                 $('#detailBody').html(result.view);
-                                flasher.error("{{ __('messages.successdeleted') }}!", "Success");
+                                $('#disp-total_harga-master').html(result.total_harga_master
+                                    .toLocaleString('de-DE'));
+                                $('#disp-total_harga-detail').html(result.total_harga_detail
+                                    .toLocaleString('de-DE'));
+                                $('#form-order')[0].reset();
+                                $("span.truncate").text('{{ __('messages.choose') . '...' }}');
+                                $("#disp-stock").html(0);
+                                $("#disp-sub_harga").html(0);
+                                flasher.success("{{ __('messages.successsaved') }}!", "Success");
                             }
-                            $('#form-order')[0].reset();
-                            $('#disp-total_harga-master').html(result.total_harga_master
-                                .toLocaleString('de-DE'));
-                            $('#disp-total_harga-detail').html(result.total_harga_detail
-                                .toLocaleString('de-DE'));
-                        },
-                        error: function(xhr) {
-                            console.log(xhr.responseText);
                         }
                     });
-                }
-            };
 
-            $("#harga_satuan_adonan, #kuantiti_adonan, #pajak_adonan").on("change keyup paste", function() {
-                var _xhs = $('#harga_satuan_adonan').val();
-                var _xku = $('#kuantiti_adonan').val();
-                var _xpj = $('#pajak_adonan').val();
-                var xhs = (_xhs > 0) ? _xhs : 0;
-                var xku = (_xku > 0) ? _xku : 0;
-                var xpj = (_xpj > 0) ? _xpj : 0;
-                var xsub = (xhs * (1 + (xpj / 100))) * xku;
-                var formattedNumber = new Intl.NumberFormat('de-DE').format(xsub);
-
-                $("#disp-sub_harga-adonan").html(formattedNumber);
-            });
-
-            $("#harga_satuan, #kuantiti, #pajak").on("change keyup paste", function() {
-                var _xhs = $('#harga_satuan').val();
-                var _xku = $('#kuantiti').val();
-                var _xst = $('#stock').val();
-                var _xpj = $('#pajak').val();
-                var xhs = (_xhs > 0) ? _xhs : 0;
-                var xku = (_xku > 0) ? _xku : 0;
-                var xst = (_xst > 0) ? _xst : 0;
-                var xpj = (_xpj > 0) ? _xpj : 0;
-                var xsub = (xhs * (1 + (xpj / 100))) * xku;
-                var formattedNumber = new Intl.NumberFormat('de-DE').format(xsub);
-
-                $("#disp-sub_harga").html(formattedNumber);
-
-                if ((xku * 1) > (xst * 1)) {
-                    $("#disp-stock")
-                        .removeClass("text-gray-900 bg-primary-50")
-                        .addClass("text-white bg-red-700");
-                } else {
-                    $("#disp-stock")
-                        .removeClass("text-white bg-red-700")
-                        .addClass("text-gray-900 bg-primary-50");
-                }
-            });
-
-            $("#gerobak_id").on("change keyup paste", function() {
-                $('#barang_id_adonan').prop('selectedIndex', 1).trigger('change');
-            });
-
-            $("#barang_id_adonan").on("change keyup paste", function() {
-                var xbar = $('#barang_id_adonan option:selected').val();
-
-                $.ajax({
-                    url: '{{ url('/warehouse/goods/get-goods-sell') }}' + "/" + xbar,
-                    type: "GET",
-                    dataType: 'json',
-                    success: function(result) {
-                        var p1 = result.p1;
-                        var p2 = result.p2;
-                        $('#harga_satuan_adonan').val(p1);
-                        $('#satuan_id_adonan').val(p2);
-                        $('#kuantiti_adonan').focus();
+                    if (isFormDirty('master-form', myFormInitialValues)) {
+                        $('form#master-form').submit();
                     }
                 });
             });
-
-            $("#tunai").on("change keyup paste", function() {
-                var _xtunai = $('#tunai').val();
-
-                if (_xtunai === '2') {
-                    var now = new Date();
-                    var day = ("0" + now.getDate()).slice(-2);
-                    var month = ("0" + (now.getMonth() + 1)).slice(-2);
-                    var year = now.getFullYear();
-                    var today = year + "-" + month + "-" + day;
-                    $("#div-jatuhtempo").show();
-                    $("#jatuhtempo").val(today);
-                } else {
-                    $("#jatuhtempo").val("");
-                    $("#div-jatuhtempo").hide();
-                }
-            });
-
-            $("#barang_id").on("change keyup paste", function() {
-                var xbar = $('#barang_id option:selected').val();
-
-                $.ajax({
-                    url: '{{ url('/warehouse/goods/get-goods-sell') }}' + "/" + xbar,
-                    type: "GET",
-                    dataType: 'json',
-                    success: function(result) {
-                        var p1 = result.p1;
-                        var p2 = result.p2;
-                        var p3 = result.p3;
-                        $('#harga_satuan').val(p1);
-                        $('#satuan_id').val(p2);
-                        $('#stock').val(p3);
-                        $('#disp-stock').html(p3.toLocaleString('de-DE'));
-                        $('#kuantiti').focus();
-                    }
-                });
-            });
-
-            $("#submit-adonan").on("click", function(e) {
-                e.preventDefault();
-                let key = $('#order_id').val();
-
-                $.ajax({
-                    url: '{{ url('/sale/order/store-adonan') }}' + '/' + key,
-                    type: 'post',
-                    dataType: 'json',
-                    data: $('form#adonan-form').serialize(),
-                    success: function(result) {
-                        if (result.status !== 'Not Found') {
-                            $('#adonanBody').html(result.view);
-                            $('#disp-total_harga-master').html(result.total_harga_master
-                                .toLocaleString('de-DE'));
-                            $('#disp-total_harga-adonan').html(result.total_harga_adonan
-                                .toLocaleString('de-DE'));
-                            $('#adonan-form')[0].reset();
-                            $("span.truncate").text('{{ __('messages.choose') . '...' }}');
-                            $("#disp-sub_harga-adonan").html(0);
-
-                            $('#pegawai_id').empty();
-                            $('#pegawai_id').append($('<option>', {
-                                value: null,
-                                text: "{{ __('messages.choose') }}..."
-                            }));
-                            var data = result.pegawais;
-
-                            $.each(data, function(index, item) {
-                                $('#pegawai_id').append($('<option>', {
-                                    value: item.id,
-                                    text: item.nama
-                                }));
-                            });
-                            $("#pegawai_id").focus();
-
-                            flasher.success("{{ __('messages.successsaved') }}!", "Success");
-                        }
-                    }
-                });
-
-                if (isFormDirty('master-form', myFormInitialValues)) {
-                    $('form#master-form').submit();
-                }
-            });
-
-            $("#submit-detail").on("click", function(e) {
-                e.preventDefault();
-                let key = $('#order_id').val();
-
-                $.ajax({
-                    url: '{{ url('/sale/order/store-detail') }}' + '/' + key,
-                    type: 'post',
-                    dataType: 'json',
-                    data: $('form#form-order').serialize(),
-                    success: function(result) {
-                        if (result.status !== 'Not Found') {
-                            $('#detailBody').html(result.view);
-                            $('#disp-total_harga-master').html(result.total_harga_master
-                                .toLocaleString('de-DE'));
-                            $('#disp-total_harga-detail').html(result.total_harga_detail
-                                .toLocaleString('de-DE'));
-                            $('#form-order')[0].reset();
-                            $("span.truncate").text('{{ __('messages.choose') . '...' }}');
-                            $("#disp-stock").html(0);
-                            $("#disp-sub_harga").html(0);
-                            flasher.success("{{ __('messages.successsaved') }}!", "Success");
-                        }
-                    }
-                });
-
-                if (isFormDirty('master-form', myFormInitialValues)) {
-                    $('form#master-form').submit();
-                }
-            });
-        });
-    </script>
+        </script>
     @endpush
 </x-app-layout>
