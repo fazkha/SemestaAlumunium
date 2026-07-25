@@ -182,13 +182,13 @@
     </div>
 
     <div x-show.transition.duration.500ms="openModal"
-        class="fixed inset-0 flex items-center justify-center px-4 md:px-0 bg-white bg-opacity-75">
+        class="fixed inset-0 flex items-center justify-center px-4 md:px-0 bg-white bg-opacity-75 dark:bg-black dark:bg-opacity-80">
         <div @click.away="openModal = false"
-            class="flex flex-col p-6 h-auto w-auto shadow-2xl rounded-lg border-2 bg-white border-gray-400">
+            class="flex flex-col p-6 h-auto w-auto shadow-2xl rounded-lg border-2 bg-white border-gray-400 dark:bg-gray-900 dark:border-gray-800">
             <div class="flex justify-between mb-4">
-                <div class="font-bold text-lg text-gray-900"><span x-html="modalTitle"></span></div>
+                <div class="font-bold text-lg text-gray-900 dark:text-gray-500"><span x-html="modalTitle"></span></div>
                 <button @click="openModal = false">
-                    <svg class="w-5 h-5 text-gray-900" viewBox="0 0 24 24" fill="currentColor"
+                    <svg class="w-5 h-5 text-gray-900 dark:text-gray-500" viewBox="0 0 24 24" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M5.293 5.293a1 1 0 0 1 1.414 0L12 10.586l5.293-5.293a1 1 0 1 1 1.414 1.414L13.414 12l5.293 5.293a1 1 0 0 1-1.414 1.414L12 13.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L10.586 12 5.293 6.707a1 1 0 0 1 0-1.414z"

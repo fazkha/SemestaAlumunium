@@ -1,7 +1,7 @@
 @section('title', __('Dashboard'))
 
 <x-app-layout>
-    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6 dark:border-primary-800">
+    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 lg:py-6 dark:border-primary-700">
         <h1 class="text-2xl font-semibold">Dashboard</h1>
     </div>
 

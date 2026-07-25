@@ -6,7 +6,7 @@
         modalTitle: 'Group'
     }">
         <div
-            class="flex items-center justify-between px-4 py-4 border-b border-primary-100 dark:border-primary-800 lg:py-6">
+            class="flex items-center justify-between px-4 py-4 border-b border-primary-100 dark:border-primary-700 lg:py-6">
             <h1 class="text-xl flex items-center justify-center">
                 <a href="{{ route('coa.index') }}" class="flex items-center justify-center">
                     <svg class="w-7 h-7" viewBox="0 0 1024 1024" fill="currentColor" class="icon" version="1.1"
@@ -153,14 +153,14 @@
         </form>
 
         <div x-show.transition.duration.500ms="openModal"
-            class="fixed inset-0 flex items-center justify-center px-4 md:px-0 bg-white bg-opacity-75">
+            class="fixed inset-0 flex items-center justify-center px-4 md:px-0 bg-white bg-opacity-75 dark:bg-black dark:bg-opacity-80">
             <div @click.away="openModal = false"
                 class="flex flex-col p-6 h-full w-auto shadow-2xl rounded-lg border-2 bg-white border-gray-400">
                 <div class="flex justify-between mb-4">
                     <h1 class="font-bold text-xl text-gray-900"><span x-html="modalTitle"></span>
                     </h1>
                     <button @click="openModal = false">
-                        <svg class="w-5 h-5 text-gray-900" viewBox="0 0 24 24" fill="currentColor"
+                        <svg class="w-5 h-5 text-gray-900 dark:text-gray-500" viewBox="0 0 24 24" fill="currentColor"
                             xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M5.293 5.293a1 1 0 0 1 1.414 0L12 10.586l5.293-5.293a1 1 0 1 1 1.414 1.414L13.414 12l5.293 5.293a1 1 0 0 1-1.414 1.414L12 13.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L10.586 12 5.293 6.707a1 1 0 0 1 0-1.414z"
