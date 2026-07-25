@@ -97,6 +97,7 @@ class StockOpnameController extends Controller implements HasMiddleware
         }
 
         $datas = $datas->where('branch_id', auth()->user()->profile->branch_id);
+        $datas = $datas->withCount('stock_opname_details');
         $datas = $datas->latest()->paginate(session('stock-opname_pp'));
 
         if ($request->page && $datas->count() == 0) {
@@ -213,7 +214,9 @@ class StockOpnameController extends Controller implements HasMiddleware
         // Gate::authorize('update', $datas);
 
         $gudangs = Gudang::where('branch_id', $branch_id)->where('isactive', 1)->orderBy('nama')->pluck('nama', 'id');
+        $subquery = StockOpnameDetail::where('stock_opname_id', Crypt::decrypt($request->stock_opname))->select('barang_id');
         $barangs = Barang::where('branch_id', $branch_id)->where('isactive', 1)->orderBy('nama')->pluck('nama', 'id');
+        // $barangs = Barang::where('branch_id', $branch_id)->where('isactive', 1)->whereNotIn('id', $subquery)->orderBy('nama')->pluck('nama', 'id');
         // islevel = 7 = staff; islevel = 3 = kepala divisi
         $petugas = ViewPegawaiJabatan::where('islevel', 7)->where('kode_branch', main_office_code())->orderBy('nama_plus')->pluck('nama_plus', 'pegawai_id');
         $petugas2 = ViewPegawaiJabatan::where('islevel', 3)->where('kode_branch', main_office_code())->orderBy('nama_plus')->pluck('nama_plus', 'pegawai_id');

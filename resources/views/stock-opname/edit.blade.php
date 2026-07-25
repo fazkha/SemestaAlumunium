@@ -516,6 +516,7 @@
                                 $('#detailBody').html(result.view);
                                 $('#jumlahdetail').text(result.jmlbrs);
                                 $('#form-order')[0].reset();
+                                $('.truncate').text('Pilih...');
                                 flasher.success("{{ __('messages.successsaved') }}!", "Success");
                             }
                         }
