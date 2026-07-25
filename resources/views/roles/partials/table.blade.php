@@ -9,15 +9,15 @@
             <thead>
                 <tr>
                     <th
-                        class="w-auto px-3 py-3 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50">
+                        class="w-auto px-3 py-3 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:bg-primary-800 dark:border-primary-800 dark:text-gray-300">
                         #
                     </th>
                     <th
-                        class="w-2/3 px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50">
+                        class="w-2/3 px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:bg-primary-800 dark:border-primary-800 dark:text-gray-300">
                         @lang('messages.role')
                     </th>
                     <th
-                        class="w-auto px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50">
+                        class="w-2/3 px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:bg-primary-800 dark:border-primary-800 dark:text-gray-300">
                         &nbsp;
                     </th>
                 </tr>

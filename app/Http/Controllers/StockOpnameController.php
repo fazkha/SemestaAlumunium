@@ -211,7 +211,7 @@ class StockOpnameController extends Controller implements HasMiddleware
             ->orderBy('barangs.nama')
             ->get();
 
-        Gate::authorize('update', $datas);
+        // Gate::authorize('update', $datas);
 
         $gudangs = Gudang::where('branch_id', $branch_id)->where('isactive', 1)->orderBy('nama')->pluck('nama', 'id');
         $barangs = Barang::where('branch_id', $branch_id)->where('isactive', 1)->orderBy('nama')->pluck('nama', 'id');
@@ -262,7 +262,7 @@ class StockOpnameController extends Controller implements HasMiddleware
     {
         $datas = StockOpname::find(Crypt::decrypt($request->stock_opname));
 
-        Gate::authorize('delete', $datas);
+        // Gate::authorize('delete', $datas);
 
         $details = StockOpnameDetail::where('stock_opname_id', Crypt::decrypt($request->stock_opname))->get();
 
