@@ -17,6 +17,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\JsonResponse;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 use Barryvdh\DomPDF\Facade\Pdf;
 
@@ -135,6 +136,7 @@ class StockOpnameController extends Controller implements HasMiddleware
         }
 
         $datas = $datas->where('branch_id', auth()->user()->profile->branch_id);
+        $datas = $datas->withCount('stock_opname_details');
         $datas = $datas->latest()->paginate(session('stock-opname_pp'));
 
         $datas->withPath('/warehouse/stock-opname'); // pagination url to

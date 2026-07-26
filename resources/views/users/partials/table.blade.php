@@ -17,7 +17,7 @@
                         @lang('messages.name')
                     </th>
                     <th
-                        class="w-2/3 px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:bg-primary-800 dark:border-primary-800 dark:text-gray-300">
+                        class="w-1/3 px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:bg-primary-800 dark:border-primary-800 dark:text-gray-300">
                         Email
                     </th>
                     <th
@@ -61,7 +61,7 @@
                             <div class="flex flex-col flex-wrap lg:flex-row gap-2 text-gray-900">
                                 @foreach ($user->getRoleNames() as $role)
                                     <div
-                                        class="flex px-2 py-1 border rounded items-center bg-primary-100 border-primary-400">
+                                        class="flex px-2 py-1 border rounded items-center bg-primary-100 border-primary-400 dark:bg-primary-700 dark:border-primary-800 dark:text-gray-400">
                                         <span>&bull;</span><span class="pl-2">{{ $role }}</span>
                                     </div>
                                 @endforeach
