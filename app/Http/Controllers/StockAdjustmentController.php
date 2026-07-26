@@ -264,7 +264,12 @@ class StockAdjustmentController extends Controller implements HasMiddleware
 
     public function print(Request $request)
     {
-        $id = Crypt::decrypt($request->stock_adjustment);
+        if (is_numeric($request->stock_adjustment)) {
+            $id = $request->stock_adjustment;
+        } else {
+            $id = Crypt::decrypt($request->stock_adjustment);
+        }
+
         $datas = StockOpname::find($id);
         $details = StockOpnameDetail::join('barangs', 'stock_opname_details.barang_id', '=', 'barangs.id')
             ->select('stock_opname_details.*')
