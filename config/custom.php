@@ -39,9 +39,9 @@ return [
     'menu_pengiriman' => true,
 
     // list per page
-    'list_per_page_opt_1' => 15,
-    'list_per_page_opt_2' => 30,
-    'list_per_page_opt_3' => 45,
+    'list_per_page_opt_1' => 20,
+    'list_per_page_opt_2' => 50,
+    'list_per_page_opt_3' => 100,
 
     // always update unit price on purchase
     'selaluUpdateHargaBeli' => true,

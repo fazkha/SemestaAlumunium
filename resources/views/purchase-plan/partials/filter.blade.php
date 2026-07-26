@@ -31,12 +31,18 @@
                             @lang('messages.page')</span>
                         <select id="pp-dropdown"
                             class="text-sm px-2 leading-tight pl-28 pr-9 py-2 appearance-none w-full h-full rounded-md border block bg-primary-20 border-primary-100 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
-                            <option {{ session('purchase-plan_pp') == 12 ? 'selected' : '' }} value="12">12
-                            </option>
-                            <option {{ session('purchase-plan_pp') == 24 ? 'selected' : '' }} value="24">24
-                            </option>
-                            <option {{ session('purchase-plan_pp') == 36 ? 'selected' : '' }} value="36">36
-                            </option>
+                            <option
+                                {{ session('purchase-plan_pp') == config('custom.list_per_page_opt_1') ? 'selected' : '' }}
+                                value="{{ config('custom.list_per_page_opt_1') }}">
+                                {{ config('custom.list_per_page_opt_1') }}</option>
+                            <option
+                                {{ session('purchase-plan_pp') == config('custom.list_per_page_opt_2') ? 'selected' : '' }}
+                                value="{{ config('custom.list_per_page_opt_2') }}">
+                                {{ config('custom.list_per_page_opt_2') }}</option>
+                            <option
+                                {{ session('purchase-plan_pp') == config('custom.list_per_page_opt_3') ? 'selected' : '' }}
+                                value="{{ config('custom.list_per_page_opt_3') }}">
+                                {{ config('custom.list_per_page_opt_3') }}</option>
                         </select>
                         <div
                             class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:text-white">

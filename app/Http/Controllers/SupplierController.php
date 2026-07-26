@@ -8,6 +8,7 @@ use App\Models\Branch;
 use App\Models\Purchaselastnumber;
 use App\Http\Requests\SupplierRequest;
 use App\Http\Requests\SupplierUpdateRequest;
+use App\Models\Bidangusaha;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\JsonResponse;
@@ -132,8 +133,9 @@ class SupplierController extends Controller implements HasMiddleware
     {
         $branch_id = auth()->user()->profile->branch_id;
         $branch = Branch::find($branch_id);
+        $bidangusaha_id = Bidangusaha::where('kode', $branch->kode)->value('id');
 
-        return view('supplier.create', compact('branch_id', 'branch'));
+        return view('supplier.create', compact('branch_id', 'branch', 'bidangusaha_id'));
     }
 
     public function store(SupplierRequest $request): RedirectResponse
@@ -141,6 +143,7 @@ class SupplierController extends Controller implements HasMiddleware
         if ($request->validated()) {
             $supplier = Supplier::create([
                 'branch_id' => $request->branch_id,
+                'bidangusaha_id' => $request->bidangusaha_id,
                 'kode' => $request->kode,
                 'nama' => $request->nama,
                 'alamat' => $request->alamat,

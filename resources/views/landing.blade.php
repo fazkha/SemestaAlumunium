@@ -917,7 +917,7 @@
                     @if (Route::has('login'))
                         <div class="flex justify-end">
                             <nav class="flex gap-4 rounded-lg"
-                                style="background: rgba(0, 0, 0, 0.4); padding: 10px 20px;">
+                                style="background: rgba(0, 0, 0, 0.4); padding: 10px 28px;">
                                 @auth
                                     <a href="{{ url('/admin/dashboard') }}"
                                         class="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-white/70 focus:outline-none focus-visible:ring-[#FF2D20]">

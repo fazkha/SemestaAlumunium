@@ -60,6 +60,7 @@ class RoleController extends Controller implements HasMiddleware
             }
         }
         // $datas = $datas->where('user_id', auth()->user()->id);
+        $datas = $datas->orderBy('name');
         $datas = $datas->latest()->paginate(session('roles_pp'));
 
         if ($request->page && $datas->count() == 0) {
@@ -95,6 +96,7 @@ class RoleController extends Controller implements HasMiddleware
             }
         }
         // $datas = $datas->where('user_id', auth()->user()->id);
+        $datas = $datas->orderBy('name');
         $datas = $datas->latest()->paginate(session('roles_pp'));
 
         $datas->withPath('/admin/roles'); // pagination url to

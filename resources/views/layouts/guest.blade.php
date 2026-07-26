@@ -27,7 +27,7 @@
             </div>
 
             <div
-                class="w-full sm:max-w-md mt-6 px-6 py-6 bg-primary-50 dark:bg-gray-850 shadow-lg overflow-hidden sm:rounded-lg">
+                class="w-full sm:max-w-md mt-6 px-6 py-6 bg-primary-50 opacity-90 dark:bg-gray-850 shadow-lg overflow-hidden sm:rounded-lg">
                 {{ $slot }}
             </div>
         </div>

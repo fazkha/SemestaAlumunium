@@ -78,7 +78,7 @@ return [
     'originaddress' => 'Alamat Asal',
     'branch' => 'Cabang',
     'relatedbranch' => 'Cabang Terkait',
-    'division' => 'Divisi',
+    'division' => 'Departemen',
     'generalaffair' => 'Urusan Umum',
     'marketing' => 'Pemasaran',
     'propinsi' => 'Propinsi',

@@ -114,7 +114,7 @@ class UserController extends Controller implements HasMiddleware
 
     public function create(): View
     {
-        $roles = Role::all();
+        $roles = Role::orderBy('name')->get();
 
         return view('users.create', compact(['roles']));
     }
@@ -149,7 +149,7 @@ class UserController extends Controller implements HasMiddleware
     public function edit(Request $request): View
     {
         $datas = User::find(Crypt::decrypt($request->user));
-        $roles = Role::all();
+        $roles = Role::orderBy('name')->get();
         $branches = Branch::where('isactive', 1)->where('wilayah_id', 5)->pluck('nama', 'id');
         $profile = Profile::where('user_id', Crypt::decrypt($request->user))->first();
 

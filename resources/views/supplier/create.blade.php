@@ -41,6 +41,7 @@
                                         <label for="branch_id"
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.branch')</label>
                                         <input type="hidden" name="branch_id" value="{{ $branch_id }}" />
+                                        <input type="hidden" name="bidangusaha_id" value="{{ $bidangusaha_id }}" />
                                         <x-text-span>{{ $branch->nama }}</x-text-span>
                                     </div>
 

@@ -78,7 +78,7 @@ return [
     'originaddress' => 'Origin Address',
     'branch' => 'Branch',
     'relatedbranch' => 'Related Branch',
-    'division' => 'Division',
+    'division' => 'Department',
     'generalaffair' => 'General Affair',
     'marketing' => 'Marketting',
     'propinsi' => 'Province',
