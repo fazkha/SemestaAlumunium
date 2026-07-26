@@ -92,6 +92,7 @@
                         @php
                             $hasil = $detail->before_stock + $detail->adjust_stock;
                             $harga = $detail->adjust_stock * $detail->adjust_harga;
+                            $selisih = $detail->stock - $detail->adjust_stock;
                         @endphp
                         <tr>
                             <td style="vertical-align: top; text-align: center;">{{ $i }}</td>
@@ -100,11 +101,19 @@
                             <td style="vertical-align: top; text-align: right;">
                                 {{ number_format($detail->before_stock, '1', ',', '.') }}</td>
                             <td style="vertical-align: top; text-align: right;">
-                                {{ number_format($detail->adjust_stock, '1', ',', '.') }}</td>
-                            <td style="vertical-align: top; text-align: right;">
-                                {{ number_format($hasil, '1', ',', '.') }}</td>
-                            <td style="vertical-align: top; text-align: right;">
-                                {{ number_format($harga, '0', ',', '.') }}</td>
+                                {{ number_format($detail->stock, '1', ',', '.') }}</td>
+                            @if ($selisih != 0)
+                                <td style="vertical-align: top; text-align: right;">
+                                    {{ number_format($hasil, '1', ',', '.') }}</td>
+                            @else
+                                <td style="vertical-align: top; text-align: right;">-</td>
+                            @endif
+                            @if ($selisih != 0)
+                                <td style="vertical-align: top; text-align: right;">
+                                    {{ number_format($harga, '0', ',', '.') }}</td>
+                            @else
+                                <td style="vertical-align: top; text-align: right;">-</td>
+                            @endif
                             <td style="vertical-align: top;">{{ $detail->keterangan_adjustment }}</td>
                         </tr>
                         @php

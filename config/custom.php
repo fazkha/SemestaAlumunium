@@ -15,6 +15,7 @@ return [
     // API toko
     'TLM_API' => env('TLM_API', 'https://www.tobakumas.com/api'),
     'LMGM_API' => env('LMGM_API', 'https://www.larismanisgemilangjaya.com/api'),
+    'LMGM_HOST' => 'https://www.larismanisgemilangjaya.com',
 
     // Database
     'db01_dbname' => 'lmgm',

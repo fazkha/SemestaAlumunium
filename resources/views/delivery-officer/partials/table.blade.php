@@ -104,9 +104,9 @@
                                         onclick="print_one({{ $data->id }})" title="{{ __('messages.deliveryreport') }}"
                                         class="ml-2 p-2">
                                         <span
-                                            class="relative inline-block px-2 py-2 font-semibold text-blue-800 leading-tight dark:text-blue-300">
+                                            class="relative inline-block px-2 py-2 font-semibold text-purple-800 leading-tight dark:text-purple-300">
                                             <span aria-hidden
-                                                class="absolute inset-0 bg-blue-200 hover:bg-blue-400 hover:dark:bg-blue-700 opacity-50 rounded-full dark:bg-blue-700"></span>
+                                                class="absolute inset-0 bg-purple-200 hover:bg-purple-400 hover:dark:bg-purple-700 opacity-50 rounded-full dark:bg-purple-700"></span>
                                             <svg class="size-5" viewBox="0 0 15 15" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path

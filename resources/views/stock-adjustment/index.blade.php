@@ -39,38 +39,65 @@
 
     @push('scripts')
         <script type="text/javascript">
-            $("#pp-dropdown, #gudang-dropdown, #search-tanggal").on("change keyup paste",
-                function() {
-                    var xpp = $('#pp-dropdown option:selected').val();
-                    var xgudang = $('#gudang-dropdown option:selected').val();
-                    var xtanggal = $('#search-tanggal').val();
-                    if (!xtanggal.trim()) {
-                        xtanggal = '_';
-                    }
+            $(document).ready(function(e) {
+                $("#pp-dropdown, #gudang-dropdown, #search-tanggal").on("change keyup paste",
+                    function() {
+                        var xpp = $('#pp-dropdown option:selected').val();
+                        var xgudang = $('#gudang-dropdown option:selected').val();
+                        var xtanggal = $('#search-tanggal').val();
+                        if (!xtanggal.trim()) {
+                            xtanggal = '_';
+                        }
 
-                    $('#filter-loading').show();
+                        $('#filter-loading').show();
 
-                    var newURL = '{{ url('/warehouse/stock-adjustment') }}';
-                    var newState = {
-                        page: 'index-stock-adjustment'
-                    };
-                    var newTitle = '{{ __('messages.stockopname') }}';
+                        var newURL = '{{ url('/warehouse/stock-adjustment') }}';
+                        var newState = {
+                            page: 'index-stock-adjustment'
+                        };
+                        var newTitle = '{{ __('messages.stockopname') }}';
 
-                    window.history.pushState(newState, newTitle, newURL);
+                        window.history.pushState(newState, newTitle, newURL);
+
+                        $.ajax({
+                            url: '{{ url('/warehouse/stock-adjustment/fetchdb') }}' + "/" + xpp + "/" +
+                                xgudang + "/" +
+                                xtanggal,
+                            type: "GET",
+                            dataType: 'json',
+                            success: function(result) {
+                                $('#table-container').html(result);
+                                $("#table-container").focus();
+                                $('#filter-loading').hide();
+                            }
+                        });
+                    });
+
+                print_one_adjust = function(xid) {
+                    let aname = '#print_one_adjust-anchor-' + xid;
+                    let idname = '#print_one-icon-' + xid;
+
+                    $(aname).addClass('hidden');
+                    $(idname).addClass('animate-spin');
+                    $(idname).removeClass('hidden');
 
                     $.ajax({
-                        url: '{{ url('/warehouse/stock-adjustment/fetchdb') }}' + "/" + xpp + "/" + xgudang + "/" +
-                            xtanggal,
-                        type: "GET",
-                        dataType: 'json',
+                        url: "{{ url('/warehouse/stock-adjustment') }}" + "/" + xid + "/print",
+                        type: 'get',
                         success: function(result) {
-                            $('#table-container').html(result);
-                            $("#table-container").focus();
-                            $('#filter-loading').hide();
+                            if (result.status !== 'Not Found') {
+                                var namafile = result.namafile;
+                                window.open(namafile, '_blank');
+                            } else {
+                                flasher.error("{{ __('messages.notfound') }}!", "Error");
+                            }
+                            $(idname).removeClass('animate-spin');
+                            $(idname).addClass('hidden');
+                            $(aname).removeClass('hidden');
                         }
                     });
-                }
-            );
+                };
+            });
         </script>
     @endpush
 </x-app-layout>

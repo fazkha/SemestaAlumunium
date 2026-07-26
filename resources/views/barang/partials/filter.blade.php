@@ -146,7 +146,7 @@
                 @endcan
             </div>
 
-            @can('barang-show')
+            @can('barang-create')
                 <div
                     class="w-full p-2 md:p-4 border rounded-md shadow-md bg-primary-50 border-primary-100 dark:bg-primary-900 dark:border-primary-800">
 
