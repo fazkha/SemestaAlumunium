@@ -306,5 +306,6 @@ return [
     'pendingonly' => 'Hanya Tertunda',
     'mitraubah' => 'Ganti Hari',
     'type' => 'Jenis',
-    'component' => 'Komponen'
+    'component' => 'Komponen',
+    'survey' => 'Survei',
 ];

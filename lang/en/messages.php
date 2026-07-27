@@ -307,5 +307,6 @@ return [
     'pendingonly' => 'Pending Only',
     'mitraubah' => 'Day Replacement',
     'type' => 'Type',
-    'component' => 'Component'
+    'component' => 'Component',
+    'survey' => 'Survey',
 ];
