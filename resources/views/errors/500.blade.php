@@ -2,13 +2,11 @@
 
 <x-error-layout>
     <div class="flex items-center justify-center min-h-screen bg-black bg-fixed bg-cover bg-bottom error-bg">
-        <div class="pt-4">
-            <div class="text-white text-center">
-                <a href="{{ url('admin/dashboard') }}"
-                    class="bg-indigo-800 px-5 py-3 text-sm shadow-sm font-medium tracking-wider text-gray-50 rounded-full hover:shadow-lg">
-                    @lang('messages.gotodashboard')
-                </a>
-            </div>
+        <div class="text-white text-center">
+            <a href="{{ url('admin/dashboard') }}"
+                class="bg-indigo-800 px-5 py-3 text-sm shadow-sm font-medium tracking-wider text-gray-50 rounded-full hover:shadow-lg">
+                @lang('messages.gotodashboard')
+            </a>
         </div>
     </div>
 
