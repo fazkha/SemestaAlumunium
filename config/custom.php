@@ -29,7 +29,7 @@ return [
     'menu_urusanumum' => true,
     'menu_kepegawaian' => true,
     'menu_keuangan' => false,
-    'menu_pemasaran' => false,
+    'menu_pemasaran' => true,
     'menu_gudang' => true,
     'menu_pembelian' => true,
     'menu_penjualan' => false,
@@ -48,10 +48,10 @@ return [
     'selaluUpdateHargaJual' => false,
 
     // purchase order
-    'po_prefix' => 'PO',
+    'po_prefix' => 'PUO',
 
     // sales order
-    'so_prefix' => 'SO',
+    'so_prefix' => 'SAO',
 
     // pajak
     'purchase_tax_enable' => false,
