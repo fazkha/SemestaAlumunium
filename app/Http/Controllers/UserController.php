@@ -63,6 +63,7 @@ class UserController extends Controller implements HasMiddleware
             }
         }
         // $users = $users->where('user_id', auth()->user()->id);
+        $users = $users->orderBy('name');
         $users = $users->latest()->paginate(session('users_pp'));
 
         if ($request->page && $users->count() == 0) {
@@ -99,6 +100,7 @@ class UserController extends Controller implements HasMiddleware
             }
         }
         // $users = $users->where('user_id', auth()->user()->id);
+        $users = $users->orderBy('name');
         $users = $users->latest()->paginate(session('users_pp'));
 
         $users->withPath('/admin/users'); // pagination url to
