@@ -26,10 +26,6 @@ return Application::configure(basePath: dirname(__DIR__))
     })
     ->withExceptions(function (Exceptions $exceptions) {
         $exceptions->render(function (HttpException $exception) {
-            //     if ($exception->getStatusCode() == 400) {
-            //         return response()->view("errors.400", [], 400);
-            //     }
-
             if ($exception->getStatusCode() == 403) {
                 return response()->view("errors.403", [], 403);
             }
@@ -42,9 +38,9 @@ return Application::configure(basePath: dirname(__DIR__))
                 return response()->view("errors.419", [], 419);
             }
 
-            //     if ($exception->getStatusCode() == 500) {
-            //         return response()->view("errors.500", [], 500);
-            //     }
+            if ($exception->getStatusCode() == 500) {
+                return response()->view("errors.500", [], 500);
+            }
 
             //     if ($exception->getStatusCode() == 503) {
             //         return response()->view("errors.503", [], 503);
