@@ -119,9 +119,9 @@
                                         <span for="no_order"
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.ordernumber')</span>
                                         <x-text-span
-                                            id="disp-no_order">{{ old('no_order', config('custom.po_prefix') . '/---/---/----/--/---') }}</x-text-span>
+                                            id="disp-no_order">{{ old('no_order', $po_prefix . '/---/---/----/--/---') }}</x-text-span>
                                         <x-text-input type="hidden" name="no_order" id="no_order"
-                                            value="{{ old('no_order', config('custom.po_prefix') . '/---/---/----/--/---') }}" />
+                                            value="{{ old('no_order', $po_prefix . '/---/---/----/--/---') }}" />
 
                                         <x-input-error class="mt-2" :messages="$errors->get('no_order')" />
                                     </div>

@@ -270,7 +270,7 @@
                                                     <td class="align-top">
                                                         <select id="satuan_id" name="satuan_id" required
                                                             tabindex="12"
-                                                            class="readonly-select w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
+                                                            class="readonly-select w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
                                                             <option value="">@lang('messages.choose')...</option>
                                                             @foreach ($satuans as $id => $name)
                                                                 <option value="{{ $id }}">
@@ -420,7 +420,7 @@
                     });
                 })
 
-                $('input[name^="items["]').on('change', function() {
+                $('input[name^="items["]').on("change keyup paste", function() {
                     var inputName = $(this).attr('name');
                     var inputValue = $(this).val();
 
@@ -560,6 +560,7 @@
                                     .toLocaleString('de-DE'));
                                 $('#form-order')[0].reset();
                                 $("#disp-sub_harga").html(0);
+                                $('.truncate').text('Pilih...');
                                 flasher.success("{{ __('messages.successsaved') }}!", "Success");
                             }
                         }

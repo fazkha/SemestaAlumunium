@@ -9,6 +9,7 @@ use App\Models\PurchaseOrderDetail;
 use App\Models\Satuan;
 use App\Http\Requests\PurchaseOrderRequest;
 use App\Http\Requests\PurchaseOrderUpdateRequest;
+use App\Models\AppSetting;
 use App\Models\Notif;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
@@ -140,6 +141,7 @@ class PurchaseOrderController extends Controller implements HasMiddleware
     {
         $branch_id = auth()->user()->profile->branch_id;
         $suppliers = Supplier::where('branch_id', $branch_id)->where('isactive', 1)->orderBy('nama')->pluck('nama', 'id');
+        $po_prefix = AppSetting::where('parm', 'prefix_purchase_order')->value('value');
 
         // AUTO BUY BASE ON NOTIFICATION
         if (count($request->all()) > 0) {
@@ -211,7 +213,7 @@ class PurchaseOrderController extends Controller implements HasMiddleware
             }
         }
 
-        return view('purchase-order.create', compact(['suppliers', 'branch_id']));
+        return view('purchase-order.create', compact(['suppliers', 'branch_id', 'po_prefix']));
     }
 
     public function store(PurchaseOrderRequest $request): RedirectResponse
@@ -370,6 +372,8 @@ class PurchaseOrderController extends Controller implements HasMiddleware
             'approved_by' => (config('custom.purchase_approval') == false) ? 'system' : NULL,
         ]);
 
+        DB::statement("CALL sp_update_harga_master_po(?,?)", [$order_id, $request->branch_id]);
+
         $selaluUpdateHargaBeli = config('custom.selaluUpdateHargaBeli');
 
         if ($selaluUpdateHargaBeli) {
@@ -414,11 +418,21 @@ class PurchaseOrderController extends Controller implements HasMiddleware
         $order = PurchaseOrder::where('id', $detail->purchase_order_id)->get();
 
         $order_id = $detail->purchase_order_id;
+        $branch_id = $detail->branch_id;
         $view = [];
 
-        $detail->update([
-            $request->field => $request->nilai
-        ]);
+        if ($request->field == 'kuantiti') {
+            $detail->update([
+                'kuantiti' => $request->nilai,
+                'kuantiti_terima' => $request->nilai,
+            ]);
+        } else {
+            $detail->update([
+                $request->field => $request->nilai
+            ]);
+        }
+
+        DB::statement("CALL sp_update_harga_master_po(?,?)", [$order_id, $branch_id]);
 
         $po = PurchaseOrder::find($order_id);
         $total_price = PurchaseOrderDetail::where('purchase_order_id', $order_id)->select(DB::raw('SUM((harga_satuan * (1 + (pajak/100) - (discount/100))) * kuantiti) as total_price'))->value('total_price');
@@ -455,10 +469,13 @@ class PurchaseOrderController extends Controller implements HasMiddleware
         $order = PurchaseOrder::where('id', $detail->purchase_order_id)->get();
 
         $order_id = $detail->purchase_order_id;
+        $branch_id = $detail->branch_id;
         $view = [];
 
         try {
             $detail->delete();
+
+            DB::statement("CALL sp_update_harga_master_po(?,?)", [$order_id, $branch_id]);
         } catch (\Illuminate\Database\QueryException $e) {
             return response()->json(['QueryException' => $e->getMessage()], 500);
         }

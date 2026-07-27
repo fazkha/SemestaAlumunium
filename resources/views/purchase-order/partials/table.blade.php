@@ -73,10 +73,9 @@
                             class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
                             <span class="text-gray-900 dark:text-gray-300">{{ $data->supplier->nama }}</span>
                         </td>
-                        <td class="text-right px-3 py-3 text-sm border-b border-primary-100 bg-primary-20">
-                            <p class="text-gray-900 whitespace-no-wrap">
-                                {{ $data->total_harga ? (is_int($data->total_harga) ? Number::forHumans($data->total_harga, abbreviate: true) : Number::forHumans($data->total_harga, precision: 1, abbreviate: true)) : 0 }}
-                            </p>
+                        <td
+                            class="text-right px-3 py-3 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
+                            {{ $data->total_harga ? (is_int($data->total_harga) ? Number::forHumans($data->total_harga, abbreviate: true) : Number::forHumans($data->total_harga, precision: 1, abbreviate: true)) : 0 }}
                         </td>
                         <td
                             class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
