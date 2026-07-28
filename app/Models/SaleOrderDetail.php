@@ -8,7 +8,7 @@ class SaleOrderDetail extends Model
 {
     protected $guarded = [];
     protected $table = 'sale_order_details';
-    protected $connection = 'mysql2';
+    protected $connection = 'mysql';
 
     protected $fillable = [
         'sale_order_id',
