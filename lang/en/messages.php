@@ -308,5 +308,5 @@ return [
     'mitraubah' => 'Day Replacement',
     'type' => 'Type',
     'component' => 'Component',
-    'survey' => 'Survey',
+    'inspect' => 'Inspection',
 ];

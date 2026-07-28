@@ -32,7 +32,7 @@ return [
     'menu_pemasaran' => true,
     'menu_gudang' => true,
     'menu_pembelian' => true,
-    'menu_penjualan' => false,
+    'menu_penjualan' => true,
     'menu_produksi' => false,
     'menu_inspeksi' => true,
     'menu_pelayanan' => true,

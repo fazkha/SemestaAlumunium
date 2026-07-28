@@ -307,5 +307,5 @@ return [
     'mitraubah' => 'Ganti Hari',
     'type' => 'Jenis',
     'component' => 'Komponen',
-    'survey' => 'Survei',
+    'inspect' => 'Inspeksi',
 ];
