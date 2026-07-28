@@ -216,8 +216,10 @@
     </div>
 </div>
 
-<div class="flex flex-row items-center justify-start shadow-md rounded-md border border-solid border-primary-100">
-    <div class="px-4 py-2 border-r border-primary-100 bg-primary-50">
+<div
+    class="flex flex-row items-center justify-start shadow-md rounded-md border border-solid border-primary-100 dark:bg-primary-800 dark:border-primary-800">
+    <div
+        class="px-4 py-2 border-r border-primary-100 bg-primary-50 rounded-md dark:bg-primary-700 dark:border-primary-800">
         <span class="text-sm">@lang('messages.footnote')</span>
     </div>
     <div class="px-4 py-2 flex flex-row flex-wrap gap-6 items-center">

@@ -189,18 +189,15 @@ class SaleOrderController extends Controller implements HasMiddleware
     {
         $datas = SaleOrder::find(Crypt::decrypt($request->order));
         $details = SaleOrderDetail::where('sale_order_id', Crypt::decrypt($request->order))->get();
-        $adonans = SaleOrderMitra::where('sale_order_id', Crypt::decrypt($request->order))->get();
 
         $total_price = SaleOrderDetail::where('sale_order_id', Crypt::decrypt($request->order))->select(DB::raw('SUM((harga_satuan * (1 + (pajak/100))) * kuantiti) as total_price'))->value('total_price');
-        $total_price_adonan = SaleOrderMitra::where('sale_order_id', Crypt::decrypt($request->order))->select(DB::raw('SUM((harga_satuan * (1 + (pajak/100))) * kuantiti) as total_price'))->value('total_price');
         $totals = [
             'sub_price' => $total_price * 1,
-            'sub_price_adonan' => $total_price_adonan * 1,
             'total_price' => $datas->total_harga,
         ];
 
         // return view('sale-order.show', compact(['datas', 'details', 'totals', 'customers', 'barangs', 'satuans']));
-        return view('sale-order.show', compact(['datas', 'details', 'adonans', 'totals']));
+        return view('sale-order.show', compact(['datas', 'details', 'totals']));
     }
 
     public function edit(Request $request): View
@@ -208,31 +205,18 @@ class SaleOrderController extends Controller implements HasMiddleware
         $branch_id = auth()->user()->profile->branch_id;
         $datas = SaleOrder::find(Crypt::decrypt($request->order));
         $details = SaleOrderDetail::where('sale_order_id', Crypt::decrypt($request->order))->get();
-        $adonans = SaleOrderMitra::where('sale_order_id', Crypt::decrypt($request->order))->get();
 
         $total_price = SaleOrderDetail::where('sale_order_id', Crypt::decrypt($request->order))->select(DB::raw('SUM((harga_satuan * (1 + (pajak/100))) * kuantiti) as total_price'))->value('total_price');
-        $total_price_adonan = SaleOrderMitra::where('sale_order_id', Crypt::decrypt($request->order))->select(DB::raw('SUM((harga_satuan * (1 + (pajak/100))) * kuantiti) as total_price'))->value('total_price');
         $totals = [
             'sub_price' => $total_price * 1,
-            'sub_price_adonan' => $total_price_adonan * 1,
             'total_price' => $datas->total_harga,
         ];
 
         $customers = Customer::where('branch_id', $branch_id)->where('isactive', 1)->orderBy('nama')->pluck('nama', 'id');
-        // jenis_barang_id = "Gula Pasir", 2, 7, 8, 9, 10 = barang-dagangan
-        $barangs = Barang::where('branch_id', $branch_id)->where('isactive', 1)->where(function ($q) {
-            $q->whereIn('jenis_barang_id', [2, 6, 7, 8, 9, 10])
-                ->orWhere('nama', 'like', '%gula pasir%');
-        })->orderBy('nama')->pluck('nama', 'id');
-        // jenis_barang_id = 4 = adonan
-        $barang2s = Barang::where('branch_id', $branch_id)->where('isactive', 1)->where('jenis_barang_id', 4)->orderBy('nama')->pluck('nama', 'id');
+        $barangs = Barang::where('branch_id', $branch_id)->where('isactive', 1)->orderBy('nama')->pluck('nama', 'id');
         $satuans = Satuan::where('isactive', 1)->orderBy('singkatan')->pluck('singkatan', 'id');
-        // jabatan = mitra
-        $syntax = 'CALL sp_mitra_order(' . '\'Mitra\'' . ',' . Crypt::decrypt($request->order) . ')';
-        $pegawais = DB::select($syntax);
-        $gerobaks = Gerobak::where('isactive', 1)->orderBy('kode')->pluck('kode', 'id');
 
-        return view('sale-order.edit', compact(['datas', 'details', 'totals', 'adonans', 'customers', 'barangs', 'barang2s', 'satuans', 'pegawais', 'gerobaks', 'branch_id']));
+        return view('sale-order.edit', compact(['datas', 'details', 'totals', 'customers', 'barangs', 'satuans', 'branch_id']));
     }
 
     public function update(SaleOrderUpdateRequest $request): RedirectResponse
@@ -263,11 +247,9 @@ class SaleOrderController extends Controller implements HasMiddleware
             ]);
 
             $total_price = SaleOrderDetail::where('sale_order_id', Crypt::decrypt($request->order))->select(DB::raw('SUM((harga_satuan * (1 + (pajak/100))) * kuantiti) as total_price'))->value('total_price');
-            $total_price_adonan = SaleOrderMitra::where('sale_order_id', Crypt::decrypt($request->order))->select(DB::raw('SUM((harga_satuan * (1 + (pajak/100))) * kuantiti) as total_price'))->value('total_price');
             $order = SaleOrder::find(Crypt::decrypt($request->order));
             $totals = [
                 'sub_price' => $total_price * 1,
-                'sub_price_adonan' => $total_price_adonan * 1,
                 'total_price' => $order->total_harga,
             ];
 
@@ -282,17 +264,14 @@ class SaleOrderController extends Controller implements HasMiddleware
         $datas = SaleOrder::find(Crypt::decrypt($request->order));
 
         $details = SaleOrderDetail::where('sale_order_id', Crypt::decrypt($request->order))->get();
-        $adonans = SaleOrderMitra::where('sale_order_id', Crypt::decrypt($request->order))->get();
 
         $total_price = SaleOrderDetail::where('sale_order_id', Crypt::decrypt($request->order))->select(DB::raw('SUM((harga_satuan * (1 + (pajak/100))) * kuantiti) as total_price'))->value('total_price');
-        $total_price_adonan = SaleOrderMitra::where('sale_order_id', Crypt::decrypt($request->order))->select(DB::raw('SUM((harga_satuan * (1 + (pajak/100))) * kuantiti) as total_price'))->value('total_price');
         $totals = [
             'sub_price' => $total_price * 1,
-            'sub_price_adonan' => $total_price_adonan * 1,
             'total_price' => $datas->total_harga,
         ];
 
-        return view('sale-order.delete', compact(['datas', 'details', 'adonans', 'totals']));
+        return view('sale-order.delete', compact(['datas', 'details', 'totals']));
     }
 
     public function destroy(Request $request): RedirectResponse
@@ -309,158 +288,6 @@ class SaleOrderController extends Controller implements HasMiddleware
         }
 
         return redirect()->route('sale-order.index')->with('success', __('messages.successdeleted') . ' 👉 ' . $order->no_order);
-    }
-
-    public function storeAdonan(SaleOrderMitraRequest $request)
-    {
-        $order_id = $request->detail;
-        $pajak = $request->pajak_adonan ? $request->pajak_adonan : 0;
-
-        // 'pegawai_id' => $request->pegawai_id ? ($request->pegawai_id == 'Pilih...' ? NULL : $request->pegawai_id) : NULL,
-        // 'nama_mitra' => $request->nama_mitra,
-
-        $detail = SaleOrderMitra::create([
-            'sale_order_id' => $request->sale_order_id,
-            'branch_id' => $request->branch_id,
-            'gerobak_id' => $request->gerobak_id,
-            'barang_id' => $request->barang_id,
-            'satuan_id' => $request->satuan_id,
-            'kuantiti' => $request->kuantiti,
-            'pajak' => $pajak,
-            'harga_satuan' => $request->harga_satuan,
-            'keterangan' => $request->keterangan,
-            'created_by' => auth()->user()->email,
-            'updated_by' => auth()->user()->email,
-            'approved' => (config('custom.sale_approval') == false) ? 1 : 0,
-            'approved_by' => (config('custom.sale_approval') == false) ? 'system' : NULL,
-            'approved_at' => (config('custom.sale_approval') == false) ? date('Y-m-d H:i:s') : NULL,
-        ]);
-
-        $sale = SaleOrder::find($order_id);
-        $customer = Customer::find($sale->customer_id);
-
-        // if ($customer->branch_link_id) {
-        //     // jabatan_id = 3 = Mitra
-        //     $brandivjab = Brandivjab::where('isactive', 1)
-        //         ->where('jabatan_id', 3)
-        //         ->where('branch_id', $customer->branch_link_id)
-        //         ->first();
-
-        //     if (!$brandivjab) {
-        //         $brandivjab = Brandivjab::create([
-        //             'branch_id' => $customer->branch_link_id,
-        //             'jabatan_id' => 3,
-        //             'isactive' => 1,
-        //             'created_by' => auth()->user()->email,
-        //         ]);
-        //     }
-
-        //     if ($brandivjab) {
-        //         if ($request->pegawai_id == 'Pilih...' && $request->nama_mitra) {
-        //             // dd($request->pegawai_id);
-        //             $pegawai = Pegawai::create([
-        //                 'nama_lengkap' => ucfirst($request->nama_mitra),
-        //                 'nama_panggilan' => ucfirst($request->nama_mitra),
-        //                 'alamat_tinggal' => '-',
-        //                 'telpon' => '-',
-        //                 'kelamin' => 'L',
-        //                 'isactive' => 1,
-        //                 'created_by' => 'PenjualanMitra',
-        //             ]);
-
-        //             Brandivjabpeg::create([
-        //                 'brandivjab_id' => $brandivjab->id,
-        //                 'pegawai_id' => $pegawai->id,
-        //                 'isactive' => 1,
-        //                 'tanggal_mulai' => date('Y-m-d'),
-        //                 'created_by' => auth()->user()->email,
-        //             ]);
-
-        //             $detail->update([
-        //                 'pegawai_id' => $pegawai->id,
-        //             ]);
-        //         }
-        //     }
-        // }
-
-        $selaluUpdateHargaJual = config('custom.selaluUpdateHargaJual');
-
-        if ($selaluUpdateHargaJual) {
-            $barang = Barang::find($request->barang_id);
-
-            if ($barang) {
-                $barang->update([
-                    'satuan_jual_id' => $request->satuan_id_adonan,
-                    'harga_satuan_jual' => $request->harga_satuan_adonan,
-                    'updated_by' => auth()->user()->email,
-                ]);
-            }
-        }
-
-        $po = SaleOrder::find($order_id);
-        $total_price = SaleOrderMitra::where('sale_order_id', $order_id)->select(DB::raw('SUM((harga_satuan * (1 + (pajak/100))) * kuantiti) as total_price'))->value('total_price');
-        $totals = [
-            'sub_price' => $total_price * 1,
-            'total_price' => $po->total_harga,
-        ];
-
-        $adonans = SaleOrderMitra::where('sale_order_id', $order_id)->get();
-        $viewMode = false;
-
-        $view = view('sale-order.partials.details-adonan', compact(['adonans', 'viewMode']))->render();
-
-        $syntax = 'CALL sp_mitra_order(' . '\'Mitra\'' . ',' . $order_id . ')';
-        $pegawais = DB::select($syntax);
-
-        return response()->json([
-            'view' => $view,
-            'total_harga_master' => $totals['total_price'],
-            'total_harga_adonan' => $totals['sub_price'],
-            'pegawais' => $pegawais,
-        ], 200);
-    }
-
-    public function deleteAdonan(Request $request): JsonResponse
-    {
-        $detail = SaleOrderMitra::find($request->detail);
-        $order = SaleOrder::where('id', $detail->sale_order_id)->get();
-
-        $order_id = $detail->sale_order_id;
-        $view = [];
-
-        try {
-            $detail->delete();
-        } catch (\Illuminate\Database\QueryException $e) {
-            return response()->json(['QueryException' => $e->getMessage()], 500);
-        }
-
-        $po = SaleOrder::find($order_id);
-        $total_price = SaleOrderMitra::where('sale_order_id', $order_id)->select(DB::raw('SUM((harga_satuan * (1 + (pajak/100))) * kuantiti) as total_price'))->value('total_price');
-        $totals = [
-            'sub_price' => $total_price * 1,
-            'total_price' => $po->total_harga,
-        ];
-
-        $adonans = SaleOrderMitra::where('sale_order_id', $order_id)->get();
-        $viewMode = false;
-
-        if ($adonans->count() > 0) {
-            $view = view('sale-order.partials.details-adonan', compact(['adonans', 'viewMode']))->render();
-        }
-
-        if ($view) {
-            return response()->json([
-                'view' => $view,
-                'total_harga_master' => $totals['total_price'],
-                'total_harga_adonan' => $totals['sub_price'],
-            ], 200);
-        } else {
-            return response()->json([
-                'status' => 'Not Found',
-                'total_harga_master' => $totals['total_price'],
-                'total_harga_adonan' => $totals['sub_price'],
-            ], 200);
-        }
     }
 
     public function storeDetail(Request $request)

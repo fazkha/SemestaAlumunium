@@ -82,6 +82,7 @@ class CustomerController extends Controller implements HasMiddleware
         }
 
         $datas = $datas->where('branch_id', auth()->user()->profile->branch_id);
+        $datas = $datas->orderBy('nama');
         $datas = $datas->latest()->paginate(session('customer_pp'));
         $groups = CustomerGroup::where('isactive', 1)->pluck('nama', 'id');
 
@@ -124,6 +125,7 @@ class CustomerController extends Controller implements HasMiddleware
         }
 
         $datas = $datas->where('branch_id', auth()->user()->profile->branch_id);
+        $datas = $datas->orderBy('nama');
         $datas = $datas->latest()->paginate(session('customer_pp'));
         $groups = CustomerGroup::where('isactive', 1)->pluck('nama', 'id');
 
