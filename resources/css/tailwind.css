@@ -2559,3 +2559,13 @@ video {
         grid-template-columns: repeat(6, minmax(0, 1fr));
     }
 }
+
+select option:checked {
+    background: var(--color-primary-600);
+    color: var(--color-primary-20);
+}
+
+select option:hover {
+    background: var(--color-primary-700);
+    color: var(--color-primary-20);
+}
