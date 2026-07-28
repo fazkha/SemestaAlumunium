@@ -8,7 +8,7 @@ class KalenderHke extends Model
 {
     protected $guarded = [];
     protected $table = 'kalender_hkes';
-    protected $connection = 'mysql2';
+    protected $connection = 'mysql';
 
     protected $fillable = [
         'tanggal',

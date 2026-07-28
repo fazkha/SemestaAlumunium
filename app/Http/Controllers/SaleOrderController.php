@@ -7,11 +7,9 @@ use App\Models\Customer;
 use App\Models\Barang;
 use App\Models\SaleOrderDetail;
 use App\Models\Satuan;
-use App\Models\SaleOrderMitra;
-use App\Models\Gerobak;
+use App\Models\KalenderHke;
 use App\Http\Requests\SaleOrderRequest;
 use App\Http\Requests\SaleOrderUpdateRequest;
-use App\Http\Requests\SaleOrderMitraRequest;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\JsonResponse;
@@ -143,8 +141,9 @@ class SaleOrderController extends Controller implements HasMiddleware
     {
         $branch_id = auth()->user()->profile->branch_id;
         $customers = Customer::where('branch_id', $branch_id)->where('isactive', 1)->orderBy('nama')->pluck('nama', 'id');
+        $hke = KalenderHke::where('tanggal', date('Y-m-d'))->value('hke');
 
-        return view('sale-order.create', compact(['customers', 'branch_id']));
+        return view('sale-order.create', compact(['customers', 'branch_id', 'hke']));
     }
 
     public function store(SaleOrderRequest $request)
