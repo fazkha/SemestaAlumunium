@@ -150,6 +150,7 @@ class AreaOfficerController extends Controller implements HasMiddleware
             ->selectRaw('propinsis.nama as namapropinsi, kabupatens.nama as namakabupaten, customers.nama as nama, customers.id as id, 1 as urutan')
             ->where('customers.isactive', 1)->where('kabupatens.isactive', 1)->where('propinsis.isactive', 1)
             ->orderBy('customers.propinsi_id')->orderBy('customers.kabupaten_id')->orderBy('customers.nama')->get();
+
         // level 7 = staf
         $petugas = ViewPegawaiJabatan::where('islevel', 7)->where('kode_branch', main_office_code())->orderBy('nama_plus')->pluck('nama_plus', 'pegawai_id');
 

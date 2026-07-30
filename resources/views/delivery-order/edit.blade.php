@@ -207,7 +207,7 @@
                             class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
                             <div class="p-4 space-y-2">
                                 <div class="flex flex-row items-center gap-2">
-                                    <svg class="size-5" version="1.1" id="Capa_1"
+                                    <svg fill="currentColor" class="size-5" version="1.1" id="Capa_1"
                                         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                         x="0px" y="0px" viewBox="0 0 458.868 458.868"
                                         style="enable-background:new 0 0 458.868 458.868;" xml:space="preserve">

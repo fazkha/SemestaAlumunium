@@ -300,7 +300,7 @@
                                                     <td class="align-top">
                                                         <select id="satuan_id" name="satuan_id" required
                                                             tabindex="12"
-                                                            class="readonly-select w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
+                                                            class="readonly-select w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
                                                             <option value="">@lang('messages.choose')...</option>
                                                             @foreach ($satuans as $id => $name)
                                                                 <option value="{{ $id }}">
@@ -372,178 +372,6 @@
                     class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
                     @php $element = ['el' => 'barang_id']; @endphp
                     {{-- @include('qrcode.partials.scanner', $element) --}}
-                </div>
-            </div>
-        </div>
-
-        <div class="flex flex-col lg:flex-row gap-4 px-4 py-2">
-            <div class="w-full">
-                <div class="flex flex-col items-center">
-
-                    <form id="adonan-form" method="POST" enctype="multipart/form-data" class="w-full">
-                        @csrf
-
-                        {{-- Adonan --}}
-                        <input type="hidden" name="branch_id" value="{{ $branch_id }}" />
-                        <input type="hidden" id="sale_order_id" name="sale_order_id"
-                            value="{{ $datas->id }}" />
-                        <div
-                            class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100 dark:bg-primary-900 dark:border-primary-800">
-                            <div class="p-4 space-y-2">
-                                <div class="flex flex-row items-center gap-2">
-                                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M12.916 8.48581L17.4943 3.90753C18.1349 3.26696 19.1735 3.26696 19.814 3.90753V3.90753C20.4546 4.5481 20.4546 5.58667 19.814 6.22724L18.4073 7.63391L17.7657 8.27555"
-                                            stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
-                                        <path d="M2.9259 19.3746H21.074" stroke="currentColor" stroke-width="1.7"
-                                            stroke-linecap="round" />
-                                        <path
-                                            d="M20.3149 8.48584H3.68498C3.26575 8.48584 2.9259 8.82569 2.9259 9.24492V10.3006C2.9259 15.3121 6.98849 19.3747 12 19.3747C17.0114 19.3747 21.074 15.3121 21.074 10.3006V9.24492C21.074 8.82569 20.7342 8.48584 20.3149 8.48584Z"
-                                            stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
-                                        <path
-                                            d="M12.916 8.48581L17.4943 3.90753C18.1349 3.26696 19.1735 3.26696 19.814 3.90753V3.90753C20.4546 4.5481 20.4546 5.58667 19.814 6.22724L18.4073 7.63391L17.7657 8.27555"
-                                            stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
-                                        <path d="M2.9259 19.3746H21.074" stroke="currentColor" stroke-width="1.7"
-                                            stroke-linecap="round" />
-                                        <path
-                                            d="M20.3149 8.48584H3.68498C3.26575 8.48584 2.9259 8.82569 2.9259 9.24492V10.3006C2.9259 15.3121 6.98849 19.3747 12 19.3747C17.0114 19.3747 21.074 15.3121 21.074 10.3006V9.24492C21.074 8.82569 20.7342 8.48584 20.3149 8.48584Z"
-                                            stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
-                                    </svg>
-                                    <span class="block font-medium text-primary-600">
-                                        @lang('messages.dough')
-                                    </span>
-                                </div>
-
-                                <div
-                                    class="border rounded-md border-primary-100 bg-primary-100 dark:bg-primary-850 dark:border-primary-800">
-                                    <div class="p-0 lg:p-2">
-                                        <table id="order_table" class="w-full border-separate border-spacing-2">
-                                            <thead>
-                                                <tr>
-                                                    <th class="w-1/5">@lang('messages.cart')</th>
-                                                    <th class="w-1/5">@lang('messages.goods')</th>
-                                                    <th class="w-auto field-large-show">@lang('messages.unitprice')
-                                                        (@lang('messages.currencysymbol'))</th>
-                                                    <th class="w-auto">@lang('messages.quantity')</th>
-                                                    <th class="w-auto field-large-show">@lang('messages.unit')</th>
-                                                    <th class="w-auto">@lang('messages.description')</th>
-                                                    <th class="w-auto field-large-show">@lang('messages.subtotalprice')
-                                                        (@lang('messages.currencysymbol'))</th>
-                                                </tr>
-                                            </thead>
-
-                                            <tbody id="adonanBody">
-                                                @include('sale-order.partials.details-adonan', [
-                                                    $adonans,
-                                                    'viewMode' => false,
-                                                ])
-                                            </tbody>
-
-                                            <tbody>
-                                                <tr>
-                                                    <td class="align-top">
-                                                        <select id="gerobak_id" name="gerobak_id" required
-                                                            tabindex="18"
-                                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
-                                                            <option value="">@lang('messages.choose')...</option>
-                                                            @foreach ($gerobaks as $id => $name)
-                                                                <option value="{{ $id }}">
-                                                                    {{ $name }}</option>
-                                                            @endforeach
-                                                        </select>
-
-                                                        <x-input-error class="mt-2" :messages="$errors->get('gerobak_id')" />
-                                                    </td>
-                                                    <td class="align-top">
-                                                        <select id="barang_id_adonan" name="barang_id" required
-                                                            tabindex="18"
-                                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
-                                                            <option value="">@lang('messages.choose')...</option>
-                                                            @foreach ($barang2s as $id => $name)
-                                                                <option value="{{ $id }}">
-                                                                    {{ $name }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </td>
-                                                    <td class="align-top field-large-show">
-                                                        <x-text-input type="number" min="0"
-                                                            id="harga_satuan_adonan" name="harga_satuan" required
-                                                            tabindex="19" readonly />
-                                                    </td>
-                                                    <td class="align-top">
-                                                        <x-text-input type="number" min="0"
-                                                            id="kuantiti_adonan" name="kuantiti" required
-                                                            tabindex="21" />
-                                                    </td>
-                                                    <td class="align-top field-large-show">
-                                                        <select id="satuan_id_adonan" name="satuan_id" required
-                                                            tabindex="20"
-                                                            class="readonly-select w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20">
-                                                            <option value="">@lang('messages.choose')...</option>
-                                                            @foreach ($satuans as $id => $name)
-                                                                <option value="{{ $id }}">
-                                                                    {{ $name }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </td>
-                                                    <td class="align-top">
-                                                        <select id="keterangan_adonan" name="keterangan"
-                                                            tabindex="22"
-                                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
-                                                            <option value="">@lang('messages.choose')...</option>
-                                                            <option value="Adonan Regular">Adonan Regular</option>
-                                                            <option value="Adonan Jumat">Adonan Jumat</option>
-                                                            <option value="Adonan Ganti Hari">Adonan Ganti Hari
-                                                            </option>
-                                                        </select>
-                                                    </td>
-                                                    <td class="align-top field-large-show">
-                                                        <x-text-span id="disp-sub_harga-adonan"
-                                                            class="text-right">0</x-text-span>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-
-                                            <tfoot>
-                                                <tr>
-                                                    <td class="align-top text-center" colspan="2">
-                                                        <x-text-span class="font-extrabold">@lang('messages.totalprice')
-                                                            (@lang('messages.currencysymbol'))</x-text-span>
-                                                    </td>
-                                                    <td class="align-top" colspan="5">
-                                                        <x-text-span id="disp-total_harga-adonan"
-                                                            class="font-extrabold text-right">{{ number_format($totals['sub_price_adonan'], 0, ',', '.') }}</x-text-span>
-                                                    </td>
-                                                </tr>
-                                            </tfoot>
-                                        </table>
-                                    </div>
-
-                                    <div class="mt-4 mb-4 mr-4 flex flex-row flex-wrap justify-end gap-2 md:gap-4">
-                                        <x-primary-button id="submit-adonan" tabindex="23">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                class="size-5">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
-                                            </svg>
-                                            <span class="pl-1">@lang('messages.save')</span>
-                                        </x-primary-button>
-                                        <x-anchor-secondary href="{{ route('sale-order.index') }}" tabindex="24">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                class="size-5">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M6 18 18 6M6 6l12 12" />
-                                            </svg>
-                                            <span class="pl-1">@lang('messages.close')</span>
-                                        </x-anchor-secondary>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>
@@ -645,37 +473,6 @@
                     });
                 })
 
-                deleteAdonan = function(detailId) {
-                    let idname = '#a-delete-adonan-' + detailId;
-
-                    var confirmation = confirm("Are you sure you want to delete this?");
-                    if (confirmation) {
-                        $(idname).closest("tr").remove();
-                        $.ajax({
-                            url: '{{ url('/sale/order/delete-adonan') }}' + '/' + detailId,
-                            type: 'delete',
-                            dataType: 'json',
-                            data: {
-                                '_token': '{{ csrf_token() }}',
-                            },
-                            success: function(result) {
-                                if (result.status !== 'Not Found') {
-                                    $('#adonanBody').html(result.view);
-                                    flasher.error("{{ __('messages.successdeleted') }}!", "Success");
-                                }
-                                $('#adonan-form')[0].reset();
-                                $('#disp-total_harga-master').html(result.total_harga_master
-                                    .toLocaleString('de-DE'));
-                                $('#disp-total_harga-adonan').html(result.total_harga_adonan
-                                    .toLocaleString('de-DE'));
-                            },
-                            error: function(xhr) {
-                                console.log(xhr.responseText);
-                            }
-                        });
-                    }
-                };
-
                 deleteDetail = function(detailId) {
                     let idname = '#a-delete-detail-' + detailId;
 
@@ -707,19 +504,6 @@
                     }
                 };
 
-                $("#harga_satuan_adonan, #kuantiti_adonan, #pajak_adonan").on("change keyup paste", function() {
-                    var _xhs = $('#harga_satuan_adonan').val();
-                    var _xku = $('#kuantiti_adonan').val();
-                    var _xpj = $('#pajak_adonan').val();
-                    var xhs = (_xhs > 0) ? _xhs : 0;
-                    var xku = (_xku > 0) ? _xku : 0;
-                    var xpj = (_xpj > 0) ? _xpj : 0;
-                    var xsub = (xhs * (1 + (xpj / 100))) * xku;
-                    var formattedNumber = new Intl.NumberFormat('de-DE').format(xsub);
-
-                    $("#disp-sub_harga-adonan").html(formattedNumber);
-                });
-
                 $("#harga_satuan, #kuantiti, #pajak").on("change keyup paste", function() {
                     var _xhs = $('#harga_satuan').val();
                     var _xku = $('#kuantiti').val();
@@ -743,27 +527,6 @@
                             .removeClass("text-white bg-red-700")
                             .addClass("text-gray-900 bg-primary-50");
                     }
-                });
-
-                $("#gerobak_id").on("change keyup paste", function() {
-                    $('#barang_id_adonan').prop('selectedIndex', 1).trigger('change');
-                });
-
-                $("#barang_id_adonan").on("change keyup paste", function() {
-                    var xbar = $('#barang_id_adonan option:selected').val();
-
-                    $.ajax({
-                        url: '{{ url('/warehouse/goods/get-goods-sell') }}' + "/" + xbar,
-                        type: "GET",
-                        dataType: 'json',
-                        success: function(result) {
-                            var p1 = result.p1;
-                            var p2 = result.p2;
-                            $('#harga_satuan_adonan').val(p1);
-                            $('#satuan_id_adonan').val(p2);
-                            $('#kuantiti_adonan').focus();
-                        }
-                    });
                 });
 
                 $("#tunai").on("change keyup paste", function() {
@@ -801,51 +564,6 @@
                             $('#kuantiti').focus();
                         }
                     });
-                });
-
-                $("#submit-adonan").on("click", function(e) {
-                    e.preventDefault();
-                    let key = $('#order_id').val();
-
-                    $.ajax({
-                        url: '{{ url('/sale/order/store-adonan') }}' + '/' + key,
-                        type: 'post',
-                        dataType: 'json',
-                        data: $('form#adonan-form').serialize(),
-                        success: function(result) {
-                            if (result.status !== 'Not Found') {
-                                $('#adonanBody').html(result.view);
-                                $('#disp-total_harga-master').html(result.total_harga_master
-                                    .toLocaleString('de-DE'));
-                                $('#disp-total_harga-adonan').html(result.total_harga_adonan
-                                    .toLocaleString('de-DE'));
-                                $('#adonan-form')[0].reset();
-                                $("span.truncate").text('{{ __('messages.choose') . '...' }}');
-                                $("#disp-sub_harga-adonan").html(0);
-
-                                $('#pegawai_id').empty();
-                                $('#pegawai_id').append($('<option>', {
-                                    value: null,
-                                    text: "{{ __('messages.choose') }}..."
-                                }));
-                                var data = result.pegawais;
-
-                                $.each(data, function(index, item) {
-                                    $('#pegawai_id').append($('<option>', {
-                                        value: item.id,
-                                        text: item.nama
-                                    }));
-                                });
-                                $("#pegawai_id").focus();
-
-                                flasher.success("{{ __('messages.successsaved') }}!", "Success");
-                            }
-                        }
-                    });
-
-                    if (isFormDirty('master-form', myFormInitialValues)) {
-                        $('form#master-form').submit();
-                    }
                 });
 
                 $("#submit-detail").on("click", function(e) {

@@ -6,19 +6,18 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SaleOrder extends Model
+class ServiceOrder extends Model
 {
     use HasFactory;
 
     protected $guarded = [];
-    protected $table = 'sale_orders';
+    protected $table = 'service_orders';
     protected $connection = 'mysql';
 
     protected $fillable = [
         'branch_id',
         'customer_id',
         'product_id',
-        'service_order_id',
         'hke',
         'tanggal',
         'no_order',
@@ -51,13 +50,8 @@ class SaleOrder extends Model
         return $this->belongsTo(Customer::class);
     }
 
-    public function sale_order_detail()
+    public function service_order_detail()
     {
-        return $this->hasMany(SaleOrderDetail::class);
-    }
-
-    public function prod_order()
-    {
-        return $this->hasOne(ProdOrder::class, 'sale_order_id');
+        return $this->hasMany(ServiceOrderDetail::class);
     }
 }

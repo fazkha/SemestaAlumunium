@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class DeliveryPackage extends Model
 {
     protected $guarded = [];
-    protected $table = 'delivery_packages';
+    protected $table = 'delivery_officer_packages';
 
     protected $fillable = [
         'delivery_officer_id',

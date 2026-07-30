@@ -174,7 +174,7 @@
                             class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
                             <div class="p-4 space-y-2">
                                 <div class="flex flex-row items-center gap-2">
-                                    <svg class="size-5" version="1.1" id="Capa_1"
+                                    <svg fill="currentColor" class="size-5" version="1.1" id="Capa_1"
                                         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                         x="0px" y="0px" viewBox="0 0 458.868 458.868"
                                         style="enable-background:new 0 0 458.868 458.868;" xml:space="preserve">
@@ -325,7 +325,8 @@
                                 </span>
                             </div>
 
-                            <div class="border rounded-md shadow-md border-primary-100 bg-primary-20">
+                            <div
+                                class="border rounded-md shadow-md border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-700 dark:bg-primary-800 dark:text-gray-300">
                                 <div class="p-2 overflow-scroll md:overflow-auto lg:overflow-hidden">
                                     <div class="p-2 flex flex-col gap-2">
                                         @foreach ($customers as $customer)
@@ -352,7 +353,7 @@
                                             @endphp
                                             @foreach ($pesanans as $pesanan)
                                                 <span class="pl-24">
-                                                    📦{{ ' ' . $pesanan->barang }}
+                                                    📦 {{ $pesanan->barang }}
                                                 </span>
                                             @endforeach
                                         @endforeach

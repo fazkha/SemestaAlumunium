@@ -50,13 +50,14 @@
                 @foreach ($datas as $data)
                     <tr>
                         <td
-                            class="px-3 py-1 align-top md:align-middle text-sm border-b border-primary-100 bg-primary-20">
-                            <p class="text-center text-gray-900 whitespace-no-wrap dark:text-gray-300">
+                            class="px-3 py-1 align-top md:align-middle text-sm border-b border-primary-100 bg-primary-20 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
+                            <p
+                                class="text-center text-gray-900 whitespace-no-wrap dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
                                 {{ ++$i }}
                             </p>
                         </td>
                         <td
-                            class="px-3 py-1 align-top md:align-middle text-sm border-b border-primary-100 bg-primary-20">
+                            class="px-3 py-1 align-top md:align-middle text-sm border-b border-primary-100 bg-primary-20 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
                             <span class="text-gray-900 dark:text-gray-300">{{ $data->pegawai->nama_lengkap }}</span>
                         </td>
                         <td
@@ -78,11 +79,11 @@
                             </div>
                         </td>
                         <td
-                            class="px-3 py-1 align-top md:align-middle text-sm border-b border-primary-100 bg-primary-20">
+                            class="px-3 py-1 align-top md:align-middle text-sm border-b border-primary-100 bg-primary-20 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
                             <span class="text-gray-900 dark:text-gray-300">{{ $data->no_order }}</span>
                         </td>
                         <td
-                            class="px-3 py-1 align-top md:align-middle text-sm border-b border-primary-100 bg-primary-20">
+                            class="px-3 py-1 align-top md:align-middle text-sm border-b border-primary-100 bg-primary-20 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
                             <span class="text-gray-900 dark:text-gray-300">{{ $data->keterangan }}</span>
                         </td>
                         <td

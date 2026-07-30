@@ -121,10 +121,10 @@
                         class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
                         <div class="p-4 space-y-2">
                             <div class="flex flex-row items-center gap-2">
-                                <svg class="size-5" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                    viewBox="0 0 458.868 458.868" style="enable-background:new 0 0 458.868 458.868;"
-                                    xml:space="preserve">
+                                <svg fill="currentColor" class="size-5" version="1.1" id="Capa_1"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    x="0px" y="0px" viewBox="0 0 458.868 458.868"
+                                    style="enable-background:new 0 0 458.868 458.868;" xml:space="preserve">
                                     <path
                                         d="M451.986,36.005c-5.813-2.55-12.599,0.093-15.152,5.91l-41.289,94.088H63.323L22.034,41.915 c-2.552-5.816-9.338-8.46-15.152-5.91c-5.816,2.552-8.462,9.336-5.91,15.152L46.36,154.584v249.972 c0,10.63,8.648,19.278,19.278,19.278H394.26c10.63,0,19.278-8.648,19.278-19.278V152.237l44.358-101.08 C460.448,45.341,457.802,38.558,451.986,36.005z M195.003,159.003h66v149.538h-66V159.003z M390.538,400.835H69.36V159.003h102.643 v161.038c0,6.351,5.149,11.5,11.5,11.5h89c6.351,0,11.5-5.149,11.5-11.5V159.003h106.535V400.835z" />
                                 </svg>

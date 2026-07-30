@@ -25,7 +25,7 @@
                         @lang('messages.deliveryaddress')
                     </th>
                     <th
-                        class="px-3 py-3 text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50">
+                        class="px-3 py-3 text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
                         @lang('messages.packagedfinish')
                     </th>
                     <th
@@ -48,9 +48,7 @@
                     <tr>
                         <td
                             class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
-                            <p class="text-center text-gray-900 whitespace-no-wrap dark:text-gray-300">
-                                {{ ++$i }}
-                            </p>
+                            {{ ++$i }}
                         </td>
                         <td
                             class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
