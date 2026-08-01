@@ -30,9 +30,9 @@
 
             <div x-data="{{ request()->getRequestUri() == '/admin/dashboard' ? '{isActive: true, open: true, currentlyOpen: "' . $controllerName . '"}' : '{isActive: false, open: false, currentlyOpen: ""}' }}">
                 <a href="{{ route('dashboard') }}"
-                    class="flex items-center p-2 transition-colors rounded-md text-gray-600 hover:bg-primary-100 dark:text-light dark:hover:bg-primary"
-                    :class="{ 'bg-primary-100 dark:bg-primary': isActive || open }" aria-haspopup="true"
-                    :aria-expanded="(open || isActive) ? 'true' : 'false'">
+                    class="flex items-center p-2 transition-colors rounded-md text-gray-600 hover:bg-primary-100 dark:text-lightdarkdark dark:hover:bg-primary"
+                    :class="{ 'bg-primary-100 dark:bg-primary dark:text-primary-900': isActive || open }"
+                    aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
                     <span aria-hidden="true">
                         <svg class="w-5 h-5" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg"
                             xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -54,9 +54,9 @@
                         ? '{isActive: true, open: true, currentlyOpen: "' . $controllerName . '"}'
                         : '{isActive: false, open: false, currentlyOpen: ""}' }}">
                         <a href="#" @click="$event.preventDefault(); open = !open"
-                            class="flex items-center p-2 text-gray-600 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
-                            :class="{ 'bg-primary-100 dark:bg-primary': isActive || open }" role="button"
-                            aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
+                            class="flex items-center p-2 text-gray-600 transition-colors rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900"
+                            :class="{ 'bg-primary-100 dark:bg-primary dark:text-primary-900': isActive || open }"
+                            role="button" aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
                             <span aria-hidden="true">
                                 <svg fill="currentColor" class="size-5" viewBox="0 0 24 24"
                                     xmlns="http://www.w3.org/2000/svg" data-name="Layer 1">
@@ -77,7 +77,7 @@
                         @can('branch-list')
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="generalaffair">
                                 <a href="{{ route('branch.index') }}" role="menuitem"
-                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
+                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
                                             'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
@@ -96,7 +96,7 @@
                         @can('division-list')
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="generalaffair">
                                 <a href="{{ route('division.index') }}" role="menuitem"
-                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
+                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
                                             'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
@@ -118,7 +118,7 @@
                         @can('jabatan-list')
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="generalaffair">
                                 <a href="{{ route('jabatan.index') }}" role="menuitem"
-                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
+                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
                                             'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
@@ -137,7 +137,7 @@
                         @can('brandivjab-list')
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="generalaffair">
                                 <a href="{{ route('brandivjab.index') }}" role="menuitem"
-                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
+                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
                                             'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
@@ -192,9 +192,9 @@
                         ? '{isActive: true, open: true, currentlyOpen: "' . $controllerName . '"}'
                         : '{isActive: false, open: false, currentlyOpen: ""}' }}">
                         <a href="#" @click="$event.preventDefault(); open = !open"
-                            class="flex items-center p-2 text-gray-600 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
-                            :class="{ 'bg-primary-100 dark:bg-primary': isActive || open }" role="button"
-                            aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
+                            class="flex items-center p-2 text-gray-600 transition-colors rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900"
+                            :class="{ 'bg-primary-100 dark:bg-primary dark:text-primary-900': isActive || open }"
+                            role="button" aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
                             <span aria-hidden="true">
                                 <svg class="w-5 h-5" fill="currentColor" version="1.1" id="Capa_1"
                                     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
@@ -219,7 +219,7 @@
                         @can('pegawai-list')
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="humanresource">
                                 <a href="{{ route('employee.index') }}" role="menuitem"
-                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
+                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
                                             'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
@@ -239,7 +239,7 @@
                         @can('kritiksaran-list')
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="humanresource">
                                 <a href="{{ route('criticism.index') }}" role="menuitem"
-                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
+                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
                                             'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
@@ -259,7 +259,7 @@
                         @can('pcizin-list')
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="humanresource">
                                 <a href="{{ route('pcizin.index') }}" role="menuitem"
-                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
+                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
                                             'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
@@ -279,7 +279,7 @@
                         @can('resign-list')
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="humanresource">
                                 <a href="{{ route('resign.index') }}" role="menuitem"
-                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
+                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
                                             'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
@@ -320,9 +320,9 @@
                         ? '{isActive: true, open: true, currentlyOpen: "' . $controllerName . '"}'
                         : '{isActive: false, open: false, currentlyOpen: ""}' }}">
                         <a href="#" @click="$event.preventDefault(); open = !open"
-                            class="flex items-center p-2 text-gray-600 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
-                            :class="{ 'bg-primary-100 dark:bg-primary': isActive || open }" role="button"
-                            aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
+                            class="flex items-center p-2 text-gray-600 transition-colors rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900"
+                            :class="{ 'bg-primary-100 dark:bg-primary dark:text-primary-900': isActive || open }"
+                            role="button" aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
                             <span aria-hidden="true">
                                 <svg fill="currentColor" class="size-5" version="1.1" id="Capa_1"
                                     fill="currentColor" xmlns="http://www.w3.org/2000/svg"
@@ -353,7 +353,7 @@
                         @can('coa-list')
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="finance">
                                 <a href="{{ route('coa.index') }}" role="menuitem"
-                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
+                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
                                             'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
@@ -375,7 +375,7 @@
                         @can('pcpettycash-list')
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="finance">
                                 <a href="{{ route('pcpettycash.index') }}" role="menuitem"
-                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
+                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
                                             'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
@@ -412,7 +412,7 @@
                         @can('pcbiaya-list')
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="finance">
                                 <a href="{{ route('pcbiaya.index') }}" role="menuitem"
-                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
+                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
                                             'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
@@ -450,9 +450,9 @@
                         ? '{isActive: true, open: true, currentlyOpen: "' . $controllerName . '"}'
                         : '{isActive: false, open: false, currentlyOpen: ""}' }}">
                         <a href="#" @click="$event.preventDefault(); open = !open"
-                            class="flex items-center p-2 text-gray-600 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
-                            :class="{ 'bg-primary-100 dark:bg-primary': isActive || open }" role="button"
-                            aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
+                            class="flex items-center p-2 text-gray-600 transition-colors rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900"
+                            :class="{ 'bg-primary-100 dark:bg-primary dark:text-primary-900': isActive || open }"
+                            role="button" aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
                             <span aria-hidden="true">
                                 <svg fill="currentColor" class="size-5" viewBox="0 0 1000 1000"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -473,7 +473,7 @@
                         @can('propinsi-list')
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="marketing">
                                 <a href="{{ route('propinsi.index') }}" role="menuitem"
-                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
+                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
                                             'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
@@ -492,7 +492,7 @@
                         @can('kabupaten-list')
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="marketing">
                                 <a href="{{ route('kabupaten.index') }}" role="menuitem"
-                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
+                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
                                             'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
@@ -516,7 +516,7 @@
                         @can('kabupaten-list')
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="marketing">
                                 <a href="{{ route('kecamatan.index') }}" role="menuitem"
-                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
+                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
                                             'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
@@ -535,7 +535,7 @@
                         @can('brandivjabkec-list')
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="marketing">
                                 <a href="{{ route('brandivjabkec.index') }}" role="menuitem"
-                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
+                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
                                             'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
@@ -568,9 +568,9 @@
                         ? '{isActive: true, open: true, currentlyOpen: "' . $controllerName . '"}'
                         : '{isActive: false, open: false, currentlyOpen: ""}' }}">
                         <a href="#" @click="$event.preventDefault(); open = !open"
-                            class="flex items-center p-2 text-gray-600 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
-                            :class="{ 'bg-primary-100 dark:bg-primary': isActive || open }" role="button"
-                            aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
+                            class="flex items-center p-2 text-gray-600 transition-colors rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900"
+                            :class="{ 'bg-primary-100 dark:bg-primary dark:text-primary-900': isActive || open }"
+                            role="button" aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
                             <span aria-hidden="true">
                                 <svg fill="currentColor" class="w-5 h-5" viewBox="0 0 1024 1024"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -593,7 +593,7 @@
                         @can('gudang-list')
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="warehouse">
                                 <a href="{{ route('gudang.index') }}" role="menuitem"
-                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
+                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
                                             'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
@@ -614,7 +614,7 @@
                         @can('satuan-list')
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="warehouse">
                                 <a href="{{ route('units.index') }}" role="menuitem"
-                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
+                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
                                             'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
@@ -635,7 +635,7 @@
                         @can('barang-list')
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="warehouse">
                                 <a href="{{ route('goods.index') }}" role="menuitem"
-                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
+                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
                                             'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
@@ -656,7 +656,7 @@
                         @can('stopname-list')
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="warehouse">
                                 <a href="{{ route('stock-opname.index') }}" role="menuitem"
-                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
+                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
                                             'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
@@ -679,7 +679,7 @@
                         @can('stopname-list')
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="warehouse">
                                 <a href="{{ route('stock-adjustment.index') }}" role="menuitem"
-                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
+                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
                                             'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
@@ -702,7 +702,7 @@
                         @can('purchasereceipt-list')
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="warehouse">
                                 <a href="{{ route('purchase-receipt.index') }}" role="menuitem"
-                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
+                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
                                             'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
@@ -744,9 +744,9 @@
                         ? '{isActive: true, open: true, currentlyOpen: "' . $controllerName . '"}'
                         : '{isActive: false, open: false, currentlyOpen: ""}' }}">
                         <a href="#" @click="$event.preventDefault(); open = !open"
-                            class="flex items-center p-2 text-gray-600 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
-                            :class="{ 'bg-primary-100 dark:bg-primary': isActive || open }" role="button"
-                            aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
+                            class="flex items-center p-2 text-gray-600 transition-colors rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900"
+                            :class="{ 'bg-primary-100 dark:bg-primary dark:text-primary-900': isActive || open }"
+                            role="button" aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
                             <span aria-hidden="true">
                                 <svg fill="currentColor" class="w-5 h-5" viewBox="0 0 1000 1000"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -767,7 +767,7 @@
                         @can('supplier-list')
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="purchase">
                                 <a href="{{ route('supplier.index') }}" role="menuitem"
-                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
+                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
                                             'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
@@ -786,7 +786,7 @@
                         @can('po-list')
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="purchase">
                                 <a href="{{ route('purchase-order.index') }}" role="menuitem"
-                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
+                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
                                             'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
@@ -814,9 +814,9 @@
                         ? '{isActive: true, open: true, currentlyOpen: "' . $controllerName . '"}'
                         : '{isActive: false, open: false, currentlyOpen: ""}' }}">
                         <a href="#" @click="$event.preventDefault(); open = !open"
-                            class="flex items-center p-2 text-gray-600 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
-                            :class="{ 'bg-primary-100 dark:bg-primary': isActive || open }" role="button"
-                            aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
+                            class="flex items-center p-2 text-gray-600 transition-colors rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900"
+                            :class="{ 'bg-primary-100 dark:bg-primary dark:text-primary-900': isActive || open }"
+                            role="button" aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
                             <span aria-hidden="true">
                                 <svg class="size-5" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
                                     fill="none">
@@ -842,7 +842,7 @@
                         @can('inspect-list')
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="service">
                                 <a href="{{ route('customer.index') }}" role="menuitem"
-                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
+                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
                                             'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
@@ -867,7 +867,7 @@
                         @can('perawatan-list')
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="service">
                                 <a href="{{ route('customer.index') }}" role="menuitem"
-                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
+                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
                                             'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
@@ -892,7 +892,7 @@
                         @can('perbaikan-list')
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="service">
                                 <a href="{{ route('sale-order.index') }}" role="menuitem"
-                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
+                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
                                             'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
@@ -929,9 +929,9 @@
                         ? '{isActive: true, open: true, currentlyOpen: "' . $controllerName . '"}'
                         : '{isActive: false, open: false, currentlyOpen: ""}' }}">
                         <a href="#" @click="$event.preventDefault(); open = !open"
-                            class="flex items-center p-2 text-gray-600 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
-                            :class="{ 'bg-primary-100 dark:bg-primary': isActive || open }" role="button"
-                            aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
+                            class="flex items-center p-2 text-gray-600 transition-colors rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900"
+                            :class="{ 'bg-primary-100 dark:bg-primary dark:text-primary-900': isActive || open }"
+                            role="button" aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
                             <span aria-hidden="true">
                                 <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -969,7 +969,7 @@
                         @can('customer-list')
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="sale">
                                 <a href="{{ route('customer.index') }}" role="menuitem"
-                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
+                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
                                             'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
@@ -995,7 +995,7 @@
                         @can('so-list')
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="sale">
                                 <a href="{{ route('sale-order.index') }}" role="menuitem"
-                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
+                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
                                             'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
@@ -1014,7 +1014,7 @@
                         @can('so-list')
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="sale">
                                 <a href="{{ route('sale-invoice.index') }}" role="menuitem"
-                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
+                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
                                             'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
@@ -1042,9 +1042,9 @@
                         ? '{isActive: true, open: true, currentlyOpen: "' . $controllerName . '"}'
                         : '{isActive: false, open: false, currentlyOpen: ""}' }}">
                         <a href="#" @click="$event.preventDefault(); open = !open"
-                            class="flex items-center p-2 text-gray-600 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
-                            :class="{ 'bg-primary-100 dark:bg-primary': isActive || open }" role="button"
-                            aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
+                            class="flex items-center p-2 text-gray-600 transition-colors rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900"
+                            :class="{ 'bg-primary-100 dark:bg-primary dark:text-primary-900': isActive || open }"
+                            role="button" aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
                             <span aria-hidden="true">
                                 <svg class="w-5 h-5" fill="currentColor" version="1.1" id="Capa_1"
                                     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
@@ -1089,7 +1089,7 @@
                         @can('recipe-list')
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="production">
                                 <a href="{{ route('recipe.index') }}" role="menuitem"
-                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
+                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
                                             'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
@@ -1109,7 +1109,7 @@
                         @can('prodo-list')
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="production">
                                 <a href="{{ route('production-order.index') }}" role="menuitem"
-                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
+                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
                                             'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
@@ -1155,9 +1155,9 @@
                         ? '{isActive: true, open: true, currentlyOpen: "' . $controllerName . '"}'
                         : '{isActive: false, open: false, currentlyOpen: ""}' }}">
                         <a href="#" @click="$event.preventDefault(); open = !open"
-                            class="flex items-center p-2 text-gray-600 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
-                            :class="{ 'bg-primary-100 dark:bg-primary': isActive || open }" role="button"
-                            aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
+                            class="flex items-center p-2 text-gray-600 transition-colors rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900"
+                            :class="{ 'bg-primary-100 dark:bg-primary dark:text-primary-900': isActive || open }"
+                            role="button" aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
                             <span aria-hidden="true">
                                 <svg fill="currentColor" class="w-5 h-5" viewBox="0 0 24 24"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -1178,7 +1178,7 @@
                         @can('areaofficer-list')
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="delivery">
                                 <a href="{{ route('area-officer.index') }}" role="menuitem"
-                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
+                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
                                             'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
@@ -1207,7 +1207,7 @@
                         @can('delivery-list')
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="delivery">
                                 <a href="{{ route('delivery-order.index') }}" role="menuitem"
-                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
+                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
                                             'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
@@ -1245,9 +1245,9 @@
                     ? '{isActive: true, open: true, currentlyOpen: "' . $controllerName . '"}'
                     : '{isActive: false, open: false, currentlyOpen: ""}' }}">
                     <a href="#" @click="$event.preventDefault(); open = !open"
-                        class="flex items-center p-2 text-gray-600 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
-                        :class="{ 'bg-primary-100 dark:bg-primary': isActive || open }" role="button"
-                        aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
+                        class="flex items-center p-2 text-gray-600 transition-colors rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900"
+                        :class="{ 'bg-primary-100 dark:bg-primary dark:text-primary-900': isActive || open }"
+                        role="button" aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
                         <span aria-hidden="true">
                             <svg fill="currentColor" class="w-5 h-5" viewBox="0 0 24 24"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -1268,7 +1268,7 @@
                     @can('user-list')
                         <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="setting">
                             <a href="{{ route('users.index') }}" role="menuitem"
-                                class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
+                                class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                 <span class="flex flex-row gap-1"
                                     :class="{
                                         'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
@@ -1290,7 +1290,7 @@
                     @can('role-list')
                         <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="setting">
                             <a href="{{ route('roles.index') }}" role="menuitem"
-                                class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
+                                class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                 <span class="flex flex-row gap-1"
                                     :class="{
                                         'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==

@@ -1,5 +1,6 @@
 :root {
     --light: #f2f2f2;
+    --lightdark: #727272;
     --dark: #191919;
     --darker: #0c0c0c;
     /*  */
@@ -2038,6 +2039,10 @@ video {
 
 .dark .dark\:text-light {
     color: var(--light);
+}
+
+.dark .dark\:text-lightdark {
+    color: var(--lightdark);
 }
 
 .dark .dark\:text-primary-20 {
