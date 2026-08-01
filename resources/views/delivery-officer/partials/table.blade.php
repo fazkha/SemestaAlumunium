@@ -72,7 +72,7 @@
                             <div class="flex flex-col lg:flex-row lg:flex-wrap gap-2 text-gray-900">
                                 @foreach ($areas as $area)
                                     <div
-                                        class="flex px-2 py-1 border rounded items-center bg-primary-100 border-primary-400">
+                                        class="flex px-2 py-1 border rounded items-center bg-primary-100 border-primary-400 dark:bg-primary-600 dark:border-primary-700 dark:text-gray-400">
                                         <span>&bull;</span><span class="pl-2">{{ $area->customer->kode }}</span>
                                     </div>
                                 @endforeach
@@ -180,7 +180,7 @@
             </tbody>
         </table>
         <div
-            class="px-3 py-3 bg-primary-50 items-center xs:justify-between border-t border-primary-100 dark:text-white dark:bg-primary-800 dark:border-primary-800">
+            class="px-3 py-3 bg-primary-50 items-center xs:justify-between border-t border-primary-100 dark:text-gray-400 dark:bg-primary-800 dark:border-primary-800">
             <div class="mt-2 xs:mt-0">
                 {{ $datas->links() }}
             </div>

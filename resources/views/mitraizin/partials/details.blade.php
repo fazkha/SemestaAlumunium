@@ -26,7 +26,7 @@
                             echo 'checked';
                         }
                     } @endphp
-                        class="dark:border-white-400/20 transition-all duration-500 ease-in-out w-7 h-7 rounded-lg shadow-md">
+                        class="dark:border-white-400/20 transition-all duration-500 ease-in-out w-7 h-7 rounded-lg shadow-md dark:bg-primary-700 dark:border-primary-800 dark:text-gray-400">
                 </label>
             </td>
         </tr>

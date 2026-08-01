@@ -56,6 +56,7 @@
                                         @foreach ($permissions as $permission)
                                             <label class="flex items-center gap-2">
                                                 <input type="checkbox" id="permissions[{{ $permission->name }}]"
+                                                    class="dark:border-white-400/20 transition-all duration-500 ease-in-out w-5 h-5 rounded-lg shadow-md dark:bg-primary-700 dark:border-primary-800 dark:text-gray-400"
                                                     name="permissions[{{ $permission->name }}]"
                                                     value="{{ $permission->name }}"
                                                     {{ $datas->hasPermissionTo($permission->name) ? 'checked' : '' }} />

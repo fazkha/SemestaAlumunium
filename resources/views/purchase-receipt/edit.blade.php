@@ -103,7 +103,7 @@
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.arethegoodsreceived')</label>
                                         <label class="cursor-pointer flex flex-col md:flex-row md:gap-2 py-1">
                                             <input type="checkbox" id="isaccepted" name="isaccepted" tabindex="2"
-                                                class="dark:border-white-400/20 transition-all duration-500 ease-in-out w-7 h-7 rounded-lg shadow-md"
+                                                class="dark:border-white-400/20 transition-all duration-500 ease-in-out w-7 h-7 rounded-lg shadow-md dark:bg-primary-700 dark:border-primary-800 dark:text-gray-400"
                                                 {{ $datas->isaccepted == '1' ? 'checked' : '' }}>
                                             <span class="pr-4 group-hover:text-blue-500 transition-colors duration-300">
                                                 @lang('messages.isaccepted')

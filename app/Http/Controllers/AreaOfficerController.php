@@ -21,11 +21,11 @@ class AreaOfficerController extends Controller implements HasMiddleware
     public static function middleware(): array
     {
         return [
-            new Middleware('permission:delivery-list', only: ['index', 'fetch']),
-            new Middleware('permission:delivery-create', only: ['create', 'store']),
-            new Middleware('permission:delivery-edit', only: ['edit', 'update']),
-            new Middleware('permission:delivery-show', only: ['show']),
-            new Middleware('permission:delivery-delete', only: ['delete', 'destroy']),
+            new Middleware('permission:areaofficer-list', only: ['index', 'fetch']),
+            new Middleware('permission:areaofficer-create', only: ['create', 'store']),
+            new Middleware('permission:areaofficer-edit', only: ['edit', 'update']),
+            new Middleware('permission:areaofficer-show', only: ['show']),
+            new Middleware('permission:areaofficer-delete', only: ['delete', 'destroy']),
         ];
     }
 

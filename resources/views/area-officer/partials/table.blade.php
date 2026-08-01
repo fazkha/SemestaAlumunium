@@ -68,7 +68,7 @@
                             <div class="flex flex-col flex-wrap lg:flex-row gap-2 text-gray-900">
                                 @foreach ($areas as $area)
                                     <div
-                                        class="flex px-2 py-1 border rounded items-center bg-primary-100 border-primary-400">
+                                        class="flex px-2 py-1 border rounded items-center bg-primary-100 border-primary-400 dark:bg-primary-600 dark:border-primary-700 dark:text-gray-400">
                                         <span>&bull;</span><span class="pl-2">{{ $area->customer->kode }}</span>
                                     </div>
                                 @endforeach
@@ -92,7 +92,7 @@
                         <td class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400"
                             style="vertical-align: middle;">
                             <div class="flex items-center justify-center">
-                                @can('delivery-show')
+                                @can('areaofficer-show')
                                     <a href="{{ route('area-officer.show', Crypt::Encrypt($data->pegawai_id)) }}"
                                         title="{{ __('messages.view') }}">
                                         <span
@@ -108,7 +108,7 @@
                                     </a>
                                 @endcan
 
-                                @can('delivery-edit')
+                                @can('areaofficer-edit')
                                     <a href="{{ route('area-officer.edit', Crypt::Encrypt($data->pegawai_id)) }}"
                                         title="{{ __('messages.edit') }}" class="ml-2">
                                         <span
@@ -146,9 +146,9 @@
             </tbody>
         </table>
         <div
-            class="px-3 py-3 bg-primary-50 items-center xs:justify-between border-t border-primary-100 dark:text-white dark:bg-primary-800 dark:border-primary-800">
+            class="px-3 py-3 bg-primary-50 items-center xs:justify-between border-t border-primary-100 dark:text-gray-400 dark:bg-primary-800 dark:border-primary-800">
             <div class="mt-2 xs:mt-0">
-                &nbsp;
+                {{ null }}
             </div>
         </div>
     </div>

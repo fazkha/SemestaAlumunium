@@ -103,7 +103,7 @@ S254.158,299.966,218.317,299.966z" />
                                                         <label class="cursor-pointer flex flex-row gap-2 items-center">
                                                             <input type="checkbox" name="kecs[]"
                                                                 value="{{ $kecamatan->id }}"
-                                                                class="dark:border-white-400/20 transition-all duration-500 ease-in-out w-7 h-7 rounded-lg shadow-md">
+                                                                class="dark:border-white-400/20 transition-all duration-500 ease-in-out w-7 h-7 rounded-lg shadow-md dark:bg-primary-700 dark:border-primary-800 dark:text-gray-400">
                                                             <span
                                                                 class="pr-4 group-hover:text-blue-500 transition-colors duration-300">
                                                                 {{ $kecamatan->nama }}
@@ -120,7 +120,7 @@ S254.158,299.966,218.317,299.966z" />
                                             <label
                                                 class="cursor-pointer flex flex-col items-center md:flex-row md:gap-2">
                                                 <input type="checkbox" id="isactive" name="isactive"
-                                                    class="dark:border-white-400/20 transition-all duration-500 ease-in-out w-7 h-7 rounded-lg shadow-md"
+                                                    class="dark:border-white-400/20 transition-all duration-500 ease-in-out w-7 h-7 rounded-lg shadow-md dark:bg-primary-700 dark:border-primary-800 dark:text-gray-400"
                                                     checked>
                                                 <span
                                                     class="pr-4 group-hover:text-blue-500 transition-colors duration-300 text-right w-1/2 md:w-full">

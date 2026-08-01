@@ -99,12 +99,13 @@
                                                             @endphp
                                                             <tr>
                                                                 <td colspan="{{ $a > 0 ? '2' : '0' }}"
-                                                                    class="border-b-2 border-primary-100">
+                                                                    class="border-b-2 border-primary-100 dark:border-primary-600">
                                                                     <span
                                                                         class="font-bold">{{ $customer->namapropinsi }}</span>
                                                                 </td>
                                                                 @if ($a < 1)
-                                                                    <td class="border-b-2 border-primary-100">
+                                                                    <td
+                                                                        class="border-b-2 border-primary-100 dark:border-primary-600">
                                                                         Urutan Rute
                                                                     </td>
                                                                 @endif
@@ -134,7 +135,7 @@
                                                                             echo 'checked';
                                                                         }
                                                                     } @endphp
-                                                                            class="dark:border-white-400/20 transition-all duration-500 ease-in-out w-7 h-7 rounded-lg shadow-md" />
+                                                                            class="dark:border-white-400/20 transition-all duration-500 ease-in-out w-7 h-7 rounded-lg shadow-md dark:bg-primary-700 dark:border-primary-800 dark:text-gray-400" />
                                                                         <span
                                                                             class="pr-4 group-hover:text-blue-500 transition-colors duration-300">
                                                                             {{ $customer->nama }}
@@ -149,7 +150,7 @@
                                                                         @if ($i < count($datas)) @if ($datas[$i]->customer_id == $customer->id)
                                                                             value="{{ $datas[$i]->urutan }}" @endif
                                                                         @endif
-                                                                    class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border bg-primary-20 border-primary-100 disabled:bg-primary-50 disabled:dark:bg-primary-800 disabled:text-gray-900 disabled:border-primary-100 disabled:dark:border-primary-800"
+                                                                    class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border bg-primary-20 border-primary-100 disabled:bg-primary-50 disabled:dark:bg-primary-800 disabled:text-gray-900 disabled:border-primary-100 disabled:dark:border-primary-800 dark:bg-primary-700 dark:border-primary-800 dark:text-gray-400"
                                                                     />
                                                                 </div>
                                                             </td>
@@ -173,7 +174,7 @@
                                             <label
                                                 class="cursor-pointer flex flex-col items-center md:flex-row md:gap-2">
                                                 <input type="checkbox" id="isactive" name="isactive"
-                                                    class="dark:border-white-400/20 transition-all duration-500 ease-in-out w-7 h-7 rounded-lg shadow-md"
+                                                    class="dark:border-white-400/20 transition-all duration-500 ease-in-out w-7 h-7 rounded-lg shadow-md dark:bg-primary-700 dark:border-primary-800 dark:text-gray-400"
                                                     {{ $datas[0]->isactive == 1 ? 'checked' : '' }}>
                                                 <span
                                                     class="pr-4 group-hover:text-blue-500 transition-colors duration-300 text-right w-1/2 md:w-full">
