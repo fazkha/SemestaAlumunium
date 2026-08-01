@@ -277,7 +277,7 @@
                     class="absolute right-0 w-48 py-1 origin-top-right bg-primary-20 rounded-md shadow-lg top-12 ring-1 ring-black ring-opacity-5 dark:bg-primary-700"
                     role="menu" aria-orientation="vertical" aria-label="User menu">
                     <a href="{{ route('profile.edit') }}" role="menuitem"
-                        class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-lightdark dark:hover:bg-primary">
+                        class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-primary-500 dark:hover:bg-primary">
                         @lang('messages.yourprofile')
                     </a>
                     <form method="POST" action="{{ route('logout') }}">
