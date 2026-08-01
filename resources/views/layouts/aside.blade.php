@@ -80,7 +80,7 @@
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
-                                            'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
                                                 'branch'
                                         }">
                                         <svg fill="currentColor" class="size-5" viewBox="0 0 1024 1024"
@@ -99,7 +99,7 @@
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
-                                            'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
                                                 'division'
                                         }">
                                         <svg fill="currentColor" class="size-5" version="1.1"
@@ -121,7 +121,7 @@
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
-                                            'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
                                                 'jabatan'
                                         }">
                                         <svg fill="currentColor" class="size-5" viewBox="0 0 24 24"
@@ -140,7 +140,7 @@
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
-                                            'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
                                                 'brandivjab'
                                         }">
                                         <svg class="size-5" viewBox="0 0 24 24" fill="none"
@@ -222,7 +222,7 @@
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
-                                            'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
                                                 'pegawai'
                                         }">
                                         <svg fill="currentColor" class="size-5" viewBox="0 0 32 32" version="1.1"
@@ -242,7 +242,7 @@
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
-                                            'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
                                                 'kritiksaran'
                                         }">
                                         <svg class="size-5" viewBox="0 0 24 24" fill="none"
@@ -262,7 +262,7 @@
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
-                                            'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
                                                 'pcizin'
                                         }">
                                         <svg fill="currentColor" class="size-5" viewBox="0 0 16 16" id="request-16px"
@@ -282,7 +282,7 @@
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
-                                            'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
                                                 'resign'
                                         }">
                                         <svg fill="currentColor" class="size-5" viewBox="0 0 24 24"
@@ -356,7 +356,7 @@
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
-                                            'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
                                                 'coa'
                                         }">
                                         <span aria-hidden="true">
@@ -378,7 +378,7 @@
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
-                                            'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
                                                 'pcpettycash'
                                         }">
                                         <svg class="size-5" version="1.1" fill="currentColor"
@@ -415,7 +415,7 @@
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
-                                            'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
                                                 'pcbiaya'
                                         }">
                                         <svg class="size-5" viewBox="0 0 32 32" fill="none"
@@ -476,7 +476,7 @@
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
-                                            'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
                                                 'propinsi'
                                         }">
                                         <svg fill="currentColor" class="size-5" viewBox="0 0 24 24"
@@ -495,7 +495,7 @@
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
-                                            'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
                                                 'kabupaten'
                                         }">
                                         <svg class="size-5" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
@@ -519,7 +519,7 @@
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
-                                            'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
                                                 'kecamatan'
                                         }">
                                         <svg fill="currentColor" class="size-5" viewBox="-1.5 0 19 19"
@@ -538,7 +538,7 @@
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
-                                            'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
                                                 'brandivjabkec'
                                         }">
                                         <svg class="size-5" version="1.1" fill="currentColor"
@@ -596,7 +596,7 @@
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
-                                            'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
                                                 'gudang'
                                         }">
                                         <span aria-hidden="true">
@@ -617,7 +617,7 @@
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
-                                            'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
                                                 'satuan'
                                         }">
                                         <span aria-hidden="true">
@@ -638,7 +638,7 @@
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
-                                            'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
                                                 'barang'
                                         }">
                                         <span aria-hidden="true">
@@ -659,7 +659,7 @@
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
-                                            'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
                                                 'stockopname'
                                         }">
                                         <span aria-hidden="true">
@@ -682,7 +682,7 @@
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
-                                            'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
                                                 'stockadjustment'
                                         }">
                                         <span aria-hidden="true">
@@ -705,7 +705,7 @@
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
-                                            'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
                                                 'purchasereceipt'
                                         }">
                                         <span aria-hidden="true">
@@ -770,7 +770,7 @@
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
-                                            'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
                                                 'supplier'
                                         }">
                                         <svg fill="currentColor" class="w-5 h-5" viewBox="0 0 24 24"
@@ -789,7 +789,7 @@
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
-                                            'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
                                                 'purchaseorder'
                                         }">
                                         <svg fill="currentColor" class="w-5 h-5" viewBox="0 0 1024 1024"
@@ -845,7 +845,7 @@
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
-                                            'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
                                                 'customer'
                                         }">
                                         <svg fill="currentColor" class="size-5" xmlns="http://www.w3.org/2000/svg"
@@ -870,7 +870,7 @@
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
-                                            'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
                                                 'customer'
                                         }">
                                         <svg fill="currentColor" class="size-5" xmlns="http://www.w3.org/2000/svg"
@@ -895,7 +895,7 @@
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
-                                            'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
                                                 'saleorder'
                                         }">
                                         <svg class="size-5" version="1.1" id="REPAIR" xmlns="http://www.w3.org/2000/svg"
@@ -972,7 +972,7 @@
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
-                                            'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
                                                 'customer'
                                         }">
                                         <svg fill="currentColor" class="size-5" viewBox="0 0 64 64" id="Layer_1_1_"
@@ -998,7 +998,7 @@
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
-                                            'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
                                                 'saleorder'
                                         }">
                                         <svg fill="currentColor" class="w-5 h-5" viewBox="0 0 24 24"
@@ -1017,7 +1017,7 @@
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
-                                            'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
                                                 'saleinvoice'
                                         }">
                                         <svg class="size-5" viewBox="0 0 15 15" fill="none"
@@ -1092,7 +1092,7 @@
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
-                                            'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
                                                 'recipe'
                                         }">
                                         <span aria-hidden="true">
@@ -1112,7 +1112,7 @@
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
-                                            'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
                                                 'prodorder'
                                         }">
                                         <span aria-hidden="true">
@@ -1181,7 +1181,7 @@
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
-                                            'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
                                                 'areaofficer'
                                         }">
                                         <svg class="size-5" viewBox="0 0 24 24" fill="none"
@@ -1210,7 +1210,7 @@
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
-                                            'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
                                                 'deliveryofficer'
                                         }">
                                         <svg class="w-5 h-5" viewBox="0 0 48 48" fill="none"
@@ -1241,7 +1241,7 @@
             @can('user-list')
                 <div x-data="{{ substr(request()->getRequestUri(), 0, 12) == '/admin/users' ||
                 substr(request()->getRequestUri(), 0, 12) == '/admin/roles' ||
-                substr(request()->getRequestUri(), 0, 13) == '/admin/qrcode'
+                substr(request()->getRequestUri(), 0, 13) == '/admin/coa'
                     ? '{isActive: true, open: true, currentlyOpen: "' . $controllerName . '"}'
                     : '{isActive: false, open: false, currentlyOpen: ""}' }}">
                     <a href="#" @click="$event.preventDefault(); open = !open"
@@ -1271,7 +1271,7 @@
                                 class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                 <span class="flex flex-row gap-1"
                                     :class="{
-                                        'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
+                                        'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
                                             'user'
                                     }">
                                     <span aria-hidden="true">
@@ -1293,7 +1293,7 @@
                                 class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                 <span class="flex flex-row gap-1"
                                     :class="{
-                                        'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
+                                        'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
                                             'role'
                                     }">
                                     <span aria-hidden="true">

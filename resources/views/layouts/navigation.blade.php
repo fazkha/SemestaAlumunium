@@ -1,3 +1,14 @@
+@php
+    $routeAction = request()->route()->getAction();
+    if ($routeAction['as'] == 'dashboard') {
+        $controllerName = 'dashboard';
+    } else {
+        $controllerAction = class_basename($routeAction['controller']);
+        [$controllerName, $methodName] = explode('@', $controllerAction);
+        $controllerName = strtolower(str_replace('Controller', '', $controllerName));
+    }
+@endphp
+
 <header class="relative bg-primary-20 dark:bg-primary-900">
     <div class="flex items-center justify-between p-2 border-b border-primary-100 dark:border-primary-800">
 
@@ -322,8 +333,8 @@
                     substr(request()->getRequestUri(), 0, 24) == '/general-affair/division' ||
                     substr(request()->getRequestUri(), 0, 23) == '/general-affair/jabatan' ||
                     substr(request()->getRequestUri(), 0, 26) == '/general-affair/brandivjab'
-                        ? '{isActive: true, open: true}'
-                        : '{isActive: false, open: false}' }}">
+                        ? '{isActive: true, open: true, currentlyOpen: "' . $controllerName . '"}'
+                        : '{isActive: false, open: false, currentlyOpen: ""}' }}">
                         <a href="#" @click="$event.preventDefault(); open = !open"
                             class="flex items-center p-2 text-gray-600 transition-colors rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900"
                             :class="{ 'bg-primary-100 dark:bg-primary dark:text-primary-900': isActive || open }"
@@ -349,7 +360,11 @@
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="generalaffair">
                                 <a href="{{ route('branch.index') }}" role="menuitem"
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
-                                    <span class="flex flex-row gap-1">
+                                    <span class="flex flex-row gap-1"
+                                        :class="{
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
+                                                'branch'
+                                        }">
                                         <svg fill="currentColor" class="size-5" viewBox="0 0 1024 1024"
                                             xmlns="http://www.w3.org/2000/svg">
                                             <path
@@ -364,7 +379,11 @@
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="generalaffair">
                                 <a href="{{ route('division.index') }}" role="menuitem"
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
-                                    <span class="flex flex-row gap-1">
+                                    <span class="flex flex-row gap-1"
+                                        :class="{
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
+                                                'division'
+                                        }">
                                         <svg fill="currentColor" class="size-5" version="1.1"
                                             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                             viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
@@ -382,7 +401,11 @@
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="generalaffair">
                                 <a href="{{ route('jabatan.index') }}" role="menuitem"
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
-                                    <span class="flex flex-row gap-1">
+                                    <span class="flex flex-row gap-1"
+                                        :class="{
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
+                                                'jabatan'
+                                        }">
                                         <svg fill="currentColor" class="size-5" viewBox="0 0 24 24"
                                             xmlns="http://www.w3.org/2000/svg">
                                             <path
@@ -397,7 +420,11 @@
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="generalaffair">
                                 <a href="{{ route('brandivjab.index') }}" role="menuitem"
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
-                                    <span class="flex flex-row gap-1">
+                                    <span class="flex flex-row gap-1"
+                                        :class="{
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
+                                                'brandivjab'
+                                        }">
                                         <svg class="size-5" viewBox="0 0 24 24" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
                                             <path d="M16.4501 14.4V8.5C16.4501 7.95 16.0001 7.5 15.4501 7.5H12.55"
@@ -444,8 +471,8 @@
                     substr(request()->getRequestUri(), 0, 22) == '/human-resource/resign' ||
                     substr(request()->getRequestUri(), 0, 25) == '/human-resource/mitraubah' ||
                     substr(request()->getRequestUri(), 0, 25) == '/human-resource/mitraizin'
-                        ? '{isActive: true, open: true}'
-                        : '{isActive: false, open: false}' }}">
+                        ? '{isActive: true, open: true, currentlyOpen: "' . $controllerName . '"}'
+                        : '{isActive: false, open: false, currentlyOpen: ""}' }}">
                         <a href="#" @click="$event.preventDefault(); open = !open"
                             class="flex items-center p-2 text-gray-600 transition-colors rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900"
                             :class="{ 'bg-primary-100 dark:bg-primary dark:text-primary-900': isActive || open }"
@@ -475,7 +502,11 @@
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="humanresource">
                                 <a href="{{ route('employee.index') }}" role="menuitem"
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
-                                    <span class="flex flex-row gap-1">
+                                    <span class="flex flex-row gap-1"
+                                        :class="{
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
+                                                'pegawai'
+                                        }">
                                         <svg fill="currentColor" class="size-5" viewBox="0 0 32 32" version="1.1"
                                             xmlns="http://www.w3.org/2000/svg">
                                             <title>users</title>
@@ -491,7 +522,11 @@
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="humanresource">
                                 <a href="{{ route('criticism.index') }}" role="menuitem"
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
-                                    <span class="flex flex-row gap-1">
+                                    <span class="flex flex-row gap-1"
+                                        :class="{
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
+                                                'kritiksaran'
+                                        }">
                                         <svg class="size-5" viewBox="0 0 24 24" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
                                             <path
@@ -507,7 +542,11 @@
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="humanresource">
                                 <a href="{{ route('pcizin.index') }}" role="menuitem"
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
-                                    <span class="flex flex-row gap-1">
+                                    <span class="flex flex-row gap-1"
+                                        :class="{
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
+                                                'pcizin'
+                                        }">
                                         <svg fill="currentColor" class="size-5" viewBox="0 0 16 16" id="request-16px"
                                             xmlns="http://www.w3.org/2000/svg">
                                             <path id="Path_49" data-name="Path 49"
@@ -523,7 +562,11 @@
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="humanresource">
                                 <a href="{{ route('resign.index') }}" role="menuitem"
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
-                                    <span class="flex flex-row gap-1">
+                                    <span class="flex flex-row gap-1"
+                                        :class="{
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
+                                                'resign'
+                                        }">
                                         <svg fill="currentColor" class="size-5" viewBox="0 0 24 24"
                                             id="sign-out-double-arrow-left" data-name="Line Color"
                                             xmlns="http://www.w3.org/2000/svg" class="icon line-color">
@@ -556,8 +599,8 @@
                     <div x-data="{{ substr(request()->getRequestUri(), 0, 12) == '/finance/coa' ||
                     substr(request()->getRequestUri(), 0, 20) == '/finance/pcpettycash' ||
                     substr(request()->getRequestUri(), 0, 16) == '/finance/pcbiaya'
-                        ? '{isActive: true, open: true}'
-                        : '{isActive: false, open: false}' }}">
+                        ? '{isActive: true, open: true, currentlyOpen: "' . $controllerName . '"}'
+                        : '{isActive: false, open: false, currentlyOpen: ""}' }}">
                         <a href="#" @click="$event.preventDefault(); open = !open"
                             class="flex items-center p-2 text-gray-600 transition-colors rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900"
                             :class="{ 'bg-primary-100 dark:bg-primary dark:text-primary-900': isActive || open }"
@@ -593,13 +636,19 @@
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="finance">
                                 <a href="{{ route('coa.index') }}" role="menuitem"
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
-                                    <span class="flex flex-row gap-1">
-                                        <svg fill="currentColor" class="size-5" viewBox="0 0 24 24"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M21.32,5.05l-6-2h-.07a.7.7,0,0,0-.14,0h-.23l-.13,0h-.07L9,5,3.32,3.05a1,1,0,0,0-.9.14A1,1,0,0,0,2,4V18a1,1,0,0,0,.68.95l6,2h0a1,1,0,0,0,.62,0h0L15,19.05,20.68,21A1.19,1.19,0,0,0,21,21a.94.94,0,0,0,.58-.19A1,1,0,0,0,22,20V6A1,1,0,0,0,21.32,5.05ZM8,18.61,4,17.28V5.39L8,6.72Zm6-1.33-4,1.33V6.72l4-1.33Zm6,1.33-4-1.33V5.39l4,1.33Z" />
-                                        </svg>
-                                        @lang('messages.chartofaccount')
+                                    <span class="flex flex-row gap-1"
+                                        :class="{
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
+                                                'coa'
+                                        }">
+                                        <span aria-hidden="true">
+                                            <svg fill="currentColor" class="size-5" viewBox="0 0 24 24"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M21.32,5.05l-6-2h-.07a.7.7,0,0,0-.14,0h-.23l-.13,0h-.07L9,5,3.32,3.05a1,1,0,0,0-.9.14A1,1,0,0,0,2,4V18a1,1,0,0,0,.68.95l6,2h0a1,1,0,0,0,.62,0h0L15,19.05,20.68,21A1.19,1.19,0,0,0,21,21a.94.94,0,0,0,.58-.19A1,1,0,0,0,22,20V6A1,1,0,0,0,21.32,5.05ZM8,18.61,4,17.28V5.39L8,6.72Zm6-1.33-4,1.33V6.72l4-1.33Zm6,1.33-4-1.33V5.39l4,1.33Z" />
+                                            </svg>
+                                            @lang('messages.chartofaccount')
+                                        </span>
                                     </span>
                                 </a>
                             </div>
@@ -608,7 +657,11 @@
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="finance">
                                 <a href="{{ route('pcpettycash.index') }}" role="menuitem"
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
-                                    <span class="flex flex-row gap-1">
+                                    <span class="flex flex-row gap-1"
+                                        :class="{
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
+                                                'pcpettycash'
+                                        }">
                                         <svg class="size-5" version="1.1" fill="currentColor"
                                             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                             x="0px" y="0px" viewBox="0 0 200.158 200.158"
@@ -641,7 +694,11 @@
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="finance">
                                 <a href="{{ route('pcbiaya.index') }}" role="menuitem"
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
-                                    <span class="flex flex-row gap-1">
+                                    <span class="flex flex-row gap-1"
+                                        :class="{
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
+                                                'pcbiaya'
+                                        }">
                                         <svg class="size-5" viewBox="0 0 32 32" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
                                             <g clip-path="url(#clip0_901_1341)">
@@ -671,8 +728,8 @@
                     substr(request()->getRequestUri(), 0, 20) == '/marketing/kabupaten' ||
                     substr(request()->getRequestUri(), 0, 20) == '/marketing/kecamatan' ||
                     substr(request()->getRequestUri(), 0, 24) == '/marketing/brandivjabkec'
-                        ? '{isActive: true, open: true}'
-                        : '{isActive: false, open: false}' }}">
+                        ? '{isActive: true, open: true, currentlyOpen: "' . $controllerName . '"}'
+                        : '{isActive: false, open: false, currentlyOpen: ""}' }}">
                         <a href="#" @click="$event.preventDefault(); open = !open"
                             class="flex items-center p-2 text-gray-600 transition-colors rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900"
                             :class="{ 'bg-primary-100 dark:bg-primary dark:text-primary-900': isActive || open }"
@@ -698,7 +755,11 @@
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="marketing">
                                 <a href="{{ route('propinsi.index') }}" role="menuitem"
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
-                                    <span class="flex flex-row gap-1">
+                                    <span class="flex flex-row gap-1"
+                                        :class="{
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
+                                                'propinsi'
+                                        }">
                                         <svg fill="currentColor" class="size-5" viewBox="0 0 24 24"
                                             xmlns="http://www.w3.org/2000/svg">
                                             <path
@@ -713,7 +774,11 @@
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="marketing">
                                 <a href="{{ route('kabupaten.index') }}" role="menuitem"
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
-                                    <span class="flex flex-row gap-1">
+                                    <span class="flex flex-row gap-1"
+                                        :class="{
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
+                                                'kabupaten'
+                                        }">
                                         <svg class="size-5" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
                                             <g transform="matrix(1.1485 0 0 1.2471 -1.233 -1.917)" fill="currentColor"
                                                 stroke-width=".82858px">
@@ -733,7 +798,11 @@
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="marketing">
                                 <a href="{{ route('kecamatan.index') }}" role="menuitem"
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
-                                    <span class="flex flex-row gap-1">
+                                    <span class="flex flex-row gap-1"
+                                        :class="{
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
+                                                'kecamatan'
+                                        }">
                                         <svg fill="currentColor" class="size-5" viewBox="-1.5 0 19 19"
                                             xmlns="http://www.w3.org/2000/svg" class="cf-icon-svg">
                                             <path
@@ -748,7 +817,11 @@
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="marketing">
                                 <a href="{{ route('brandivjabkec.index') }}" role="menuitem"
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
-                                    <span class="flex flex-row gap-1">
+                                    <span class="flex flex-row gap-1"
+                                        :class="{
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
+                                                'brandivjabkec'
+                                        }">
                                         <svg class="size-5" version="1.1" fill="currentColor"
                                             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                             x="0px" y="0px" viewBox="0 0 329.966 329.966"
@@ -767,14 +840,14 @@
 
             @can('satuan-list')
                 @if (config('custom.menu_gudang') == true)
-                    <div x-data="{{ substr(request()->getRequestUri(), 0, 17) == '/warehouse/satuan' ||
+                    <div x-data="{{ substr(request()->getRequestUri(), 0, 17) == '/warehouse/units' ||
                     substr(request()->getRequestUri(), 0, 17) == '/warehouse/gudang' ||
                     substr(request()->getRequestUri(), 0, 17) == '/warehouse/goods' ||
                     substr(request()->getRequestUri(), 0, 23) == '/warehouse/stock-opname' ||
                     substr(request()->getRequestUri(), 0, 27) == '/warehouse/stock-adjustment' ||
                     substr(request()->getRequestUri(), 0, 27) == '/warehouse/purchase-receipt'
-                        ? '{isActive: true, open: true}'
-                        : '{isActive: false, open: false}' }}">
+                        ? '{isActive: true, open: true, currentlyOpen: "' . $controllerName . '"}'
+                        : '{isActive: false, open: false, currentlyOpen: ""}' }}">
                         <a href="#" @click="$event.preventDefault(); open = !open"
                             class="flex items-center p-2 text-gray-600 transition-colors rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900"
                             :class="{ 'bg-primary-100 dark:bg-primary dark:text-primary-900': isActive || open }"
@@ -804,7 +877,7 @@
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
-                                            'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
                                                 'gudang'
                                         }">
                                         <span aria-hidden="true">
@@ -823,7 +896,11 @@
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="warehouse">
                                 <a href="{{ route('units.index') }}" role="menuitem"
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
-                                    <span class="flex flex-row gap-1">
+                                    <span class="flex flex-row gap-1"
+                                        :class="{
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
+                                                'satuan'
+                                        }">
                                         <span aria-hidden="true">
                                             <svg fill="currentColor" class="size-5" viewBox="0 0 50 50"
                                                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -840,7 +917,11 @@
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="warehouse">
                                 <a href="{{ route('goods.index') }}" role="menuitem"
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
-                                    <span class="flex flex-row gap-1">
+                                    <span class="flex flex-row gap-1"
+                                        :class="{
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
+                                                'barang'
+                                        }">
                                         <span aria-hidden="true">
                                             <svg fill="currentColor" class="w-5 h-5" viewBox="0 0 52 52"
                                                 xmlns="http://www.w3.org/2000/svg">
@@ -857,7 +938,11 @@
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="warehouse">
                                 <a href="{{ route('stock-opname.index') }}" role="menuitem"
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
-                                    <span class="flex flex-row gap-1">
+                                    <span class="flex flex-row gap-1"
+                                        :class="{
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
+                                                'stockopname'
+                                        }">
                                         <span aria-hidden="true">
                                             <svg class="w-5 h-5" viewBox="0 0 16 16" version="1.1"
                                                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -876,7 +961,11 @@
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="warehouse">
                                 <a href="{{ route('stock-adjustment.index') }}" role="menuitem"
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
-                                    <span class="flex flex-row gap-1">
+                                    <span class="flex flex-row gap-1"
+                                        :class="{
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
+                                                'stockadjustment'
+                                        }">
                                         <span aria-hidden="true">
                                             <svg class="w-5 h-5" viewBox="0 0 16 16" version="1.1"
                                                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -895,7 +984,11 @@
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="warehouse">
                                 <a href="{{ route('purchase-receipt.index') }}" role="menuitem"
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
-                                    <span class="flex flex-row gap-1">
+                                    <span class="flex flex-row gap-1"
+                                        :class="{
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
+                                                'purchasereceipt'
+                                        }">
                                         <span aria-hidden="true">
                                             <svg class="size-5" version="1.1" id="_x32_"
                                                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -929,8 +1022,8 @@
                     <div x-data="{{ substr(request()->getRequestUri(), 0, 18) == '/purchase/supplier' ||
                     substr(request()->getRequestUri(), 0, 15) == '/purchase/order' ||
                     substr(request()->getRequestUri(), 0, 14) == '/purchase/plan'
-                        ? '{isActive: true, open: true}'
-                        : '{isActive: false, open: false}' }}">
+                        ? '{isActive: true, open: true, currentlyOpen: "' . $controllerName . '"}'
+                        : '{isActive: false, open: false, currentlyOpen: ""}' }}">
                         <a href="#" @click="$event.preventDefault(); open = !open"
                             class="flex items-center p-2 text-gray-600 transition-colors rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900"
                             :class="{ 'bg-primary-100 dark:bg-primary dark:text-primary-900': isActive || open }"
@@ -956,7 +1049,11 @@
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="purchase">
                                 <a href="{{ route('supplier.index') }}" role="menuitem"
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
-                                    <span class="flex flex-row gap-1">
+                                    <span class="flex flex-row gap-1"
+                                        :class="{
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
+                                                'supplier'
+                                        }">
                                         <svg fill="currentColor" class="w-5 h-5" viewBox="0 0 24 24"
                                             xmlns="http://www.w3.org/2000/svg">
                                             <path
@@ -971,7 +1068,11 @@
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="purchase">
                                 <a href="{{ route('purchase-order.index') }}" role="menuitem"
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
-                                    <span class="flex flex-row gap-1">
+                                    <span class="flex flex-row gap-1"
+                                        :class="{
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
+                                                'purchaseorder'
+                                        }">
                                         <svg fill="currentColor" class="w-5 h-5" viewBox="0 0 1024 1024"
                                             xmlns="http://www.w3.org/2000/svg">
                                             <path
@@ -1025,7 +1126,7 @@
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
-                                            'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
                                                 'customer'
                                         }">
                                         <svg fill="currentColor" class="size-5" xmlns="http://www.w3.org/2000/svg"
@@ -1050,7 +1151,7 @@
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
-                                            'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
                                                 'customer'
                                         }">
                                         <svg fill="currentColor" class="size-5" xmlns="http://www.w3.org/2000/svg"
@@ -1075,7 +1176,7 @@
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
-                                            'border-b border-b-1 border-primary-100 dark:border-primary-700': currentlyOpen ==
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
                                                 'saleorder'
                                         }">
                                         <svg class="size-5" version="1.1" id="REPAIR" xmlns="http://www.w3.org/2000/svg"
@@ -1106,8 +1207,8 @@
                     <div x-data="{{ substr(request()->getRequestUri(), 0, 14) == '/sale/customer' ||
                     substr(request()->getRequestUri(), 0, 11) == '/sale/order' ||
                     substr(request()->getRequestUri(), 0, 13) == '/sale/invoice'
-                        ? '{isActive: true, open: true}'
-                        : '{isActive: false, open: false}' }}">
+                        ? '{isActive: true, open: true, currentlyOpen: "' . $controllerName . '"}'
+                        : '{isActive: false, open: false, currentlyOpen: ""}' }}">
                         <a href="#" @click="$event.preventDefault(); open = !open"
                             class="flex items-center p-2 text-gray-600 transition-colors rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900"
                             :class="{ 'bg-primary-100 dark:bg-primary dark:text-primary-900': isActive || open }"
@@ -1150,7 +1251,11 @@
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="sale">
                                 <a href="{{ route('customer.index') }}" role="menuitem"
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
-                                    <span class="flex flex-row gap-1">
+                                    <span class="flex flex-row gap-1"
+                                        :class="{
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
+                                                'customer'
+                                        }">
                                         <svg fill="currentColor" class="size-5" viewBox="0 0 64 64" id="Layer_1_1_"
                                             version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
                                             xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -1172,7 +1277,11 @@
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="sale">
                                 <a href="{{ route('sale-order.index') }}" role="menuitem"
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
-                                    <span class="flex flex-row gap-1">
+                                    <span class="flex flex-row gap-1"
+                                        :class="{
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
+                                                'saleorder'
+                                        }">
                                         <svg fill="currentColor" class="w-5 h-5" viewBox="0 0 24 24"
                                             xmlns="http://www.w3.org/2000/svg" data-name="Layer 1">
                                             <path
@@ -1187,7 +1296,11 @@
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="sale">
                                 <a href="{{ route('sale-invoice.index') }}" role="menuitem"
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
-                                    <span class="flex flex-row gap-1">
+                                    <span class="flex flex-row gap-1"
+                                        :class="{
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
+                                                'saleinvoice'
+                                        }">
                                         <svg class="size-5" viewBox="0 0 15 15" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
                                             <path
@@ -1207,8 +1320,8 @@
                 @if (config('custom.menu_produksi') == true)
                     <div x-data="{{ substr(request()->getRequestUri(), 0, 18) == '/production/recipe' ||
                     substr(request()->getRequestUri(), 0, 17) == '/production/order'
-                        ? '{isActive: true, open: true}'
-                        : '{isActive: false, open: false}' }}">
+                        ? '{isActive: true, open: true, currentlyOpen: "' . $controllerName . '"}'
+                        : '{isActive: false, open: false, currentlyOpen: ""}' }}">
                         <a href="#" @click="$event.preventDefault(); open = !open"
                             class="flex items-center p-2 text-gray-600 transition-colors rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900"
                             :class="{ 'bg-primary-100 dark:bg-primary dark:text-primary-900': isActive || open }"
@@ -1258,7 +1371,11 @@
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="production">
                                 <a href="{{ route('recipe.index') }}" role="menuitem"
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
-                                    <span class="flex flex-row gap-1">
+                                    <span class="flex flex-row gap-1"
+                                        :class="{
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
+                                                'recipe'
+                                        }">
                                         <span aria-hidden="true">
                                             <svg class="w-5 h-5" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
                                                 <path fill="currentColor"
@@ -1274,7 +1391,11 @@
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="production">
                                 <a href="{{ route('production-order.index') }}" role="menuitem"
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
-                                    <span class="flex flex-row gap-1">
+                                    <span class="flex flex-row gap-1"
+                                        :class="{
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
+                                                'prodorder'
+                                        }">
                                         <span aria-hidden="true">
                                             <svg class="size-5" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"
                                                 version="1.1">
@@ -1312,8 +1433,8 @@
                 @if (config('custom.menu_pengiriman') == true)
                     <div x-data="{{ substr(request()->getRequestUri(), 0, 15) == '/delivery/order' ||
                     substr(request()->getRequestUri(), 0, 17) == '/delivery/officer'
-                        ? '{isActive: true, open: true}'
-                        : '{isActive: false, open: false}' }}">
+                        ? '{isActive: true, open: true, currentlyOpen: "' . $controllerName . '"}'
+                        : '{isActive: false, open: false, currentlyOpen: ""}' }}">
                         <a href="#" @click="$event.preventDefault(); open = !open"
                             class="flex items-center p-2 text-gray-600 transition-colors rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900"
                             :class="{ 'bg-primary-100 dark:bg-primary dark:text-primary-900': isActive || open }"
@@ -1339,7 +1460,11 @@
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="delivery">
                                 <a href="{{ route('area-officer.index') }}" role="menuitem"
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
-                                    <span class="flex flex-row gap-1">
+                                    <span class="flex flex-row gap-1"
+                                        :class="{
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
+                                                'areaofficer'
+                                        }">
                                         <svg class="size-5" viewBox="0 0 24 24" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
                                             <g id="style=linear">
@@ -1364,7 +1489,11 @@
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="delivery">
                                 <a href="{{ route('delivery-order.index') }}" role="menuitem"
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
-                                    <span class="flex flex-row gap-1">
+                                    <span class="flex flex-row gap-1"
+                                        :class="{
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
+                                                'deliveryofficer'
+                                        }">
                                         <svg class="w-5 h-5" viewBox="0 0 48 48" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
                                             <path
@@ -1393,9 +1522,9 @@
             @can('user-list')
                 <div x-data="{{ substr(request()->getRequestUri(), 0, 12) == '/admin/users' ||
                 substr(request()->getRequestUri(), 0, 12) == '/admin/roles' ||
-                substr(request()->getRequestUri(), 0, 13) == '/admin/qrcode'
-                    ? '{isActive: true, open: true}'
-                    : '{isActive: false, open: false}' }}">
+                substr(request()->getRequestUri(), 0, 13) == '/admin/coa'
+                    ? '{isActive: true, open: true, currentlyOpen: "' . $controllerName . '"}'
+                    : '{isActive: false, open: false, currentlyOpen: ""}' }}">
                     <a href="#" @click="$event.preventDefault(); open = !open"
                         class="flex items-center p-2 text-gray-600 transition-colors rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900"
                         :class="{ 'bg-primary-100 dark:bg-primary dark:text-primary-900': isActive || open }"
@@ -1422,7 +1551,11 @@
                         <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="setting">
                             <a href="{{ route('users.index') }}" role="menuitem"
                                 class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
-                                <span class="flex flex-row gap-1">
+                                <span class="flex flex-row gap-1"
+                                    :class="{
+                                        'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
+                                            'user'
+                                    }">
                                     <span aria-hidden="true">
                                         <svg fill="currentColor" class="w-5 h-5" viewBox="-2 -1.5 24 24"
                                             xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin"
@@ -1440,7 +1573,11 @@
                         <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="setting">
                             <a href="{{ route('roles.index') }}" role="menuitem"
                                 class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
-                                <span class="flex flex-row gap-1">
+                                <span class="flex flex-row gap-1"
+                                    :class="{
+                                        'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
+                                            'role'
+                                    }">
                                     <span aria-hidden="true">
                                         <svg fill="currentColor" class="w-5 h-5" viewBox="0 0 52 52" data-name="Layer 1"
                                             xmlns="http://www.w3.org/2000/svg">
@@ -1452,24 +1589,6 @@
                                         </svg>
                                     </span>
                                     @lang('messages.role')
-                                </span>
-                            </a>
-                        </div>
-                    @endcan
-                    @can('coa-list')
-                        <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="setting">
-                            <a href="{{ route('coa.index') }}" role="menuitem"
-                                class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
-                                <span class="flex flex-row gap-1">
-                                    <span aria-hidden="true">
-                                        <svg class="w-5 h-5" viewBox="0 0 1024 1024" fill="currentColor" class="icon"
-                                            version="1.1" xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M53.6 1023.2c-6.4 0-12.8-2.4-17.6-8-4.8-4.8-7.2-11.2-6.4-18.4L80 222.4c0.8-12.8 11.2-22.4 24-22.4h211.2v-3.2c0-52.8 20.8-101.6 57.6-139.2C410.4 21.6 459.2 0.8 512 0.8c108 0 196.8 88 196.8 196.8 0 0.8-0.8 1.6-0.8 2.4v0.8H920c12.8 0 23.2 9.6 24 22.4l49.6 768.8c0.8 2.4 0.8 4 0.8 6.4-0.8 13.6-11.2 24.8-24.8 24.8H53.6z m25.6-48H944l-46.4-726.4H708v57.6h0.8c12.8 8.8 20 21.6 20 36 0 24.8-20 44.8-44.8 44.8s-44.8-20-44.8-44.8c0-14.4 7.2-27.2 20-36h0.8v-57.6H363.2v57.6h0.8c12.8 8.8 20 21.6 20 36 0 24.8-20 44.8-44.8 44.8-24.8 0-44.8-20-44.8-44.8 0-14.4 7.2-27.2 20-36h0.8v-57.6H125.6l-46.4 726.4zM512 49.6c-81.6 0-148.8 66.4-148.8 148.8v3.2h298.4l-0.8-1.6v-1.6c0-82.4-67.2-148.8-148.8-148.8z"
-                                                fill="" />
-                                        </svg>
-                                    </span>
-                                    @lang('messages.chartofaccount')
                                 </span>
                             </a>
                         </div>
