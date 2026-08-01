@@ -4,7 +4,8 @@
 @section('title', __('messages.partner'))
 
 <x-app-layout>
-    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 dark:border-primary-700 lg:py-6">
+    <div
+        class="flex items-center justify-between px-4 py-4 border-b border-primary-100 dark:border-primary-700 lg:py-6 text-primary-700 dark:text-primary-500">
         <h1 class="text-xl flex items-center justify-center">
             <a href="{{ route('mitra.index') }}" class="flex items-center justify-center">
                 <svg fill="currentColor" class="size-7" viewBox="0 0 32 32" version="1.1"

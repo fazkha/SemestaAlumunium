@@ -4,7 +4,8 @@
 @section('title', __('messages.goodsreceipt'))
 
 <x-app-layout>
-    <div class="flex items-center justify-between px-4 py-4 border-b border-primary-100 dark:border-primary-700 lg:py-6">
+    <div
+        class="flex items-center justify-between px-4 py-4 border-b border-primary-100 dark:border-primary-700 lg:py-6 text-primary-700 dark:text-primary-500">
         <h1 class="text-xl flex items-center justify-center">
             <a href="{{ route('purchase-receipt.index') }}" class="flex items-center justify-center">
                 <svg class="size-7" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg"

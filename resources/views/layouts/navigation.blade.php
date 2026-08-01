@@ -56,8 +56,9 @@
                 </span>
             </button>
             <a href="{{ route('dashboard') }}">
-                <div class="pl-2 pr-4 py-2">
-                    {{ auth()->user()->profile->site == 'KP' ? 'Kantor Pusat' : config('custom.product_name') }}</div>
+                <div class="pl-2 pr-4 py-2 dark:text-gray-400">
+                    {{ auth()->user()->profile->site == 'KP' ? 'Kantor Pusat' : config('custom.product_name') }}
+                </div>
             </a>
         </div>
 
@@ -146,7 +147,7 @@
             <div class="relative" x-data="{ open: false }">
                 <button @click="open = !open; $nextTick(() => { if(open){ $refs.userMenu.focus() } })" type="button"
                     aria-haspopup="true" :aria-expanded="open ? 'true' : 'false'"
-                    class="px-5 transition-opacity duration-200 rounded-full dark:opacity-75 dark:hover:opacity-100 focus:outline-none focus:ring dark:focus:opacity-100">
+                    class="px-5 transition-opacity duration-200 rounded-full dark:opacity-75 dark:hover:opacity-100 focus:outline-none focus:ring dark:focus:opacity-100 dark:text-gray-400">
                     <span class="sr-only">User menu</span>
                     <div>{{ Auth::user()->name }}</div>
                 </button>
@@ -162,7 +163,7 @@
                     class="absolute right-0 w-48 py-1 bg-primary-20 rounded-md shadow-lg top-12 ring-1 ring-black ring-opacity-5 dark:bg-primary-700 focus:outline-none"
                     tabindex="-1" role="menu" aria-orientation="vertical" aria-label="User menu">
                     <a href="{{ route('profile.edit') }}" role="menuitem"
-                        class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-lightdark dark:hover:bg-primary">
+                        class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-primary-500 dark:hover:bg-primary">
                         @lang('messages.yourprofile')
                     </a>
                     <form method="POST" action="{{ route('logout') }}">

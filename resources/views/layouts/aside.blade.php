@@ -20,7 +20,7 @@
             <div class="px-2">
                 <x-application-logo class="!h-auto" />
             </div>
-            <div class="text-md text-gray-800 dark:text-gray-200">{{ config('custom.company_name') }}</div>
+            <div class="text-md text-gray-800 dark:text-gray-400">{{ config('custom.company_name') }}</div>
         </div>
     </a>
 
