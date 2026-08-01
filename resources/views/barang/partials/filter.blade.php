@@ -134,7 +134,7 @@
 
                 @can('barang-show')
                     <x-secondary-button id="print-mutasi"
-                        class="bg-indigo-700 hover:bg-indigo-800 hover:dark:bg-indigo-950">
+                        class="bg-purple-600 dark:bg-purple-800 hover:bg-purple-700 hover:dark:bg-purple-900">
                         <svg id="print-icon" class="size-5" viewBox="0 0 15 15" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path
