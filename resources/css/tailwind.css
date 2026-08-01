@@ -2110,6 +2110,10 @@ video {
     color: var(--color-primary-100);
 }
 
+.dark .dark\:hover\:text-primary-900:hover {
+    color: var(--color-primary-900);
+}
+
 .truncate {
     overflow: hidden;
     text-overflow: ellipsis;

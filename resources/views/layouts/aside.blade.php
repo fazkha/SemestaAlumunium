@@ -30,7 +30,7 @@
 
             <div x-data="{{ request()->getRequestUri() == '/admin/dashboard' ? '{isActive: true, open: true, currentlyOpen: "' . $controllerName . '"}' : '{isActive: false, open: false, currentlyOpen: ""}' }}">
                 <a href="{{ route('dashboard') }}"
-                    class="flex items-center p-2 transition-colors rounded-md text-gray-600 hover:bg-primary-100 dark:text-lightdarkdark dark:hover:bg-primary"
+                    class="flex items-center p-2 transition-colors rounded-md text-gray-600 hover:bg-primary-100 dark:text-lightdark dark:hover:bg-primary dark:hover:text-primary-900"
                     :class="{ 'bg-primary-100 dark:bg-primary dark:text-primary-900': isActive || open }"
                     aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
                     <span aria-hidden="true">
