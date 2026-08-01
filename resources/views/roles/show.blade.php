@@ -31,7 +31,7 @@
                 </div>
 
                 <div
-                    class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                    class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
                     <div class="p-6 space-y-2 md:space-y-2 sm:p-8">
                         <div class="form-group" style="margin-top: 0 !important">
                             <label for="name"

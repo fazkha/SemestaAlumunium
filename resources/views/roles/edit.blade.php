@@ -31,7 +31,7 @@
                 </div>
 
                 <div
-                    class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                    class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
                     <div class="p-6 space-y-2 md:space-y-2 sm:p-8">
                         <form action="{{ route('roles.update', Crypt::Encrypt($datas->id)) }}"
                             class="space-y-4 md:space-y-6" method="POST" enctype="multipart/form-data">

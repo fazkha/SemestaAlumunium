@@ -98,7 +98,7 @@
                                                 class="block mb-2 font-medium text-primary-600">Balance
                                                 Side</label>
                                             <select name="balance" id="balance"
-                                                class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
+                                                class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-400">
                                                 <option value="">Choose side...</option>
                                                 <option value="1" {{ old('balance') == '1' ? 'selected' : '' }}>
                                                     Debit
@@ -160,7 +160,7 @@
                     <h1 class="font-bold text-xl text-gray-900"><span x-html="modalTitle"></span>
                     </h1>
                     <button @click="openModal = false">
-                        <svg class="w-5 h-5 text-gray-900 dark:text-gray-500" viewBox="0 0 24 24" fill="currentColor"
+                        <svg class="w-5 h-5 text-gray-900 dark:text-gray-400" viewBox="0 0 24 24" fill="currentColor"
                             xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M5.293 5.293a1 1 0 0 1 1.414 0L12 10.586l5.293-5.293a1 1 0 1 1 1.414 1.414L13.414 12l5.293 5.293a1 1 0 0 1-1.414 1.414L12 13.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L10.586 12 5.293 6.707a1 1 0 0 1 0-1.414z"

@@ -1,27 +1,27 @@
 <div class="w-full overflow-x-auto">
     <div
-        class="inline-block min-w-full shadow-md overflow-hidden rounded-md border border-solid border-primary-100 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
+        class="inline-block min-w-full shadow-md overflow-hidden rounded-md border border-solid border-primary-100 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
         <table class="min-w-full leading-normal">
             <thead>
                 <tr>
                     <th
-                        class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
+                        class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-gray-400 dark:bg-primary-800 dark:border-primary-800">
                         #
                     </th>
                     <th
-                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
+                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-gray-400 dark:bg-primary-800 dark:border-primary-800">
                         @lang('messages.supplier')
                     </th>
                     <th
-                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
+                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-gray-400 dark:bg-primary-800 dark:border-primary-800">
                         @lang('messages.periode')
                     </th>
                     <th
-                        class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
+                        class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-gray-400 dark:bg-primary-800 dark:border-primary-800">
                         @lang('messages.active')
                     </th>
                     <th
-                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
+                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-gray-400 dark:bg-primary-800 dark:border-primary-800">
                         &nbsp;
                     </th>
                 </tr>
@@ -30,7 +30,7 @@
                 @if ($datas->count() == 0)
                     <tr>
                         <td colspan="5"
-                            class="text-sm bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
+                            class="text-sm bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
                             <div class="flex items-center justify-center p-5">@lang('messages.datanotavailable')</div>
                         </td>
                     </tr>
@@ -39,22 +39,22 @@
                 @foreach ($datas as $data)
                     <tr>
                         <td
-                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
-                            <p class="text-center text-gray-900 whitespace-no-wrap dark:text-gray-300">
+                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
+                            <p class="text-center text-gray-900 whitespace-no-wrap dark:text-gray-400">
                                 {{ ++$i }}
                             </p>
                         </td>
                         <td
-                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
-                            <span class="text-gray-900 dark:text-gray-300">{{ $data->supplier->nama }}</span>
+                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
+                            <span class="text-gray-900 dark:text-gray-400">{{ $data->supplier->nama }}</span>
                         </td>
                         <td
-                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
+                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
                             <span
-                                class="text-gray-900 dark:text-gray-300">{{ $bulans[$data->periode_bulan] . ' ' . $data->periode_tahun }}</span>
+                                class="text-gray-900 dark:text-gray-400">{{ $bulans[$data->periode_bulan] . ' ' . $data->periode_tahun }}</span>
                         </td>
                         <td
-                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
+                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
                             <span class="flex items-center justify-center">
                                 @if ($data->isactive == '1')
                                     <span>✔️</span>
@@ -64,7 +64,7 @@
                                 @endif
                             </span>
                         </td>
-                        <td class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300"
+                        <td class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400"
                             style="vertical-align: middle;">
                             <div class="flex items-center justify-center">
                                 @can('po-show')

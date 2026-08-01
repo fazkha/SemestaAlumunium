@@ -4,32 +4,32 @@
 
 <div class="w-full overflow-x-auto">
     <div
-        class="inline-block min-w-full shadow-md overflow-hidden rounded-md border border-solid border-primary-100 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
+        class="inline-block min-w-full shadow-md overflow-hidden rounded-md border border-solid border-primary-100 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
         <table class="min-w-full leading-normal">
             <thead>
                 <tr>
                     <th
-                        class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
+                        class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-gray-400 dark:bg-primary-800 dark:border-primary-800">
                         #
                     </th>
                     <th
-                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
+                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-gray-400 dark:bg-primary-800 dark:border-primary-800">
                         @lang('messages.salesordernumber')
                     </th>
                     <th
-                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
+                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-gray-400 dark:bg-primary-800 dark:border-primary-800">
                         @lang('messages.deliverydate')
                     </th>
                     <th
-                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
+                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-gray-400 dark:bg-primary-800 dark:border-primary-800">
                         @lang('messages.deliveryaddress')
                     </th>
                     <th
-                        class="px-3 py-3 text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
+                        class="px-3 py-3 text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-gray-400 dark:bg-primary-800 dark:border-primary-800">
                         @lang('messages.packagedfinish')
                     </th>
                     <th
-                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
+                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-gray-400 dark:bg-primary-800 dark:border-primary-800">
                         &nbsp;
                     </th>
                 </tr>
@@ -38,7 +38,7 @@
                 @if ($datas->count() == 0)
                     <tr>
                         <td colspan="6"
-                            class="text-sm bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
+                            class="text-sm bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
                             <div class="flex items-center justify-center p-5">@lang('messages.datanotavailable')</div>
                         </td>
                     </tr>
@@ -47,28 +47,28 @@
                 @foreach ($datas as $data)
                     <tr>
                         <td
-                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
+                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
                             {{ ++$i }}
                         </td>
                         <td
-                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
-                            <span class="text-gray-900 dark:text-gray-300">{{ $data->order->no_order }}</span>
+                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
+                            <span class="text-gray-900 dark:text-gray-400">{{ $data->order->no_order }}</span>
                         </td>
                         <td
-                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
+                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
                             <span
-                                class="text-gray-900 dark:text-gray-300">{{ date_format(date_create($data->tanggal), 'd/m/Y') }}</span>
+                                class="text-gray-900 dark:text-gray-400">{{ date_format(date_create($data->tanggal), 'd/m/Y') }}</span>
                         </td>
                         <td
-                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
-                            <span class="text-gray-900 dark:text-gray-300">{{ $data->alamat }}</span>
+                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
+                            <span class="text-gray-900 dark:text-gray-400">{{ $data->alamat }}</span>
                         </td>
                         <td
-                            class="text-center px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
+                            class="text-center px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
                             <span
-                                class="text-gray-900 dark:text-gray-300">{{ $data->order->ispackaged == 1 ? '✔️' : '❌' }}</span>
+                                class="text-gray-900 dark:text-gray-400">{{ $data->order->ispackaged == 1 ? '✔️' : '❌' }}</span>
                         </td>
-                        <td class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300"
+                        <td class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400"
                             style="vertical-align: middle;">
                             <div class="flex items-center justify-center">
                                 @can('delivery-show')

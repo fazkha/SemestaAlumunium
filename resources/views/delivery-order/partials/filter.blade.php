@@ -30,7 +30,7 @@
                             class="w-24 text-xs h-full absolute inset-y-0 left-0 flex items-center px-2 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">Per
                             @lang('messages.page')</span>
                         <select id="pp-dropdown"
-                            class="text-sm px-2 leading-tight pl-28 pr-9 py-2 appearance-none w-full h-full rounded-md border block bg-primary-20 border-primary-100 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300 focus:border-primary-600 focus:ring-primary-600 focus-visible:ring-primary-600 focus:outline-none">
+                            class="text-sm px-2 leading-tight pl-28 pr-9 py-2 appearance-none w-full h-full rounded-md border block bg-primary-20 border-primary-100 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400 focus:border-primary-600 focus:ring-primary-600 focus-visible:ring-primary-600 focus:outline-none">
                             <option
                                 {{ session('delivery-order_pp') == config('custom.list_per_page_opt_1') ? 'selected' : '' }}
                                 value="{{ config('custom.list_per_page_opt_1') }}">
@@ -53,7 +53,7 @@
                         <span
                             class="w-24 text-xs h-full absolute inset-y-0 left-0 flex items-center px-2 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">@lang('messages.packagedfinish')</span>
                         <select id="produksi-dropdown"
-                            class="text-sm px-2 leading-tight pl-28 pr-9 py-2 appearance-none w-full h-full rounded-md border block bg-primary-20 border-primary-100 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300 focus:border-primary-600 focus:ring-primary-600 focus-visible:ring-primary-600 focus:outline-none">
+                            class="text-sm px-2 leading-tight pl-28 pr-9 py-2 appearance-none w-full h-full rounded-md border block bg-primary-20 border-primary-100 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400 focus:border-primary-600 focus:ring-primary-600 focus-visible:ring-primary-600 focus:outline-none">
                             <option {{ session('delivery-order_selesai') == 'all' ? 'selected' : '' }} value="all">
                                 @lang('messages.all')</option>
                             <option {{ session('delivery-order_selesai') == '1' ? 'selected' : '' }} value="1">
@@ -73,7 +73,7 @@
                             class="w-24 text-xs h-full absolute inset-y-0 left-0 flex items-center px-2 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">@lang('calendar.date')</span>
                         <input id="search-tanggal" type="date" placeholder="@lang('messages.search')"
                             value="{{ session('delivery-order_tanggal') == '_' ? '' : session('delivery-order_tanggal') }}"
-                            class="text-sm pl-28 pr-6 pt-1.5 pb-2 appearance-none rounded-md border block w-full bg-primary-20 border-primary-100 placeholder-gray-400 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300 dark:placeholder-gray-600 focus:border-primary-600 focus:ring-primary-600 focus-visible:ring-primary-600 focus:outline-none" />
+                            class="text-sm pl-28 pr-6 pt-1.5 pb-2 appearance-none rounded-md border block w-full bg-primary-20 border-primary-100 placeholder-gray-400 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400 dark:placeholder-gray-600 focus:border-primary-600 focus:ring-primary-600 focus-visible:ring-primary-600 focus:outline-none" />
                     </div>
 
                     <div class="relative shadow-md mr-2 mb-2">
@@ -81,7 +81,7 @@
                             class="w-24 text-xs h-full absolute inset-y-0 left-0 flex items-center px-2 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">@lang('messages.address')</span>
                         <input id="search-alamat" placeholder="@lang('messages.search')"
                             value="{{ session('delivery-order_alamat') == '_' ? '' : session('delivery-order_alamat') }}"
-                            class="text-sm pl-28 pr-6 pt-1.5 pb-2 appearance-none rounded-md border block w-full bg-primary-20 border-primary-100 placeholder-gray-400 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300 dark:placeholder-gray-600 focus:border-primary-600 focus:ring-primary-600 focus-visible:ring-primary-600 focus:outline-none" />
+                            class="text-sm pl-28 pr-6 pt-1.5 pb-2 appearance-none rounded-md border block w-full bg-primary-20 border-primary-100 placeholder-gray-400 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400 dark:placeholder-gray-600 focus:border-primary-600 focus:ring-primary-600 focus-visible:ring-primary-600 focus:outline-none" />
                     </div>
                 </div>
             </div>

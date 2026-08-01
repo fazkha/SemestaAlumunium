@@ -30,7 +30,7 @@
                             class="w-24 text-xs h-full absolute inset-y-0 left-0 flex items-center px-2 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">Per
                             @lang('messages.page')</span>
                         <select id="pp-dropdown"
-                            class="text-sm px-2 leading-tight pl-28 pr-9 py-2 appearance-none w-full h-full rounded-md border block bg-primary-20 border-primary-100 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300 focus:border-primary-600 focus:ring-primary-600 focus-visible:ring-primary-600 focus:outline-none">
+                            class="text-sm px-2 leading-tight pl-28 pr-9 py-2 appearance-none w-full h-full rounded-md border block bg-primary-20 border-primary-100 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400 focus:border-primary-600 focus:ring-primary-600 focus-visible:ring-primary-600 focus:outline-none">
                             <option {{ session('roles_pp') == config('custom.list_per_page_opt_1') ? 'selected' : '' }}
                                 value="{{ config('custom.list_per_page_opt_1') }}">
                                 {{ config('custom.list_per_page_opt_1') }}</option>
@@ -50,7 +50,7 @@
                         <span
                             class="w-24 text-xs h-full absolute inset-y-0 left-0 flex items-center px-2 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">@lang('messages.active')</span>
                         <select id="isactive-dropdown"
-                            class="text-sm px-2 leading-tight pl-28 pr-9 py-2 appearance-none w-full h-full rounded-md border block bg-primary-20 border-primary-100 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300 focus:border-primary-600 focus:ring-primary-600 focus-visible:ring-primary-600 focus:outline-none">
+                            class="text-sm px-2 leading-tight pl-28 pr-9 py-2 appearance-none w-full h-full rounded-md border block bg-primary-20 border-primary-100 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400 focus:border-primary-600 focus:ring-primary-600 focus-visible:ring-primary-600 focus:outline-none">
                             <option {{ session('roles_isactive') == 'all' ? 'selected' : '' }} value="all">
                                 @lang('messages.all')</option>
                             <option {{ session('roles_isactive') == '1' ? 'selected' : '' }} value="1">
@@ -70,7 +70,7 @@
                             class="w-24 text-xs h-full absolute inset-y-0 left-0 flex items-center px-2 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">@lang('messages.role')</span>
                         <input id="search-name" placeholder="{{ __('messages.search') }}"
                             value="{{ session('roles_name') == '_' ? '' : session('roles_name') }}"
-                            class="text-sm pl-28 pr-6 pt-1.5 pb-2 appearance-none rounded-md border block w-full bg-primary-20 border-primary-100 placeholder-gray-400 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300 dark:placeholder-gray-600 focus:border-primary-600 focus:ring-primary-600 focus-visible:ring-primary-600 focus:outline-none" />
+                            class="text-sm pl-28 pr-6 pt-1.5 pb-2 appearance-none rounded-md border block w-full bg-primary-20 border-primary-100 placeholder-gray-400 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400 dark:placeholder-gray-600 focus:border-primary-600 focus:ring-primary-600 focus-visible:ring-primary-600 focus:outline-none" />
                     </div>
                 </div>
             </div>

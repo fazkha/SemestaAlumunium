@@ -88,7 +88,7 @@
                                                 class="block mb-2 font-medium text-primary-600">Educational
                                                 Level</label>
                                             <select name="educationlevel_id" id="educationlevel_id"
-                                                class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
+                                                class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-400">
                                                 <option value="">Choose level...</option>
                                                 @foreach ($educlvl as $id => $name)
                                                     <option value="{{ $id }}"
@@ -172,7 +172,7 @@
                                     </div>
 
                                     <div
-                                        class="border rounded-md border-primary-100 bg-primary-100 dark:bg-primary-850 dark:border-primary-800">
+                                        class="border rounded-md border-primary-100 bg-primary-100 dark:bg-primary-850 dark:border-primary-800 dark:text-gray-400">
                                         <div id="table-question-container" class="p-0 lg:p-4">
                                             @include('coa.partials.table-question', $questions)
                                         </div>
@@ -197,7 +197,7 @@
                         <span>Choices</span>
                     </h4>
                     <button @click="openModal = false; fetchquestion(questionId, questionIndex);" class="ml-4">
-                        <svg class="w-5 h-5 text-gray-900 dark:text-gray-500" viewBox="0 0 24 24" fill="currentColor"
+                        <svg class="w-5 h-5 text-gray-900 dark:text-gray-400" viewBox="0 0 24 24" fill="currentColor"
                             xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M5.293 5.293a1 1 0 0 1 1.414 0L12 10.586l5.293-5.293a1 1 0 1 1 1.414 1.414L13.414 12l5.293 5.293a1 1 0 0 1-1.414 1.414L12 13.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L10.586 12 5.293 6.707a1 1 0 0 1 0-1.414z"

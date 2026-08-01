@@ -33,7 +33,7 @@
 
                 {{-- Master --}}
                 <div
-                    class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                    class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
                     <div class="p-4 space-y-2">
 
                         <div class="flex flex-col lg:flex-row">
@@ -123,7 +123,7 @@
 
                     {{-- Detail --}}
                     <div
-                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
                         <div class="p-4 space-y-2">
                             <div class="flex flex-row items-center gap-2">
                                 <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5"
@@ -147,7 +147,7 @@
                             </div>
 
                             <div
-                                class="border rounded-md border-primary-100 bg-primary-100 dark:bg-primary-850 dark:border-primary-800">
+                                class="border rounded-md border-primary-100 bg-primary-100 dark:bg-primary-850 dark:border-primary-800 dark:text-gray-400">
                                 <div class="p-2 overflow-scroll md:overflow-auto lg:overflow-hidden">
                                     <table id="order_table" class="w-full border-separate border-spacing-2">
                                         <thead>
@@ -248,7 +248,7 @@
                             </div>
 
                             <div
-                                class="border rounded-md border-primary-100 bg-primary-100 dark:bg-primary-850 dark:border-primary-800">
+                                class="border rounded-md border-primary-100 bg-primary-100 dark:bg-primary-850 dark:border-primary-800 dark:text-gray-400">
                                 <div class="p-2 overflow-scroll md:overflow-auto lg:overflow-hidden">
                                     <table id="adonan_table" class="w-full border-separate border-spacing-2">
                                         <thead>

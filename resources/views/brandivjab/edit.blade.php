@@ -48,7 +48,7 @@
                     </div>
 
                     <div
-                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
                         <div class="p-4 space-y-2">
 
                             <div class="flex flex-col lg:flex-row">
@@ -58,7 +58,7 @@
                                         <label for="branch_id"
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.branch')</label>
                                         <select name="branch_id" id="branch_id" tabindex="1" required autofocus
-                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
+                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-400">
                                             <option value="">@lang('messages.choose')...</option>
                                             @foreach ($branches as $id => $name)
                                                 <option value="{{ $id }}"
@@ -74,7 +74,7 @@
                                         <label for="jabatan_id"
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.jobposition')</label>
                                         <select name="jabatan_id" id="jabatan_id" tabindex="2"
-                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
+                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-400">
                                             <option value="">@lang('messages.choose')...</option>
                                             @foreach ($jabatans as $id => $name)
                                                 <option value="{{ $id }}"
@@ -102,7 +102,7 @@
                                         <label for="division_id"
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.division')</label>
                                         <select name="division_id" id="division_id" tabindex="4"
-                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
+                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-400">
                                             <option value="">@lang('messages.choose')...</option>
                                             @foreach ($divisions as $id => $name)
                                                 <option value="{{ $id }}"
@@ -118,7 +118,7 @@
                                         <label for="atasan_id"
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.superior')</label>
                                         <select name="atasan_id" id="atasan_id" tabindex="5"
-                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
+                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-400">
                                             <option value="">@lang('messages.choose')...</option>
                                             @foreach ($atasans as $atasan)
                                                 <option value="{{ $atasan->id }}"

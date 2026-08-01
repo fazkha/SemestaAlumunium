@@ -9,40 +9,40 @@
 }" class="w-full overflow-x-auto">
     <div class="w-full overflow-x-auto">
         <div
-            class="inline-block min-w-full shadow-md overflow-hidden rounded-md border border-solid border-primary-100 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
+            class="inline-block min-w-full shadow-md overflow-hidden rounded-md border border-solid border-primary-100 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
             <table class="min-w-full leading-normal">
                 <thead>
                     <tr>
                         <th
-                            class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
+                            class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-gray-400 dark:bg-primary-800 dark:border-primary-800">
                             #
                         </th>
                         <th
-                            class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
+                            class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-gray-400 dark:bg-primary-800 dark:border-primary-800">
                             &nbsp;
                         </th>
                         <th
-                            class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
+                            class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-gray-400 dark:bg-primary-800 dark:border-primary-800">
                             @lang('messages.date')
                         </th>
                         <th
-                            class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
+                            class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-gray-400 dark:bg-primary-800 dark:border-primary-800">
                             @lang('messages.title_head')
                         </th>
                         <th
-                            class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
+                            class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-gray-400 dark:bg-primary-800 dark:border-primary-800">
                             @lang('messages.description')
                         </th>
                         <th
-                            class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
+                            class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-gray-400 dark:bg-primary-800 dark:border-primary-800">
                             @lang('messages.receiver')
                         </th>
                         <th
-                            class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
+                            class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-gray-400 dark:bg-primary-800 dark:border-primary-800">
                             @lang('messages.active')
                         </th>
                         <th
-                            class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
+                            class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-gray-400 dark:bg-primary-800 dark:border-primary-800">
                             &nbsp;
                         </th>
                     </tr>
@@ -51,7 +51,7 @@
                     @if ($datas->count() == 0)
                         <tr>
                             <td colspan="8"
-                                class="text-sm bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
+                                class="text-sm bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
                                 <div class="flex items-center justify-center p-5">@lang('messages.datanotavailable')</div>
                             </td>
                         </tr>
@@ -60,13 +60,13 @@
                     @foreach ($datas as $data)
                         <tr>
                             <td
-                                class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
-                                <p class="text-center text-gray-900 whitespace-no-wrap dark:text-gray-300">
+                                class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
+                                <p class="text-center text-gray-900 whitespace-no-wrap dark:text-gray-400">
                                     {{ ++$i }}
                                 </p>
                             </td>
                             <td
-                                class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
+                                class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
                                 <div class="flex items-center justify-center">
                                     <button
                                         @click="openModal = true; modalTitle = '{{ $data->nama }}'; $refs.imgRef.src = '{{ $data->gambar ? asset($data->lokasi . '/' . $data->gambar) : asset('images/0cd6be830e32f80192d496e50cfa9dbc.jpg') }}'">
@@ -77,19 +77,19 @@
                                 </div>
                             </td>
                             <td
-                                class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
-                                <span class="text-gray-900 dark:text-gray-300">{{ $data->tanggal }}</span>
+                                class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
+                                <span class="text-gray-900 dark:text-gray-400">{{ $data->tanggal }}</span>
                             </td>
                             <td
-                                class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
-                                <span class="text-gray-900 dark:text-gray-300">{{ $data->judul }}</span>
+                                class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
+                                <span class="text-gray-900 dark:text-gray-400">{{ $data->judul }}</span>
                             </td>
                             <td
-                                class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
-                                <span class="text-gray-900 dark:text-gray-300">{{ $data->keterangan }}</span>
+                                class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
+                                <span class="text-gray-900 dark:text-gray-400">{{ $data->keterangan }}</span>
                             </td>
                             <td
-                                class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
+                                class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
                                 @php
                                     $untuks = App\Models\MitraPengumumanUntuk::where('mitra_pengumuman_id', $data->id)
                                         ->orderBy('jabatan_id')
@@ -105,7 +105,7 @@
                                 </div>
                             </td>
                             <td
-                                class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
+                                class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
                                 <span class="flex items-center justify-center">
                                     @if ($data->isactive == '1')
                                         <span>✔️</span>
@@ -115,7 +115,7 @@
                                     @endif
                                 </span>
                             </td>
-                            <td class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300"
+                            <td class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400"
                                 style="vertical-align: middle;">
                                 <div class="flex items-center justify-center">
                                     @can('pengumuman-show')
@@ -186,9 +186,9 @@
         <div @click.away="openModal = false"
             class="flex flex-col p-6 h-auto w-auto shadow-2xl rounded-lg border-2 bg-white border-gray-400 dark:bg-gray-900 dark:border-gray-800">
             <div class="flex justify-between mb-4">
-                <div class="font-bold text-lg text-gray-900 dark:text-gray-500"><span x-html="modalTitle"></span></div>
+                <div class="font-bold text-lg text-gray-900 dark:text-gray-400"><span x-html="modalTitle"></span></div>
                 <button @click="openModal = false">
-                    <svg class="w-5 h-5 text-gray-900 dark:text-gray-500" viewBox="0 0 24 24" fill="currentColor"
+                    <svg class="w-5 h-5 text-gray-900 dark:text-gray-400" viewBox="0 0 24 24" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M5.293 5.293a1 1 0 0 1 1.414 0L12 10.586l5.293-5.293a1 1 0 1 1 1.414 1.414L13.414 12l5.293 5.293a1 1 0 0 1-1.414 1.414L12 13.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L10.586 12 5.293 6.707a1 1 0 0 1 0-1.414z"

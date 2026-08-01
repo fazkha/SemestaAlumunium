@@ -4,28 +4,28 @@
 
 <div class="w-full overflow-x-auto">
     <div
-        class="inline-block min-w-full shadow-md overflow-hidden rounded-md border border-solid border-primary-100 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
+        class="inline-block min-w-full shadow-md overflow-hidden rounded-md border border-solid border-primary-100 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
         <table class="min-w-full leading-normal">
             <thead>
                 <tr>
                     <th
-                        class="w-auto px-3 py-3 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:bg-primary-800 dark:border-primary-800 dark:text-gray-300">
+                        class="w-auto px-3 py-3 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:bg-primary-800 dark:border-primary-800 dark:text-gray-400">
                         #
                     </th>
                     <th
-                        class="w-1/6 px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:bg-primary-800 dark:border-primary-800 dark:text-gray-300">
+                        class="w-1/6 px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:bg-primary-800 dark:border-primary-800 dark:text-gray-400">
                         @lang('messages.name')
                     </th>
                     <th
-                        class="w-1/3 px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:bg-primary-800 dark:border-primary-800 dark:text-gray-300">
+                        class="w-1/3 px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:bg-primary-800 dark:border-primary-800 dark:text-gray-400">
                         Email
                     </th>
                     <th
-                        class="w-full px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:bg-primary-800 dark:border-primary-800 dark:text-gray-300">
+                        class="w-full px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:bg-primary-800 dark:border-primary-800 dark:text-gray-400">
                         @lang('messages.role')
                     </th>
                     <th
-                        class="w-2/3 px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:bg-primary-800 dark:border-primary-800 dark:text-gray-300">
+                        class="w-2/3 px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:bg-primary-800 dark:border-primary-800 dark:text-gray-400">
                         &nbsp;
                     </th>
                 </tr>
@@ -34,7 +34,7 @@
                 @if ($users->count() == 0)
                     <tr>
                         <td colspan="5"
-                            class="text-sm bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
+                            class="text-sm bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
                             <div class="flex items-center justify-center p-5">@lang('messages.datanotavailable')</div>
                         </td>
                     </tr>
@@ -43,21 +43,21 @@
                 @foreach ($users as $user)
                     <tr>
                         <td
-                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
-                            <p class="text-center text-gray-900 whitespace-no-wrap dark:text-gray-300">
+                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
+                            <p class="text-center text-gray-900 whitespace-no-wrap dark:text-gray-400">
                                 {{ ++$i }}
                             </p>
                         </td>
                         <td
-                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
-                            <span class="text-gray-900 dark:text-gray-300">{{ $user->name }}</span>
+                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
+                            <span class="text-gray-900 dark:text-gray-400">{{ $user->name }}</span>
                         </td>
                         <td
-                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
-                            <span class="text-gray-900 dark:text-gray-300">{{ $user->email }}</span>
+                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
+                            <span class="text-gray-900 dark:text-gray-400">{{ $user->email }}</span>
                         </td>
                         <td
-                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
+                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
                             <div class="flex flex-col flex-wrap lg:flex-row gap-2 text-gray-900">
                                 @foreach ($user->getRoleNames() as $role)
                                     <div
@@ -68,7 +68,7 @@
                             </div>
                         </td>
                         <td
-                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
+                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
                             <div class="flex flex-row items-center justify-center">
                                 @can('user-show')
                                     <a href="{{ route('users.show', Crypt::Encrypt($user->id)) }}"

@@ -38,7 +38,7 @@
                     @method('PUT')
 
                     <div
-                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
                         <div class="p-4 space-y-2">
 
                             <div class="flex flex-col lg:flex-row">
@@ -472,7 +472,7 @@
                                 </div>
 
                                 <div
-                                    class="border rounded-md border-primary-100 bg-primary-100 dark:bg-primary-850 dark:border-primary-800">
+                                    class="border rounded-md border-primary-100 bg-primary-100 dark:bg-primary-850 dark:border-primary-800 dark:text-gray-400">
                                     <div class="p-2 overflow-scroll md:overflow-auto lg:overflow-hidden">
                                         <table id="jabatan_table" class="w-full border-separate border-spacing-2">
                                             <thead>
@@ -499,7 +499,7 @@
                                                             value="{{ $datas->id }}" />
                                                         <select name="brandivjab_id" id="brandivjab_id"
                                                             tabindex="25" required
-                                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
+                                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-400">
                                                             <option value="">@lang('messages.choose')...
                                                             </option>
                                                             @foreach ($brandivjabs as $brandivjab)
@@ -523,7 +523,7 @@
                                                     <td>
                                                         <select name="gerobak_id" id="gerobak_id" tabindex="28"
                                                             required
-                                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
+                                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-400">
                                                             <option value="">@lang('messages.choose')...
                                                             </option>
                                                             @foreach ($gerobaks as $gerobak)
@@ -539,7 +539,7 @@
                                                     <td class="text-center">
                                                         <div class="w-auto">
                                                             <select name="isactive" id="isactive" tabindex="29"
-                                                                class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
+                                                                class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-400">
                                                                 <option value="1" selected>@lang('messages.active')
                                                                 </option>
                                                                 <option value="2">@lang('messages.relocate')</option>

@@ -42,7 +42,7 @@ S254.158,299.966,218.317,299.966z" />
                     </div>
 
                     <div
-                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                        class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
                         <div class="p-4 space-y-2">
 
                             <div class="flex flex-col lg:flex-row">
@@ -53,7 +53,7 @@ S254.158,299.966,218.317,299.966z" />
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.jobposition')</label>
                                         <select name="brandivjab_id" id="brandivjab_id" tabindex="1" required
                                             autofocus
-                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-300">
+                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-400">
                                             <option value="">
                                                 @lang('messages.choose')...
                                             </option>

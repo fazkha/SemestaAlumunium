@@ -3,36 +3,36 @@
 @endphp
 <div class="w-full overflow-x-auto">
     <div
-        class="inline-block min-w-full shadow-md overflow-hidden rounded-md border border-solid border-primary-100 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
+        class="inline-block min-w-full shadow-md overflow-hidden rounded-md border border-solid border-primary-100 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
         <table class="min-w-full leading-normal">
             <thead>
                 <tr>
                     <th
-                        class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
+                        class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-gray-400 dark:bg-primary-800 dark:border-primary-800">
                         #
                     </th>
                     <th
-                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
+                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-gray-400 dark:bg-primary-800 dark:border-primary-800">
                         @lang('messages.officer')
                     </th>
                     <th
-                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
+                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-gray-400 dark:bg-primary-800 dark:border-primary-800">
                         @lang('messages.customer')
                     </th>
                     <th
-                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
+                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-gray-400 dark:bg-primary-800 dark:border-primary-800">
                         @lang('messages.ordernumber')
                     </th>
                     <th
-                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
+                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-gray-400 dark:bg-primary-800 dark:border-primary-800">
                         @lang('messages.description')
                     </th>
                     <th
-                        class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
+                        class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-gray-400 dark:bg-primary-800 dark:border-primary-800">
                         @lang('messages.deliveryfinish')
                     </th>
                     <th
-                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-white dark:bg-primary-800 dark:border-primary-800">
+                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-gray-400 dark:bg-primary-800 dark:border-primary-800">
                         &nbsp;
                     </th>
                 </tr>
@@ -41,7 +41,7 @@
                 @if ($datas->count() == 0)
                     <tr>
                         <td colspan="7"
-                            class="text-sm bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
+                            class="text-sm bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
                             <div class="flex items-center justify-center p-5">@lang('messages.datanotavailable')</div>
                         </td>
                     </tr>
@@ -50,18 +50,18 @@
                 @foreach ($datas as $data)
                     <tr>
                         <td
-                            class="px-3 py-1 align-top md:align-middle text-sm border-b border-primary-100 bg-primary-20 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
+                            class="px-3 py-1 align-top md:align-middle text-sm border-b border-primary-100 bg-primary-20 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
                             <p
-                                class="text-center text-gray-900 whitespace-no-wrap dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
+                                class="text-center text-gray-900 whitespace-no-wrap dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
                                 {{ ++$i }}
                             </p>
                         </td>
                         <td
-                            class="px-3 py-1 align-top md:align-middle text-sm border-b border-primary-100 bg-primary-20 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
-                            <span class="text-gray-900 dark:text-gray-300">{{ $data->pegawai->nama_lengkap }}</span>
+                            class="px-3 py-1 align-top md:align-middle text-sm border-b border-primary-100 bg-primary-20 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
+                            <span class="text-gray-900 dark:text-gray-400">{{ $data->pegawai->nama_lengkap }}</span>
                         </td>
                         <td
-                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
+                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
                             @php
                                 $areas = AreaOfficer::selectRaw('area_officers.*')
                                     ->join('customers', 'customers.id', '=', 'area_officers.customer_id')
@@ -79,15 +79,15 @@
                             </div>
                         </td>
                         <td
-                            class="px-3 py-1 align-top md:align-middle text-sm border-b border-primary-100 bg-primary-20 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
-                            <span class="text-gray-900 dark:text-gray-300">{{ $data->no_order }}</span>
+                            class="px-3 py-1 align-top md:align-middle text-sm border-b border-primary-100 bg-primary-20 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
+                            <span class="text-gray-900 dark:text-gray-400">{{ $data->no_order }}</span>
                         </td>
                         <td
-                            class="px-3 py-1 align-top md:align-middle text-sm border-b border-primary-100 bg-primary-20 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
-                            <span class="text-gray-900 dark:text-gray-300">{{ $data->keterangan }}</span>
+                            class="px-3 py-1 align-top md:align-middle text-sm border-b border-primary-100 bg-primary-20 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
+                            <span class="text-gray-900 dark:text-gray-400">{{ $data->keterangan }}</span>
                         </td>
                         <td
-                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300">
+                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
                             <span class="flex items-center justify-center">
                                 @if ($data->isdone == '1')
                                     <span>✔️</span>
@@ -97,7 +97,7 @@
                                 @endif
                             </span>
                         </td>
-                        <td class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-300"
+                        <td class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400"
                             style="vertical-align: middle;">
                             <div class="flex items-center justify-center">
                                 @can('delivery-show')

@@ -37,7 +37,7 @@ S254.158,299.966,218.317,299.966z" />
                 </div>
 
                 <div
-                    class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">
+                    class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
                     <div class="p-4 space-y-2">
 
                         <div class="flex flex-col lg:flex-row">
