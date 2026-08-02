@@ -43,6 +43,7 @@ use App\Http\Controllers\ResignController;
 use App\Http\Controllers\SaleInvoiceController;
 use App\Http\Controllers\SaleOrderController;
 use App\Http\Controllers\SatuanController;
+use App\Http\Controllers\StdInspectController;
 use App\Http\Controllers\StockAdjustmentController;
 use App\Http\Controllers\StockOpnameController;
 use App\Http\Controllers\SupplierController;
@@ -226,6 +227,10 @@ Route::prefix('general-affair')->middleware('auth')->group(function () {
 });
 
 Route::prefix('service')->middleware('auth')->group(function () {
+    Route::resource('std-inspect', StdInspectController::class);
+    Route::get('std-inspect/{standar}/delete', [StdInspectController::class, 'delete'])->name('std-inspect.delete');
+    Route::get('std-inspect/fetchdb/{pp}/{isactive}', [StdInspectController::class, 'fetchdb']);
+
     Route::resource('inspect', InspectController::class);
     Route::get('inspect/{inspect}/delete', [InspectController::class, 'delete'])->name('inspect.delete');
     Route::get('inspect/fetchdb/{pp}/{isactive}/{tanggal}/{customer}/{pegawai}', [InspectController::class, 'fetchdb'])->defaults('tanggal', '_');

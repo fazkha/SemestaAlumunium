@@ -309,4 +309,6 @@ return [
     'type' => 'Type',
     'component' => 'Component',
     'inspect' => 'Inspection',
+    'inspectionstandard' => 'Inspection Standard',
+    'sequence' => 'Sequence',
 ];

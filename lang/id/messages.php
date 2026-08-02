@@ -308,4 +308,6 @@ return [
     'type' => 'Jenis',
     'component' => 'Komponen',
     'inspect' => 'Inspeksi',
+    'inspectionstandard' => 'Standar Inspeksi',
+    'sequence' => 'Urutan',
 ];
