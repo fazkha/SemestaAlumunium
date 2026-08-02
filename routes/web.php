@@ -12,12 +12,14 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DeliveryOfficerController;
 use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\GudangController;
+use App\Http\Controllers\InspectController;
 use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\KabupatenController;
 use App\Http\Controllers\KecamatanController;
 use App\Http\Controllers\KonversiController;
 use App\Http\Controllers\KritiksaranController;
 use App\Http\Controllers\LocaleController;
+use App\Http\Controllers\MaintenanceController;
 use App\Http\Controllers\MitraController;
 use App\Http\Controllers\MitraizinController;
 use App\Http\Controllers\MitraubahhariController;
@@ -36,6 +38,7 @@ use App\Http\Controllers\PurchaseReceiptController;
 use App\Http\Controllers\QRController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\RecipeController;
+use App\Http\Controllers\RepairController;
 use App\Http\Controllers\ResignController;
 use App\Http\Controllers\SaleInvoiceController;
 use App\Http\Controllers\SaleOrderController;
@@ -218,6 +221,22 @@ Route::prefix('general-affair')->middleware('auth')->group(function () {
     Route::resource('brandivjab', BrandivjabController::class);
     Route::get('brandivjab/{brandivjab}/delete', [BrandivjabController::class, 'delete'])->name('brandivjab.delete');
     Route::get('brandivjab/fetchdb/{pp}/{isactive}/{branch}/{division}/{jabatan}', [BrandivjabController::class, 'fetchdb']);
+})->missing(function (Request $request) {
+    return Redirect::route('dashboard');
+});
+
+Route::prefix('service')->middleware('auth')->group(function () {
+    Route::resource('inspect', InspectController::class);
+    Route::get('inspect/{inspect}/delete', [InspectController::class, 'delete'])->name('inspect.delete');
+    Route::get('inspect/fetchdb/{pp}/{isactive}/{tanggal}/{customer}/{pegawai}', [InspectController::class, 'fetchdb'])->defaults('tanggal', '_');
+
+    Route::resource('maintenance', MaintenanceController::class);
+    Route::get('maintenance/{maintenance}/delete', [MaintenanceController::class, 'delete'])->name('maintenance.delete');
+    Route::get('maintenance/fetchdb/{pp}/{isactive}/{tanggal}/{customer}/{pegawai}', [MaintenanceController::class, 'fetchdb'])->defaults('tanggal', '_');
+
+    Route::resource('repair', RepairController::class);
+    Route::get('repair/{repair}/delete', [RepairController::class, 'delete'])->name('repair.delete');
+    Route::get('repair/fetchdb/{pp}/{isactive}/{tanggal}/{customer}/{pegawai}', [RepairController::class, 'fetchdb'])->defaults('tanggal', '_');
 })->missing(function (Request $request) {
     return Redirect::route('dashboard');
 });
