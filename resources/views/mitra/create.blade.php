@@ -226,6 +226,11 @@
 
     @push('styles')
         <link rel="stylesheet" href="{{ url('/') }}/css/photoviewer.min.css">
+        <style>
+            .dark input[type="date"]::-webkit-calendar-picker-indicator {
+                filter: invert(1);
+            }
+        </style>
     @endpush
 
     @push('scripts')

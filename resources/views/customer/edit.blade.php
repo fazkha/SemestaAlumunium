@@ -259,6 +259,14 @@
         </div>
     </form>
 
+    @push('styles')
+        <style>
+            .dark input[type="date"]::-webkit-calendar-picker-indicator {
+                filter: invert(1);
+            }
+        </style>
+    @endpush
+
     @push('scripts')
         <script type="text/javascript">
             $(document).ready(function(e) {
