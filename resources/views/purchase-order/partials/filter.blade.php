@@ -137,3 +137,11 @@
         </div>
     </div>
 </div>
+
+@push('styles')
+    <style>
+        .dark input[type="date"]::-webkit-calendar-picker-indicator {
+            filter: invert(1);
+        }
+    </style>
+@endpush

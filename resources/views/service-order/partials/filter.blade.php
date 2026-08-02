@@ -117,8 +117,8 @@
         </div>
 
         <div>
-            @can('so-create')
-                <x-anchor-primary href="{{ route('sale-order.create') }}">
+            @can('inspect-create')
+                <x-anchor-primary href="{{ route('inspect.create') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="size-5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
@@ -129,3 +129,11 @@
         </div>
     </div>
 </div>
+
+@push('styles')
+    <style>
+        .dark input[type="date"]::-webkit-calendar-picker-indicator {
+            filter: invert(1);
+        }
+    </style>
+@endpush

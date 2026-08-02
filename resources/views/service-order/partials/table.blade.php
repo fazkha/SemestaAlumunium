@@ -87,7 +87,7 @@
                         </td>
                         <td
                             class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
-                            <span class="text-gray-900 dark:text-gray-400">{{ $data->customer->nama }}</span>
+                            <span class="text-gray-900 dark:text-gray-400">...</span>
                         </td>
                         <td
                             class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
@@ -115,33 +115,8 @@
                         <td class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400"
                             style="vertical-align: middle;">
                             <div class="flex items-center justify-center">
-                                @can('so-approval')
-                                    <a href="{{ route('sale-order.approval', Crypt::Encrypt($data->id)) }}"
-                                        title="{{ __('messages.approval') }}">
-                                        <span
-                                            class="relative inline-block px-2 py-2 font-semibold text-violet-800 leading-tight">
-                                            <span aria-hidden
-                                                class="absolute inset-0 bg-violet-200 hover:bg-violet-400 hover:dark:bg-violet-700 opacity-50 rounded-full"></span>
-                                            <svg class="size-5" viewBox="0 0 32 32" enable-background="new 0 0 32 32"
-                                                id="Editable-line" version="1.1" xml:space="preserve"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                xmlns:xlink="http://www.w3.org/1999/xlink">
-                                                <path
-                                                    d="  M26.002,13H20V7.026C20,5.907,19.093,5,17.974,5c-0.615,0-1.198,0.28-1.582,0.76L9,15l0.001,0L9,15v10l3,2h12.473  c0.892,0,1.676-0.592,1.921-1.451l2.49-8.725C29.43,14.908,27.993,13,26.002,13z"
-                                                    fill="none" id="XMLID_5_" stroke="currentColor"
-                                                    stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
-                                                    stroke-width="2" />
-                                                <rect fill="none" height="14" id="XMLID_3_" stroke="currentColor"
-                                                    stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
-                                                    stroke-width="2" width="6" x="3" y="13" />
-                                                <circle cx="6" cy="23" id="XMLID_4_" r="1" />
-                                            </svg>
-                                        </span>
-                                    </a>
-                                @endcan
-
-                                @can('so-show')
-                                    <a href="{{ route('sale-order.show', Crypt::Encrypt($data->id)) }}"
+                                @can('inspect-show')
+                                    <a href="{{ route('inspect.show', Crypt::Encrypt($data->id)) }}"
                                         title="{{ __('messages.view') }}" class="ml-2">
                                         <span
                                             class="relative inline-block px-2 py-2 font-semibold text-blue-800 leading-tight dark:text-blue-300">
@@ -156,9 +131,9 @@
                                     </a>
                                 @endcan
 
-                                @can('so-edit')
+                                @can('inspect-edit')
                                     @if ($data->ispackaged == 0)
-                                        <a href="{{ route('sale-order.edit', Crypt::Encrypt($data->id)) }}"
+                                        <a href="{{ route('inspect.edit', Crypt::Encrypt($data->id)) }}"
                                             title="{{ __('messages.edit') }}" class="ml-2">
                                             <span
                                                 class="relative inline-block px-2 py-2 font-semibold text-green-800 leading-tight dark:text-green-300">
@@ -174,9 +149,9 @@
                                     @endif
                                 @endcan
 
-                                @can('so-delete')
+                                @can('inspect-delete')
                                     @if ($data->ispackaged == 0)
-                                        <a href="{{ route('sale-order.delete', Crypt::Encrypt($data->id)) }}"
+                                        <a href="{{ route('inspect.delete', Crypt::Encrypt($data->id)) }}"
                                             title="{{ __('messages.delete') }}" class="ml-2">
                                             <span
                                                 class="relative inline-block px-2 py-2 font-semibold text-red-800 leading-tight dark:text-red-300">
@@ -219,7 +194,7 @@
                 <path
                     d="M128,20A108,108,0,1,0,236,128,108.12186,108.12186,0,0,0,128,20Zm0,192a84,84,0,1,1,84-84A84.09562,84.09562,0,0,1,128,212ZM144,84v92a12,12,0,0,1-24,0V106.417l-5.3457,3.5625a12.00027,12.00027,0,1,1-13.3086-19.97265l24-15.99317A12.00071,12.00071,0,0,1,144,84Z" />
             </svg>
-            <span class="text-sm">@lang('messages.production')</span>
+            <span class="text-sm">@lang('messages.maintenance_2')</span>
         </div>
         <div class="flex flex-row gap-2 items-center">
             <svg fill="currentColor" class="size-4" viewBox="0 0 256 256" id="Flat"
@@ -227,7 +202,7 @@
                 <path
                     d="M128,20A108,108,0,1,0,236,128,108.12186,108.12186,0,0,0,128,20Zm0,192a84,84,0,1,1,84-84A84.09562,84.09562,0,0,1,128,212Zm29.50391-87.38477-29.51075,39.37891H152a12,12,0,0,1,0,24H104.39648c-.13281.00488-.26464.00684-.39843.00684a12.00272,12.00272,0,0,1-9.47168-19.36914l43.56543-58.13379a12.00426,12.00426,0,1,0-21.1543-11.165A11.9998,11.9998,0,0,1,94.834,89.9834a36.00408,36.00408,0,1,1,63.01172,34.15234C157.73535,124.29883,157.62207,124.458,157.50391,124.61523Z" />
             </svg>
-            <span class="text-sm">@lang('messages.delivery')</span>
+            <span class="text-sm">@lang('messages.repair')</span>
         </div>
 
     </div>
