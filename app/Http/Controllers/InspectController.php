@@ -19,7 +19,6 @@ use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Arr;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Crypt;
-use Illuminate\Support\Facades\DB;
 
 class InspectController extends Controller implements HasMiddleware
 {
@@ -169,6 +168,7 @@ class InspectController extends Controller implements HasMiddleware
                 'product_id' => $product_id,
                 'hke' => $request->hke,
                 'tanggal' => $request->tanggal,
+                'keterangan' => $request->keterangan,
                 'isactive' => ($request->isactive == 'on' ? 1 : 0),
                 'created_by' => auth()->user()->email,
                 'updated_by' => auth()->user()->email,
@@ -207,6 +207,7 @@ class InspectController extends Controller implements HasMiddleware
 
         if ($request->validated()) {
             $order->update([
+                'keterangan' => $request->keterangan,
                 'isactive' => ($request->isactive == 'on' ? 1 : 0),
                 'updated_by' => auth()->user()->email,
             ]);
@@ -244,7 +245,6 @@ class InspectController extends Controller implements HasMiddleware
                 'keterangan' => $standar['keterangan'],
                 'ischeck' => ($ischeck == 'on' ? 1 : 0),
                 'updated_by' => auth()->user()->email,
-                'updated_at' => date('Y-m-d H:i:s'),
             ]);
         }
 
