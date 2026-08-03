@@ -311,4 +311,5 @@ return [
     'inspect' => 'Inspection',
     'inspectionstandard' => 'Inspection Standard',
     'sequence' => 'Sequence',
+    'check' => 'Check',
 ];

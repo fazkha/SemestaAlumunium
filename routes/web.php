@@ -228,12 +228,13 @@ Route::prefix('general-affair')->middleware('auth')->group(function () {
 
 Route::prefix('service')->middleware('auth')->group(function () {
     Route::resource('std-inspect', StdInspectController::class);
-    Route::get('std-inspect/{standar}/delete', [StdInspectController::class, 'delete'])->name('std-inspect.delete');
-    Route::get('std-inspect/fetchdb/{pp}/{isactive}', [StdInspectController::class, 'fetchdb']);
+    Route::get('std-inspect/{std_inspect}/delete', [StdInspectController::class, 'delete'])->name('std-inspect.delete');
+    Route::get('std-inspect/fetchdb/{pp}/{isactive}/{standar}', [StdInspectController::class, 'fetchdb'])->defaults('standar', '_');
 
     Route::resource('inspect', InspectController::class);
     Route::get('inspect/{inspect}/delete', [InspectController::class, 'delete'])->name('inspect.delete');
     Route::get('inspect/fetchdb/{pp}/{isactive}/{tanggal}/{customer}/{pegawai}', [InspectController::class, 'fetchdb'])->defaults('tanggal', '_');
+    Route::post('inspect/update-detail/{detail}', [InspectController::class, 'updateDetail']);
 
     Route::resource('maintenance', MaintenanceController::class);
     Route::get('maintenance/{maintenance}/delete', [MaintenanceController::class, 'delete'])->name('maintenance.delete');

@@ -47,12 +47,6 @@ return [
     'selaluUpdateHargaBeli' => true,
     'selaluUpdateHargaJual' => false,
 
-    // purchase order
-    'po_prefix' => 'PUO',
-
-    // sales order
-    'so_prefix' => 'SAO',
-
     // pajak
     'purchase_tax_enable' => false,
     'purchase_tax' => 0.10,

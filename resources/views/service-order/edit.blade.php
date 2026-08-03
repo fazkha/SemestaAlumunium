@@ -1,27 +1,28 @@
 @php
     use Illuminate\Support\Facades\Crypt;
-    if (session('totals')) {
-        $totals = session('totals');
-    }
 @endphp
-@section('title', __('messages.saleorder'))
+@section('title', __('messages.services'))
 
 <x-app-layout>
     <div
         class="flex items-center justify-between px-4 py-4 border-b border-primary-100 dark:border-primary-700 lg:py-6 text-primary-700 dark:text-primary-500">
         <h1 class="text-xl flex items-center justify-center">
-            <a href="{{ route('sale-order.index') }}" class="flex items-center justify-center">
-                <svg fill="currentColor" class="w-7 h-7" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
-                    data-name="Layer 1">
+            <a href="{{ route('inspect.index') }}" class="flex items-center justify-center">
+                <svg class="size-7" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M219.51 475.38h219.43v73.14H219.51z" fill="currentColor" />
                     <path
-                        d="M21.22,12A3,3,0,0,0,22,10a3,3,0,0,0-3-3H13.82A3,3,0,0,0,11,3H5A3,3,0,0,0,2,6a3,3,0,0,0,.78,2,3,3,0,0,0,0,4,3,3,0,0,0,0,4A3,3,0,0,0,2,18a3,3,0,0,0,3,3H19a3,3,0,0,0,2.22-5,3,3,0,0,0,0-4ZM11,19H5a1,1,0,0,1,0-2h6a1,1,0,0,1,0,2Zm0-4H5a1,1,0,0,1,0-2h6a1,1,0,0,1,0,2Zm0-4H5A1,1,0,0,1,5,9h6a1,1,0,0,1,0,2Zm0-4H5A1,1,0,0,1,5,5h6a1,1,0,0,1,0,2Zm8.69,11.71A.93.93,0,0,1,19,19H13.82a2.87,2.87,0,0,0,0-2H19a1,1,0,0,1,1,1A1,1,0,0,1,19.69,18.71Zm0-4A.93.93,0,0,1,19,15H13.82a2.87,2.87,0,0,0,0-2H19a1,1,0,0,1,1,1A1,1,0,0,1,19.69,14.71Zm0-4A.93.93,0,0,1,19,11H13.82a2.87,2.87,0,0,0,0-2H19a1,1,0,0,1,1,1A1,1,0,0,1,19.69,10.71Z" />
+                        d="M182.61 366.27h585.62v179.48h73.14V145.62c0-39.96-32.5-72.48-72.46-72.48h-27.36c-29.2 0-55.05 16.73-65.88 42.59-5.71 13.61-27.84 13.64-33.55 0-10.86-25.88-36.71-42.59-65.89-42.59h-18.16c-29.2 0-55.05 16.73-65.88 42.59-5.71 13.61-27.84 13.64-33.55 0-10.86-25.88-36.71-42.59-65.89-42.59h-17.43c-29.2 0-55.05 16.73-65.88 42.59-5.71 13.61-27.84 13.64-33.55 0-10.86-25.88-36.71-42.59-65.89-42.59h-27.57c-39.96 0-72.48 32.52-72.48 72.48v805.12h437.79V877.6h-364.7l-0.43-511.33zM208.42 144c14.27 34.07 47.32 56.09 84.23 56.09 36.89 0 69.95-22 82.66-53.8l15.86-2.29c14.27 34.07 47.32 56.09 84.23 56.09 36.89 0 69.95-22 82.66-53.8l16.59-2.29c14.27 34.07 47.32 56.09 84.23 56.09 36.89 0 69.95-22 82.66-53.8l26.68-0.66v147.5H182.54l-0.12-146.84 26-2.29z"
+                        fill="currentColor" />
+                    <path
+                        d="M905.81 897.5l-56.19-56.19c17.6-26.2 27.91-57.71 27.91-91.65 0-90.89-73.68-164.57-164.57-164.57s-164.57 73.68-164.57 164.57 73.68 164.57 164.57 164.57c30.4 0 58.52-8.82 82.96-23.19l58.18 58.18 51.71-51.72zM621.53 749.66c0-50.41 41.02-91.43 91.43-91.43 50.42 0 91.43 41.02 91.43 91.43 0 50.41-41.01 91.43-91.43 91.43-50.41 0-91.43-41.02-91.43-91.43z"
+                        fill="currentColor" />
                 </svg>
                 <div class="relative px-2 pt-2">
-                    <span class="absolute top-0 left-2 text-xs w-40">@lang('messages.sale')</span>
-                    <span>@lang('messages.order')</span>
+                    <span class="absolute top-0 left-2 text-xs w-40">@lang('messages.services')</span>
+                    <span>@lang('messages.inspect')</span>
                 </div>
             </a>
-            <span class="px-2">&raquo;</span>
+            <span class="px-2">💠</span>
             <span class="px-2 font-semibold">@lang('messages.edit')</span>
         </h1>
     </div>
@@ -32,11 +33,11 @@
             <div class="flex flex-col items-center">
 
                 <div class="w-full" role="alert">
-                    @include('sale-order.partials.feedback')
+                    @include('service-order.partials.feedback')
                 </div>
 
-                <form id="master-form" action="{{ route('sale-order.update', Crypt::Encrypt($datas->id)) }}"
-                    method="POST" enctype="multipart/form-data" class="w-full">
+                <form id="master-form" action="{{ route('inspect.update', Crypt::Encrypt($datas->id)) }}" method="POST"
+                    enctype="multipart/form-data" class="w-full">
                     @csrf
                     @method('PUT')
 
@@ -50,6 +51,8 @@
 
                                     <div class="w-auto pb-4">
                                         <input type="hidden" name="branch_id" value="{{ $branch_id }}" />
+                                        <input type="hidden" name="jenis_pelayanan_id"
+                                            value="{{ $jenis_pelayanan_id }}" />
                                         <span for="customer_id"
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.customer')</span>
                                         <x-text-span>{{ $datas->customer->nama }}</x-text-span>
@@ -73,10 +76,14 @@
                                         <div class="w-1/3 pb-4">
                                             <label for="hke"
                                                 class="block mb-2 font-medium text-primary-600">@lang('messages.hke')</label>
-                                            <x-text-input type="number" min="0" name="hke" id="hke"
-                                                tabindex="2" required value="{{ old('hke', $datas->hke) }}" />
+                                            <x-text-span>{{ $datas->hke }}</x-text-span>
+                                            <div class="hidden">
+                                                <x-text-input type="number" min="0" name="hke"
+                                                    id="hke" tabindex="2" required
+                                                    value="{{ old('hke', $datas->hke) }}" />
 
-                                            <x-input-error class="mt-2" :messages="$errors->get('hke')" />
+                                                <x-input-error class="mt-2" :messages="$errors->get('hke')" />
+                                            </div>
                                         </div>
 
                                         <div class="w-2/3 pb-4">
@@ -92,70 +99,9 @@
                                             </div>
                                         </div>
                                     </div>
-
-                                    <div class="w-auto pb-4">
-                                        <label for="tunai"
-                                            class="block mb-2 font-medium text-primary-600">@lang('messages.payment')</label>
-                                        <select name="tunai" id="tunai" tabindex="3" required
-                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-400">
-                                            <option value="">@lang('messages.choose')...</option>
-                                            <option value="1" {{ $datas->tunai == 1 ? 'selected' : '' }}>
-                                                @lang('messages.cash')</option>
-                                            <option value="2" {{ $datas->tunai == 2 ? 'selected' : '' }}>
-                                                @lang('messages.credit')</option>
-                                        </select>
-
-                                        <x-input-error class="mt-2" :messages="$errors->get('tunai')" />
-                                    </div>
-
-                                    <div id="div-jatuhtempo"
-                                        class="{{ $datas->tunai == 1 ? 'hidden ' : '' }}w-auto pb-4">
-                                        <label for="jatuhtempo"
-                                            class="block mb-2 font-medium text-primary-600">@lang('messages.duedate')</label>
-                                        <x-text-input type="date" name="jatuhtempo" id="jatuhtempo"
-                                            data-date-format="dd-mm-yyyy" tabindex="4"
-                                            placeholder="{{ __('messages.enter') }} {{ __('calendar.date') }}"
-                                            value="{{ old('jatuhtempo', $datas->jatuhtempo) }}" />
-
-                                        <x-input-error class="mt-2" :messages="$errors->get('jatuhtempo')" />
-                                    </div>
-
-                                    <div class="w-auto pb-4">
-                                        <label for="biaya_angkutan"
-                                            class="block mb-2 font-medium text-primary-600">@lang('messages.deliverycost')
-                                            (@lang('messages.currencysymbol'))</label>
-                                        <x-text-input type="text" name="biaya_angkutan" id="biaya_angkutan"
-                                            tabindex="4"
-                                            value="{{ old('biaya_angkutan', $datas->biaya_angkutan) }}" />
-
-                                        <x-input-error class="mt-2" :messages="$errors->get('biaya_angkutan')" />
-                                    </div>
                                 </div>
 
                                 <div class="w-full lg:w-1/2 px-2 flex flex-col justify-start">
-                                    <div class="w-auto pb-4">
-                                        <label for="pajak"
-                                            class="block mb-2 font-medium text-primary-600">@lang('messages.tax')
-                                            (%)</label>
-                                        <x-text-input type="number" min="0" step="0.01" name="pajak"
-                                            id="pajak" tabindex="4"
-                                            value="{{ old('pajak', $datas->pajak) }}" />
-
-                                        <x-input-error class="mt-2" :messages="$errors->get('pajak')" />
-                                    </div>
-
-                                    <div class="w-auto pb-4">
-                                        <span for="total_harga"
-                                            class="block mb-2 font-medium text-primary-600">@lang('messages.totalprice')
-                                            (@lang('messages.currencysymbol'))</span>
-                                        <x-text-span
-                                            id="disp-total_harga-master">{{ number_format($totals['total_price'], 0, ',', '.') }}</x-text-span>
-                                        <x-text-input type="hidden" name="total_harga" id="total_harga"
-                                            value="{{ $totals['total_price'] }}" class="sr-only" />
-
-                                        <x-input-error class="mt-2" :messages="$errors->get('total_harga')" />
-                                    </div>
-
                                     <div class="w-auto pb-4 lg:pb-12">
                                         <span for="no_order"
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.ordernumber')</span>
@@ -182,15 +128,14 @@
                                         </div>
 
                                         <x-primary-button type="submit" class="block" tabindex="6">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                class="size-5">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="1.5" stroke="currentColor" class="size-5">
                                                 <path stroke-linecap="round" stroke-linejoin="round"
                                                     d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
                                             </svg>
                                             <span class="pl-1">@lang('messages.save')</span>
                                         </x-primary-button>
-                                        <x-anchor-secondary href="{{ route('sale-order.index') }}" tabindex="7">
+                                        <x-anchor-secondary href="{{ route('inspect.index') }}" tabindex="7">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                 viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                                                 class="size-5">
@@ -217,28 +162,18 @@
 
                         {{-- Detail --}}
                         <input type="hidden" name="branch_id" value="{{ $branch_id }}" />
-                        <input type="hidden" id="order_id" name="order_id" value="{{ $datas->id }}" />
+                        <input type="hidden" id="master_id" name="master_id" value="{{ $datas->id }}" />
                         <div
                             class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
                             <div class="p-4 space-y-2">
                                 <div class="flex flex-row items-center gap-2">
-                                    <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5"
-                                        viewBox="0 0 52 52" enable-background="new 0 0 52 52" xml:space="preserve">
-                                        <g>
-                                            <path
-                                                d="M24.3,36.5c0.7,0,1.4,0.1,2,0.3L15.5,6.2c0,0,0,0,0,0l-1-3c-0.3-0.9-1.2-1.3-2-1L3.1,5.3 c-0.9,0.3-1.3,1.2-1,2l1,3c0.3,0.9,1.2,1.3,2,1L10,9.7l9.9,28.1C21.2,37,22.7,36.5,24.3,36.5z" />
-                                            <path
-                                                d="M41.2,29.2l-9.9,3.5c-1,0.4-2.2-0.2-2.5-1.2l-3.5-9.9c-0.4-1,0.2-2.2,1.2-2.5l9.9-3.5 c1-0.4,2.2,0.2,2.5,1.2l3.5,9.9C42.8,27.7,42.2,28.8,41.2,29.2z" />
-                                            <path
-                                                d="M31.8,12.9l-6.7,2.3c-1,0.4-2.2-0.2-2.5-1.2l-2.3-6.7c-0.4-1,0.2-2.2,1.2-2.5l6.7-2.3 c1-0.4,2.2,0.2,2.5,1.2l2.3,6.7C33.4,11.3,32.9,12.5,31.8,12.9z" />
-                                            <path
-                                                d="M49.9,35.5l-1-3c-0.3-0.9-1.2-1.3-2-1l-18.2,6.3c1.9,1.2,3.2,3.2,3.6,5.5l16.7-5.7 C49.8,37.3,50.2,36.4,49.9,35.5z" />
-                                            <path
-                                                d="M24.3,39.1c-3,0-5.5,2.5-5.5,5.5c0,3,2.5,5.5,5.5,5.5s5.5-2.5,5.5-5.5C29.8,41.5,27.3,39.1,24.3,39.1z" />
-                                        </g>
+                                    <svg class="size-5" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
+                                        fill="currentColor">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M3.75 4.48h-.71L2 3.43l.71-.7.69.68L4.81 2l.71.71-1.77 1.77zM6.99 3h8v1h-8V3zm0 3h8v1h-8V6zm8 3h-8v1h8V9zm-8 3h8v1h-8v-1zM3.04 7.48h.71l1.77-1.77-.71-.7L3.4 6.42l-.69-.69-.71.71 1.04 1.04zm.71 3.01h-.71L2 9.45l.71-.71.69.69 1.41-1.42.71.71-1.77 1.77zm-.71 3.01h.71l1.77-1.77-.71-.71-1.41 1.42-.69-.69-.71.7 1.04 1.05z" />
                                     </svg>
                                     <span class="block font-medium text-primary-600">
-                                        @lang('messages.solditem')
+                                        @lang('messages.inspect')
                                     </span>
                                 </div>
 
@@ -248,96 +183,20 @@
                                         <table id="order_table" class="w-full border-separate border-spacing-2">
                                             <thead>
                                                 <tr>
-                                                    <th class="w-1/3">@lang('messages.goods')</th>
-                                                    <th class="w-auto field-large-show">@lang('messages.unitprice')
-                                                        (@lang('messages.currencysymbol'))</th>
-                                                    <th class="w-1/4">@lang('messages.unit')</th>
-                                                    <th class="w-auto">@lang('messages.quantity') <span
-                                                            class="field-large-show">&amp; @lang('messages.stock')</span>
-                                                    </th>
-                                                    <th class="w-auto field-large-show">@lang('messages.subtotalprice')
-                                                        (@lang('messages.currencysymbol'))</th>
-                                                    <th class="w-auto">&nbsp;</th>
+                                                    <th class="w-1/12">@lang('messages.sequence')</th>
+                                                    <th class="w-1/2">@lang('messages.inspect')</th>
+                                                    <th class="w-auto">@lang('messages.check')</th>
+                                                    <th class="w-auto">@lang('messages.description')</th>
                                                 </tr>
                                             </thead>
 
                                             <tbody id="detailBody">
-                                                @include('sale-order.partials.details', [
+                                                @include('service-order.partials.details', [
                                                     $details,
                                                     'viewMode' => false,
                                                 ])
                                             </tbody>
 
-                                            <tbody>
-                                                <tr>
-                                                    <td class="align-top">
-                                                        <select id="barang_id" name="barang_id" required
-                                                            tabindex="10"
-                                                            data-hs-select='{
-  "hasSearch": true,
-  "searchPlaceholder": "{!! __('messages.search') . '...' !!}",
-  "searchClasses": "block w-full py-1.5 sm:py-2 px-3 sm:text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 text-gray-700 dark:text-gray-400 border-primary-100 bg-primary-50 dark:bg-primary-900 before:absolute before:inset-0 before:z-1",
-  "searchWrapperClasses": "sticky -top-1 p-2 -mx-1 bg-primary-20 dark:bg-primary-700",
-  "placeholder": "{!! __('messages.choose') . '...' !!}",
-  "toggleTag": "<button type=\"button\" aria-expanded=\"false\"></button>",
-  "toggleClasses": "hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 relative py-2 px-3 pe-9 flex text-nowrap w-full cursor-pointer bg-primary-20 dark:bg-primary-700 border shadow-md border-primary-100 dark:border-primary-800 rounded-lg text-start text-sm focus:border-blue-500 focus:ring-blue-500 before:absolute before:inset-0 before:z-1",
-  "dropdownClasses": "mt-2 z-50 w-full max-h-72 p-1 space-y-0.5 border bg-primary-20 dark:bg-primary-700 border-primary-500 dark:border-primary-800 rounded-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-primary-500 [&::-webkit-scrollbar-thumb]:bg-gray-300",
-  "optionClasses": "py-2 px-4 w-full text-sm text-gray-800 dark:text-gray-400 cursor-pointer hover:bg-primary-50 dark:hover:bg-primary-800 rounded-lg focus:outline-hidden focus:bg-primary-50 dark:focus:bg-primary-800",
-  "optionTemplate": "<div class=\"flex justify-between items-center w-full\"><span data-title></span><span class=\"hidden hs-selected:block\"><svg class=\"shrink-0 size-3.5 text-blue-600 \" xmlns=\"http:.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"20 6 9 17 4 12\"/></svg></span></div>",
-  "extraMarkup": "<div class=\"absolute top-1/2 end-3 -translate-y-1/2\"><svg class=\"shrink-0 size-3.5 text-gray-500 \" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m7 15 5 5 5-5\"/><path d=\"m7 9 5-5 5 5\"/></svg></div>"
-}'
-                                                            class="hidden">
-                                                            <option value="">@lang('messages.choose')...</option>
-                                                            @foreach ($barangs as $id => $name)
-                                                                <option value="{{ $id }}">
-                                                                    {{ $name }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </td>
-                                                    <td class="align-top field-large-show">
-                                                        <x-text-input type="number" min="0" id="harga_satuan"
-                                                            name="harga_satuan" required tabindex="11" readonly />
-                                                    </td>
-                                                    <td class="align-top">
-                                                        <select id="satuan_id" name="satuan_id" required
-                                                            tabindex="12"
-                                                            class="readonly-select w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-400">
-                                                            <option value="">@lang('messages.choose')...</option>
-                                                            @foreach ($satuans as $id => $name)
-                                                                <option value="{{ $id }}">
-                                                                    {{ $name }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </td>
-                                                    <td class="align-top">
-                                                        <div class="flex flex-row gap-1">
-                                                            <x-text-input type="number" min="0"
-                                                                id="kuantiti" name="kuantiti" required
-                                                                tabindex="13" />
-                                                            <input type="hidden" id="stock" name="stock" />
-                                                            <x-text-span id="disp-stock"
-                                                                class="field-large-show text-right text-gray-900 bg-primary-50" />
-                                                        </div>
-                                                    </td>
-                                                    <td class="align-top field-large-show">
-                                                        <x-text-span id="disp-sub_harga"
-                                                            class="text-right">0</x-text-span>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-
-                                            <tfoot>
-                                                <tr>
-                                                    <td class="align-top text-center" colspan="2">
-                                                        <x-text-span class="font-extrabold">@lang('messages.totalprice')
-                                                            (@lang('messages.currencysymbol'))</x-text-span>
-                                                    </td>
-                                                    <td class="align-top" colspan="3">
-                                                        <x-text-span id="disp-total_harga-detail"
-                                                            class="font-extrabold text-right">{{ number_format($totals['sub_price'], 0, ',', '.') }}</x-text-span>
-                                                    </td>
-                                                </tr>
-                                            </tfoot>
                                         </table>
                                     </div>
 
@@ -351,7 +210,7 @@
                                             </svg>
                                             <span class="pl-1">@lang('messages.save')</span>
                                         </x-primary-button>
-                                        <x-anchor-secondary href="{{ route('sale-order.index') }}" tabindex="16">
+                                        <x-anchor-secondary href="{{ route('inspect.index') }}" tabindex="16">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                 viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                                                 class="size-5">
@@ -365,14 +224,6 @@
                             </div>
                         </div>
                     </form>
-                </div>
-            </div>
-
-            <div id="scanner" class="fixed bottom-0 left-0">
-                <div
-                    class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
-                    @php $element = ['el' => 'barang_id']; @endphp
-                    {{-- @include('qrcode.partials.scanner', $element) --}}
                 </div>
             </div>
         </div>
@@ -404,15 +255,8 @@
     @endpush
 
     @push('scripts')
-        <script type="text/javascript" src="{{ url('js/jquery.maskMoney.min.js') }}"></script>
         <script type="text/javascript">
             $(document).ready(function(e) {
-                $("#satuan_id, #satuan_id_adonan").on("mousedown", function(e) {
-                    e.preventDefault();
-                    this.blur();
-                    window.focus();
-                });
-
                 function getInitialFormValues(formId) {
                     const form = document.getElementById(formId);
                     const initialValues = {};
@@ -451,146 +295,35 @@
 
                 const myFormInitialValues = getInitialFormValues('master-form');
 
-                $(function() {
-                    $('#total_harga').maskMoney({
-                        prefix: 'Rp. ',
-                        allowNegative: false,
-                        allowZerro: true,
-                        thousands: '.',
-                        decimal: ',',
-                        precision: 0,
-                    });
-                    $('#biaya_angkutan').maskMoney({
-                        prefix: 'Rp. ',
-                        allowNegative: false,
-                        allowZerro: true,
-                        thousands: '.',
-                        decimal: ',',
-                        precision: 0,
-                    });
-
-                    $('#gambar').change(function() {
-                        let reader = new FileReader();
-                        reader.onload = (e) => {
-                            $('#image-preview').attr('src', e.target.result);
-                        }
-                        reader.readAsDataURL(this.files[0]);
-                    });
-                })
-
-                deleteDetail = function(detailId) {
-                    let idname = '#a-delete-detail-' + detailId;
-
-                    var confirmation = confirm("Are you sure you want to delete this?");
-                    if (confirmation) {
-                        $(idname).closest("tr").remove();
-                        $.ajax({
-                            url: '{{ url('/sale/order/delete-detail') }}' + '/' + detailId,
-                            type: 'delete',
-                            dataType: 'json',
-                            data: {
-                                '_token': '{{ csrf_token() }}',
-                            },
-                            success: function(result) {
-                                if (result.status !== 'Not Found') {
-                                    $('#detailBody').html(result.view);
-                                    flasher.error("{{ __('messages.successdeleted') }}!", "Success");
-                                }
-                                $('#form-order')[0].reset();
-                                $('#disp-total_harga-master').html(result.total_harga_master
-                                    .toLocaleString('de-DE'));
-                                $('#disp-total_harga-detail').html(result.total_harga_detail
-                                    .toLocaleString('de-DE'));
-                            },
-                            error: function(xhr) {
-                                console.log(xhr.responseText);
-                            }
-                        });
-                    }
-                };
-
-                $("#harga_satuan, #kuantiti, #pajak").on("change keyup paste", function() {
-                    var _xhs = $('#harga_satuan').val();
-                    var _xku = $('#kuantiti').val();
-                    var _xst = $('#stock').val();
-                    var _xpj = $('#pajak').val();
-                    var xhs = (_xhs > 0) ? _xhs : 0;
-                    var xku = (_xku > 0) ? _xku : 0;
-                    var xst = (_xst > 0) ? _xst : 0;
-                    var xpj = (_xpj > 0) ? _xpj : 0;
-                    var xsub = (xhs * (1 + (xpj / 100))) * xku;
-                    var formattedNumber = new Intl.NumberFormat('de-DE').format(xsub);
-
-                    $("#disp-sub_harga").html(formattedNumber);
-
-                    if ((xku * 1) > (xst * 1)) {
-                        $("#disp-stock")
-                            .removeClass("text-gray-900 bg-primary-50")
-                            .addClass("text-white bg-red-700");
-                    } else {
-                        $("#disp-stock")
-                            .removeClass("text-white bg-red-700")
-                            .addClass("text-gray-900 bg-primary-50");
-                    }
-                });
-
-                $("#tunai").on("change keyup paste", function() {
-                    var _xtunai = $('#tunai').val();
-
-                    if (_xtunai === '2') {
-                        var now = new Date();
-                        var day = ("0" + now.getDate()).slice(-2);
-                        var month = ("0" + (now.getMonth() + 1)).slice(-2);
-                        var year = now.getFullYear();
-                        var today = year + "-" + month + "-" + day;
-                        $("#div-jatuhtempo").show();
-                        $("#jatuhtempo").val(today);
-                    } else {
-                        $("#jatuhtempo").val("");
-                        $("#div-jatuhtempo").hide();
-                    }
-                });
-
-                $("#barang_id").on("change keyup paste", function() {
-                    var xbar = $('#barang_id option:selected').val();
+                $("#print-laporan").on("click", function(e) {
+                    e.preventDefault();
+                    $('#print-icon').addClass('animate-spin');
 
                     $.ajax({
-                        url: '{{ url('/warehouse/goods/get-goods-sell') }}' + "/" + xbar,
-                        type: "GET",
-                        dataType: 'json',
+                        url: '{{ route('stock-adjustment.print', Crypt::encrypt($datas->id)) }}',
+                        type: 'get',
                         success: function(result) {
-                            var p1 = result.p1;
-                            var p2 = result.p2;
-                            var p3 = result.p3;
-                            $('#harga_satuan').val(p1);
-                            $('#satuan_id').val(p2);
-                            $('#stock').val(p3);
-                            $('#disp-stock').html(p3.toLocaleString('de-DE'));
-                            $('#kuantiti').focus();
+                            if (result.status !== 'Not Found') {
+                                var namafile = result.namafile;
+                                window.open(namafile, '_blank');
+                            }
+                            $('#print-icon').removeClass('animate-spin');
                         }
                     });
                 });
 
                 $("#submit-detail").on("click", function(e) {
                     e.preventDefault();
-                    let key = $('#order_id').val();
+                    let key = $('#master_id').val();
 
                     $.ajax({
-                        url: '{{ url('/sale/order/store-detail') }}' + '/' + key,
+                        url: '{{ url('/service/inspect/update-detail') }}' + '/' + key,
                         type: 'post',
                         dataType: 'json',
                         data: $('form#form-order').serialize(),
                         success: function(result) {
                             if (result.status !== 'Not Found') {
                                 $('#detailBody').html(result.view);
-                                $('#disp-total_harga-master').html(result.total_harga_master
-                                    .toLocaleString('de-DE'));
-                                $('#disp-total_harga-detail').html(result.total_harga_detail
-                                    .toLocaleString('de-DE'));
-                                $('#form-order')[0].reset();
-                                $("span.truncate").text('{{ __('messages.choose') . '...' }}');
-                                $("#disp-stock").html(0);
-                                $("#disp-sub_harga").html(0);
                                 flasher.success("{{ __('messages.successsaved') }}!", "Success");
                             }
                         }

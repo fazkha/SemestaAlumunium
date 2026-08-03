@@ -4,7 +4,7 @@
     <div
         class="flex items-center justify-between px-4 py-4 border-b border-primary-100 dark:border-primary-700 lg:py-6 text-primary-700 dark:text-primary-500">
         <h1 class="text-xl flex items-center justify-center">
-            <a href="{{ route('sale-order.index') }}" class="flex items-center justify-center">
+            <a href="{{ route('inspect.index') }}" class="flex items-center justify-center">
                 <svg class="size-7" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg">
                     <path d="M219.51 475.38h219.43v73.14H219.51z" fill="currentColor" />
                     <path
@@ -19,7 +19,7 @@
                     <span>@lang('messages.inspect')</span>
                 </div>
             </a>
-            <span class="px-2">&raquo;</span>
+            <span class="px-2">💠</span>
             <span class="px-2 font-semibold">@lang('messages.new')</span>
         </h1>
     </div>
@@ -33,7 +33,7 @@
                 <div class="flex flex-col items-center">
 
                     <div class="w-full" role="alert">
-                        @include('sale-order.partials.feedback')
+                        @include('service-order.partials.feedback')
                     </div>
 
                     {{-- Master --}}
@@ -46,6 +46,8 @@
 
                                     <div class="w-auto pb-4">
                                         <input type="hidden" name="branch_id" value="{{ $branch_id }}" />
+                                        <input type="hidden" name="jenis_pelayanan_id"
+                                            value="{{ $jenis_pelayanan_id }}" />
                                         <label for="customer_id"
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.customer')</label>
                                         <select id="customer_id" name="customer_id" required autofocus tabindex="1"
@@ -100,10 +102,10 @@
                                         <span for="no_order"
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.ordernumber')</span>
                                         <x-text-span
-                                            id="disp-no_order">{{ old('no_order', config('custom.so_prefix') . '/---/---/----/--/---') }}</x-text-span>
+                                            id="disp-no_order">{{ old('no_order', $sro_prefix . '/---/---/----/--/---') }}</x-text-span>
                                         <x-text-input type="hidden" name="no_order" id="no_order"
                                             placeholder="Enter order number"
-                                            value="{{ old('no_order', config('custom.so_prefix') . '/---/---/----/--/---') }}" />
+                                            value="{{ old('no_order', $sro_prefix . '/---/---/----/--/---') }}" />
 
                                         <x-input-error class="mt-2" :messages="$errors->get('no_order')" />
                                     </div>
@@ -130,9 +132,10 @@
                                             </svg>
                                             <span class="pl-1">@lang('messages.save')</span>
                                         </x-primary-button>
-                                        <x-anchor-secondary href="{{ route('sale-order.index') }}" tabindex="7">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="1.5" stroke="currentColor" class="size-5">
+                                        <x-anchor-secondary href="{{ route('inspect.index') }}" tabindex="7">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                class="size-5">
                                                 <path stroke-linecap="round" stroke-linejoin="round"
                                                     d="M6 18 18 6M6 6l12 12" />
                                             </svg>
@@ -151,7 +154,7 @@
                     <div class="flex flex-col items-center">
 
                         <div class="w-full" role="alert">
-                            @include('sale-order.partials.feedback')
+                            @include('service-order.partials.feedback')
                         </div>
 
                         {{-- Detail --}}
@@ -159,23 +162,13 @@
                             class="w-full shadow-lg rounded-md border bg-primary-50 border-primary-100 dark:bg-primary-900 dark:border-primary-800">
                             <div class="p-4 space-y-2">
                                 <div class="flex flex-row items-center gap-2">
-                                    <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5"
-                                        viewBox="0 0 52 52" enable-background="new 0 0 52 52" xml:space="preserve">
-                                        <g>
-                                            <path
-                                                d="M24.3,36.5c0.7,0,1.4,0.1,2,0.3L15.5,6.2c0,0,0,0,0,0l-1-3c-0.3-0.9-1.2-1.3-2-1L3.1,5.3 c-0.9,0.3-1.3,1.2-1,2l1,3c0.3,0.9,1.2,1.3,2,1L10,9.7l9.9,28.1C21.2,37,22.7,36.5,24.3,36.5z" />
-                                            <path
-                                                d="M41.2,29.2l-9.9,3.5c-1,0.4-2.2-0.2-2.5-1.2l-3.5-9.9c-0.4-1,0.2-2.2,1.2-2.5l9.9-3.5 c1-0.4,2.2,0.2,2.5,1.2l3.5,9.9C42.8,27.7,42.2,28.8,41.2,29.2z" />
-                                            <path
-                                                d="M31.8,12.9l-6.7,2.3c-1,0.4-2.2-0.2-2.5-1.2l-2.3-6.7c-0.4-1,0.2-2.2,1.2-2.5l6.7-2.3 c1-0.4,2.2,0.2,2.5,1.2l2.3,6.7C33.4,11.3,32.9,12.5,31.8,12.9z" />
-                                            <path
-                                                d="M49.9,35.5l-1-3c-0.3-0.9-1.2-1.3-2-1l-18.2,6.3c1.9,1.2,3.2,3.2,3.6,5.5l16.7-5.7 C49.8,37.3,50.2,36.4,49.9,35.5z" />
-                                            <path
-                                                d="M24.3,39.1c-3,0-5.5,2.5-5.5,5.5c0,3,2.5,5.5,5.5,5.5s5.5-2.5,5.5-5.5C29.8,41.5,27.3,39.1,24.3,39.1z" />
-                                        </g>
+                                    <svg class="size-5" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
+                                        fill="currentColor">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M3.75 4.48h-.71L2 3.43l.71-.7.69.68L4.81 2l.71.71-1.77 1.77zM6.99 3h8v1h-8V3zm0 3h8v1h-8V6zm8 3h-8v1h8V9zm-8 3h8v1h-8v-1zM3.04 7.48h.71l1.77-1.77-.71-.7L3.4 6.42l-.69-.69-.71.71 1.04 1.04zm.71 3.01h-.71L2 9.45l.71-.71.69.69 1.41-1.42.71.71-1.77 1.77zm-.71 3.01h.71l1.77-1.77-.71-.71-1.41 1.42-.69-.69-.71.7 1.04 1.05z" />
                                     </svg>
                                     <span class="block font-medium text-primary-600">
-                                        @lang('messages.solditem')
+                                        @lang('messages.inspect')
                                     </span>
                                 </div>
 
@@ -185,13 +178,10 @@
                                         <table id="order_table" class="w-full border-separate border-spacing-2">
                                             <thead>
                                                 <tr>
-                                                    <th class="w-1/4">@lang('messages.goods')</th>
-                                                    <th class="w-1/6">@lang('messages.unitprice') (@lang('messages.currencysymbol'))</th>
-                                                    <th class="w-auto">@lang('messages.unit')</th>
-                                                    <th class="w-auto">@lang('messages.quantity') &amp; @lang('messages.stock')</th>
-                                                    {{-- <th class="w-auto">@lang('messages.tax') (%)</th> --}}
+                                                    <th class="w-1/6">@lang('messages.sequence')</th>
+                                                    <th class="w-1/3">@lang('messages.inspect')</th>
+                                                    <th class="w-auto">@lang('messages.check')</th>
                                                     <th class="w-auto">@lang('messages.description')</th>
-                                                    <th class="w-1/6">@lang('messages.subtotalprice') (@lang('messages.currencysymbol'))</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -216,61 +206,5 @@
     @endpush
 
     @push('scripts')
-        <script type="text/javascript" src="{{ url('js/jquery.maskMoney.min.js') }}"></script>
-        <script type="text/javascript">
-            $(document).ready(function(e) {
-                $(function() {
-                    $('#total_harga').maskMoney({
-                        prefix: 'Rp. ',
-                        allowNegative: false,
-                        thousands: '.',
-                        decimal: ',',
-                        precision: 0,
-                        affixesStay: false
-                    });
-                    $('#biaya_angkutan').maskMoney({
-                        prefix: 'Rp. ',
-                        allowNegative: false,
-                        thousands: '.',
-                        decimal: ',',
-                        precision: 0,
-                        affixesStay: false
-                    });
-                    $('#pajak').maskMoney({
-                        prefix: '% ',
-                        allowNegative: false,
-                        thousands: '.',
-                        decimal: ',',
-                        precision: 2,
-                        affixesStay: false
-                    });
-
-                    $('#gambar').change(function() {
-                        let reader = new FileReader();
-                        reader.onload = (e) => {
-                            $('#image-preview').attr('src', e.target.result);
-                        }
-                        reader.readAsDataURL(this.files[0]);
-                    });
-                })
-
-                $("#tunai").on("change keyup paste", function() {
-                    var _xtunai = $('#tunai').val();
-
-                    if (_xtunai === '2') {
-                        var now = new Date();
-                        var day = ("0" + now.getDate()).slice(-2);
-                        var month = ("0" + (now.getMonth() + 1)).slice(-2);
-                        var year = now.getFullYear();
-                        var today = year + "-" + month + "-" + day;
-                        $("#div-jatuhtempo").show();
-                        $("#jatuhtempo").val(today);
-                    } else {
-                        $("#jatuhtempo").val("");
-                        $("#div-jatuhtempo").hide();
-                    }
-                });
-            });
-        </script>
     @endpush
 </x-app-layout>

@@ -1,4 +1,4 @@
-@section('title', __('messages.services'))
+@section('title', __('messages.inspect'))
 
 <x-app-layout>
     <div

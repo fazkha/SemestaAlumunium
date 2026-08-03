@@ -310,4 +310,5 @@ return [
     'inspect' => 'Inspeksi',
     'inspectionstandard' => 'Standar Inspeksi',
     'sequence' => 'Urutan',
+    'check' => 'Cek',
 ];

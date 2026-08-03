@@ -65,7 +65,7 @@ class StdInspectController extends Controller implements HasMiddleware
             return redirect()->route('dashboard');
         }
 
-        return view('satuan.index', compact(['datas']))->with('i', (request()->input('page', 1) - 1) * session('std-inspect_pp'));
+        return view('std-inspect.index', compact(['datas']))->with('i', (request()->input('page', 1) - 1) * session('std-inspect_pp'));
     }
 
     public function fetchdb(Request $request): JsonResponse
@@ -135,21 +135,21 @@ class StdInspectController extends Controller implements HasMiddleware
 
     public function show(Request $request): View
     {
-        $datas = StdInspect::find(Crypt::decrypt($request->standar));
+        $datas = StdInspect::find(Crypt::decrypt($request->std_inspect));
 
         return view('std-inspect.show', compact(['datas']));
     }
 
     public function edit(Request $request): View
     {
-        $datas = StdInspect::find(Crypt::decrypt($request->standar));
+        $datas = StdInspect::find(Crypt::decrypt($request->std_inspect));
 
         return view('std-inspect.edit', compact(['datas']));
     }
 
     public function update(StdInspectRequest $request): RedirectResponse
     {
-        $std_inspect = StdInspect::find(Crypt::decrypt($request->standar));
+        $std_inspect = StdInspect::find(Crypt::decrypt($request->std_inspect));
 
         if ($request->validated()) {
 
@@ -168,7 +168,7 @@ class StdInspectController extends Controller implements HasMiddleware
 
     public function delete(Request $request): View
     {
-        $std_inspect = StdInspect::find(Crypt::decrypt($request->standar));
+        $std_inspect = StdInspect::find(Crypt::decrypt($request->std_inspect));
 
         $datas = $std_inspect;
 
@@ -177,7 +177,7 @@ class StdInspectController extends Controller implements HasMiddleware
 
     public function destroy(Request $request): RedirectResponse
     {
-        $std_inspect = StdInspect::find(Crypt::decrypt($request->standar));
+        $std_inspect = StdInspect::find(Crypt::decrypt($request->std_inspect));
 
         try {
             $std_inspect->delete();

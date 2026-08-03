@@ -16,7 +16,7 @@
                 </svg>
                 <span class="px-2">@lang('messages.chartofaccount')</span>
             </a>
-            <span class="px-2">&raquo;</span>
+            <span class="px-2">💠</span>
             <span class="px-2 font-semibold">Modify</span>
         </h1>
     </div>

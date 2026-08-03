@@ -1,29 +1,28 @@
 @php
     use Illuminate\Support\Facades\Crypt;
 @endphp
-@section('title', __('messages.unit'))
+@section('title', __('messages.inspectionstandard'))
 
 <x-app-layout>
     <div
         class="flex items-center justify-between px-4 py-4 border-b border-primary-100 dark:border-primary-700 lg:py-6 text-primary-700 dark:text-primary-500">
         <h1 class="text-xl flex items-center justify-center">
-            <a href="{{ route('units.index') }}" class="flex items-center justify-center">
-                <svg fill="currentColor" class="size-7" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink">
-                    <path
-                        d="M17 2C16.449219 2 16 2.449219 16 3L16 11C16 11.550781 16.449219 12 17 12L33 12C33.554688 12 34 11.550781 34 11L34 3C34 2.449219 33.554688 2 33 2 Z M 29 7L31 7L31 9L29 9 Z M 22 14L22 30L10 30C9.675781 30 9.375 30.167969 9.1875 30.4375L2.46875 40L47.53125 40L40.8125 30.4375C40.625 30.167969 40.324219 30 40 30L28 30L28 14 Z M 2 42L2 45C2 45.554688 2.449219 46 3 46L4 46L4 47L6 47L6 46L44 46L44 47L46 47L46 46L47 46C47.554688 46 48 45.554688 48 45L48 42Z" />
+            <a href="{{ route('std-inspect.index') }}" class="flex items-center justify-center">
+                <svg class="size-7" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M3.75 4.48h-.71L2 3.43l.71-.7.69.68L4.81 2l.71.71-1.77 1.77zM6.99 3h8v1h-8V3zm0 3h8v1h-8V6zm8 3h-8v1h8V9zm-8 3h8v1h-8v-1zM3.04 7.48h.71l1.77-1.77-.71-.7L3.4 6.42l-.69-.69-.71.71 1.04 1.04zm.71 3.01h-.71L2 9.45l.71-.71.69.69 1.41-1.42.71.71-1.77 1.77zm-.71 3.01h.71l1.77-1.77-.71-.71-1.41 1.42-.69-.69-.71.7 1.04 1.05z" />
                 </svg>
                 <div class="relative px-2 pt-2">
-                    <span class="absolute top-0 left-2 text-xs w-40">@lang('messages.warehouse')</span>
-                    <span>@lang('messages.unit')</span>
+                    <span class="absolute top-0 left-2 text-xs w-40">@lang('messages.services')</span>
+                    <span>@lang('messages.inspectionstandard')</span>
                 </div>
             </a>
-            <span class="px-2">&raquo;</span>
+            <span class="px-2">💠</span>
             <span class="px-2 font-semibold">@lang('messages.edit')</span>
         </h1>
     </div>
 
-    <form id="satuan-form" action="{{ route('units.update', Crypt::Encrypt($datas->id)) }}" method="POST"
+    <form id="satuan-form" action="{{ route('std-inspect.update', Crypt::Encrypt($datas->id)) }}" method="POST"
         enctype="multipart/form-data">
         @csrf
         @method('PUT')
@@ -34,7 +33,7 @@
                 <div class="flex flex-col items-center">
 
                     <div class="w-full" role="alert">
-                        @include('satuan.partials.feedback')
+                        @include('std-inspect.partials.feedback')
                     </div>
 
                     <div
@@ -45,38 +44,26 @@
                                 <div class="w-full lg:w-1/2 px-2">
 
                                     <div class="w-auto pb-4">
-                                        <label for="singkatan"
-                                            class="block mb-2 font-medium text-primary-600">@lang('messages.abbreviation')</label>
-                                        <x-text-input type="text" name="singkatan" id="singkatan" tabindex="1"
-                                            autofocus
-                                            placeholder="{{ __('messages.enter') }} {{ __('messages.abbreviation') }}"
-                                            required value="{{ old('singkatan', $datas->singkatan) }}" />
+                                        <label for="urutan"
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.sequence')</label>
+                                        <x-text-input type="number" min="1" name="urutan" id="urutan"
+                                            tabindex="1" autofocus
+                                            placeholder="{{ __('messages.enter') }} {{ __('messages.sequence') }}"
+                                            required value="{{ old('urutan', $datas->urutan) }}" />
 
-                                        <x-input-error class="mt-2" :messages="$errors->get('singkatan')" />
+                                        <x-input-error class="mt-2" :messages="$errors->get('urutan')" />
                                     </div>
-
-                                    <div class="w-auto pb-4">
-                                        <label for="nama_lengkap"
-                                            class="block mb-2 font-medium text-primary-600">@lang('messages.unitname')</label>
-                                        <x-text-input type="text" name="nama_lengkap" id="nama_lengkap"
-                                            tabindex="2"
-                                            placeholder="{{ __('messages.enter') }} {{ __('messages.unitname') }}"
-                                            required value="{{ old('nama_lengkap', $datas->nama_lengkap) }}" />
-
-                                        <x-input-error class="mt-2" :messages="$errors->get('nama_lengkap')" />
-                                    </div>
-
                                 </div>
 
                                 <div class="w-full lg:w-1/2 px-2 flex flex-col justify-start">
                                     <div class="w-auto pb-4 lg:pb-12">
-                                        <label for="keterangan"
-                                            class="block mb-2 font-medium text-primary-600">@lang('messages.description')</label>
-                                        <x-text-input type="text" name="keterangan" id="keterangan" tabindex="3"
-                                            placeholder="{{ __('messages.enter') }} {{ __('messages.description') }}"
-                                            required value="{{ old('keterangan', $datas->keterangan) }}" />
+                                        <label for="standar"
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.inspect')</label>
+                                        <x-text-input type="text" name="standar" id="standar" tabindex="2"
+                                            placeholder="{{ __('messages.enter') }} {{ __('messages.inspect') }}"
+                                            required value="{{ old('standar', $datas->standar) }}" />
 
-                                        <x-input-error class="mt-2" :messages="$errors->get('keterangan')" />
+                                        <x-input-error class="mt-2" :messages="$errors->get('standar')" />
                                     </div>
 
                                     <div class="flex flex-row flex-wrap items-center justify-end gap-2 md:gap-4">
@@ -101,7 +88,7 @@
                                             </svg>
                                             <span class="pl-1">@lang('messages.save')</span>
                                         </x-primary-button>
-                                        <x-anchor-secondary href="{{ route('units.index') }}" tabindex="6">
+                                        <x-anchor-secondary href="{{ route('std-inspect.index') }}" tabindex="6">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                 stroke-width="1.5" stroke="currentColor" class="size-5">
                                                 <path stroke-linecap="round" stroke-linejoin="round"

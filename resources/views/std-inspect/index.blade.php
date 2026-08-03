@@ -1,4 +1,4 @@
-@section('title', __('messages.unit'))
+@section('title', __('messages.inspectionstandard'))
 
 <x-app-layout>
     <div
@@ -10,8 +10,8 @@
                         d="M3.75 4.48h-.71L2 3.43l.71-.7.69.68L4.81 2l.71.71-1.77 1.77zM6.99 3h8v1h-8V3zm0 3h8v1h-8V6zm8 3h-8v1h8V9zm-8 3h8v1h-8v-1zM3.04 7.48h.71l1.77-1.77-.71-.7L3.4 6.42l-.69-.69-.71.71 1.04 1.04zm.71 3.01h-.71L2 9.45l.71-.71.69.69 1.41-1.42.71.71-1.77 1.77zm-.71 3.01h.71l1.77-1.77-.71-.71-1.41 1.42-.69-.69-.71.7 1.04 1.05z" />
                 </svg>
                 <div class="relative px-2 pt-2">
-                    <span class="absolute top-0 left-2 text-xs w-40">@lang('messages.warehouse')</span>
-                    <span>@lang('messages.unit')</span>
+                    <span class="absolute top-0 left-2 text-xs w-40">@lang('messages.services')</span>
+                    <span>@lang('messages.inspectionstandard')</span>
                 </div>
             </a>
         </h1>
@@ -21,15 +21,15 @@
         <div class="flex flex-col items-center">
 
             <div class="w-full" role="alert">
-                @include('satuan.partials.feedback')
+                @include('std-inspect.partials.feedback')
             </div>
 
             <div class="w-full">
-                @include('satuan.partials.filter')
+                @include('std-inspect.partials.filter')
             </div>
 
             <div id="table-container" class="w-full">
-                @include('satuan.partials.table')
+                @include('std-inspect.partials.table')
             </div>
 
         </div>
@@ -37,33 +37,29 @@
 
     @push('scripts')
         <script type="text/javascript">
-            $("#pp-dropdown, #isactive-dropdown, #search-singkatan, #search-nama_lengkap").on(
+            $("#pp-dropdown, #isactive-dropdown, #search-standar").on(
                 "change keyup paste",
                 function() {
                     var xpp = $('#pp-dropdown option:selected').val();
                     var xisactive = $('#isactive-dropdown option:selected').val();
-                    var xsingkatan = $('#search-singkatan').val();
-                    var xnama_lengkap = $('#search-nama_lengkap').val();
-                    if (!xsingkatan.trim()) {
-                        xsingkatan = '_';
-                    }
-                    if (!xnama_lengkap.trim()) {
-                        xnama_lengkap = '_';
+                    var xstandar = $('#search-standar').val();
+                    if (!xstandar.trim()) {
+                        xstandar = '_';
                     }
 
                     $('#filter-loading').show();
 
-                    var newURL = '{{ url('/warehouse/units') }}';
+                    var newURL = '{{ url('/service/std-inspect') }}';
                     var newState = {
-                        page: 'index-satuan'
+                        page: 'index-std-inspect'
                     };
-                    var newTitle = '{{ __('messages.unit') }}';
+                    var newTitle = '{{ __('messages.inspectionstandard') }}';
 
                     window.history.pushState(newState, newTitle, newURL);
 
                     $.ajax({
-                        url: '{{ url('/warehouse/units/fetchdb') }}' + "/" + xpp + "/" + xisactive + "/" +
-                            xsingkatan + "/" + xnama_lengkap,
+                        url: '{{ url('/service/std-inspect/fetchdb') }}' + "/" + xpp + "/" + xisactive + "/" +
+                            xstandar,
                         type: "GET",
                         dataType: 'json',
                         success: function(result) {

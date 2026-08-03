@@ -17,7 +17,7 @@
                     <span>@lang('messages.supplier')</span>
                 </div>
             </a>
-            <span class="px-2">&raquo;</span>
+            <span class="px-2">💠</span>
             <span class="px-2 font-semibold">@lang('messages.edit')</span>
         </h1>
     </div>

@@ -15,7 +15,7 @@
                     <span>@lang('messages.order')</span>
                 </div>
             </a>
-            <span class="px-2">&raquo;</span>
+            <span class="px-2">💠</span>
             <span class="px-2 font-semibold">@lang('messages.new')</span>
         </h1>
     </div>
@@ -119,10 +119,10 @@
                                         <span for="no_order"
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.ordernumber')</span>
                                         <x-text-span
-                                            id="disp-no_order">{{ old('no_order', config('custom.so_prefix') . '/---/---/----/--/---') }}</x-text-span>
+                                            id="disp-no_order">{{ old('no_order', $so_prefix . '/---/---/----/--/---') }}</x-text-span>
                                         <x-text-input type="hidden" name="no_order" id="no_order"
                                             placeholder="Enter order number"
-                                            value="{{ old('no_order', config('custom.so_prefix') . '/---/---/----/--/---') }}" />
+                                            value="{{ old('no_order', $so_prefix . '/---/---/----/--/---') }}" />
 
                                         <x-input-error class="mt-2" :messages="$errors->get('no_order')" />
                                     </div>

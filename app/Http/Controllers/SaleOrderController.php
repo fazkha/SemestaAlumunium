@@ -10,6 +10,7 @@ use App\Models\Satuan;
 use App\Models\KalenderHke;
 use App\Http\Requests\SaleOrderRequest;
 use App\Http\Requests\SaleOrderUpdateRequest;
+use App\Models\AppSetting;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\JsonResponse;
@@ -142,8 +143,9 @@ class SaleOrderController extends Controller implements HasMiddleware
         $branch_id = auth()->user()->profile->branch_id;
         $customers = Customer::where('branch_id', $branch_id)->where('isactive', 1)->orderBy('nama')->pluck('nama', 'id');
         $hke = KalenderHke::where('tanggal', date('Y-m-d'))->value('hke');
+        $so_prefix = AppSetting::where('parm', 'prefix_sale_order')->value('value');
 
-        return view('sale-order.create', compact(['customers', 'branch_id', 'hke']));
+        return view('sale-order.create', compact(['customers', 'branch_id', 'hke', 'so_prefix']));
     }
 
     public function store(SaleOrderRequest $request)
