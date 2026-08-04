@@ -53,6 +53,16 @@
                         </div>
                     </th>
                     <th
+                        class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-gray-400 dark:bg-primary-800 dark:border-primary-800">
+                        <div class="flex items-center justify-center">
+                            <svg fill="currentColor" class="size-5" viewBox="0 0 256 256" id="Flat"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M128,20A108,108,0,1,0,236,128,108.12186,108.12186,0,0,0,128,20Zm0,192a84,84,0,1,1,84-84A84.09562,84.09562,0,0,1,128,212Zm24.28809-88.2832a39.99987,39.99987,0,0,1-56.56934,56.56738,12.0001,12.0001,0,0,1,16.9707-16.9707A15.99967,15.99967,0,1,0,124.00293,136a11.99971,11.99971,0,0,1-9.832-18.87988l14.7832-21.12793h-24.957a12,12,0,0,1,0-24h48a11.99971,11.99971,0,0,1,9.832,18.87988l-18.32226,26.18457A40.17514,40.17514,0,0,1,152.28809,123.7168Z" />
+                            </svg>
+                        </div>
+                    </th>
+                    <th
                         class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-gray-400 dark:bg-primary-800 dark:border-primary-800">
                         &nbsp;
                     </th>
@@ -106,11 +116,15 @@
                         </td>
                         <td
                             class="text-center px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
-                            <span>{{ $data->isready == 1 ? '✔️' : '❓' }}</span>
+                            <span>{{ $data->isperawatan == 1 ? '✔️' : '❓' }}</span>
                         </td>
                         <td
                             class="text-center px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
-                            <span>{{ $data->ispackaged == 1 ? '✔️' : '❓' }}</span>
+                            <span>{{ $data->isperbaikan == 1 ? '✔️' : '❓' }}</span>
+                        </td>
+                        <td
+                            class="text-center px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
+                            <span>{{ $data->isgantibaru == 1 ? '✔️' : '❓' }}</span>
                         </td>
                         <td class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400"
                             style="vertical-align: middle;">
@@ -204,6 +218,13 @@
             </svg>
             <span class="text-sm">@lang('messages.repair')</span>
         </div>
-
+        <div class="flex flex-row gap-2 items-center">
+            <svg fill="currentColor" class="size-4" viewBox="0 0 256 256" id="Flat"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M128,20A108,108,0,1,0,236,128,108.12186,108.12186,0,0,0,128,20Zm0,192a84,84,0,1,1,84-84A84.09562,84.09562,0,0,1,128,212Zm24.28809-88.2832a39.99987,39.99987,0,0,1-56.56934,56.56738,12.0001,12.0001,0,0,1,16.9707-16.9707A15.99967,15.99967,0,1,0,124.00293,136a11.99971,11.99971,0,0,1-9.832-18.87988l14.7832-21.12793h-24.957a12,12,0,0,1,0-24h48a11.99971,11.99971,0,0,1,9.832,18.87988l-18.32226,26.18457A40.17514,40.17514,0,0,1,152.28809,123.7168Z" />
+            </svg>
+            <span class="text-sm">@lang('messages.gantibaru')</span>
+        </div>
     </div>
 </div>

@@ -99,6 +99,47 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="w-auto pb-4">
+                                        <label for="tindak_lanjut"
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.tindaklanjut')</label>
+                                        <x-text-span>
+                                            <div class="flex flex-row items-center justify-evenly gap-2">
+                                                <label
+                                                    class="cursor-pointer flex flex-col items-center md:flex-row md:gap-2">
+                                                    <input type="checkbox" id="isperawatan" name="isperawatan"
+                                                        class="dark:border-white-400/20 transition-all duration-500 ease-in-out w-7 h-7 rounded-lg shadow-md dark:bg-primary-700 dark:border-primary-800 dark:text-gray-400"
+                                                        {{ $datas->isperawatan == '1' ? 'checked' : '' }}>
+                                                    <span
+                                                        class="group-hover:text-blue-500 transition-colors duration-300 text-right w-fit">
+                                                        @lang('messages.maintenance_2')
+                                                    </span>
+                                                </label>
+
+                                                <label
+                                                    class="cursor-pointer flex flex-col items-center md:flex-row md:gap-2">
+                                                    <input type="checkbox" id="isperbaikan" name="isperbaikan"
+                                                        class="dark:border-white-400/20 transition-all duration-500 ease-in-out w-7 h-7 rounded-lg shadow-md dark:bg-primary-700 dark:border-primary-800 dark:text-gray-400"
+                                                        {{ $datas->isperbaikan == '1' ? 'checked' : '' }}>
+                                                    <span
+                                                        class="group-hover:text-blue-500 transition-colors duration-300 text-right w-fit">
+                                                        @lang('messages.repair')
+                                                    </span>
+                                                </label>
+
+                                                <label
+                                                    class="cursor-pointer flex flex-col items-center md:flex-row md:gap-2">
+                                                    <input type="checkbox" id="isgantibaru" name="isgantibaru"
+                                                        class="dark:border-white-400/20 transition-all duration-500 ease-in-out w-7 h-7 rounded-lg shadow-md dark:bg-primary-700 dark:border-primary-800 dark:text-gray-400"
+                                                        {{ $datas->isgantibaru == '1' ? 'checked' : '' }}>
+                                                    <span
+                                                        class="group-hover:text-blue-500 transition-colors duration-300 text-right w-fit">
+                                                        @lang('messages.gantibaru')
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </x-text-span>
+                                    </div>
                                 </div>
 
                                 <div class="w-full lg:w-1/2 px-2 flex flex-col justify-start">

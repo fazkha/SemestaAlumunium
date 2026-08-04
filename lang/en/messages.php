@@ -310,6 +310,9 @@ return [
     'component' => 'Component',
     'inspect' => 'Inspection',
     'inspectionstandard' => 'Inspection Standard',
+    'maintenancestandard' => 'Maintenance Standard',
     'sequence' => 'Sequence',
     'check' => 'Check',
+    'tindaklanjut' => 'Follow-up Action',
+    'gantibaru' => 'New Item Replacement',
 ];

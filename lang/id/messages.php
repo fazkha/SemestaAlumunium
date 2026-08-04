@@ -309,6 +309,9 @@ return [
     'component' => 'Komponen',
     'inspect' => 'Inspeksi',
     'inspectionstandard' => 'Standar Inspeksi',
+    'maintenancestandard' => 'Standar Perawatan',
     'sequence' => 'Urutan',
     'check' => 'Cek',
+    'tindaklanjut' => 'Tindak Lanjut',
+    'gantibaru' => 'Ganti Baru',
 ];

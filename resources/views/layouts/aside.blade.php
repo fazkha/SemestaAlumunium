@@ -806,12 +806,13 @@
                 @endif
             @endcan
 
-            @canany(['inspect-create', 'inspect-list', 'perawatan-list', 'perbaikan-list'])
+            @canany(['inspect-create', 'gantibaru-list', 'inspect-list', 'perawatan-list', 'perbaikan-list'])
                 @if (config('custom.menu_pelayanan') == true)
                     <div x-data="{{ substr(request()->getRequestUri(), 0, 20) == '/service/maintenance' ||
                     substr(request()->getRequestUri(), 0, 15) == '/service/repair' ||
                     substr(request()->getRequestUri(), 0, 16) == '/service/inspect' ||
-                    substr(request()->getRequestUri(), 0, 20) == '/service/std-inspect'
+                    substr(request()->getRequestUri(), 0, 20) == '/service/std-inspect' ||
+                    substr(request()->getRequestUri(), 0, 18) == '/service/gantibaru'
                         ? '{isActive: true, open: true, currentlyOpen: "' . $controllerName . '"}'
                         : '{isActive: false, open: false, currentlyOpen: ""}' }}">
                         <a href="#" @click="$event.preventDefault(); open = !open"
@@ -847,7 +848,7 @@
                                     <span class="flex flex-row gap-1"
                                         :class="{
                                             'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
-                                                'std-inspect'
+                                                'stdinspect'
                                         }">
                                         <svg class="size-5" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
                                             fill="currentColor">
@@ -885,12 +886,12 @@
                         @endcan
                         @can('perawatan-list')
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="service">
-                                <a href="{{ route('maintenance.index') }}" role="menuitem"
+                                <a href="{{ route('customer.index') }}" role="menuitem"
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
                                             'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
-                                                'maintenance'
+                                                'customer'
                                         }">
                                         <svg fill="currentColor" class="size-5" xmlns="http://www.w3.org/2000/svg"
                                             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -910,12 +911,12 @@
                         @endcan
                         @can('perbaikan-list')
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="service">
-                                <a href="{{ route('repair.index') }}" role="menuitem"
+                                <a href="{{ route('customer.index') }}" role="menuitem"
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
                                             'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
-                                                'repair'
+                                                'customer'
                                         }">
                                         <svg class="size-5" version="1.1" id="REPAIR" xmlns="http://www.w3.org/2000/svg"
                                             xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1800 1800"
@@ -932,6 +933,25 @@
                                             </g>
                                         </svg>
                                         @lang('messages.repair')
+                                    </span>
+                                </a>
+                            </div>
+                        @endcan
+                        @can('gantibaru-list')
+                            <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="service">
+                                <a href="{{ route('customer.index') }}" role="menuitem"
+                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
+                                    <span class="flex flex-row gap-1"
+                                        :class="{
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
+                                                'customer'
+                                        }">
+                                        <svg class="size-5" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
+                                            fill="currentColor">
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M3.75 4.48h-.71L2 3.43l.71-.7.69.68L4.81 2l.71.71-1.77 1.77zM6.99 3h8v1h-8V3zm0 3h8v1h-8V6zm8 3h-8v1h8V9zm-8 3h8v1h-8v-1zM3.04 7.48h.71l1.77-1.77-.71-.7L3.4 6.42l-.69-.69-.71.71 1.04 1.04zm.71 3.01h-.71L2 9.45l.71-.71.69.69 1.41-1.42.71.71-1.77 1.77zm-.71 3.01h.71l1.77-1.77-.71-.71-1.41 1.42-.69-.69-.71.7 1.04 1.05z" />
+                                        </svg>
+                                        @lang('messages.gantibaru')
                                     </span>
                                 </a>
                             </div>

@@ -44,6 +44,7 @@ use App\Http\Controllers\SaleInvoiceController;
 use App\Http\Controllers\SaleOrderController;
 use App\Http\Controllers\SatuanController;
 use App\Http\Controllers\StdInspectController;
+use App\Http\Controllers\StdMaintenanceController;
 use App\Http\Controllers\StockAdjustmentController;
 use App\Http\Controllers\StockOpnameController;
 use App\Http\Controllers\SupplierController;
@@ -230,6 +231,10 @@ Route::prefix('service')->middleware('auth')->group(function () {
     Route::resource('std-inspect', StdInspectController::class);
     Route::get('std-inspect/{std_inspect}/delete', [StdInspectController::class, 'delete'])->name('std-inspect.delete');
     Route::get('std-inspect/fetchdb/{pp}/{isactive}/{standar}', [StdInspectController::class, 'fetchdb'])->defaults('standar', '_');
+
+    Route::resource('std-maintenance', StdMaintenanceController::class);
+    Route::get('std-maintenance/{std_maintenance}/delete', [StdMaintenanceController::class, 'delete'])->name('std-maintenance.delete');
+    Route::get('std-maintenance/fetchdb/{pp}/{isactive}/{standar}', [StdMaintenanceController::class, 'fetchdb'])->defaults('standar', '_');
 
     Route::resource('inspect', InspectController::class);
     Route::get('inspect/{inspect}/delete', [InspectController::class, 'delete'])->name('inspect.delete');
