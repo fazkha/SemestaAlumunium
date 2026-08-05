@@ -92,7 +92,8 @@
                                     <div class="w-auto pb-4">
                                         <label for="nama"
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.nameofgoods')</label>
-                                        <x-text-input type="text" name="nama" id="nama" tabindex="4"
+                                        <x-text-input type="text" maxlength="200" name="nama" id="nama"
+                                            tabindex="4"
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.nameofgoods') }}"
                                             required value="{{ old('nama') }}" />
 
@@ -102,7 +103,8 @@
                                     <div class="w-auto pb-4">
                                         <label for="merk"
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.brand')</label>
-                                        <x-text-input type="text" name="merk" id="merk" tabindex="5"
+                                        <x-text-input type="text" maxlength="200" name="merk" id="merk"
+                                            tabindex="5"
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.brand') }}"
                                             required value="{{ old('merk') }}" />
 
@@ -113,8 +115,8 @@
                                         <div class="w-1/2 pb-4">
                                             <label for="harga_satuan"
                                                 class="block mb-2 font-medium text-primary-600">@lang('messages.unitpricebuy')</label>
-                                            <x-text-input type="text" name="harga_satuan" id="harga_satuan"
-                                                tabindex="6" value="{{ old('harga_satuan') }}" />
+                                            <x-text-input type="text" maxlength="200" name="harga_satuan"
+                                                id="harga_satuan" tabindex="6" value="{{ old('harga_satuan') }}" />
 
                                             <x-input-error class="mt-2" :messages="$errors->get('harga_satuan')" />
                                         </div>
@@ -141,7 +143,7 @@
                                         <div class="w-1/2 pb-4">
                                             <label for="harga_satuan_jual"
                                                 class="block mb-2 font-medium text-primary-600">@lang('messages.unitpricesell')</label>
-                                            <x-text-input type="text" name="harga_satuan_jual"
+                                            <x-text-input type="text" maxlength="200" name="harga_satuan_jual"
                                                 id="harga_satuan_jual" tabindex="8"
                                                 value="{{ old('harga_satuan_jual') }}" />
 
@@ -209,8 +211,8 @@
                                         <div class="w-1/2 pb-4">
                                             <label for="hpp"
                                                 class="block mb-2 font-medium text-primary-600">@lang('messages.hpp')</label>
-                                            <x-text-input type="text" name="hpp" id="hpp"
-                                                tabindex="12" value="{{ old('hpp') }}" />
+                                            <x-text-input type="text" maxlength="200" name="hpp"
+                                                id="hpp" tabindex="12" value="{{ old('hpp') }}" />
 
                                             <x-input-error class="mt-2" :messages="$errors->get('hpp')" />
                                         </div>
@@ -225,8 +227,8 @@
                                     <div class="w-auto pb-4">
                                         <label for="keterangan"
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.description')</label>
-                                        <x-text-input type="text" name="keterangan" id="keterangan"
-                                            tabindex="13"
+                                        <x-text-input type="text" maxlength="200" name="keterangan"
+                                            id="keterangan" tabindex="13"
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.description') }}"
                                             value="{{ old('keterangan') }}" />
 

@@ -20,6 +20,7 @@ use App\Http\Controllers\KonversiController;
 use App\Http\Controllers\KritiksaranController;
 use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\MaintenanceController;
+use App\Http\Controllers\MaintenanceTypeController;
 use App\Http\Controllers\MitraController;
 use App\Http\Controllers\MitraizinController;
 use App\Http\Controllers\MitraubahhariController;
@@ -39,6 +40,7 @@ use App\Http\Controllers\QRController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\RepairController;
+use App\Http\Controllers\RepairTypeController;
 use App\Http\Controllers\ResignController;
 use App\Http\Controllers\SaleInvoiceController;
 use App\Http\Controllers\SaleOrderController;
@@ -228,13 +230,17 @@ Route::prefix('general-affair')->middleware('auth')->group(function () {
 });
 
 Route::prefix('service')->middleware('auth')->group(function () {
+    Route::resource('maintenance-type', MaintenanceTypeController::class);
+    Route::get('maintenance-type/{maintenance_type}/delete', [MaintenanceTypeController::class, 'delete'])->name('maintenance-type.delete');
+    Route::get('maintenance-type/fetchdb/{pp}/{isactive}/{nama}', [MaintenanceTypeController::class, 'fetchdb'])->defaults('nama', '_');
+
+    Route::resource('repair-type', RepairTypeController::class);
+    Route::get('repair-type/{repair_type}/delete', [RepairTypeController::class, 'delete'])->name('repair-type.delete');
+    Route::get('repair-type/fetchdb/{pp}/{isactive}/{nama}', [RepairTypeController::class, 'fetchdb'])->defaults('nama', '_');
+
     Route::resource('std-inspect', StdInspectController::class);
     Route::get('std-inspect/{std_inspect}/delete', [StdInspectController::class, 'delete'])->name('std-inspect.delete');
     Route::get('std-inspect/fetchdb/{pp}/{isactive}/{standar}', [StdInspectController::class, 'fetchdb'])->defaults('standar', '_');
-
-    Route::resource('std-maintenance', StdMaintenanceController::class);
-    Route::get('std-maintenance/{std_maintenance}/delete', [StdMaintenanceController::class, 'delete'])->name('std-maintenance.delete');
-    Route::get('std-maintenance/fetchdb/{pp}/{isactive}/{standar}', [StdMaintenanceController::class, 'fetchdb'])->defaults('standar', '_');
 
     Route::resource('inspect', InspectController::class);
     Route::get('inspect/{inspect}/delete', [InspectController::class, 'delete'])->name('inspect.delete');

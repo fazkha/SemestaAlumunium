@@ -55,8 +55,9 @@
                                         <div class="pb-4">
                                             <label for="title"
                                                 class="block mb-2 font-medium text-primary-600">Title</label>
-                                            <x-text-input type="text" id="title" name="title" required
-                                                placeholder="Enter title" value="{{ old('title', $datas->title) }}" />
+                                            <x-text-input type="text" maxlength="200" id="title" name="title"
+                                                required placeholder="Enter title"
+                                                value="{{ old('title', $datas->title) }}" />
 
                                             <x-input-error class="mt-2" :messages="$errors->get('title')" />
                                         </div>
@@ -76,8 +77,8 @@
                                             <div class="w-1/2 pb-4">
                                                 <label for="price"
                                                     class="block mb-2 font-medium text-primary-600">Price</label>
-                                                <x-text-input type="text" id="price" name="price" required
-                                                    placeholder="Enter price"
+                                                <x-text-input type="text" maxlength="200" id="price"
+                                                    name="price" required placeholder="Enter price"
                                                     value="{{ old('price', $datas->price) }}" />
 
                                                 <x-input-error class="mt-2" :messages="$errors->get('price')" />
@@ -297,7 +298,7 @@
                                                             value="1" />
                                                     </td>
                                                     <td>
-                                                        <x-text-input type="text" name="choice[]"
+                                                        <x-text-input type="text" maxlength="200" name="choice[]"
                                                             value="" />
                                                     </td>
                                                     <td>

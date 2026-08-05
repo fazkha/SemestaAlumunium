@@ -115,8 +115,8 @@
                                     <div class="w-auto pb-4 lg:pb-12">
                                         <label for="keterangan_terima"
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.receiptdescription')</label>
-                                        <x-text-input type="text" name="keterangan_terima" id="keterangan_terima"
-                                            tabindex="3"
+                                        <x-text-input type="text" maxlength="200" name="keterangan_terima"
+                                            id="keterangan_terima" tabindex="3"
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.description') }}"
                                             value="{{ old('keterangan_terima', $datas->keterangan_terima) }}" />
 

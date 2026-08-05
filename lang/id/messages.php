@@ -310,6 +310,8 @@ return [
     'inspect' => 'Inspeksi',
     'inspectionstandard' => 'Standar Inspeksi',
     'maintenancestandard' => 'Standar Perawatan',
+    'maintenancetype' => 'Jenis Perawatan',
+    'repairtype' => 'Jenis Perbaikan',
     'sequence' => 'Urutan',
     'check' => 'Cek',
     'tindaklanjut' => 'Tindak Lanjut',

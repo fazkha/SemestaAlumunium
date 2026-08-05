@@ -86,8 +86,8 @@
                                         <label for="biaya_angkutan"
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.deliverycost')
                                             (@lang('messages.currencysymbol'))</label>
-                                        <x-text-input type="text" name="biaya_angkutan" id="biaya_angkutan"
-                                            tabindex="4" value="{{ old('biaya_angkutan', 0) }}" />
+                                        <x-text-input type="text" maxlength="200" name="biaya_angkutan"
+                                            id="biaya_angkutan" tabindex="4" value="{{ old('biaya_angkutan', 0) }}" />
 
                                         <x-input-error class="mt-2" :messages="$errors->get('biaya_angkutan')" />
                                     </div>

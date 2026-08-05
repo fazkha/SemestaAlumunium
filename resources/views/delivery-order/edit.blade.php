@@ -67,8 +67,8 @@
                                     <div class="w-auto pb-4">
                                         <label for="alamat"
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.deliveryaddress')</label>
-                                        <x-text-input type="text" name="alamat" id="alamat" tabindex="2"
-                                            x-bind:disabled="buttonDisabled"
+                                        <x-text-input type="text" maxlength="200" name="alamat" id="alamat"
+                                            tabindex="2" x-bind:disabled="buttonDisabled"
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.address') }}"
                                             value="{{ $datas->alamat }}" />
 
@@ -78,8 +78,8 @@
                                     <div class="w-auto pb-4">
                                         <label for="keterangan"
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.description')</label>
-                                        <x-text-input type="text" name="keterangan" id="keterangan" tabindex="3"
-                                            x-bind:disabled="buttonDisabled"
+                                        <x-text-input type="text" maxlength="200" name="keterangan" id="keterangan"
+                                            tabindex="3" x-bind:disabled="buttonDisabled"
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.description') }}"
                                             value="{{ $datas->keterangan }}" />
 

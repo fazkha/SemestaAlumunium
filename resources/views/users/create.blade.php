@@ -38,7 +38,7 @@
                             <div class="form-group" style="margin-top: 0 !important">
                                 <label for="name"
                                     class="block mb-2 font-medium text-primary-600">@lang('messages.username')</label>
-                                <x-text-input type="text" name="name" id="name"
+                                <x-text-input type="text" maxlength="200" name="name" id="name"
                                     placeholder="{{ __('messages.enter') }} {{ __('messages.username') }}" required
                                     value="{{ old('name') }}" />
 

@@ -76,8 +76,9 @@
                                     <div class="w-auto pb-4">
                                         <label for="nama"
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.kecamatan')</label>
-                                        <x-text-input type="text" name="nama" id="nama" tabindex="3"
-                                            required placeholder="{{ __('messages.enter') }} {{ __('messages.name') }}"
+                                        <x-text-input type="text" maxlength="200" name="nama" id="nama"
+                                            tabindex="3" required
+                                            placeholder="{{ __('messages.enter') }} {{ __('messages.name') }}"
                                             value="{{ old('nama', $datas->nama) }}" />
 
                                         <x-input-error class="mt-2" :messages="$errors->get('nama')" />
@@ -88,7 +89,8 @@
                                     <div class="w-auto pb-4 lg:pb-12">
                                         <label for="keterangan"
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.description')</label>
-                                        <x-text-input type="text" name="keterangan" id="keterangan" tabindex="4"
+                                        <x-text-input type="text" maxlength="200" name="keterangan" id="keterangan"
+                                            tabindex="4"
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.description') }}"
                                             value="{{ old('keterangan', $datas->keterangan) }}" />
 

@@ -1093,7 +1093,9 @@
                     substr(request()->getRequestUri(), 0, 15) == '/service/repair' ||
                     substr(request()->getRequestUri(), 0, 16) == '/service/inspect' ||
                     substr(request()->getRequestUri(), 0, 20) == '/service/std-inspect' ||
-                    substr(request()->getRequestUri(), 0, 18) == '/service/gantibaru'
+                    substr(request()->getRequestUri(), 0, 18) == '/service/gantibaru' ||
+                    substr(request()->getRequestUri(), 0, 24) == '/service/maintenancetype' ||
+                    substr(request()->getRequestUri(), 0, 19) == '/service/repairtype'
                         ? '{isActive: true, open: true, currentlyOpen: "' . $controllerName . '"}'
                         : '{isActive: false, open: false, currentlyOpen: ""}' }}">
                         <a href="#" @click="$event.preventDefault(); open = !open"
@@ -1122,6 +1124,48 @@
                                 </svg>
                             </span>
                         </a>
+                        @can('inspect-create')
+                            <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="service">
+                                <a href="{{ route('maintenance-type.index') }}" role="menuitem"
+                                    class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
+                                    <span class="flex flex-row gap-1"
+                                        :class="{
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
+                                                'maintenancetype'
+                                        }">
+                                        <svg class="size-5" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M4 7a1 1 0 0 1 1-1h1a1 1 0 0 1 0 2H5a1 1 0 0 1-1-1zm5 0a1 1 0 0 1 1-1h9a1 1 0 1 1 0 2h-9a1 1 0 0 1-1-1zm-5 5a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2H5a1 1 0 0 1-1-1zm5 0a1 1 0 0 1 1-1h9a1 1 0 1 1 0 2h-9a1 1 0 0 1-1-1zm-5 5a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2H5a1 1 0 0 1-1-1zm5 0a1 1 0 0 1 1-1h9a1 1 0 1 1 0 2h-9a1 1 0 0 1-1-1z"
+                                                fill="currentColor" />
+                                        </svg>
+                                        @lang('messages.maintenancetype')
+                                    </span>
+                                </a>
+                            </div>
+                        @endcan
+                        @can('inspect-create')
+                            <div x-show="open"
+                                class="mt-2 space-y-2 px-7 shadow-bottom border-b border-primary-100 dark:border-primary-800"
+                                role="menu" arial-label="service">
+                                <a href="{{ route('repair-type.index') }}" role="menuitem"
+                                    class="block p-2 mb-3 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
+                                    <span class="flex flex-row gap-1"
+                                        :class="{
+                                            'border-b border-b-1 border-primary-200 dark:border-primary ': currentlyOpen ==
+                                                'repairtype'
+                                        }">
+                                        <svg class="size-5" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M4 7a1 1 0 0 1 1-1h1a1 1 0 0 1 0 2H5a1 1 0 0 1-1-1zm5 0a1 1 0 0 1 1-1h9a1 1 0 1 1 0 2h-9a1 1 0 0 1-1-1zm-5 5a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2H5a1 1 0 0 1-1-1zm5 0a1 1 0 0 1 1-1h9a1 1 0 1 1 0 2h-9a1 1 0 0 1-1-1zm-5 5a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2H5a1 1 0 0 1-1-1zm5 0a1 1 0 0 1 1-1h9a1 1 0 1 1 0 2h-9a1 1 0 0 1-1-1z"
+                                                fill="currentColor" />
+                                        </svg>
+                                        @lang('messages.repairtype')
+                                    </span>
+                                </a>
+                            </div>
+                        @endcan
                         @can('inspect-create')
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="service">
                                 <a href="{{ route('std-inspect.index') }}" role="menuitem"
@@ -1230,7 +1274,7 @@
                                         <svg class="size-5" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
                                             fill="currentColor">
                                             <path fill-rule="evenodd" clip-rule="evenodd"
-                                                d="M3.75 4.48h-.71L2 3.43l.71-.7.69.68L4.81 2l.71.71-1.77 1.77zM6.99 3h8v1h-8V3zm0 3h8v1h-8V6zm8 3h-8v1h8V9zm-8 3h8v1h-8v-1zM3.04 7.48h.71l1.77-1.77-.71-.7L3.4 6.42l-.69-.69-.71.71 1.04 1.04zm.71 3.01h-.71L2 9.45l.71-.71.69.69 1.41-1.42.71.71-1.77 1.77zm-.71 3.01h.71l1.77-1.77-.71-.71-1.41 1.42-.69-.69-.71.7 1.04 1.05z" />
+                                                d="M3.221 3.739l2.261 2.269L7.7 3.784l-.7-.7-1.012 1.007-.008-1.6a.523.523 0 0 1 .5-.526H8V1H6.48A1.482 1.482 0 0 0 5 2.489V4.1L3.927 3.033l-.706.706zm6.67 1.794h.01c.183.311.451.467.806.467.393 0 .706-.168.94-.503.236-.335.353-.78.353-1.333 0-.511-.1-.913-.301-1.207-.201-.295-.488-.442-.86-.442-.405 0-.718.194-.938.581h-.01V1H9v4.919h.89v-.386zm-.015-1.061v-.34c0-.248.058-.448.175-.601a.54.54 0 0 1 .445-.23.49.49 0 0 1 .436.233c.104.154.155.368.155.643 0 .33-.056.587-.169.768a.524.524 0 0 1-.47.27.495.495 0 0 1-.411-.211.853.853 0 0 1-.16-.532zM9 12.769c-.256.154-.625.231-1.108.231-.563 0-1.02-.178-1.369-.533-.349-.355-.523-.813-.523-1.374 0-.648.186-1.158.56-1.53.374-.376.875-.563 1.5-.563.433 0 .746.06.94.179v.998a1.26 1.26 0 0 0-.792-.276c-.325 0-.583.1-.774.298-.19.196-.283.468-.283.816 0 .338.09.603.272.797.182.191.431.287.749.287.282 0 .558-.092.828-.276v.946zM4 7L3 8v6l1 1h7l1-1V8l-1-1H4zm0 1h7v6H4V8z" />
                                         </svg>
                                         @lang('messages.gantibaru')
                                     </span>

@@ -41,7 +41,8 @@
                             <div class="form-group" style="margin-top: 0 !important">
                                 <label for="name"
                                     class="block mb-2 font-medium text-primary-600">@lang('messages.rolename')</label>
-                                <x-text-input type="text" name="name" id="name" autofocus tabindex="1"
+                                <x-text-input type="text" maxlength="200" name="name" id="name" autofocus
+                                    tabindex="1"
                                     placeholder="{{ __('messages.enter') }} {{ __('messages.rolename') }}" required
                                     value="{{ old('name') }}" />
 

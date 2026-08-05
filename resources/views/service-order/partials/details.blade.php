@@ -26,8 +26,8 @@
                         {{ $detail->ischeck == '1' ? 'checked' : '' }}>
                 </td>
                 <td class="align-top">
-                    <x-text-input type="text" name="standars[{{ $di }}][keterangan]" tabindex="10"
-                        value="{{ $detail->keterangan }}" />
+                    <x-text-input type="text" maxlength="200" name="standars[{{ $di }}][keterangan]"
+                        tabindex="10" value="{{ $detail->keterangan }}" />
                 </td>
             @endif
         </tr>

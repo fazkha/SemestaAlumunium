@@ -59,7 +59,8 @@
                                     <div class="w-auto pb-4 lg:pb-12">
                                         <label for="standar"
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.inspect')</label>
-                                        <x-text-input type="text" name="standar" id="standar" tabindex="2"
+                                        <x-text-input type="text" maxlength="200" name="standar" id="standar"
+                                            tabindex="2"
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.inspect') }}"
                                             required value="{{ old('standar', $datas->standar) }}" />
 

@@ -74,8 +74,9 @@
                                             <div class="w-auto pb-4">
                                                 <label for="code"
                                                     class="block mb-2 font-medium text-primary-600">Code</label>
-                                                <x-text-input type="text" name="code" id="code"
-                                                    placeholder="Enter code" required value="{{ old('code') }}" />
+                                                <x-text-input type="text" maxlength="200" name="code"
+                                                    id="code" placeholder="Enter code" required
+                                                    value="{{ old('code') }}" />
 
                                                 <x-input-error class="mt-2" :messages="$errors->get('code')" />
                                             </div>
@@ -83,8 +84,9 @@
                                             <div class="w-2/3 pb-4">
                                                 <label for="name"
                                                     class="block mb-2 font-medium text-primary-600">Name</label>
-                                                <x-text-input type="text" name="name" id="name"
-                                                    placeholder="Enter name" required value="{{ old('name') }}" />
+                                                <x-text-input type="text" maxlength="200" name="name"
+                                                    id="name" placeholder="Enter name" required
+                                                    value="{{ old('name') }}" />
 
                                                 <x-input-error class="mt-2" :messages="$errors->get('name')" />
                                             </div>

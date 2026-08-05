@@ -35,8 +35,9 @@
                         tabindex="9" />
                 </td>
                 <td class="align-top">
-                    <x-text-input type="text" name="stocks[{{ $di }}][keterangan_adjustment]"
-                        tabindex="10" value="{{ $detail->keterangan_adjustment }}" />
+                    <x-text-input type="text" maxlength="200"
+                        name="stocks[{{ $di }}][keterangan_adjustment]" tabindex="10"
+                        value="{{ $detail->keterangan_adjustment }}" />
                 </td>
             @endif
         </tr>

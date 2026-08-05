@@ -15,9 +15,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('service_order_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('branch_id')->constrained()->onUpdate('cascade')->onDelete('no action');
-            $table->foreignId('barang_id')->constrained()->onUpdate('cascade')->onDelete('no action');
-            $table->foreignId('satuan_id')->constrained()->onUpdate('cascade')->onDelete('no action');
-            $table->string('nama_perawatan', 255);
+            $table->foreignId('jenis_perawatan_id')->constrained()->onUpdate('cascade')->onDelete('no action');
+            $table->unsignedBigInteger('barang_id')->nullable();
+            $table->unsignedBigInteger('satuan_id')->nullable();
+            $table->foreign('barang_id')->references('id')->on('barangs')->onUpdate('cascade')->onDelete('no action');
+            $table->foreign('satuan_id')->references('id')->on('satuans')->onUpdate('cascade')->onDelete('no action');
             $table->unsignedInteger('harga_satuan')->default(0);
             $table->decimal('kuantiti', 8, 2)->default(0);
             $table->string('keterangan', 255)->nullable();

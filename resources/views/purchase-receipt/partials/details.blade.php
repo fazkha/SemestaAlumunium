@@ -61,8 +61,8 @@
                 @if ($viewMode == true)
                     <x-text-span>{{ $detail->keterangan_terima ? $detail->keterangan_terima : '-' }}</x-text-span>
                 @else
-                    <x-text-input type="text" name="items[{{ $i }}][keterangan_terima]" tabindex="9"
-                        value="{{ $detail->keterangan_terima }}" />
+                    <x-text-input type="text" maxlength="200" name="items[{{ $i }}][keterangan_terima]"
+                        tabindex="9" value="{{ $detail->keterangan_terima }}" />
                 @endif
             </td>
         </tr>

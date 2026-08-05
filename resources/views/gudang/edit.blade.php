@@ -54,8 +54,8 @@
                                     <div class="w-auto pb-4">
                                         <label for="kode"
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.locationcode')</label>
-                                        <x-text-input type="text" name="kode" id="kode" tabindex="1"
-                                            autofocus
+                                        <x-text-input type="text" maxlength="200" name="kode" id="kode"
+                                            tabindex="1" autofocus
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.locationcode') }}"
                                             required value="{{ old('kode', $datas->kode) }}" />
 
@@ -65,8 +65,8 @@
                                     <div class="w-auto pb-4">
                                         <label for="nama"
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.locationname')</label>
-                                        <x-text-input type="text" name="nama" id="nama" tabindex="2"
-                                            required
+                                        <x-text-input type="text" maxlength="200" name="nama" id="nama"
+                                            tabindex="2" required
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.locationname') }}"
                                             value="{{ old('nama', $datas->nama) }}" />
 
@@ -76,7 +76,8 @@
                                     <div class="w-auto pb-4">
                                         <label for="keterangan"
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.description')</label>
-                                        <x-text-input type="text" name="keterangan" id="keterangan" tabindex="3"
+                                        <x-text-input type="text" maxlength="200" name="keterangan" id="keterangan"
+                                            tabindex="3"
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.description') }}"
                                             value="{{ old('keterangan', $datas->keterangan) }}" />
 
@@ -88,7 +89,8 @@
                                     <div class="w-auto pb-4">
                                         <label for="alamat"
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.locationaddress')</label>
-                                        <x-text-input type="text" name="alamat" id="alamat" tabindex="4"
+                                        <x-text-input type="text" maxlength="200" name="alamat" id="alamat"
+                                            tabindex="4"
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.locationaddress') }}"
                                             required value="{{ old('alamat', $datas->alamat) }}" />
 

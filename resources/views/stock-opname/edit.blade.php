@@ -331,7 +331,7 @@
                                                             id="selisih_stock" name="selisih_stock" tabindex="13" />
                                                     </td>
                                                     <td class="align-top">
-                                                        <x-text-input type="text" id="keterangan"
+                                                        <x-text-input type="text" maxlength="200" id="keterangan"
                                                             name="keterangan" tabindex="14" />
                                                     </td>
                                                     <td class="align-top">

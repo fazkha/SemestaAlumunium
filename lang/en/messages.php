@@ -311,6 +311,8 @@ return [
     'inspect' => 'Inspection',
     'inspectionstandard' => 'Inspection Standard',
     'maintenancestandard' => 'Maintenance Standard',
+    'maintenancetype' => 'Maintenance Type',
+    'repairtype' => 'Repair Type',
     'sequence' => 'Sequence',
     'check' => 'Check',
     'tindaklanjut' => 'Follow-up Action',

@@ -47,8 +47,8 @@
                                     <div class="w-auto pb-4">
                                         <label for="judul"
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.title')</label>
-                                        <x-text-input type="text" name="judul" id="judul" tabindex="1"
-                                            autofocus
+                                        <x-text-input type="text" maxlength="200" name="judul" id="judul"
+                                            tabindex="1" autofocus
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.title') }}" required
                                             value="{{ old('judul', $datas->judul) }}" />
 
@@ -58,7 +58,8 @@
                                     <div class="w-auto pb-4">
                                         <label for="keterangan"
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.description')</label>
-                                        <x-text-input type="text" name="keterangan" id="keterangan" tabindex="2"
+                                        <x-text-input type="text" maxlength="200" name="keterangan" id="keterangan"
+                                            tabindex="2"
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.description') }}"
                                             value="{{ old('keterangan', $datas->keterangan) }}" />
 

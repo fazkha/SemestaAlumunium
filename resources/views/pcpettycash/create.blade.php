@@ -88,8 +88,8 @@
                                         <label for="nominal"
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.nominal')
                                             (@lang('messages.thousands') @lang('messages.currencysymbol'))</label>
-                                        <x-text-input type="text" name="nominal" id="nominal" tabindex="3"
-                                            value="{{ old('nominal', 0) }}" />
+                                        <x-text-input type="text" maxlength="200" name="nominal" id="nominal"
+                                            tabindex="3" value="{{ old('nominal', 0) }}" />
 
                                         <x-input-error class="mt-2" :messages="$errors->get('nominal')" />
                                     </div>

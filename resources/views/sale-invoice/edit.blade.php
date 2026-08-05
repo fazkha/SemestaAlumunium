@@ -101,8 +101,8 @@
                                         <label for="biaya_angkutan"
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.deliverycost')
                                             (@lang('messages.currencysymbol'))</label>
-                                        <x-text-input type="text" name="biaya_angkutan" id="biaya_angkutan"
-                                            tabindex="4"
+                                        <x-text-input type="text" maxlength="200" name="biaya_angkutan"
+                                            id="biaya_angkutan" tabindex="4"
                                             value="{{ old('biaya_angkutan', $datas->biaya_angkutan) }}" />
 
                                         <x-input-error class="mt-2" :messages="$errors->get('biaya_angkutan')" />
@@ -283,7 +283,7 @@
                                                         </div>
                                                     </td>
                                                     <td class="align-top">
-                                                        <x-text-input type="text" id="keterangan"
+                                                        <x-text-input type="text" maxlength="200" id="keterangan"
                                                             name="keterangan" required tabindex="14" />
                                                     </td>
                                                     {{-- <td class="align-top">
@@ -458,8 +458,9 @@
                                                             tabindex="21" />
                                                     </td>
                                                     <td class="align-top">
-                                                        <x-text-input type="text" id="keterangan_adonan"
-                                                            name="keterangan_adonan" tabindex="22" />
+                                                        <x-text-input type="text" maxlength="200"
+                                                            id="keterangan_adonan" name="keterangan_adonan"
+                                                            tabindex="22" />
                                                     </td>
                                                     {{-- <td class="align-top">
                                                         <x-text-input type="number" min="0" id="pajak_adonan" name="pajak_adonan"

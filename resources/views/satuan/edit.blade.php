@@ -47,8 +47,8 @@
                                     <div class="w-auto pb-4">
                                         <label for="singkatan"
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.abbreviation')</label>
-                                        <x-text-input type="text" name="singkatan" id="singkatan" tabindex="1"
-                                            autofocus
+                                        <x-text-input type="text" maxlength="200" name="singkatan" id="singkatan"
+                                            tabindex="1" autofocus
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.abbreviation') }}"
                                             required value="{{ old('singkatan', $datas->singkatan) }}" />
 
@@ -58,8 +58,8 @@
                                     <div class="w-auto pb-4">
                                         <label for="nama_lengkap"
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.unitname')</label>
-                                        <x-text-input type="text" name="nama_lengkap" id="nama_lengkap"
-                                            tabindex="2"
+                                        <x-text-input type="text" maxlength="200" name="nama_lengkap"
+                                            id="nama_lengkap" tabindex="2"
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.unitname') }}"
                                             required value="{{ old('nama_lengkap', $datas->nama_lengkap) }}" />
 
@@ -72,7 +72,8 @@
                                     <div class="w-auto pb-4 lg:pb-12">
                                         <label for="keterangan"
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.description')</label>
-                                        <x-text-input type="text" name="keterangan" id="keterangan" tabindex="3"
+                                        <x-text-input type="text" maxlength="200" name="keterangan" id="keterangan"
+                                            tabindex="3"
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.description') }}"
                                             required value="{{ old('keterangan', $datas->keterangan) }}" />
 
