@@ -244,16 +244,16 @@ Route::prefix('service')->middleware('auth')->group(function () {
 
     Route::resource('inspect', InspectController::class);
     Route::get('inspect/{inspect}/delete', [InspectController::class, 'delete'])->name('inspect.delete');
-    Route::get('inspect/fetchdb/{pp}/{isactive}/{tanggal}/{customer}/{pegawai}', [InspectController::class, 'fetchdb'])->defaults('tanggal', '_');
+    Route::get('inspect/fetchdb/{pp}/{isactive}/{tanggal}/{customer}/{petugas}', [InspectController::class, 'fetchdb'])->defaults('tanggal', '_');
     Route::post('inspect/update-detail/{detail}', [InspectController::class, 'updateDetail']);
 
     Route::resource('maintenance', MaintenanceController::class);
     Route::get('maintenance/{maintenance}/delete', [MaintenanceController::class, 'delete'])->name('maintenance.delete');
-    Route::get('maintenance/fetchdb/{pp}/{isactive}/{tanggal}/{customer}/{pegawai}', [MaintenanceController::class, 'fetchdb'])->defaults('tanggal', '_');
+    Route::get('maintenance/fetchdb/{pp}/{isactive}/{tanggal}/{customer}/{petugas}', [MaintenanceController::class, 'fetchdb'])->defaults('tanggal', '_');
 
     Route::resource('repair', RepairController::class);
     Route::get('repair/{repair}/delete', [RepairController::class, 'delete'])->name('repair.delete');
-    Route::get('repair/fetchdb/{pp}/{isactive}/{tanggal}/{customer}/{pegawai}', [RepairController::class, 'fetchdb'])->defaults('tanggal', '_');
+    Route::get('repair/fetchdb/{pp}/{isactive}/{tanggal}/{customer}/{petugas}', [RepairController::class, 'fetchdb'])->defaults('tanggal', '_');
 })->missing(function (Request $request) {
     return Redirect::route('dashboard');
 });

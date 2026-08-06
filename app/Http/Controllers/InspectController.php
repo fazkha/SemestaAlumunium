@@ -47,15 +47,15 @@ class InspectController extends Controller implements HasMiddleware
         if (!$request->session()->exists('service-order_customer_id')) {
             $request->session()->put('service-order_customer_id', 'all');
         }
-        if (!$request->session()->exists('service-order_pegawai_id')) {
-            $request->session()->put('service-order_pegawai_id', 'all');
+        if (!$request->session()->exists('service-order_petugas_id')) {
+            $request->session()->put('service-order_petugas_id', 'all');
         }
 
-        $search_arr = ['service-order_isactive', 'service-order_customer_id', 'service-order_pegawai_id', 'service-order_tanggal'];
+        $search_arr = ['service-order_isactive', 'service-order_customer_id', 'service-order_petugas_id', 'service-order_tanggal'];
 
         $branch_id = auth()->user()->profile->branch_id;
         $customers = Customer::where('branch_id', $branch_id)->where('isactive', 1)->orderBy('nama')->pluck('nama', 'id');
-        $pegawais = Pegawai::join('brandivjabpegs', 'brandivjabpegs.pegawai_id', 'pegawais.id')
+        $petugass = Pegawai::join('brandivjabpegs', 'brandivjabpegs.pegawai_id', 'pegawais.id')
             ->join('brandivjabs', 'brandivjabpegs.brandivjab_id', 'brandivjabs.id')
             ->join('jabatans', 'jabatans.id', 'brandivjabs.jabatan_id')
             ->where('pegawais.isactive', 1)
@@ -67,7 +67,7 @@ class InspectController extends Controller implements HasMiddleware
         for ($i = 0; $i < count($search_arr); $i++) {
             $field = substr($search_arr[$i], strlen('service-order_'));
 
-            if ($search_arr[$i] == 'service-order_isactive' || $search_arr[$i] == 'service-order_customer_id' || $search_arr[$i] == 'service-order_pegawai_id') {
+            if ($search_arr[$i] == 'service-order_isactive' || $search_arr[$i] == 'service-order_customer_id' || $search_arr[$i] == 'service-order_petugas_id') {
                 if (session($search_arr[$i]) != 'all') {
                     $datas = $datas->where([$field => session($search_arr[$i])]);
                 }
@@ -89,7 +89,7 @@ class InspectController extends Controller implements HasMiddleware
             return redirect()->route('dashboard');
         }
 
-        return view('service-order.index', compact(['datas', 'customers', 'pegawais']))->with('i', (request()->input('page', 1) - 1) * session('service-order_pp'));
+        return view('service-order.index', compact(['datas', 'customers', 'petugass']))->with('i', (request()->input('page', 1) - 1) * session('service-order_pp'));
     }
 
     public function fetchdb(Request $request): JsonResponse
@@ -97,14 +97,14 @@ class InspectController extends Controller implements HasMiddleware
         $request->session()->put('service-order_pp', $request->pp);
         $request->session()->put('service-order_isactive', $request->isactive);
         $request->session()->put('service-order_customer_id', $request->customer);
-        $request->session()->put('service-order_pegawai_id', $request->pegawai);
+        $request->session()->put('service-order_petugas_id', $request->petugas);
         $request->session()->put('service-order_tanggal', $request->tanggal);
 
-        $search_arr = ['service-order_isactive', 'service-order_customer_id', 'service-order_pegawai_id', 'service-order_tanggal'];
+        $search_arr = ['service-order_isactive', 'service-order_customer_id', 'service-order_petugas_id', 'service-order_tanggal'];
 
         $branch_id = auth()->user()->profile->branch_id;
         $customers = Customer::where('branch_id', $branch_id)->where('isactive', 1)->orderBy('nama')->pluck('nama', 'id');
-        $pegawais = Pegawai::join('brandivjabpegs', 'brandivjabpegs.pegawai_id', 'pegawais.id')
+        $petugass = Pegawai::join('brandivjabpegs', 'brandivjabpegs.pegawai_id', 'pegawais.id')
             ->join('brandivjabs', 'brandivjabpegs.brandivjab_id', 'brandivjabs.id')
             ->join('jabatans', 'jabatans.id', 'brandivjabs.jabatan_id')
             ->where('pegawais.isactive', 1)
@@ -116,7 +116,7 @@ class InspectController extends Controller implements HasMiddleware
         for ($i = 0; $i < count($search_arr); $i++) {
             $field = substr($search_arr[$i], strlen('service-order_'));
 
-            if ($search_arr[$i] == 'service-order_isactive' || $search_arr[$i] == 'service-order_customer_id' || $search_arr[$i] == 'service-order_pegawai_id') {
+            if ($search_arr[$i] == 'service-order_isactive' || $search_arr[$i] == 'service-order_customer_id' || $search_arr[$i] == 'service-order_petugas_id') {
                 if (session($search_arr[$i]) != 'all') {
                     $datas = $datas->where([$field => session($search_arr[$i])]);
                 }
@@ -136,7 +136,7 @@ class InspectController extends Controller implements HasMiddleware
 
         $datas->withPath('/service/inspect'); // pagination url to
 
-        $view = view('service-order.partials.table', compact(['datas', 'customers', 'pegawais']))->with('i', (request()->input('page', 1) - 1) * session('service-order_pp'))->render();
+        $view = view('service-order.partials.table', compact(['datas', 'customers', 'petugass']))->with('i', (request()->input('page', 1) - 1) * session('service-order_pp'))->render();
 
         if ($view) {
             return response()->json($view, 200);
@@ -150,10 +150,17 @@ class InspectController extends Controller implements HasMiddleware
         $branch_id = auth()->user()->profile->branch_id;
         $jenis_pelayanan_id = JenisPelayanan::where('nama', 'Inspeksi')->value('id');
         $customers = Customer::where('branch_id', $branch_id)->where('isactive', 1)->orderBy('nama')->pluck('nama', 'id');
+        $petugass = Pegawai::join('brandivjabpegs', 'brandivjabpegs.pegawai_id', 'pegawais.id')
+            ->join('brandivjabs', 'brandivjabpegs.brandivjab_id', 'brandivjabs.id')
+            ->join('jabatans', 'jabatans.id', 'brandivjabs.jabatan_id')
+            ->where('pegawais.isactive', 1)
+            ->whereIn('jabatans.islevel', [3, 7])
+            ->orderBy('pegawais.nama_lengkap')
+            ->pluck('pegawais.nama_lengkap', 'pegawais.id');
         $hke = KalenderHke::where('tanggal', date('Y-m-d'))->value('hke');
         $sro_prefix = AppSetting::where('parm', 'prefix_service_order')->value('value');
 
-        return view('service-order.create', compact(['customers', 'branch_id', 'jenis_pelayanan_id', 'hke', 'sro_prefix']));
+        return view('service-order.create', compact(['customers', 'branch_id', 'jenis_pelayanan_id', 'petugass', 'hke', 'sro_prefix']));
     }
 
     public function store(ServiceOrderRequest $request)
@@ -165,6 +172,7 @@ class InspectController extends Controller implements HasMiddleware
                 'branch_id' => $request->branch_id,
                 'customer_id' => $request->customer_id,
                 'jenis_pelayanan_id' => $request->jenis_pelayanan_id,
+                'petugas_id' => $request->petugas_id,
                 'product_id' => $product_id,
                 'hke' => $request->hke,
                 'tanggal' => $request->tanggal,
@@ -197,8 +205,15 @@ class InspectController extends Controller implements HasMiddleware
 
         $customers = Customer::where('branch_id', $branch_id)->where('isactive', 1)->orderBy('nama')->pluck('nama', 'id');
         $std_inspections = StdInspect::where('isactive', 1)->orderBy('urutan')->get();
+        $petugass = Pegawai::join('brandivjabpegs', 'brandivjabpegs.pegawai_id', 'pegawais.id')
+            ->join('brandivjabs', 'brandivjabpegs.brandivjab_id', 'brandivjabs.id')
+            ->join('jabatans', 'jabatans.id', 'brandivjabs.jabatan_id')
+            ->where('pegawais.isactive', 1)
+            ->whereIn('jabatans.islevel', [3, 7])
+            ->orderBy('pegawais.nama_lengkap')
+            ->pluck('pegawais.nama_lengkap', 'pegawais.id');
 
-        return view('service-order.edit', compact(['datas', 'details', 'customers', 'std_inspections', 'branch_id', 'jenis_pelayanan_id']));
+        return view('service-order.edit', compact(['datas', 'details', 'customers', 'std_inspections', 'branch_id', 'jenis_pelayanan_id', 'petugass']));
     }
 
     public function update(ServiceOrderRequest $request): RedirectResponse

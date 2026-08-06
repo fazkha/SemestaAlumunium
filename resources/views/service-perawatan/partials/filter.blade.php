@@ -32,15 +32,15 @@
                         <select id="pp-dropdown"
                             class="text-sm px-2 leading-tight pl-28 pr-9 py-2 appearance-none w-full h-full rounded-md border block bg-primary-20 border-primary-100 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400 focus:border-primary-600 focus:ring-primary-600 focus-visible:ring-primary-600 focus:outline-none">
                             <option
-                                {{ session('service-order_pp') == config('custom.list_per_page_opt_1') ? 'selected' : '' }}
+                                {{ session('maintenance_pp') == config('custom.list_per_page_opt_1') ? 'selected' : '' }}
                                 value="{{ config('custom.list_per_page_opt_1') }}">
                                 {{ config('custom.list_per_page_opt_1') }}</option>
                             <option
-                                {{ session('service-order_pp') == config('custom.list_per_page_opt_2') ? 'selected' : '' }}
+                                {{ session('maintenance_pp') == config('custom.list_per_page_opt_2') ? 'selected' : '' }}
                                 value="{{ config('custom.list_per_page_opt_2') }}">
                                 {{ config('custom.list_per_page_opt_2') }}</option>
                             <option
-                                {{ session('service-order_pp') == config('custom.list_per_page_opt_3') ? 'selected' : '' }}
+                                {{ session('maintenance_pp') == config('custom.list_per_page_opt_3') ? 'selected' : '' }}
                                 value="{{ config('custom.list_per_page_opt_3') }}">
                                 {{ config('custom.list_per_page_opt_3') }}</option>
                         </select>
@@ -54,11 +54,11 @@
                             class="w-24 text-xs h-full absolute inset-y-0 left-0 flex items-center px-2 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">@lang('messages.active')</span>
                         <select id="isactive-dropdown"
                             class="text-sm px-2 leading-tight pl-28 pr-9 py-2 appearance-none w-full h-full rounded-md border block bg-primary-20 border-primary-100 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400 focus:border-primary-600 focus:ring-primary-600 focus-visible:ring-primary-600 focus:outline-none">
-                            <option {{ session('service-order_isactive') == 'all' ? 'selected' : '' }} value="all">
+                            <option {{ session('maintenance_isactive') == 'all' ? 'selected' : '' }} value="all">
                                 @lang('messages.all')</option>
-                            <option {{ session('service-order_isactive') == '1' ? 'selected' : '' }} value="1">
+                            <option {{ session('maintenance_isactive') == '1' ? 'selected' : '' }} value="1">
                                 @lang('messages.yes')</option>
-                            <option {{ session('service-order_isactive') == '0' ? 'selected' : '' }} value="0">
+                            <option {{ session('maintenance_isactive') == '0' ? 'selected' : '' }} value="0">
                                 @lang('messages.no')</option>
                         </select>
                         <div
@@ -70,7 +70,7 @@
                         <span
                             class="w-24 text-xs h-full absolute inset-y-0 left-0 flex items-center px-2 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">@lang('calendar.date')</span>
                         <input id="search-tanggal" type="date" placeholder="@lang('messages.search')"
-                            value="{{ session('service-order_tanggal') == '_' ? '' : session('service-order_tanggal') }}"
+                            value="{{ session('maintenance_tanggal') == '_' ? '' : session('maintenance_tanggal') }}"
                             class="text-sm pl-28 pr-6 pt-1.5 pb-2 appearance-none rounded-md border block w-full bg-primary-20 border-primary-100 placeholder-gray-400 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400 dark:placeholder-gray-600 focus:border-primary-600 focus:ring-primary-600 focus-visible:ring-primary-600 focus:outline-none" />
                     </div>
                 </div>
@@ -81,11 +81,10 @@
                             class="w-24 text-xs h-full absolute inset-y-0 left-0 flex items-center px-2 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">@lang('messages.customer')</span>
                         <select id="customer-dropdown"
                             class="text-sm px-2 leading-tight pl-28 pr-9 py-2 appearance-none w-full h-full rounded-md border block bg-primary-20 border-primary-100 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400 focus:border-primary-600 focus:ring-primary-600 focus-visible:ring-primary-600 focus:outline-none">
-                            <option {{ session('service-order_customer_id') == 'all' ? 'selected' : '' }}
-                                value="all">
+                            <option {{ session('maintenance_customer_id') == 'all' ? 'selected' : '' }} value="all">
                                 @lang('messages.all')</option>
                             @foreach ($customers as $id => $name)
-                                <option {{ session('service-order_customer_id') == $id ? 'selected' : '' }}
+                                <option {{ session('maintenance_customer_id') == $id ? 'selected' : '' }}
                                     value="{{ $id }}">{{ $name }}</option>
                             @endforeach
                         </select>
@@ -99,11 +98,11 @@
                             class="w-24 text-xs h-full absolute inset-y-0 left-0 flex items-center px-2 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800">@lang('messages.officer')</span>
                         <select id="petugas-dropdown"
                             class="text-sm px-2 leading-tight pl-28 pr-9 py-2 appearance-none w-full h-full rounded-md border block bg-primary-20 border-primary-100 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400 focus:border-primary-600 focus:ring-primary-600 focus-visible:ring-primary-600 focus:outline-none">
-                            <option {{ session('service-order_petugas_id') == 'all' ? 'selected' : '' }}
+                            <option {{ session('maintenance_petugas_maintenance_id') == 'all' ? 'selected' : '' }}
                                 value="all">
                                 @lang('messages.all')</option>
                             @foreach ($petugass as $id => $name)
-                                <option {{ session('service-order_petugas_id') == $id ? 'selected' : '' }}
+                                <option {{ session('maintenance_petugas_maintenance_id') == $id ? 'selected' : '' }}
                                     value="{{ $id }}">{{ $name }}</option>
                             @endforeach
                         </select>
@@ -117,8 +116,8 @@
         </div>
 
         <div>
-            @can('inspect-create')
-                <x-anchor-primary href="{{ route('inspect.create') }}">
+            @can('maintenance-create')
+                <x-anchor-primary href="{{ route('maintenance.create') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="size-5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />

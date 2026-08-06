@@ -930,12 +930,12 @@
                         @endcan
                         @can('perawatan-list')
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="service">
-                                <a href="{{ route('customer.index') }}" role="menuitem"
+                                <a href="{{ route('maintenance.index') }}" role="menuitem"
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
                                             'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
-                                                'customer'
+                                                'maintenance'
                                         }">
                                         <svg fill="currentColor" class="size-5" xmlns="http://www.w3.org/2000/svg"
                                             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"

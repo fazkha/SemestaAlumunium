@@ -33,36 +33,6 @@
                         @lang('messages.active')
                     </th>
                     <th
-                        class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-gray-400 dark:bg-primary-800 dark:border-primary-800">
-                        <div class="flex items-center justify-center">
-                            <svg fill="currentColor" class="w-5 h-5" viewBox="0 0 256 256" id="Flat"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M128,20A108,108,0,1,0,236,128,108.12186,108.12186,0,0,0,128,20Zm0,192a84,84,0,1,1,84-84A84.09562,84.09562,0,0,1,128,212ZM144,84v92a12,12,0,0,1-24,0V106.417l-5.3457,3.5625a12.00027,12.00027,0,1,1-13.3086-19.97265l24-15.99317A12.00071,12.00071,0,0,1,144,84Z" />
-                            </svg>
-                        </div>
-                    </th>
-                    <th
-                        class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-gray-400 dark:bg-primary-800 dark:border-primary-800">
-                        <div class="flex items-center justify-center">
-                            <svg fill="currentColor" class="w-5 h-5" viewBox="0 0 256 256" id="Flat"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M128,20A108,108,0,1,0,236,128,108.12186,108.12186,0,0,0,128,20Zm0,192a84,84,0,1,1,84-84A84.09562,84.09562,0,0,1,128,212Zm29.50391-87.38477-29.51075,39.37891H152a12,12,0,0,1,0,24H104.39648c-.13281.00488-.26464.00684-.39843.00684a12.00272,12.00272,0,0,1-9.47168-19.36914l43.56543-58.13379a12.00426,12.00426,0,1,0-21.1543-11.165A11.9998,11.9998,0,0,1,94.834,89.9834a36.00408,36.00408,0,1,1,63.01172,34.15234C157.73535,124.29883,157.62207,124.458,157.50391,124.61523Z" />
-                            </svg>
-                        </div>
-                    </th>
-                    <th
-                        class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-gray-400 dark:bg-primary-800 dark:border-primary-800">
-                        <div class="flex items-center justify-center">
-                            <svg fill="currentColor" class="size-5" viewBox="0 0 256 256" id="Flat"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M128,20A108,108,0,1,0,236,128,108.12186,108.12186,0,0,0,128,20Zm0,192a84,84,0,1,1,84-84A84.09562,84.09562,0,0,1,128,212Zm24.28809-88.2832a39.99987,39.99987,0,0,1-56.56934,56.56738,12.0001,12.0001,0,0,1,16.9707-16.9707A15.99967,15.99967,0,1,0,124.00293,136a11.99971,11.99971,0,0,1-9.832-18.87988l14.7832-21.12793h-24.957a12,12,0,0,1,0-24h48a11.99971,11.99971,0,0,1,9.832,18.87988l-18.32226,26.18457A40.17514,40.17514,0,0,1,152.28809,123.7168Z" />
-                            </svg>
-                        </div>
-                    </th>
-                    <th
                         class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-gray-400 dark:bg-primary-800 dark:border-primary-800">
                         &nbsp;
                     </th>
@@ -71,7 +41,7 @@
             <tbody>
                 @if ($datas->count() == 0)
                     <tr>
-                        <td colspan="9"
+                        <td colspan="6"
                             class="text-sm bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
                             <div class="flex items-center justify-center p-5">@lang('messages.datanotavailable')</div>
                         </td>
@@ -97,7 +67,8 @@
                         </td>
                         <td
                             class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
-                            <span class="text-gray-900 dark:text-gray-400">{{ $data->petugas->nama_lengkap }}</span>
+                            <span
+                                class="text-gray-900 dark:text-gray-400">{{ $data->petugas_maintenance_id ? $data->petugas_maintenance->nama_lengkap : '-' }}</span>
                         </td>
                         <td
                             class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
@@ -114,23 +85,11 @@
                                 @endif
                             </span>
                         </td>
-                        <td
-                            class="text-center px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
-                            <span>{{ $data->isperawatan == 1 ? '✔️' : '❓' }}</span>
-                        </td>
-                        <td
-                            class="text-center px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
-                            <span>{{ $data->isperbaikan == 1 ? '✔️' : '❓' }}</span>
-                        </td>
-                        <td
-                            class="text-center px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
-                            <span>{{ $data->isgantibaru == 1 ? '✔️' : '❓' }}</span>
-                        </td>
                         <td class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400"
                             style="vertical-align: middle;">
                             <div class="flex items-center justify-center">
-                                @can('inspect-show')
-                                    <a href="{{ route('inspect.show', Crypt::Encrypt($data->id)) }}"
+                                @can('perawatan-show')
+                                    <a href="{{ route('maintenance.show', Crypt::Encrypt($data->id)) }}"
                                         title="{{ __('messages.view') }}" class="ml-2">
                                         <span
                                             class="relative inline-block px-2 py-2 font-semibold text-blue-800 leading-tight dark:text-blue-300">
@@ -145,9 +104,9 @@
                                     </a>
                                 @endcan
 
-                                @can('inspect-edit')
+                                @can('perawatan-edit')
                                     @if ($data->ispackaged == 0)
-                                        <a href="{{ route('inspect.edit', Crypt::Encrypt($data->id)) }}"
+                                        <a href="{{ route('maintenance.edit', Crypt::Encrypt($data->id)) }}"
                                             title="{{ __('messages.edit') }}" class="ml-2">
                                             <span
                                                 class="relative inline-block px-2 py-2 font-semibold text-green-800 leading-tight dark:text-green-300">
@@ -163,9 +122,9 @@
                                     @endif
                                 @endcan
 
-                                @can('inspect-delete')
+                                @can('perawatan-delete')
                                     @if ($data->ispackaged == 0)
-                                        <a href="{{ route('inspect.delete', Crypt::Encrypt($data->id)) }}"
+                                        <a href="{{ route('maintenance.delete', Crypt::Encrypt($data->id)) }}"
                                             title="{{ __('messages.delete') }}" class="ml-2">
                                             <span
                                                 class="relative inline-block px-2 py-2 font-semibold text-red-800 leading-tight dark:text-red-300">
@@ -191,40 +150,6 @@
             <div class="mt-2 xs:mt-0">
                 {{ $datas->links() }}
             </div>
-        </div>
-    </div>
-</div>
-
-<div
-    class="flex flex-row items-center justify-start shadow-md rounded-md border border-solid border-primary-100 dark:border-primary-800">
-    <div
-        class="px-4 py-2 border-r border-primary-100 bg-primary-50 rounded-md dark:bg-primary-800 dark:border-primary-800">
-        <span class="text-sm">@lang('messages.footnote')</span>
-    </div>
-    <div class="px-4 py-2 flex flex-row flex-wrap gap-6 items-center">
-        <div class="flex flex-row gap-2 items-center">
-            <svg fill="currentColor" class="size-4" viewBox="0 0 256 256" id="Flat"
-                xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M128,20A108,108,0,1,0,236,128,108.12186,108.12186,0,0,0,128,20Zm0,192a84,84,0,1,1,84-84A84.09562,84.09562,0,0,1,128,212ZM144,84v92a12,12,0,0,1-24,0V106.417l-5.3457,3.5625a12.00027,12.00027,0,1,1-13.3086-19.97265l24-15.99317A12.00071,12.00071,0,0,1,144,84Z" />
-            </svg>
-            <span class="text-sm">@lang('messages.maintenance_2')</span>
-        </div>
-        <div class="flex flex-row gap-2 items-center">
-            <svg fill="currentColor" class="size-4" viewBox="0 0 256 256" id="Flat"
-                xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M128,20A108,108,0,1,0,236,128,108.12186,108.12186,0,0,0,128,20Zm0,192a84,84,0,1,1,84-84A84.09562,84.09562,0,0,1,128,212Zm29.50391-87.38477-29.51075,39.37891H152a12,12,0,0,1,0,24H104.39648c-.13281.00488-.26464.00684-.39843.00684a12.00272,12.00272,0,0,1-9.47168-19.36914l43.56543-58.13379a12.00426,12.00426,0,1,0-21.1543-11.165A11.9998,11.9998,0,0,1,94.834,89.9834a36.00408,36.00408,0,1,1,63.01172,34.15234C157.73535,124.29883,157.62207,124.458,157.50391,124.61523Z" />
-            </svg>
-            <span class="text-sm">@lang('messages.repair')</span>
-        </div>
-        <div class="flex flex-row gap-2 items-center">
-            <svg fill="currentColor" class="size-4" viewBox="0 0 256 256" id="Flat"
-                xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M128,20A108,108,0,1,0,236,128,108.12186,108.12186,0,0,0,128,20Zm0,192a84,84,0,1,1,84-84A84.09562,84.09562,0,0,1,128,212Zm24.28809-88.2832a39.99987,39.99987,0,0,1-56.56934,56.56738,12.0001,12.0001,0,0,1,16.9707-16.9707A15.99967,15.99967,0,1,0,124.00293,136a11.99971,11.99971,0,0,1-9.832-18.87988l14.7832-21.12793h-24.957a12,12,0,0,1,0-24h48a11.99971,11.99971,0,0,1,9.832,18.87988l-18.32226,26.18457A40.17514,40.17514,0,0,1,152.28809,123.7168Z" />
-            </svg>
-            <span class="text-sm">@lang('messages.gantibaru')</span>
         </div>
     </div>
 </div>

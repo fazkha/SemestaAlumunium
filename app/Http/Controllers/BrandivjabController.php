@@ -153,8 +153,13 @@ class BrandivjabController extends Controller implements HasMiddleware
         $branches = Branch::where('isactive', 1)->where('wilayah_id', 5)->orderBy('nama')->pluck('nama', 'id');
         $divisions = Division::where('isactive', 1)->orderBy('nama')->pluck('nama', 'id');
         $jabatans = Jabatan::where('isactive', 1)->orderBy('nama')->pluck('nama', 'id');
-        $atasans = Brandivjab::where('isactive', 1)->orderBy('jabatan_id')->get();
-
+        $atasans = Brandivjab::join('jabatans', 'jabatans.id', '=', 'brandivjabs.jabatan_id')
+            ->join('divisions', 'divisions.id', '=', 'brandivjabs.division_id')
+            ->select('brandivjabs.*')
+            ->where('brandivjabs.isactive', 1)
+            ->orderBy('jabatans.islevel')
+            ->orderBy('divisions.nama')
+            ->get();
         return view('brandivjab.create', compact(['branches', 'divisions', 'jabatans', 'atasans']));
     }
 
@@ -195,7 +200,13 @@ class BrandivjabController extends Controller implements HasMiddleware
         $branches = Branch::where('isactive', 1)->where('wilayah_id', 5)->orderBy('nama')->pluck('nama', 'id');
         $divisions = Division::where('isactive', 1)->orderBy('nama')->pluck('nama', 'id');
         $jabatans = Jabatan::where('isactive', 1)->orderBy('nama')->pluck('nama', 'id');
-        $atasans = Brandivjab::where('isactive', 1)->orderBy('jabatan_id')->get();
+        $atasans = Brandivjab::join('jabatans', 'jabatans.id', '=', 'brandivjabs.jabatan_id')
+            ->join('divisions', 'divisions.id', '=', 'brandivjabs.division_id')
+            ->select('brandivjabs.*')
+            ->where('brandivjabs.isactive', 1)
+            ->orderBy('jabatans.islevel')
+            ->orderBy('divisions.nama')
+            ->get();
 
         return view('brandivjab.edit', compact(['datas', 'branches', 'divisions', 'jabatans', 'atasans']));
     }

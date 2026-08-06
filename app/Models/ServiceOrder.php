@@ -19,7 +19,8 @@ class ServiceOrder extends Model
         'customer_id',
         'product_id',
         'jenis_pelayanan_id',
-        'service_order_id',
+        'petugas_id',
+        'petugas_maintenance_id',
         'hke',
         'tanggal',
         'no_order',
@@ -53,8 +54,13 @@ class ServiceOrder extends Model
         return $this->belongsTo(Customer::class);
     }
 
-    public function service_order_detail()
+    public function petugas()
     {
-        return $this->hasMany(ServiceOrderDetail::class);
+        return $this->belongsTo(Pegawai::class, 'petugas_id');
+    }
+
+    public function petugas_maintenance()
+    {
+        return $this->belongsTo(Pegawai::class, 'petugas_maintenance_id');
     }
 }
