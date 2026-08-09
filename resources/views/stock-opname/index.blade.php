@@ -27,7 +27,7 @@
                 @include('stock-opname.partials.feedback')
             </div>
 
-            <div class="w-full">
+            <div class="w-full overflow-x-auto">
                 @include('stock-opname.partials.filter')
             </div>
 

@@ -29,7 +29,7 @@
                 @include('service-order.partials.feedback')
             </div>
 
-            <div class="w-full">
+            <div class="w-full overflow-x-auto">
                 @include('service-order.partials.filter')
             </div>
 

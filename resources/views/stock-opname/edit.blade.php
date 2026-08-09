@@ -208,7 +208,7 @@
         </div>
 
         <div class="flex flex-col lg:flex-row gap-4 px-4 py-2">
-            <div class="w-full">
+            <div class="w-full overflow-x-auto">
                 <div class="flex flex-col items-center">
 
                     <div class="w-full" role="alert">
@@ -252,7 +252,7 @@
 
                                 <div
                                     class="border rounded-md border-primary-100 bg-primary-100 dark:bg-primary-850 dark:border-primary-800 dark:text-gray-400">
-                                    <div class="p-2">
+                                    <div class="p-2 overflow-x-auto">
                                         <table id="order_table" class="w-full border-separate border-spacing-2">
                                             <thead>
                                                 <tr>
@@ -522,7 +522,7 @@
                                 $('#detailBody').html(result.view);
                                 $('#jumlahdetail').text(result.jmlbrs);
                                 $('#form-order')[0].reset();
-                                $('.truncate').text('Pilih...');
+                                $("span.truncate").text('{{ __('messages.choose') . '...' }}');
                                 flasher.success("{{ __('messages.successsaved') }}!", "Success");
                             }
                         }

@@ -25,7 +25,7 @@
                 @include('sale-invoice.partials.feedback')
             </div>
 
-            <div class="w-full">
+            <div class="w-full overflow-x-auto">
                 @include('sale-invoice.partials.filter')
             </div>
 

@@ -29,7 +29,7 @@ S254.158,299.966,218.317,299.966z" />
                 @include('brandivjabkec.partials.feedback')
             </div>
 
-            <div class="w-full">
+            <div class="w-full overflow-x-auto">
                 @include('brandivjabkec.partials.filter')
             </div>
 

@@ -1,4 +1,4 @@
-@section('title', __('messages.services'))
+@section('title', __('messages.inspect'))
 
 <x-app-layout>
     <div
@@ -89,7 +89,7 @@
                                             <label for="tanggal"
                                                 class="block mb-2 font-medium text-primary-600">@lang('messages.transactiondate')</label>
                                             <x-text-input type="date" name="tanggal" id="tanggal"
-                                                data-date-format="dd-mm-yyyy" tabindex="2" placeholder="Enter date"
+                                                data-date-format="dd-mm-yyyy" tabindex="3" placeholder="Enter date"
                                                 required value="{{ old('tanggal') }}" />
 
                                             <x-input-error class="mt-2" :messages="$errors->get('tanggal')" />
@@ -99,7 +99,7 @@
                                     <div class="w-auto pb-4">
                                         <label for="petugas_id"
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.officer')</label>
-                                        <select name="petugas_id" id="petugas_id" tabindex="1" required autofocus
+                                        <select name="petugas_id" id="petugas_id" tabindex="4" required
                                             class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-400">
                                             <option value="">@lang('messages.choose')...</option>
                                             @foreach ($petugass as $id => $name)
@@ -118,7 +118,7 @@
                                         <label for="keterangan"
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.description')</label>
                                         <x-text-input type="text" maxlength="200" name="keterangan" id="keterangan"
-                                            tabindex="3"
+                                            tabindex="5"
                                             placeholder="{{ __('messages.enter') }} {{ __('messages.description') }}"
                                             value="{{ old('keterangan') }}" />
 
@@ -141,7 +141,7 @@
                                         <div class="w-auto">
                                             <label
                                                 class="cursor-pointer flex flex-col items-center md:flex-row md:gap-2">
-                                                <input type="checkbox" id="isactive" name="isactive"
+                                                <input type="checkbox" id="isactive" name="isactive" tabindex="6"
                                                     class="dark:border-white-400/20 transition-all duration-500 ease-in-out w-7 h-7 rounded-lg shadow-md dark:bg-primary-700 dark:border-primary-800 dark:text-gray-400"
                                                     checked>
                                                 <span
@@ -151,7 +151,7 @@
                                             </label>
                                         </div>
 
-                                        <x-primary-button type="submit" class="block" tabindex="6">
+                                        <x-primary-button type="submit" class="block" tabindex="7">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                 viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                                                 class="size-5">
@@ -160,7 +160,7 @@
                                             </svg>
                                             <span class="pl-1">@lang('messages.save')</span>
                                         </x-primary-button>
-                                        <x-anchor-secondary href="{{ route('inspect.index') }}" tabindex="7">
+                                        <x-anchor-secondary href="{{ route('inspect.index') }}" tabindex="8">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                 viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                                                 class="size-5">
@@ -178,7 +178,7 @@
             </div>
 
             <div class="flex flex-col lg:flex-row gap-4 px-4 py-2">
-                <div class="w-full">
+                <div class="w-full overflow-x-auto">
                     <div class="flex flex-col items-center">
 
                         <div class="w-full" role="alert">

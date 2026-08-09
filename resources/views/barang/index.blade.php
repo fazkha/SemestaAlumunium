@@ -28,7 +28,7 @@
                 @include('barang.partials.feedback')
             </div>
 
-            <div class="w-full">
+            <div class="w-full overflow-x-auto">
                 @include('barang.partials.filter')
             </div>
 

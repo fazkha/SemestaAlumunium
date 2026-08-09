@@ -32,7 +32,7 @@
                 @include('pcbiaya.partials.feedback')
             </div>
 
-            <div class="w-full">
+            <div class="w-full overflow-x-auto">
                 @include('pcbiaya.partials.filter')
             </div>
 

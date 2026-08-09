@@ -25,7 +25,7 @@
                 @include('sale-order.partials.feedback')
             </div>
 
-            <div class="w-full">
+            <div class="w-full overflow-x-auto">
                 @include('sale-order.partials.filter')
             </div>
 

@@ -36,7 +36,7 @@
                 @include('purchase-receipt.partials.feedback')
             </div>
 
-            <div class="w-full">
+            <div class="w-full overflow-x-auto">
                 @include('purchase-receipt.partials.filter')
             </div>
 

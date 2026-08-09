@@ -34,7 +34,7 @@
                 @include('area-officer.partials.feedback')
             </div>
 
-            <div class="w-full">
+            <div class="w-full overflow-x-auto">
                 @include('area-officer.partials.filter')
             </div>
 

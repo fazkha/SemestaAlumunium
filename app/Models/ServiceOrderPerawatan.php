@@ -14,14 +14,20 @@ class ServiceOrderPerawatan extends Model
         'branch_id',
         'barang_id',
         'satuan_id',
+        'jenis_perawatan_id',
         'nama_perawatan',
         'harga_satuan',
+        'pajak',
         'kuantiti',
+        'stock',
         'keterangan',
         'lokasi',
         'gambar',
         'created_by',
         'updated_by',
+        'approved',
+        'approved_by',
+        'approved_at',
     ];
 
     public function service_order()
@@ -37,5 +43,15 @@ class ServiceOrderPerawatan extends Model
     public function barang()
     {
         return $this->belongsTo(Barang::class);
+    }
+
+    public function satuan()
+    {
+        return $this->belongsTo(Satuan::class);
+    }
+
+    public function jenis_perawatan()
+    {
+        return $this->belongsTo(JenisPerawatan::class);
     }
 }

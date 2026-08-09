@@ -21,13 +21,13 @@
                 </td>
             @else
                 <td class="align-middle text-center">
-                    <input type="checkbox" name="standars[{{ $di }}][ischeck]" required tabindex="9"
+                    <input type="checkbox" name="standars[{{ $di }}][ischeck]" required tabindex="12"
                         class="dark:border-white-400/20 transition-all duration-500 ease-in-out w-7 h-7 rounded-lg shadow-md dark:bg-primary-700 dark:border-primary-800 dark:text-gray-400"
                         {{ $detail->ischeck == '1' ? 'checked' : '' }}>
                 </td>
                 <td class="align-top">
                     <x-text-input type="text" maxlength="200" name="standars[{{ $di }}][keterangan]"
-                        tabindex="10" value="{{ $detail->keterangan }}" />
+                        tabindex="13" value="{{ $detail->keterangan }}" />
                 </td>
             @endif
         </tr>

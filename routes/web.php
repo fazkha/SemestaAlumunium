@@ -250,6 +250,8 @@ Route::prefix('service')->middleware('auth')->group(function () {
     Route::resource('maintenance', MaintenanceController::class);
     Route::get('maintenance/{maintenance}/delete', [MaintenanceController::class, 'delete'])->name('maintenance.delete');
     Route::get('maintenance/fetchdb/{pp}/{isactive}/{tanggal}/{customer}/{petugas}', [MaintenanceController::class, 'fetchdb'])->defaults('tanggal', '_');
+    Route::post('maintenance/store-detail/{detail}', [MaintenanceController::class, 'storeDetail']);
+    Route::delete('maintenance/delete-detail/{detail}', [MaintenanceController::class, 'deleteDetail']);
 
     Route::resource('repair', RepairController::class);
     Route::get('repair/{repair}/delete', [RepairController::class, 'delete'])->name('repair.delete');

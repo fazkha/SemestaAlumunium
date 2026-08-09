@@ -316,5 +316,4 @@ return [
     'check' => 'Cek',
     'tindaklanjut' => 'Tindak Lanjut',
     'gantibaru' => 'Ganti Baru',
-    'officer' => 'Petugas',
 ];

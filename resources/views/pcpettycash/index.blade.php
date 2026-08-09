@@ -42,7 +42,7 @@
                 @include('pcpettycash.partials.feedback')
             </div>
 
-            <div class="w-full">
+            <div class="w-full overflow-x-auto">
                 @include('pcpettycash.partials.filter')
             </div>
 

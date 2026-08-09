@@ -18,11 +18,11 @@
     <div class="mx-auto px-4 py-2">
         <div class="flex flex-row items-center">
 
-            <div class="w-full">
+            <div class="w-full overflow-x-auto">
                 @include('qrcode.partials.imager')
             </div>
 
-            <div class="w-full">
+            <div class="w-full overflow-x-auto">
                 @include('qrcode.partials.scanner')
             </div>
 

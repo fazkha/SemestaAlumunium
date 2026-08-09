@@ -27,7 +27,7 @@
                 @include('stock-adjustment.partials.feedback')
             </div>
 
-            <div class="w-full">
+            <div class="w-full overflow-x-auto">
                 @include('stock-adjustment.partials.filter')
             </div>
 

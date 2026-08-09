@@ -24,7 +24,7 @@
                 @include('std-inspect.partials.feedback')
             </div>
 
-            <div class="w-full">
+            <div class="w-full overflow-x-auto">
                 @include('std-inspect.partials.filter')
             </div>
 

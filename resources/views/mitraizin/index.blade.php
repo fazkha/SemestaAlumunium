@@ -26,7 +26,7 @@
                 @include('mitraizin.partials.feedback')
             </div>
 
-            <div class="w-full">
+            <div class="w-full overflow-x-auto">
                 @include('mitraizin.partials.filter')
             </div>
 

@@ -272,7 +272,7 @@
                         </div>
                     </div>
 
-                    <div class="w-full">
+                    <div class="w-full overflow-x-auto">
                         <div class="flex flex-col items-center gap-4">
 
                             {{-- Detail --}}
@@ -308,7 +308,7 @@
                                         @if (count($details) > 0)
                                             <div
                                                 class="border rounded-md border-primary-100 bg-primary-100 dark:bg-primary-850 dark:border-primary-800 dark:text-gray-400">
-                                                <div class="p-2">
+                                                <div class="p-2 overflow-x-auto">
                                                     <table id="order_table"
                                                         class="w-full border-separate border-spacing-2">
                                                         <thead>

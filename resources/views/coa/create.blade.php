@@ -27,7 +27,7 @@
 
             <div class="py-2 flex flex-col">
 
-                <div class="w-full">
+                <div class="w-full overflow-x-auto">
                     <div class="flex flex-col items-center">
 
                         <div class="w-full" role="alert">

@@ -223,6 +223,7 @@ class InspectController extends Controller implements HasMiddleware
         if ($request->validated()) {
             $order->update([
                 'keterangan' => $request->keterangan,
+                'petugas_id' => $request->petugas_id,
                 'isperawatan' => ($request->isperawatan == 'on' ? 1 : 0),
                 'isperbaikan' => ($request->isperbaikan == 'on' ? 1 : 0),
                 'isgantibaru' => ($request->isgantibaru == 'on' ? 1 : 0),

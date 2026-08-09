@@ -26,7 +26,7 @@
                 @include('konversi.partials.feedback')
             </div>
 
-            <div class="w-full">
+            <div class="w-full overflow-x-auto">
                 @include('konversi.partials.filter')
             </div>
 

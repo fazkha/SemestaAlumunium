@@ -25,7 +25,7 @@
                 @include('gudang.partials.feedback')
             </div>
 
-            <div class="w-full">
+            <div class="w-full overflow-x-auto">
                 @include('gudang.partials.filter')
             </div>
 

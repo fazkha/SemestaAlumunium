@@ -120,7 +120,7 @@
         </div>
 
         <div class="flex flex-col lg:flex-row gap-4 px-4 py-2">
-            <div class="w-full">
+            <div class="w-full overflow-x-auto">
                 <div class="flex flex-col items-center">
                     <div
                         class="w-full shadow-lg bg-primary-50 rounded-md border border-primary-100 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
@@ -163,7 +163,7 @@
         </div>
 
         <div class="flex flex-col lg:flex-row gap-4 px-4 py-2">
-            <div class="w-full">
+            <div class="w-full overflow-x-auto">
                 <div class="flex flex-col items-center">
 
                     {{-- Detail --}}
@@ -244,7 +244,7 @@
         </div>
 
         <div class="flex flex-col lg:flex-row gap-4 px-4 py-2">
-            <div class="w-full">
+            <div class="w-full overflow-x-auto">
                 <div class="flex flex-col items-center">
 
                     <div

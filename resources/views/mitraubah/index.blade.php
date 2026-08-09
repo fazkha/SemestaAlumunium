@@ -33,7 +33,7 @@
                 @include('mitraubah.partials.feedback')
             </div>
 
-            <div class="w-full">
+            <div class="w-full overflow-x-auto">
                 @include('mitraubah.partials.filter')
             </div>
 

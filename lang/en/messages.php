@@ -317,5 +317,4 @@ return [
     'check' => 'Check',
     'tindaklanjut' => 'Follow-up Action',
     'gantibaru' => 'New Item Replacement',
-    'officer' => 'Officer',
 ];
