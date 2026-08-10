@@ -360,6 +360,7 @@ Route::prefix('warehouse')->middleware('auth')->group(function () {
     Route::resource('purchase-receipt', PurchaseReceiptController::class)->names('purchase-receipt');
     Route::get('purchase-receipt/fetchdb/{pp}/{isactive}/{tunai}/{supplier}/{no_order}/{tanggal}', [PurchaseReceiptController::class, 'fetchdb'])->defaults('no_order', '_')->defaults('tanggal', '_');
     Route::post('purchase-receipt/update-detail/{detail}', [PurchaseReceiptController::class, 'updateDetail']);
+    Route::get('purchase-receipt/{purchase_receipt}/delete', [PurchaseReceiptController::class, 'delete'])->name('purchase-receipt.delete');
 })->missing(function (Request $request) {
     return Redirect::route('dashboard');
 });

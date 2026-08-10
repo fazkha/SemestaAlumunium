@@ -137,12 +137,12 @@ class PurchaseReceiptController extends Controller implements HasMiddleware
 
     public function create()
     {
-        //
+        Gate::authorize('create', PurchaseOrder::class);
     }
 
     public function store(Request $request)
     {
-        //
+        Gate::authorize('create', PurchaseOrder::class);
     }
 
     public function show(Request $request): View
@@ -196,7 +196,7 @@ class PurchaseReceiptController extends Controller implements HasMiddleware
             ]);
 
             if ($request->isaccepted == 'on') {
-                return redirect()->route('purchase-receipt.show', $request->purchase_receipt)->with('success', __('messages.successupdated') . ' 👉 ' . $request->no_order);
+                return redirect()->route('purchase-receipt.index')->with('success', __('messages.successupdated') . ' 👉 ' . $request->no_order);
             } else {
                 return redirect()->back()->with('success', __('messages.successupdated') . ' 👉 ' . $request->no_order);
             }
@@ -207,12 +207,12 @@ class PurchaseReceiptController extends Controller implements HasMiddleware
 
     public function delete(Request $request)
     {
-        //
+        Gate::authorize('delete', PurchaseOrder::class);
     }
 
     public function destroy(Request $request)
     {
-        //
+        Gate::authorize('delete', PurchaseOrder::class);
     }
 
     public function updateDetail(Request $request): JsonResponse

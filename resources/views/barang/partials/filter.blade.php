@@ -132,7 +132,7 @@
                     </x-anchor-primary>
                 @endcan
 
-                @can('barang-show')
+                @can('barang-list')
                     <x-secondary-button id="print-mutasi"
                         class="bg-purple-600 dark:bg-purple-800 hover:bg-purple-700 hover:dark:bg-purple-900">
                         <svg id="print-icon" class="size-5" viewBox="0 0 15 15" fill="none"

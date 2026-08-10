@@ -82,7 +82,8 @@
                             <span
                                 class="text-gray-900 dark:text-gray-400">{{ $data->tunai == 1 ? __('messages.cash') : __('messages.credit') }}</span>
                         </td>
-                        <td class="px-3 py-3 text-sm border-b border-primary-100 bg-primary-20">
+                        <td
+                            class="px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
                             <span
                                 class="text-gray-900 dark:text-gray-400">{{ $data->tanggal_terima ? date_format(date_create($data->tanggal_terima), 'd/m/Y') : '' }}</span>
                         </td>
@@ -139,7 +140,7 @@
                                 @endcan
 
                                 @can('purchasereceipt-delete')
-                                    <a href="{{ route('purchase-receipt.index', Crypt::Encrypt($data->id)) }}"
+                                    <a href="{{ route('purchase-receipt.delete', Crypt::Encrypt($data->id)) }}"
                                         title="@lang('messages.delete')" class="ml-2">
                                         <span
                                             class="relative inline-block px-2 py-2 font-semibold text-red-800 leading-tight dark:text-red-300">
