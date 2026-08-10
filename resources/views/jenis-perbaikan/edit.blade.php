@@ -23,7 +23,7 @@
         </h1>
     </div>
 
-    <form id="satuan-form" action="{{ route('repair-type.update', Crypt::Encrypt($datas->id)) }}" method="POST"
+    <form action="{{ route('repair-type.update', Crypt::Encrypt($datas->id)) }}" method="POST"
         enctype="multipart/form-data">
         @csrf
         @method('PUT')
@@ -34,7 +34,7 @@
                 <div class="flex flex-col items-center">
 
                     <div class="w-full" role="alert">
-                        @include('satuan.partials.feedback')
+                        @include('jenis-perbaikan.partials.feedback')
                     </div>
 
                     <div
@@ -49,7 +49,7 @@
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.repair')</label>
                                         <x-text-input type="text" maxlength="200" name="nama" id="nama"
                                             tabindex="2"
-                                            placeholder="{{ __('messages.enter') }} {{ __('messages.unitname') }}"
+                                            placeholder="{{ __('messages.enter') }} {{ __('messages.repairtype') }}"
                                             required value="{{ old('nama', $datas->nama) }}" />
 
                                         <x-input-error class="mt-2" :messages="$errors->get('nama')" />

@@ -44,7 +44,7 @@
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.maintenance_2')</label>
                                         <x-text-input type="text" maxlength="200" name="nama" id="nama"
                                             tabindex="2"
-                                            placeholder="{{ __('messages.enter') }} {{ __('messages.maintenance_2') }}"
+                                            placeholder="{{ __('messages.enter') }} {{ __('messages.maintenancetype') }}"
                                             required value="{{ old('nama') }}" />
 
                                         <x-input-error class="mt-2" :messages="$errors->get('nama')" />

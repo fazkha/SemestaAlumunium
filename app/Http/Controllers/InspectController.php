@@ -225,8 +225,14 @@ class InspectController extends Controller implements HasMiddleware
                 'keterangan' => $request->keterangan,
                 'petugas_id' => $request->petugas_id,
                 'isperawatan' => ($request->isperawatan == 'on' ? 1 : 0),
+                'isperawatan_by' => $request->isperawatan == 'on' ? auth()->user()->email : null,
+                'isperawatan_at' => $request->isperawatan == 'on' ? date('Y-m-d H:i:s') : null,
                 'isperbaikan' => ($request->isperbaikan == 'on' ? 1 : 0),
+                'isperbaikan_by' => $request->isperbaikan == 'on' ? auth()->user()->email : null,
+                'isperbaikan_at' => $request->isperbaikan == 'on' ? date('Y-m-d H:i:s') : null,
                 'isgantibaru' => ($request->isgantibaru == 'on' ? 1 : 0),
+                'isgantibaru_by' => $request->isgantibaru == 'on' ? auth()->user()->email : null,
+                'isgantibaru_at' => $request->isgantibaru == 'on' ? date('Y-m-d H:i:s') : null,
                 'isactive' => ($request->isactive == 'on' ? 1 : 0),
                 'updated_by' => auth()->user()->email,
             ]);
@@ -275,15 +281,5 @@ class InspectController extends Controller implements HasMiddleware
         return response()->json([
             'view' => $view,
         ], 200);
-    }
-
-    public function approval(Request $request)
-    {
-        //
-    }
-
-    public function updateApproval(Request $request)
-    {
-        //
     }
 }

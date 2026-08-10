@@ -196,8 +196,12 @@ class MaintenanceController extends Controller implements HasMiddleware
             $order->update([
                 'keterangan' => $request->keterangan,
                 'petugas_maintenance_id' => $request->petugas_maintenance_id,
-                'isperbaikan' => ($request->isperbaikan == 'on' ? 1 : 0),
-                'isgantibaru' => ($request->isgantibaru == 'on' ? 1 : 0),
+                'isperbaikan' => ($request->isperbaikan == 'on' ? 1 : $order->isperbaikan),
+                'isperbaikan_by' => $request->isperbaikan == 'on' ? auth()->user()->email : $order->isperbaikan_by,
+                'isperbaikan_at' => $request->isperbaikan == 'on' ? date('Y-m-d H:i:s') : $order->isperbaikan_at,
+                'isgantibaru' => ($request->isgantibaru == 'on' ? 1 : $order->isgantibaru),
+                'isgantibaru_by' => $request->isgantibaru == 'on' ? auth()->user()->email : $order->isgantibaru_by,
+                'isgantibaru_at' => $request->isgantibaru == 'on' ? date('Y-m-d H:i:s') : $order->isgantibaru_at,
                 'isactive' => ($request->isactive == 'on' ? 1 : 0),
                 'updated_by' => auth()->user()->email,
             ]);

@@ -3,9 +3,11 @@
 namespace App\Providers;
 
 use App\Models\PurchaseOrder;
+use App\Models\ServiceOrder;
 use App\Models\StockOpname;
 use App\Policies\PurchaseReceiptPolicy;
 use App\Policies\StockOpnamePolicy;
+use App\Policies\ServicePerbaikanPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Spatie\LaravelPdf\PdfFactory;
@@ -25,5 +27,6 @@ class AppServiceProvider extends ServiceProvider
 
         Gate::policy(PurchaseOrder::class, PurchaseReceiptPolicy::class);
         Gate::policy(StockOpname::class, StockOpnamePolicy::class);
+        Gate::policy(ServiceOrder::class, ServicePerbaikanPolicy::class);
     }
 }

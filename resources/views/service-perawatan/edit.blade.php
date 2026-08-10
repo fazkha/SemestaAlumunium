@@ -128,7 +128,8 @@
                                                     <input type="checkbox" id="isperbaikan" name="isperbaikan"
                                                         tabindex="10"
                                                         class="dark:border-white-400/20 transition-all duration-500 ease-in-out w-7 h-7 rounded-lg shadow-md dark:bg-primary-700 dark:border-primary-800 dark:text-gray-400"
-                                                        {{ $datas->isperbaikan == '1' ? 'checked' : '' }}>
+                                                        {{ $datas->isperbaikan == '1' ? 'checked' : '' }}
+                                                        {{ $datas->isperbaikan == '1' ? 'disabled' : '' }}>
                                                     <span
                                                         class="group-hover:text-blue-500 transition-colors duration-300 text-right w-fit">
                                                         @lang('messages.repair')
@@ -140,7 +141,8 @@
                                                     <input type="checkbox" id="isgantibaru" name="isgantibaru"
                                                         tabindex="11"
                                                         class="dark:border-white-400/20 transition-all duration-500 ease-in-out w-7 h-7 rounded-lg shadow-md dark:bg-primary-700 dark:border-primary-800 dark:text-gray-400"
-                                                        {{ $datas->isgantibaru == '1' ? 'checked' : '' }}>
+                                                        {{ $datas->isgantibaru == '1' ? 'checked' : '' }}
+                                                        {{ $datas->isgantibaru == '1' ? 'disabled' : '' }}>
                                                     <span
                                                         class="group-hover:text-blue-500 transition-colors duration-300 text-right w-fit">
                                                         @lang('messages.gantibaru')
@@ -476,23 +478,6 @@
                 }
 
                 const myFormInitialValues = getInitialFormValues('master-form');
-
-                $("#print-laporan").on("click", function(e) {
-                    e.preventDefault();
-                    $('#print-icon').addClass('animate-spin');
-
-                    $.ajax({
-                        url: '{{ route('stock-adjustment.print', Crypt::encrypt($datas->id)) }}',
-                        type: 'get',
-                        success: function(result) {
-                            if (result.status !== 'Not Found') {
-                                var namafile = result.namafile;
-                                window.open(namafile, '_blank');
-                            }
-                            $('#print-icon').removeClass('animate-spin');
-                        }
-                    });
-                });
 
                 deleteDetail = function(detailId) {
                     let idname = '#a-delete-detail-' + detailId;

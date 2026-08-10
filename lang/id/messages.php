@@ -315,5 +315,6 @@ return [
     'sequence' => 'Urutan',
     'check' => 'Cek',
     'tindaklanjut' => 'Tindak Lanjut',
-    'gantibaru' => 'Ganti Baru',
+    'gantibaru' => 'Penggantian Baru',
+    'replacementtype' => 'Jenis Penggantian Baru',
 ];

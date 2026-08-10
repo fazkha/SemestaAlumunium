@@ -41,6 +41,8 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\RepairController;
 use App\Http\Controllers\RepairTypeController;
+use App\Http\Controllers\ReplacementController;
+use App\Http\Controllers\ReplacementTypeController;
 use App\Http\Controllers\ResignController;
 use App\Http\Controllers\SaleInvoiceController;
 use App\Http\Controllers\SaleOrderController;
@@ -238,6 +240,10 @@ Route::prefix('service')->middleware('auth')->group(function () {
     Route::get('repair-type/{repair_type}/delete', [RepairTypeController::class, 'delete'])->name('repair-type.delete');
     Route::get('repair-type/fetchdb/{pp}/{isactive}/{nama}', [RepairTypeController::class, 'fetchdb'])->defaults('nama', '_');
 
+    Route::resource('replacement-type', ReplacementTypeController::class);
+    Route::get('replacement-type/{replacement_type}/delete', [ReplacementTypeController::class, 'delete'])->name('replacement-type.delete');
+    Route::get('replacement-type/fetchdb/{pp}/{isactive}/{nama}', [ReplacementTypeController::class, 'fetchdb'])->defaults('nama', '_');
+
     Route::resource('std-inspect', StdInspectController::class);
     Route::get('std-inspect/{std_inspect}/delete', [StdInspectController::class, 'delete'])->name('std-inspect.delete');
     Route::get('std-inspect/fetchdb/{pp}/{isactive}/{standar}', [StdInspectController::class, 'fetchdb'])->defaults('standar', '_');
@@ -256,6 +262,14 @@ Route::prefix('service')->middleware('auth')->group(function () {
     Route::resource('repair', RepairController::class);
     Route::get('repair/{repair}/delete', [RepairController::class, 'delete'])->name('repair.delete');
     Route::get('repair/fetchdb/{pp}/{isactive}/{tanggal}/{customer}/{petugas}', [RepairController::class, 'fetchdb'])->defaults('tanggal', '_');
+    Route::post('repair/store-detail/{detail}', [RepairController::class, 'storeDetail']);
+    Route::delete('repair/delete-detail/{detail}', [RepairController::class, 'deleteDetail']);
+
+    Route::resource('replacement', ReplacementController::class);
+    Route::get('replacement/{replacement}/delete', [ReplacementController::class, 'delete'])->name('replacement.delete');
+    Route::get('replacement/fetchdb/{pp}/{isactive}/{tanggal}/{customer}/{petugas}', [ReplacementController::class, 'fetchdb'])->defaults('tanggal', '_');
+    Route::post('replacement/store-detail/{detail}', [ReplacementController::class, 'storeDetail']);
+    Route::delete('replacement/delete-detail/{detail}', [ReplacementController::class, 'deleteDetail']);
 })->missing(function (Request $request) {
     return Redirect::route('dashboard');
 });

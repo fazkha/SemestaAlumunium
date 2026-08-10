@@ -21,6 +21,8 @@ class ServiceOrder extends Model
         'jenis_pelayanan_id',
         'petugas_id',
         'petugas_maintenance_id',
+        'petugas_repair_id',
+        'petugas_replacement_id',
         'hke',
         'tanggal',
         'no_order',
@@ -37,6 +39,9 @@ class ServiceOrder extends Model
         'isperbaikan',
         'isperbaikan_by',
         'isperbaikan_at',
+        'isgantibaru',
+        'isgantibaru_by',
+        'isgantibaru_at',
         'approved',
         'approved_by',
         'approved_at',
@@ -62,5 +67,10 @@ class ServiceOrder extends Model
     public function petugas_maintenance()
     {
         return $this->belongsTo(Pegawai::class, 'petugas_maintenance_id');
+    }
+
+    public function petugas_repair()
+    {
+        return $this->belongsTo(Pegawai::class, 'petugas_repair_id');
     }
 }

@@ -367,23 +367,6 @@
 
                 const myFormInitialValues = getInitialFormValues('master-form');
 
-                $("#print-laporan").on("click", function(e) {
-                    e.preventDefault();
-                    $('#print-icon').addClass('animate-spin');
-
-                    $.ajax({
-                        url: '{{ route('stock-adjustment.print', Crypt::encrypt($datas->id)) }}',
-                        type: 'get',
-                        success: function(result) {
-                            if (result.status !== 'Not Found') {
-                                var namafile = result.namafile;
-                                window.open(namafile, '_blank');
-                            }
-                            $('#print-icon').removeClass('animate-spin');
-                        }
-                    });
-                });
-
                 $("#submit-detail").on("click", function(e) {
                     e.preventDefault();
                     let key = $('#master_id').val();

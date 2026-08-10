@@ -29,7 +29,7 @@
                 <div class="flex flex-col items-center">
 
                     <div class="w-full" role="alert">
-                        @include('jenis-perawatan.partials.feedback')
+                        @include('jenis-perbaikan.partials.feedback')
                     </div>
 
                     <div
@@ -44,7 +44,7 @@
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.repair')</label>
                                         <x-text-input type="text" maxlength="200" name="nama" id="nama"
                                             tabindex="2"
-                                            placeholder="{{ __('messages.enter') }} {{ __('messages.unitname') }}"
+                                            placeholder="{{ __('messages.enter') }} {{ __('messages.repairtype') }}"
                                             required value="{{ old('nama') }}" />
 
                                         <x-input-error class="mt-2" :messages="$errors->get('nama')" />

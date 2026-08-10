@@ -23,7 +23,7 @@
         </h1>
     </div>
 
-    <form id="satuan-form" action="{{ route('maintenance-type.update', Crypt::Encrypt($datas->id)) }}" method="POST"
+    <form action="{{ route('maintenance-type.update', Crypt::Encrypt($datas->id)) }}" method="POST"
         enctype="multipart/form-data">
         @csrf
         @method('PUT')

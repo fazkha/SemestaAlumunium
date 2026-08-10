@@ -122,7 +122,7 @@
 
         </div>
 
-        <div>
+        <div class="pr-1">
             @can('so-create')
                 <x-anchor-primary href="{{ route('sale-order.create') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"

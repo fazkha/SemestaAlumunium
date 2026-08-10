@@ -123,7 +123,7 @@
 
         </div>
 
-        <div>
+        <div class="pr-1">
             @can('brandivjab-create')
                 <x-anchor-primary href="{{ route('brandivjab.create') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"

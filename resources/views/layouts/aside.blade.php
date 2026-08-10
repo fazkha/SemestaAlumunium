@@ -812,9 +812,10 @@
                     substr(request()->getRequestUri(), 0, 15) == '/service/repair' ||
                     substr(request()->getRequestUri(), 0, 16) == '/service/inspect' ||
                     substr(request()->getRequestUri(), 0, 20) == '/service/std-inspect' ||
-                    substr(request()->getRequestUri(), 0, 18) == '/service/gantibaru' ||
+                    substr(request()->getRequestUri(), 0, 20) == '/service/replacement' ||
                     substr(request()->getRequestUri(), 0, 24) == '/service/maintenancetype' ||
-                    substr(request()->getRequestUri(), 0, 19) == '/service/repairtype'
+                    substr(request()->getRequestUri(), 0, 19) == '/service/repairtype' ||
+                    substr(request()->getRequestUri(), 0, 24) == '/service/replacementtype'
                         ? '{isActive: true, open: true, currentlyOpen: "' . $controllerName . '"}'
                         : '{isActive: false, open: false, currentlyOpen: ""}' }}">
                         <a href="#" @click="$event.preventDefault(); open = !open"
@@ -864,14 +865,12 @@
                             </div>
                         @endcan
                         @can('inspect-create')
-                            <div x-show="open"
-                                class="mt-2 space-y-2 px-7 shadow-bottom border-b border-primary-100 dark:border-primary-800"
-                                role="menu" arial-label="service">
+                            <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="service">
                                 <a href="{{ route('repair-type.index') }}" role="menuitem"
                                     class="block p-2 mb-3 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
-                                            'border-b border-b-1 border-primary-200 dark:border-primary ': currentlyOpen ==
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
                                                 'repairtype'
                                         }">
                                         <svg class="size-5" viewBox="0 0 24 24" fill="none"
@@ -886,6 +885,28 @@
                             </div>
                         @endcan
                         @can('inspect-create')
+                            <div x-show="open"
+                                class="mt-2 space-y-2 px-7 shadow-bottom border-b border-primary-100 dark:border-primary-800"
+                                role="menu" arial-label="service">
+                                <a href="{{ route('replacement-type.index') }}" role="menuitem"
+                                    class="block p-2 mb-3 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
+                                    <span class="flex flex-row gap-1"
+                                        :class="{
+                                            'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
+                                                'replacementtype'
+                                        }">
+                                        <svg class="size-5" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M4 7a1 1 0 0 1 1-1h1a1 1 0 0 1 0 2H5a1 1 0 0 1-1-1zm5 0a1 1 0 0 1 1-1h9a1 1 0 1 1 0 2h-9a1 1 0 0 1-1-1zm-5 5a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2H5a1 1 0 0 1-1-1zm5 0a1 1 0 0 1 1-1h9a1 1 0 1 1 0 2h-9a1 1 0 0 1-1-1zm-5 5a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2H5a1 1 0 0 1-1-1zm5 0a1 1 0 0 1 1-1h9a1 1 0 1 1 0 2h-9a1 1 0 0 1-1-1z"
+                                                fill="currentColor" />
+                                        </svg>
+                                        @lang('messages.replacementtype')
+                                    </span>
+                                </a>
+                            </div>
+                        @endcan
+                        @can('inspect-create')
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="service">
                                 <a href="{{ route('std-inspect.index') }}" role="menuitem"
                                     class="block p-2 mt-3 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
@@ -894,10 +915,18 @@
                                             'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
                                                 'stdinspect'
                                         }">
-                                        <svg class="size-5" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
-                                            fill="currentColor">
-                                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                                d="M3.75 4.48h-.71L2 3.43l.71-.7.69.68L4.81 2l.71.71-1.77 1.77zM6.99 3h8v1h-8V3zm0 3h8v1h-8V6zm8 3h-8v1h8V9zm-8 3h8v1h-8v-1zM3.04 7.48h.71l1.77-1.77-.71-.7L3.4 6.42l-.69-.69-.71.71 1.04 1.04zm.71 3.01h-.71L2 9.45l.71-.71.69.69 1.41-1.42.71.71-1.77 1.77zm-.71 3.01h.71l1.77-1.77-.71-.71-1.41 1.42-.69-.69-.71.7 1.04 1.05z" />
+                                        <svg class="size-5" viewBox="0 0 32 32" version="1.1"
+                                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <g id="icomoon-ignore">
+                                            </g>
+                                            <path
+                                                d="M16 2.672c-7.361 0-13.328 5.967-13.328 13.328s5.968 13.328 13.328 13.328c7.361 0 13.328-5.967 13.328-13.328s-5.967-13.328-13.328-13.328zM16 28.262c-6.761 0-12.262-5.501-12.262-12.262s5.5-12.262 12.262-12.262c6.761 0 12.262 5.501 12.262 12.262s-5.5 12.262-12.262 12.262z"
+                                                fill="currentColor">
+                                            </path>
+                                            <path
+                                                d="M22.667 11.241l-8.559 8.299-2.998-2.998c-0.312-0.312-0.818-0.312-1.131 0s-0.312 0.818 0 1.131l3.555 3.555c0.156 0.156 0.361 0.234 0.565 0.234 0.2 0 0.401-0.075 0.556-0.225l9.124-8.848c0.317-0.308 0.325-0.814 0.018-1.131-0.309-0.318-0.814-0.325-1.131-0.018z"
+                                                fill="currentColor">
+                                            </path>
                                         </svg>
                                         @lang('messages.inspectionstandard')
                                     </span>
@@ -955,12 +984,12 @@
                         @endcan
                         @can('perbaikan-list')
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="service">
-                                <a href="{{ route('customer.index') }}" role="menuitem"
+                                <a href="{{ route('repair.index') }}" role="menuitem"
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
                                             'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
-                                                'customer'
+                                                'repair'
                                         }">
                                         <svg class="size-5" version="1.1" id="REPAIR" xmlns="http://www.w3.org/2000/svg"
                                             xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1800 1800"
@@ -983,12 +1012,12 @@
                         @endcan
                         @can('gantibaru-list')
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="service">
-                                <a href="{{ route('customer.index') }}" role="menuitem"
+                                <a href="{{ route('replacement.index') }}" role="menuitem"
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"
                                         :class="{
                                             'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
-                                                'customer'
+                                                'replacement'
                                         }">
                                         <svg class="size-5" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
                                             fill="currentColor">
