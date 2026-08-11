@@ -76,12 +76,13 @@
                 <thead>
                     <tr>
                         <th style="width: 5%">No.</th>
-                        <th style="width: 40%">Nama Barang</th>
+                        <th style="width: auto">Nama Barang</th>
                         <th style="width: auto">Satuan</th>
-                        <th style="width: 10%">Masuk</th>
-                        <th style="width: 10%">Keluar</th>
-                        <th style="width: 10%">Penyesuaian</th>
-                        <th style="width: 10%">Saldo Akhir</th>
+                        <th style="width: 8%">Saldo Awal</th>
+                        <th style="width: 8%">Masuk</th>
+                        <th style="width: 8%">Keluar</th>
+                        <th style="width: 8%">Penyesu aian</th>
+                        <th style="width: 8%">Saldo Akhir</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -94,6 +95,9 @@
                             <td style="vertical-align: top;">{{ $data->c4 }}</td>
                             <td style="vertical-align: top;">{{ $data->c5 }}</td>
                             <td style="vertical-align: top; text-align: right;">
+                                {{ number_format($stawal, '1', ',', '.') }}
+                            </td>
+                            <td style="vertical-align: top; text-align: right;">
                                 {{ number_format($data->c61, '1', ',', '.') }}
                             </td>
                             <td style="vertical-align: top; text-align: right;">
@@ -103,7 +107,7 @@
                                 {{ number_format($data->c63, '1', ',', '.') }}
                             </td>
                             <td style="vertical-align: top; text-align: right;">
-                                {{ number_format($data->subtotal, '1', ',', '.') }}
+                                {{ number_format($data->c12, '1', ',', '.') }}
                             </td>
                         </tr>
                         @php

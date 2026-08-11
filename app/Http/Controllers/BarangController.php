@@ -25,7 +25,8 @@ use Illuminate\Support\Arr;
 
 class BarangController extends Controller implements HasMiddleware
 {
-    protected $array_hari, $array_bulan;
+    protected array $array_hari;
+    protected array $array_bulan;
 
     public function __construct()
     {

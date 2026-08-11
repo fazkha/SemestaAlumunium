@@ -24,6 +24,7 @@ use App\Http\Controllers\MaintenanceTypeController;
 use App\Http\Controllers\MitraController;
 use App\Http\Controllers\MitraizinController;
 use App\Http\Controllers\MitraubahhariController;
+use App\Http\Controllers\NotifController;
 use App\Http\Controllers\PcbiayaController;
 use App\Http\Controllers\PcizinController;
 use App\Http\Controllers\PcpettycashController;
@@ -48,7 +49,6 @@ use App\Http\Controllers\SaleInvoiceController;
 use App\Http\Controllers\SaleOrderController;
 use App\Http\Controllers\SatuanController;
 use App\Http\Controllers\StdInspectController;
-use App\Http\Controllers\StdMaintenanceController;
 use App\Http\Controllers\StockAdjustmentController;
 use App\Http\Controllers\StockOpnameController;
 use App\Http\Controllers\SupplierController;
@@ -76,6 +76,8 @@ Route::get('/', function () {
 Route::get('locale/{lang}', [LocaleController::class, 'setLocale']);
 
 Route::get('documents/{filename}', [PdfController::class, 'show']);
+
+Route::get('notif/count', [NotifController::class, 'count'])->name('notif.count');
 
 Route::prefix('admin')->get('dashboard', function () {
     return view('dashboard');

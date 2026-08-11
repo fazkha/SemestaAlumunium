@@ -177,6 +177,39 @@
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        function refreshNotificationBadge() {
+
+            $.ajax({
+                url: '{{ route('notif.count') }}',
+                type: 'GET',
+                success: function(response) {
+
+                    const badge = $('#notificationBadge');
+                    const count = response.count;
+
+                    if (count > 0) {
+                        badge
+                            .text(count > 99 ? '99+' : count)
+                            .removeClass('hidden')
+                            .addClass('flex');
+                    } else {
+                        badge
+                            .removeClass('flex')
+                            .addClass('hidden');
+                    }
+                },
+                complete: function() {
+
+                    setTimeout(refreshNotificationBadge, 60 * 1000);
+
+                }
+            });
+        }
+
+        refreshNotificationBadge();
+    </script>
+
     @stack('scripts')
 </body>
 

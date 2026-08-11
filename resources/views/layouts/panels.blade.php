@@ -1,4 +1,5 @@
 @php
+    use Illuminate\Support\Facades\Crypt;
     $notifs = notif_data();
 @endphp
 
@@ -225,8 +226,10 @@
                             $et = elapsed_interval($notif->tanggal_awal, $currentDateTime);
                         @endphp
                         {{-- <a href="{{ route($notif->route, ['parm' => 'notif_restock']) }}" class="block"> --}}
-                        <button name="restockButton"
-                            style="border: none; float: left; text-align: left; padding-left: 0;">
+                        <button name="actionButton" data-row-id="{{ $notif->row_id }}"
+                            data-url="{{ route('goods.show', Crypt::Encrypt($notif->row_id)) }}"
+                            style="float: left; text-align: left; padding-left: 0;"
+                            class="focus:outline-none focus:ring-0 focus:border-transparent">
                             <div class="flex px-4 space-x-4">
                                 <div class="relative flex-shrink-0">
                                     <span
@@ -397,12 +400,9 @@
 @push('scripts')
     <script type="text/javascript">
         $(document).ready(function(e) {
-            // $('#restockButton').on('click', function() {
-            $('[name*="restockButton"]').on('click', function() {
-                if (confirm('Are you sure you want to make new purchase order?')) {
-                    window.location.replace(
-                        "{{ route('purchase-order.create', ['parm' => 'notif_restock']) }}");
-                }
+            $('[name*="actionButton"]').on('click', function() {
+                const url = $(this).data('url');
+                window.location.replace(url);
             });
         });
     </script>

@@ -12,14 +12,14 @@ function main_office_code()
 
 function notif_count()
 {
-    // return Notif::where('isactive', 1)->count();
-    return Notif::count();
+    return Notif::where('isactive', 1)->count();
+    // return Notif::count();
 }
 
 function notif_data()
 {
-    // return Notif::where('isactive', 1)->get();
-    return Notif::get();
+    return Notif::where('isactive', 1)->get();
+    // return Notif::get();
 }
 
 function elapsed_interval(string $date1_str, string $date2_str)

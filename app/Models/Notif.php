@@ -14,6 +14,8 @@ class Notif extends Model
         'message',
         'tanggal_awal',
         'tanggal_akhir',
+        'table',
+        'row_id',
         'penting',
         'isactive',
         'created_by',
