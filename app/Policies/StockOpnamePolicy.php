@@ -23,9 +23,9 @@ class StockOpnamePolicy
         //
     }
 
-    public function create()
+    public function create(User $user): Response
     {
-        //
+        return Response::deny('You are not allowed!');
     }
 
     public function update(User $user, StockOpname $order): Response
@@ -37,9 +37,7 @@ class StockOpnamePolicy
 
     public function delete(User $user, StockOpname $order): Response
     {
-        return $order->approved == 1
-            ? Response::allow()
-            : Response::deny('You are not allowed!');
+        return Response::deny('You are not allowed!');
     }
 
     public function restore()

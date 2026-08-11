@@ -20,7 +20,8 @@ use Illuminate\Support\Facades\Storage;
 
 class StockAdjustmentController extends Controller implements HasMiddleware
 {
-    protected $array_hari, $array_bulan;
+    protected array $array_hari;
+    protected array $array_bulan;
 
     public function __construct()
     {
@@ -151,12 +152,12 @@ class StockAdjustmentController extends Controller implements HasMiddleware
 
     public function create()
     {
-        //
+        Gate::authorize('create', StockOpname::class);
     }
 
     public function store(Request $request)
     {
-        //
+        Gate::authorize('create', StockOpname::class);
     }
 
     public function show(Request $request): View
@@ -233,7 +234,7 @@ class StockAdjustmentController extends Controller implements HasMiddleware
 
     public function destroy(Request $request)
     {
-        //
+        Gate::authorize('delete', StockOpname::class);
     }
 
     public function updateDetail(Request $request)
