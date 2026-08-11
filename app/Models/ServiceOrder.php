@@ -73,4 +73,9 @@ class ServiceOrder extends Model
     {
         return $this->belongsTo(Pegawai::class, 'petugas_repair_id');
     }
+
+    public function petugas_replacement()
+    {
+        return $this->belongsTo(Pegawai::class, 'petugas_replacement_id');
+    }
 }
