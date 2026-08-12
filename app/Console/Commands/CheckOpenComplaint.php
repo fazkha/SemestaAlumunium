@@ -27,7 +27,7 @@ class CheckOpenComplaint extends Command
                         'row_id'        => $pengaduan->id,
                     ],
                     [
-                        'title'         => 'Pengaduan dari pengguna',
+                        'title'         => 'Pengaduan dari ' . $pengaduan->user->name,
                         'message'       => $pengaduan->aduan,
                         'table'         => 'pengaduans',
                         'row_id'        => $pengaduan->id,

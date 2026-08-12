@@ -18,7 +18,7 @@ function notif_count()
 
 function notif_data()
 {
-    return Notif::where('isactive', 1)->get();
+    return Notif::where('isactive', 1)->orderBy('tanggal_awal')->get();
     // return Notif::get();
 }
 
