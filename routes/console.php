@@ -10,3 +10,5 @@ Artisan::command('inspire', function () {
 
 Schedule::command('app:check-minimum-stock')
     ->everyMinute();
+Schedule::command('app:check-open-complaint')
+    ->everyMinute();

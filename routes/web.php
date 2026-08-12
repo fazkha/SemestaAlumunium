@@ -30,6 +30,7 @@ use App\Http\Controllers\PcizinController;
 use App\Http\Controllers\PcpettycashController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\PdfController;
+use App\Http\Controllers\PengaduanController;
 use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\ProdOrderController;
 use App\Http\Controllers\ProfileController;
@@ -234,6 +235,10 @@ Route::prefix('general-affair')->middleware('auth')->group(function () {
 });
 
 Route::prefix('service')->middleware('auth')->group(function () {
+    Route::resource('complaint', PengaduanController::class);
+    Route::get('complaint/{complaint}/delete', [PengaduanController::class, 'delete'])->name('complaint.delete');
+    Route::get('complaint/fetchdb/{pp}/{isactive}/{user}/{aduan}', [PengaduanController::class, 'fetchdb'])->defaults('aduan', '_');
+
     Route::resource('maintenance-type', MaintenanceTypeController::class);
     Route::get('maintenance-type/{maintenance_type}/delete', [MaintenanceTypeController::class, 'delete'])->name('maintenance-type.delete');
     Route::get('maintenance-type/fetchdb/{pp}/{isactive}/{nama}', [MaintenanceTypeController::class, 'fetchdb'])->defaults('nama', '_');

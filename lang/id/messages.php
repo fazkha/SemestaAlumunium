@@ -317,4 +317,5 @@ return [
     'tindaklanjut' => 'Tindak Lanjut',
     'gantibaru' => 'Penggantian Baru',
     'replacementtype' => 'Jenis Penggantian Baru',
+    'complaint' => 'Pengaduan',
 ];

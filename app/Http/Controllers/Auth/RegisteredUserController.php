@@ -75,6 +75,6 @@ class RegisteredUserController extends Controller
         // Auth::login($user);
         // return redirect(route('dashboard', absolute: false));
 
-        return redirect()->route('login')->with('status', 'Registrasi berhasil. Silakan login.');
+        return redirect()->route('login')->with('status', 'Registrasi berhasil. Silahkan menunggu persetujuan Admin.');
     }
 }

@@ -318,4 +318,5 @@ return [
     'tindaklanjut' => 'Follow-up Action',
     'gantibaru' => 'New Item Replacement',
     'replacementtype' => 'Replacement Type',
+    'complaint' => 'Complaint',
 ];
