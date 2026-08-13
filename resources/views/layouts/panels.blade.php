@@ -1,6 +1,9 @@
 @php
     use Illuminate\Support\Facades\Crypt;
     $notifs = notif_data();
+    $header = true;
+    $tema = '';
+    $i = 0;
 @endphp
 
 <!-- Panels -->
@@ -224,9 +227,20 @@
                             $newdate = new DateTime();
                             $currentDateTime = $newdate->format('Y-m-d H:i:s');
                             $et = elapsed_interval($notif->tanggal_awal, $currentDateTime);
+                            $header = $tema !== $notif->tema ? true : false;
+                            $tema = $tema !== $notif->tema ? $notif->tema : $tema;
+                            $i++;
                         @endphp
-                        @if (auth()->user()->can('barang-show'))
-                            <button name="actionButton" data-row-id="{{ $notif->row_id }}"
+                        @if ($header)
+                            @if ($i > 1)
+                                <div class="flex px-4 space-x-4 pt-5">{{ $notif->tema }}</div>
+                            @else
+                                <div class="flex px-4 space-x-4">{{ $notif->tema }}</div>
+                            @endif
+                        @endif
+
+                        @if ($notif->tabel === 'barangs' && auth()->user()->can('barang-show'))
+                            <button name="action-button"
                                 data-url="{{ route('goods.show', Crypt::Encrypt($notif->row_id)) }}"
                                 style="float: left; text-align: left; padding-left: 0;"
                                 class="focus:outline-none focus:ring-0 focus:border-transparent">
@@ -257,8 +271,8 @@
                                     </div>
                                 </div>
                             </button>
-                        @elseif (auth()->user()->can('pengaduan-show'))
-                            <button name="actionButton" data-row-id="{{ $notif->row_id }}"
+                        @elseif ($notif->tabel === 'pengaduans' && auth()->user()->can('pengaduan-show'))
+                            <button name="action-button"
                                 data-url="{{ route('complaint.show', Crypt::Encrypt($notif->row_id)) }}"
                                 style="float: left; text-align: left; padding-left: 0;"
                                 class="focus:outline-none focus:ring-0 focus:border-transparent">
@@ -460,7 +474,7 @@
 @push('scripts')
     <script type="text/javascript">
         $(document).ready(function(e) {
-            $('[name*="actionButton"]').on('click', function() {
+            $('button[name="action-button"]').on('click', function() {
                 const url = $(this).data('url');
                 window.location.replace(url);
             });

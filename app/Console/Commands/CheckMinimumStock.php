@@ -26,8 +26,9 @@ class CheckMinimumStock extends Command
                     ],
                     [
                         'title'         => 'Peringatan Stok Menipis',
-                        'message'       => 'Stok barang ' . $barang->nama . ' sudah berada di bawah batas minimal jumlah stok.',
-                        'table'         => 'barangs',
+                        'message'       => 'Stok barang "' . $barang->nama . '" sudah berada di bawah batas minimal jumlah stok.',
+                        'tema'          => 'Stok Barang',
+                        'tabel'         => 'barangs',
                         'row_id'        => $barang->id,
                         'isactive'      => 1,
                         'tanggal_awal'  => now(),
