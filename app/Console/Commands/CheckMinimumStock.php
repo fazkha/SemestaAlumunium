@@ -21,7 +21,7 @@ class CheckMinimumStock extends Command
 
                 Notif::updateOrCreate(
                     [
-                        'table'         => 'barangs',
+                        'tabel'         => 'barangs',
                         'row_id'        => $barang->id,
                     ],
                     [
@@ -41,7 +41,7 @@ class CheckMinimumStock extends Command
 
         $safeProductIds = Barang::whereColumn('stock', '>', 'minstock')->pluck('id');
 
-        Notif::where('table', 'barangs')
+        Notif::where('tabel', 'barangs')
             ->whereIn('row_id', $safeProductIds)
             ->delete();
 

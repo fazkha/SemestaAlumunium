@@ -3,7 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PengaduanRequest;
+use App\Models\Customer;
+use App\Models\JenisPelayanan;
+use App\Models\KalenderHke;
+use App\Models\Pegawai;
 use App\Models\Pengaduan;
+use App\Models\Profile;
+use App\Models\ServiceOrder;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
@@ -216,6 +222,46 @@ class PengaduanController extends Controller implements HasMiddleware
         }
     }
 
+    public function forwardAction(Request $request): RedirectResponse
+    {
+        $pengaduan = Pengaduan::find(Crypt::decrypt($request->complaint));
+
+        $profile = Profile::where('user_id', $pengaduan->user_id)->first();
+        $product_id = 1;
+        $branch_id = auth()->user()->profile->branch_id;
+        $customer_id = Customer::where('branch_link_id', $profile->branch_id)->value('id');
+        $jenis_pelayanan_id = JenisPelayanan::where('nama', 'Inspeksi')->value('id');
+        $petugas_id = Pegawai::where('email', auth()->user()->email)->value('id');
+        $hke = KalenderHke::where('tanggal', date('Y-m-d'))->value('hke');
+
+        if ($pengaduan && $customer_id && $petugas_id) {
+            $sro = ServiceOrder::create([
+                'branch_id' => $branch_id,
+                'customer_id' => $customer_id,
+                'jenis_pelayanan_id' => $jenis_pelayanan_id,
+                'petugas_id' => $petugas_id,
+                'product_id' => $product_id,
+                'hke' => $hke,
+                'tanggal' => date('Y-m-d'),
+                'keterangan' => $pengaduan->aduan,
+                'isactive' => 1,
+                'created_by' => auth()->user()->email,
+                'updated_by' => auth()->user()->email,
+                'approved' => (config('custom.sale_approval') == false) ? 1 : 0,
+                'approved_by' => (config('custom.sale_approval') == false) ? 'system' : NULL,
+                'approved_at' => (config('custom.sale_approval') == false) ? date('Y-m-d H:i:s') : NULL,
+            ]);
+
+            $pengaduan->update([
+                'isactive' => 0
+            ]);
+
+            return redirect()->route('inspect.edit', Crypt::encrypt($sro->id));
+        }
+
+        return redirect()->back()->withInput()->with('error', 'Error occured while saving!');
+    }
+
     public function delete(Request $request): View
     {
         $pengaduan = Pengaduan::find(Crypt::decrypt($request->complaint));
@@ -239,12 +285,12 @@ class PengaduanController extends Controller implements HasMiddleware
             }
         } catch (\Illuminate\Database\QueryException $e) {
             if (str_contains($e->getMessage(), 'Integrity constraint violation')) {
-                return redirect()->route('pengaduan.index')->with('error', 'Integrity constraint violation');
+                return redirect()->route('complaint.index')->with('error', 'Integrity constraint violation');
             }
-            return redirect()->route('pengaduan.index')->with('error', $e->getMessage());
+            return redirect()->route('complaint.index')->with('error', $e->getMessage());
         }
 
-        return redirect()->route('pengaduan.index')
+        return redirect()->route('complaint.index')
             ->with('success', __('messages.successdeleted') . ' 👉 ' . $pengaduan->user->name);
     }
 

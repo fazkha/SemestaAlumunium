@@ -23,6 +23,7 @@ class ServiceOrder extends Model
         'petugas_maintenance_id',
         'petugas_repair_id',
         'petugas_replacement_id',
+        'pengaduan_id',
         'hke',
         'tanggal',
         'no_order',

@@ -23,7 +23,7 @@ class CheckOpenComplaint extends Command
 
                 Notif::updateOrCreate(
                     [
-                        'table'         => 'pengaduans',
+                        'tabel'         => 'pengaduans',
                         'row_id'        => $pengaduan->id,
                     ],
                     [
@@ -43,7 +43,7 @@ class CheckOpenComplaint extends Command
 
         $closedIds = Pengaduan::where('isactive', 0)->pluck('id');
 
-        Notif::where('table', 'pengaduans')
+        Notif::where('tabel', 'pengaduans')
             ->whereIn('row_id', $closedIds)
             ->delete();
 

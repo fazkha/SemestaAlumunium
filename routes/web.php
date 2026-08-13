@@ -237,6 +237,7 @@ Route::prefix('general-affair')->middleware('auth')->group(function () {
 Route::prefix('service')->middleware('auth')->group(function () {
     Route::resource('complaint', PengaduanController::class);
     Route::get('complaint/{complaint}/delete', [PengaduanController::class, 'delete'])->name('complaint.delete');
+    Route::get('complaint/{complaint}/forward-action', [PengaduanController::class, 'forwardAction'])->name('complaint.forward-action');
     Route::get('complaint/fetchdb/{pp}/{isactive}/{user}/{aduan}', [PengaduanController::class, 'fetchdb'])->defaults('aduan', '_');
 
     Route::resource('maintenance-type', MaintenanceTypeController::class);
