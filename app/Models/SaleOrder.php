@@ -19,6 +19,7 @@ class SaleOrder extends Model
         'customer_id',
         'product_id',
         'service_order_id',
+        'kode_cashflow',
         'hke',
         'tanggal',
         'no_order',

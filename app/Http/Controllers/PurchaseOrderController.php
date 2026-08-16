@@ -142,6 +142,7 @@ class PurchaseOrderController extends Controller implements HasMiddleware
         $branch_id = auth()->user()->profile->branch_id;
         $suppliers = Supplier::where('branch_id', $branch_id)->where('isactive', 1)->orderBy('nama')->pluck('nama', 'id');
         $po_prefix = AppSetting::where('parm', 'prefix_purchase_order')->value('value');
+        $kode_cashflow = 'CF13';
 
         // AUTO BUY BASE ON NOTIFICATION
         if (count($request->all()) > 0) {
@@ -159,6 +160,7 @@ class PurchaseOrderController extends Controller implements HasMiddleware
                         'branch_id' => auth()->user()->profile->branch_id,
                         'supplier_id' => $_po->supplier_id,
                         'tanggal' => date("Y-m-d"),
+                        'kode_cashflow' => $kode_cashflow,
                         'tunai' => 1,
                         'isactive' => 1,
                         'isaccepted' => 0,
@@ -221,6 +223,7 @@ class PurchaseOrderController extends Controller implements HasMiddleware
         $biaya_angkutan = 0;
         $total_harga = 0;
         $tunai = 1;
+        $kode_cashflow = 'CF13';
 
         if ($request->validated()) {
 
@@ -231,6 +234,7 @@ class PurchaseOrderController extends Controller implements HasMiddleware
             $po = PurchaseOrder::create([
                 'branch_id' => $request->branch_id,
                 'supplier_id' => $request->supplier_id,
+                'kode_cashflow' => $kode_cashflow,
                 'tanggal' => $request->tanggal,
                 'biaya_angkutan' => str_replace('.', '', str_replace('Rp. ', '', $biaya_angkutan)),
                 'total_harga' => $total_harga,

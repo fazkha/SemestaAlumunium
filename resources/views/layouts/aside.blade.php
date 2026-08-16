@@ -45,6 +45,67 @@
                 </a>
             </div>
 
+            @can('laporan-view')
+                <div x-data="{{ substr(request()->getRequestUri(), 0, 16) == '/report/cashflow' ||
+                substr(request()->getRequestUri(), 0, 18) == '/report/profitloss'
+                    ? '{isActive: true, open: true, currentlyOpen: "' . $controllerName . '"}'
+                    : '{isActive: false, open: false, currentlyOpen: ""}' }}">
+                    <a href="#" @click="$event.preventDefault(); open = !open"
+                        class="flex items-center p-2 text-gray-600 transition-colors rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900"
+                        :class="{ 'bg-primary-100 dark:bg-primary dark:text-primary-900': isActive || open }" role="button"
+                        aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
+                        <span aria-hidden="true">
+                            <svg class="size-5" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" xml:space="preserve">
+                                <path fill="currentColor"
+                                    d="M5,9h18v1H5V9z M5,13h8v9H5V13z M6,21h6v-7H6V21z M16,14h7v-1h-7V14z M16,16h7v-1h-7V16z M16,20h7v-1 h-7V20z M16,18h7v-1h-7V18z M16,22h7v-1h-7V22z M32,7v17c0,2.206-1.794,4-4,4H4c-2.206,0-4-1.794-4-4V5c0-0.552,0.448-1,1-1h26 c0.552,0,1,0.448,1,1v1h3C31.552,6,32,6.448,32,7z M30,8h-3v14h-1V7V6H2v18c0,1.103,0.897,2,2,2h24c1.103,0,2-0.897,2-2V8z" />
+                            </svg>
+                        </span>
+                        <span class="ml-2 text-sm">@lang('messages.report')</span>
+                        <span aria-hidden="true" class="ml-auto">
+                            <svg class="w-4 h-4 transition-transform transform" :class="{ 'rotate-180': open }"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </span>
+                    </a>
+                    <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="report">
+                        <a href="{{ route('cashflow.index') }}" role="menuitem"
+                            class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
+                            <span class="flex flex-row gap-1"
+                                :class="{
+                                    'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
+                                        'cashflow'
+                                }">
+                                <svg class="size-5" xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" xml:space="preserve">
+                                    <path fill="currentColor"
+                                        d="M5,9h18v1H5V9z M5,13h8v9H5V13z M6,21h6v-7H6V21z M16,14h7v-1h-7V14z M16,16h7v-1h-7V16z M16,20h7v-1 h-7V20z M16,18h7v-1h-7V18z M16,22h7v-1h-7V22z M32,7v17c0,2.206-1.794,4-4,4H4c-2.206,0-4-1.794-4-4V5c0-0.552,0.448-1,1-1h26 c0.552,0,1,0.448,1,1v1h3C31.552,6,32,6.448,32,7z M30,8h-3v14h-1V7V6H2v18c0,1.103,0.897,2,2,2h24c1.103,0,2-0.897,2-2V8z" />
+                                </svg>
+                                @lang('messages.cashflow')
+                            </span>
+                        </a>
+                    </div>
+                    <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="report">
+                        <a href="{{ route('profitloss.index') }}" role="menuitem"
+                            class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
+                            <span class="flex flex-row gap-1"
+                                :class="{
+                                    'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
+                                        'profitloss'
+                                }">
+                                <svg class="size-5" xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" xml:space="preserve">
+                                    <path fill="currentColor"
+                                        d="M5,9h18v1H5V9z M5,13h8v9H5V13z M6,21h6v-7H6V21z M16,14h7v-1h-7V14z M16,16h7v-1h-7V16z M16,20h7v-1 h-7V20z M16,18h7v-1h-7V18z M16,22h7v-1h-7V22z M32,7v17c0,2.206-1.794,4-4,4H4c-2.206,0-4-1.794-4-4V5c0-0.552,0.448-1,1-1h26 c0.552,0,1,0.448,1,1v1h3C31.552,6,32,6.448,32,7z M30,8h-3v14h-1V7V6H2v18c0,1.103,0.897,2,2,2h24c1.103,0,2-0.897,2-2V8z" />
+                                </svg>
+                                @lang('messages.profitloss')
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            @endcan
+
             @can('branch-list')
                 @if (config('custom.menu_urusanumum') == true)
                     <div x-data="{{ substr(request()->getRequestUri(), 0, 22) == '/general-affair/branch' ||

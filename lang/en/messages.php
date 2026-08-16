@@ -260,6 +260,7 @@ return [
     'currencysymbol' => '$',
     'hpp' => 'Cost Of Sales',
     'profit' => 'Profit',
+    'report' => 'Report',
     'reportfilter' => 'Report Filter',
     'notfound' => 'Data not found',
     'target' => 'Target',
@@ -319,4 +320,8 @@ return [
     'gantibaru' => 'New Item Replacement',
     'replacementtype' => 'Replacement Type',
     'complaint' => 'Complaint',
+    'cashflow' => 'Cashflow',
+    'profitloss' => 'Income Statement',
+    'kas_awal' => 'Initial Cash',
+    'kas_akhir' => 'Ending Cash Balance',
 ];

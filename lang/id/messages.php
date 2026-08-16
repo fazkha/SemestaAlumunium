@@ -259,6 +259,7 @@ return [
     'currencysymbol' => 'Rp.',
     'hpp' => 'Harga Pokok Penjualan',
     'profit' => 'Laba',
+    'report' => 'Laporan',
     'reportfilter' => 'Periode Laporan',
     'notfound' => 'Data tidak ditemukan',
     'target' => 'Sasaran',
@@ -318,4 +319,8 @@ return [
     'gantibaru' => 'Penggantian Baru',
     'replacementtype' => 'Jenis Penggantian Baru',
     'complaint' => 'Pengaduan',
+    'cashflow' => 'Arus Kas',
+    'profitloss' => 'Laba Rugi',
+    'kas_awal' => 'Kas Awal',
+    'kas_akhir' => 'Kas Akhir',
 ];

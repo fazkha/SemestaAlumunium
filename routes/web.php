@@ -7,6 +7,7 @@ use App\Http\Controllers\BrandivjabController;
 use App\Http\Controllers\BrandivjabkecController;
 use App\Http\Controllers\BrandivjabmitController;
 use App\Http\Controllers\BrandivjabpegController;
+use App\Http\Controllers\CashflowController;
 use App\Http\Controllers\CoaController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DeliveryOfficerController;
@@ -34,6 +35,7 @@ use App\Http\Controllers\PengaduanController;
 use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\ProdOrderController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProfitlossController;
 use App\Http\Controllers\PropinsiController;
 use App\Http\Controllers\PurchaseOrderController;
 use App\Http\Controllers\PurchasePlanController;
@@ -386,6 +388,16 @@ Route::prefix('finance')->middleware('auth')->group(function () {
     Route::resource('coa', CoaController::class);
     Route::get('coa/{coa}/delete', [CoaController::class, 'delete'])->name('coa.delete');
     Route::get('coa/fetchdb/{pp}/{isactive}/{group}/{kode}/{nama}', [CoaController::class, 'fetchdb'])->defaults('group', '_')->defaults('kode', '_')->defaults('nama', '_');
+})->missing(function (Request $request) {
+    return Redirect::route('dashboard');
+});
+
+Route::prefix('report')->middleware('auth')->group(function () {
+    Route::resource('cashflow', CashflowController::class);
+    Route::get('cashflow/fetchdb/{pp}/{tahun}/{bulan}', [CashflowController::class, 'fetchdb'])->defaults('tahun', '_');
+
+    Route::resource('profitloss', ProfitlossController::class);
+    Route::get('profitloss/fetchdb/{pp}/{tahun}/{bulan}', [ProfitlossController::class, 'fetchdb'])->defaults('tahun', '_');
 })->missing(function (Request $request) {
     return Redirect::route('dashboard');
 });
