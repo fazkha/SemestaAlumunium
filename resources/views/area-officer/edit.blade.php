@@ -93,6 +93,13 @@
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.customer')</span>
                                         <x-text-span>
                                             <div class="p-2 flex flex-col gap-2">
+                                                <div>
+                                                    <label class="cursor-pointer flex items-center gap-2 mb-3">
+                                                        <input type="checkbox" id="selectAll"
+                                                            class="dark:border-white-400/20 transition-all duration-500 ease-in-out w-7 h-7 rounded-lg shadow-md dark:bg-primary-700 dark:border-primary-800 dark:text-gray-400" />
+                                                        <span>@lang('messages.selectall')</span>
+                                                    </label>
+                                                </div>
                                                 <table>
                                                     @foreach ($customers as $customer)
                                                         @if ($pro !== $customer->namapropinsi)
@@ -137,7 +144,7 @@
                                                                             echo 'checked';
                                                                         }
                                                                     } @endphp
-                                                                            class="dark:border-white-400/20 transition-all duration-500 ease-in-out w-7 h-7 rounded-lg shadow-md dark:bg-primary-700 dark:border-primary-800 dark:text-gray-400" />
+                                                                            class="customer-checkbox dark:border-white-400/20 transition-all duration-500 ease-in-out w-7 h-7 rounded-lg shadow-md dark:bg-primary-700 dark:border-primary-800 dark:text-gray-400" />
                                                                         <span
                                                                             class="pr-4 group-hover:text-blue-500 transition-colors duration-300">
                                                                             {{ $customer->nama }}
@@ -152,7 +159,7 @@
                                                                         @if ($i < count($datas)) @if ($datas[$i]->customer_id == $customer->id)
                                                                             value="{{ $datas[$i]->urutan }}" @endif
                                                                         @endif
-                                                                    class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border bg-primary-20 border-primary-100 disabled:bg-primary-50 disabled:dark:bg-primary-800 disabled:text-gray-900 disabled:border-primary-100 disabled:dark:border-primary-800 dark:bg-primary-700 dark:border-primary-800 dark:text-gray-400"
+                                                                    class="urutan-input w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border bg-primary-20 border-primary-100 disabled:bg-primary-50 disabled:dark:bg-primary-800 disabled:text-gray-900 disabled:border-primary-100 disabled:dark:border-primary-800 dark:bg-primary-700 dark:border-primary-800 dark:text-gray-400"
                                                                     />
                                                                 </div>
                                                             </td>
@@ -214,5 +221,60 @@
     </form>
 
     @push('scripts')
+        <script type="text/javascript">
+            document.addEventListener('DOMContentLoaded', function() {
+                const selectAll = document.getElementById('selectAll');
+                const checkboxes = document.querySelectorAll('.customer-checkbox');
+                const urutanInputs = document.querySelectorAll('.urutan-input');
+
+                function updateUrutan() {
+                    let urutan = 1;
+                    checkboxes.forEach((checkbox, index) => {
+                        const input = urutanInputs[index];
+
+                        if (checkbox.checked) {
+                            input.value = urutan;
+                            input.disabled = false;
+
+                            urutan++;
+
+                        } else {
+                            input.value = '';
+                            input.disabled = true;
+
+                        }
+                    });
+
+                    // Update status Select All
+                    const total = checkboxes.length;
+
+                    const checked = document.querySelectorAll(
+                        '.customer-checkbox:checked'
+                    ).length;
+
+                    selectAll.checked = total > 0 && checked === total;
+                    selectAll.indeterminate = checked > 0 && checked < total;
+                }
+
+                // Select All
+                selectAll.addEventListener('change', function() {
+                    checkboxes.forEach(function(checkbox) {
+                        checkbox.checked = selectAll.checked;
+                    });
+
+                    updateUrutan();
+                });
+
+                // Checkbox customer
+                checkboxes.forEach(function(checkbox) {
+                    checkbox.addEventListener('change', function() {
+                        updateUrutan();
+                    });
+                });
+
+                // Initial state
+                updateUrutan();
+            });
+        </script>
     @endpush
 </x-app-layout>
