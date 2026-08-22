@@ -11,8 +11,10 @@ use App\Models\Kabupaten;
 use App\Models\Kecamatan;
 use App\Models\Propinsi;
 use App\Models\Satuan;
-use App\Http\Requests\DeliveryOfficerUpdateRequest;
 use App\Models\ViewDelivery;
+use App\Http\Requests\DeliveryOfficerUpdateRequest;
+use App\Models\SaleOrder;
+use App\Services\Accounting\SalesPostingService;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\JsonResponse;
@@ -20,13 +22,14 @@ use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
-use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Arr;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class DeliveryOfficerController extends Controller implements HasMiddleware
 {
-    protected $array_hari, $array_bulan;
+    protected array $array_hari, $array_bulan;
+    protected SalesPostingService $salePostingService;
 
     public function __construct()
     {
@@ -245,6 +248,7 @@ class DeliveryOfficerController extends Controller implements HasMiddleware
     public function update(DeliveryOfficerUpdateRequest $request): RedirectResponse
     {
         $delivery = DeliveryOfficer::find(Crypt::decrypt($request->order));
+        $sale = SaleOrder::find($delivery->order[0]->sale_order_id);
 
         if ($request->validated()) {
 
@@ -256,6 +260,8 @@ class DeliveryOfficerController extends Controller implements HasMiddleware
                 'isdone' => ($request->isdone == 'on' ? 1 : 0),
                 'updated_by' => auth()->user()->email,
             ]);
+
+            $this->salePostingService->post($sale);
 
             return redirect()->back()->with('success', __('messages.successupdated') . ' 👉 ' . $delivery->no_order);
         } else {

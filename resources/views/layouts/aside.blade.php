@@ -1207,7 +1207,7 @@
                                 </a>
                             </div>
                         @endcan
-                        @can('so-list')
+                        @can('invoice-list')
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="sale">
                                 <a href="{{ route('sale-invoice.index') }}" role="menuitem"
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">

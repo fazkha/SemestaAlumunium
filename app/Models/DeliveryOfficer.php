@@ -31,4 +31,9 @@ class DeliveryOfficer extends Model
     {
         return $this->belongsTo(Pegawai::class);
     }
+
+    public function order()
+    {
+        return $this->hasMany(DeliveryOfficerOrder::class);
+    }
 }

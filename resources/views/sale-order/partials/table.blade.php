@@ -47,16 +47,6 @@
                         </div>
                     </th>
                     <th
-                        class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-gray-400 dark:bg-primary-800 dark:border-primary-800">
-                        <div class="flex items-center justify-center">
-                            <svg fill="currentColor" class="w-5 h-5" viewBox="0 0 256 256" id="Flat"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M128,20A108,108,0,1,0,236,128,108.12186,108.12186,0,0,0,128,20Zm0,192a84,84,0,1,1,84-84A84.09562,84.09562,0,0,1,128,212Zm29.50391-87.38477-29.51075,39.37891H152a12,12,0,0,1,0,24H104.39648c-.13281.00488-.26464.00684-.39843.00684a12.00272,12.00272,0,0,1-9.47168-19.36914l43.56543-58.13379a12.00426,12.00426,0,1,0-21.1543-11.165A11.9998,11.9998,0,0,1,94.834,89.9834a36.00408,36.00408,0,1,1,63.01172,34.15234C157.73535,124.29883,157.62207,124.458,157.50391,124.61523Z" />
-                            </svg>
-                        </div>
-                    </th>
-                    <th
                         class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-gray-400 dark:bg-primary-800 dark:border-primary-800">
                         &nbsp;
                     </th>
@@ -65,7 +55,7 @@
             <tbody>
                 @if ($datas->count() == 0)
                     <tr>
-                        <td colspan="10"
+                        <td colspan="9"
                             class="text-sm bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
                             <div class="flex items-center justify-center p-5">@lang('messages.datanotavailable')</div>
                         </td>
@@ -112,10 +102,6 @@
                                     <span>❌</span>
                                 @endif
                             </span>
-                        </td>
-                        <td
-                            class="text-center px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
-                            <span>{{ $data->isready == 1 ? '✔️' : '❓' }}</span>
                         </td>
                         <td
                             class="text-center px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
@@ -227,14 +213,6 @@
                 xmlns="http://www.w3.org/2000/svg">
                 <path
                     d="M128,20A108,108,0,1,0,236,128,108.12186,108.12186,0,0,0,128,20Zm0,192a84,84,0,1,1,84-84A84.09562,84.09562,0,0,1,128,212ZM144,84v92a12,12,0,0,1-24,0V106.417l-5.3457,3.5625a12.00027,12.00027,0,1,1-13.3086-19.97265l24-15.99317A12.00071,12.00071,0,0,1,144,84Z" />
-            </svg>
-            <span class="text-sm">@lang('messages.production')</span>
-        </div>
-        <div class="flex flex-row gap-2 items-center">
-            <svg fill="currentColor" class="size-4" viewBox="0 0 256 256" id="Flat"
-                xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M128,20A108,108,0,1,0,236,128,108.12186,108.12186,0,0,0,128,20Zm0,192a84,84,0,1,1,84-84A84.09562,84.09562,0,0,1,128,212Zm29.50391-87.38477-29.51075,39.37891H152a12,12,0,0,1,0,24H104.39648c-.13281.00488-.26464.00684-.39843.00684a12.00272,12.00272,0,0,1-9.47168-19.36914l43.56543-58.13379a12.00426,12.00426,0,1,0-21.1543-11.165A11.9998,11.9998,0,0,1,94.834,89.9834a36.00408,36.00408,0,1,1,63.01172,34.15234C157.73535,124.29883,157.62207,124.458,157.50391,124.61523Z" />
             </svg>
             <span class="text-sm">@lang('messages.delivery')</span>
         </div>
