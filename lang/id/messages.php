@@ -323,4 +323,5 @@ return [
     'profitloss' => 'Laba Rugi',
     'kas_awal' => 'Kas Awal',
     'kas_akhir' => 'Kas Akhir',
+    'selectall' => 'Centang Semua',
 ];

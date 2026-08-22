@@ -164,6 +164,7 @@ class AreaOfficerController extends Controller implements HasMiddleware
         $urutans = $request->input('urutans');
         $filtered = array_filter($urutans);
         $indexed = array_values($filtered);
+        // dd($custs, $urutans, $filtered, $indexed);
 
         if ($custs) {
             if ($areaofficer) $areaofficer->delete();

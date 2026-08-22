@@ -324,4 +324,5 @@ return [
     'profitloss' => 'Income Statement',
     'kas_awal' => 'Initial Cash',
     'kas_akhir' => 'Ending Cash Balance',
+    'selectall' => 'Select All',
 ];
