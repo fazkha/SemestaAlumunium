@@ -40,6 +40,7 @@ use App\Http\Controllers\PropinsiController;
 use App\Http\Controllers\PurchaseOrderController;
 use App\Http\Controllers\PurchasePlanController;
 use App\Http\Controllers\PurchaseReceiptController;
+use App\Http\Controllers\PurchaseReportController;
 use App\Http\Controllers\QRController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\RecipeController;
@@ -50,6 +51,7 @@ use App\Http\Controllers\ReplacementTypeController;
 use App\Http\Controllers\ResignController;
 use App\Http\Controllers\SaleInvoiceController;
 use App\Http\Controllers\SaleOrderController;
+use App\Http\Controllers\SaleReportController;
 use App\Http\Controllers\SatuanController;
 use App\Http\Controllers\StdInspectController;
 use App\Http\Controllers\StockAdjustmentController;
@@ -398,6 +400,12 @@ Route::prefix('report')->middleware('auth')->group(function () {
 
     Route::resource('profitloss', ProfitlossController::class);
     Route::get('profitloss/fetchdb/{pp}/{tahun}/{bulan}', [ProfitlossController::class, 'fetchdb'])->defaults('tahun', '_');
+
+    Route::get('purchase', [PurchaseReportController::class, 'index'])->name('report-purchase.index');
+    Route::get('purchase/fetchdb/{tahun}/{bulan}', [PurchaseReportController::class, 'fetchdb'])->defaults('tahun', '_');
+
+    Route::get('sale', [SaleReportController::class, 'index'])->name('report-sale.index');
+    Route::get('sale/fetchdb/{tahun}/{bulan}', [SaleReportController::class, 'fetchdb'])->defaults('tahun', '_');
 })->missing(function (Request $request) {
     return Redirect::route('dashboard');
 });

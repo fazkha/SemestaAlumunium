@@ -47,7 +47,9 @@
 
             @can('laporan-view')
                 <div x-data="{{ substr(request()->getRequestUri(), 0, 16) == '/report/cashflow' ||
-                substr(request()->getRequestUri(), 0, 18) == '/report/profitloss'
+                substr(request()->getRequestUri(), 0, 18) == '/report/profitloss' ||
+                substr(request()->getRequestUri(), 0, 16) == '/report/purchase' ||
+                substr(request()->getRequestUri(), 0, 12) == '/report/sale'
                     ? '{isActive: true, open: true, currentlyOpen: "' . $controllerName . '"}'
                     : '{isActive: false, open: false, currentlyOpen: ""}' }}">
                     <a href="#" @click="$event.preventDefault(); open = !open"
@@ -86,20 +88,54 @@
                             </span>
                         </a>
                     </div>
-                    <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="report">
-                        <a href="{{ route('profitloss.index') }}" role="menuitem"
+                    <div x-show="open" class="hidden mt-2 space-y-2 px-7" role="menu" arial-label="report">
+                        <a href="{{ route('cashflow.index') }}" role="menuitem"
                             class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                             <span class="flex flex-row gap-1"
                                 :class="{
                                     'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
-                                        'profitloss'
+                                        'cashflow'
                                 }">
                                 <svg class="size-5" xmlns="http://www.w3.org/2000/svg"
                                     xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" xml:space="preserve">
                                     <path fill="currentColor"
                                         d="M5,9h18v1H5V9z M5,13h8v9H5V13z M6,21h6v-7H6V21z M16,14h7v-1h-7V14z M16,16h7v-1h-7V16z M16,20h7v-1 h-7V20z M16,18h7v-1h-7V18z M16,22h7v-1h-7V22z M32,7v17c0,2.206-1.794,4-4,4H4c-2.206,0-4-1.794-4-4V5c0-0.552,0.448-1,1-1h26 c0.552,0,1,0.448,1,1v1h3C31.552,6,32,6.448,32,7z M30,8h-3v14h-1V7V6H2v18c0,1.103,0.897,2,2,2h24c1.103,0,2-0.897,2-2V8z" />
                                 </svg>
-                                @lang('messages.profitloss')
+                                @lang('messages.cashflow')
+                            </span>
+                        </a>
+                    </div>
+                    <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="report">
+                        <a href="{{ route('report-purchase.index') }}" role="menuitem"
+                            class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
+                            <span class="flex flex-row gap-1"
+                                :class="{
+                                    'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
+                                        'purchasereport'
+                                }">
+                                <svg class="size-5" xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" xml:space="preserve">
+                                    <path fill="currentColor"
+                                        d="M5,9h18v1H5V9z M5,13h8v9H5V13z M6,21h6v-7H6V21z M16,14h7v-1h-7V14z M16,16h7v-1h-7V16z M16,20h7v-1 h-7V20z M16,18h7v-1h-7V18z M16,22h7v-1h-7V22z M32,7v17c0,2.206-1.794,4-4,4H4c-2.206,0-4-1.794-4-4V5c0-0.552,0.448-1,1-1h26 c0.552,0,1,0.448,1,1v1h3C31.552,6,32,6.448,32,7z M30,8h-3v14h-1V7V6H2v18c0,1.103,0.897,2,2,2h24c1.103,0,2-0.897,2-2V8z" />
+                                </svg>
+                                @lang('messages.purchase')
+                            </span>
+                        </a>
+                    </div>
+                    <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="report">
+                        <a href="{{ route('report-sale.index') }}" role="menuitem"
+                            class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
+                            <span class="flex flex-row gap-1"
+                                :class="{
+                                    'border-b border-b-1 border-primary-100 dark:border-primary': currentlyOpen ==
+                                        'salereport'
+                                }">
+                                <svg class="size-5" xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" xml:space="preserve">
+                                    <path fill="currentColor"
+                                        d="M5,9h18v1H5V9z M5,13h8v9H5V13z M6,21h6v-7H6V21z M16,14h7v-1h-7V14z M16,16h7v-1h-7V16z M16,20h7v-1 h-7V20z M16,18h7v-1h-7V18z M16,22h7v-1h-7V22z M32,7v17c0,2.206-1.794,4-4,4H4c-2.206,0-4-1.794-4-4V5c0-0.552,0.448-1,1-1h26 c0.552,0,1,0.448,1,1v1h3C31.552,6,32,6.448,32,7z M30,8h-3v14h-1V7V6H2v18c0,1.103,0.897,2,2,2h24c1.103,0,2-0.897,2-2V8z" />
+                                </svg>
+                                @lang('messages.sale')
                             </span>
                         </a>
                     </div>
@@ -1208,7 +1244,7 @@
                             </div>
                         @endcan
                         @can('invoice-list')
-                            <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="sale">
+                            <div x-show="open" class="hidden mt-2 space-y-2 px-7" role="menu" arial-label="sale">
                                 <a href="{{ route('sale-invoice.index') }}" role="menuitem"
                                     class="block p-2 text-sm text-gray-500 transition-colors duration-200 rounded-md dark:text-lightdark hover:bg-primary-100 dark:hover:bg-primary dark:hover:text-primary-900">
                                     <span class="flex flex-row gap-1"

@@ -139,7 +139,7 @@ return [
     'quantity' => 'Kuantitas',
     'subtotalprice' => 'Sub Jumlah Harga',
     'tax' => 'Pajak',
-    'discount' => 'Pot.',
+    'discount' => 'Disc.',
     'confirm' => 'Konfirmasi',
     'deleteitemwarning' => 'Setelah data terhapus, anda tidak akan dapat memulihkan kembali data yang terhapus tersebut',
     'deleteitemconfirm' => 'Apakah anda yakin anda akan menghapus data tersebut',
@@ -324,4 +324,6 @@ return [
     'kas_awal' => 'Kas Awal',
     'kas_akhir' => 'Kas Akhir',
     'selectall' => 'Centang Semua',
+    'item' => 'Barang',
+    'grand_total' => 'Jumlah Keseluruhan',
 ];

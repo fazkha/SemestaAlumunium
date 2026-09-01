@@ -236,7 +236,6 @@ return [
     'arethegoodsreceived' => 'Have all the items been received?',
     'receiptunit' => 'Receipt Unit',
     'receiptquantity' => 'Receipt Quantity',
-    'receiptdescription' => 'Receipt Note',
     'periode' => 'Period',
     'donecalculation' => 'Done Calculation',
     'doneadjustment' => 'Done Adjustment',
@@ -325,4 +324,6 @@ return [
     'kas_awal' => 'Initial Cash',
     'kas_akhir' => 'Ending Cash Balance',
     'selectall' => 'Select All',
+    'item' => 'Item',
+    'grand_total' => 'Grand Total',
 ];

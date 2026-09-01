@@ -35,7 +35,7 @@
             </td>
             @if ($viewMode == false)
                 @if ($detail->kuantiti_terima > 0)
-                    <td class="align-middle" title="@lang('messages.goodsreceived')">🚫</td>
+                    <td class="align-middle" title="@lang('messages.goodsreceived')">✔️</td>
                 @else
                     <td class="align-top">
                         <x-anchor-danger id="a-delete-detail-{{ $detail->id }}"

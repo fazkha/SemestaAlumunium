@@ -6,16 +6,14 @@ use App\Models\Cashflow;
 use App\Models\CashflowGroup;
 use App\Models\CashflowSubtotal;
 use App\Models\CashflowTotal;
-use App\Models\SaleOrder;
 use Illuminate\Http\Request;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
-use Illuminate\Support\Arr;
-use Illuminate\View\View;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Arr;
+use Illuminate\View\View;
 
 class CashflowController extends Controller implements HasMiddleware
 {
