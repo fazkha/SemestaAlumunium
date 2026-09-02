@@ -60,7 +60,7 @@
 
         <div class="pr-1">
             @can('po-create')
-                <x-anchor-primary href="{{ route('report-purchase.index') }}">
+                <x-anchor-primary href="{{ route('report-sale.index') }}">
                     <svg id="print-icon" class="size-5" viewBox="0 0 15 15" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <path

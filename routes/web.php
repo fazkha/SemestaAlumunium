@@ -14,6 +14,7 @@ use App\Http\Controllers\DeliveryOfficerController;
 use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\GudangController;
 use App\Http\Controllers\InspectController;
+use App\Http\Controllers\InspectReportController;
 use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\KabupatenController;
 use App\Http\Controllers\KecamatanController;
@@ -406,6 +407,9 @@ Route::prefix('report')->middleware('auth')->group(function () {
 
     Route::get('sale', [SaleReportController::class, 'index'])->name('report-sale.index');
     Route::get('sale/fetchdb/{tahun}/{bulan}', [SaleReportController::class, 'fetchdb'])->defaults('tahun', '_');
+
+    Route::get('inspect', [InspectReportController::class, 'index'])->name('report-inspect.index');
+    Route::get('inspect/fetchdb/{tahun}/{bulan}', [InspectReportController::class, 'fetchdb'])->defaults('tahun', '_');
 })->missing(function (Request $request) {
     return Redirect::route('dashboard');
 });
