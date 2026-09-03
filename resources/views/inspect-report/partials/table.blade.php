@@ -53,9 +53,12 @@
                         $perawatans = ServiceOrderPerawatan::where('service_order_id', $data->id)
                             ->selectRaw('DISTINCT service_order_id, jenis_perawatan_id, nama_perawatan, keterangan')
                             ->get();
-
-                        $perbaikans = ServiceOrderPerbaikan::where('service_order_id', $data->id)->get();
-                        $gantibarus = ServiceOrderGantibaru::where('service_order_id', $data->id)->get();
+                        $perbaikans = ServiceOrderPerbaikan::where('service_order_id', $data->id)
+                            ->selectRaw('DISTINCT service_order_id, jenis_perbaikan_id, nama_perbaikan, keterangan')
+                            ->get();
+                        $gantibarus = ServiceOrderGantibaru::where('service_order_id', $data->id)
+                            ->selectRaw('DISTINCT service_order_id, jenis_gantibaru_id, nama_gantibaru, keterangan')
+                            ->get();
                         $accordionPerawatan = 'perawatan-' . $data->id;
                         $accordionPerbaikan = 'perbaikan-' . $data->id;
                         $accordionGantibaru = 'gantibaru-' . $data->id;

@@ -20,6 +20,28 @@
 
 <tbody id="{{ $accordionGantibaru }}" class="hidden">
     @foreach ($gantibarus as $gantibaru)
+        @php
+            $barangGantibaru = DB::table('service_order_gantibarus as i')
+                ->leftJoin('barangs as b', 'b.id', '=', 'i.barang_id')
+                ->leftJoin('satuans as s', 's.id', '=', 'b.satuan_jual_id')
+                ->where('i.service_order_id', $gantibaru->service_order_id)
+                ->where('i.jenis_gantibaru_id', $gantibaru->jenis_gantibaru_id)
+                ->selectRaw(
+                    "GROUP_CONCAT(
+                        CONCAT(
+                            '<strong>',
+                            b.nama,
+                            '</strong>',
+                            ' (', 
+                            TRIM(TRAILING '.' FROM TRIM(TRAILING '0' FROM i.kuantiti)), 
+                            '&nbsp;', 
+                            s.singkatan, ')')
+                        ORDER BY b.nama
+                        SEPARATOR ',<br>'
+                    ) AS barang",
+                )
+                ->value('barang');
+        @endphp
         <tr>
             <td
                 class="px-3 py-1 text-sm border-y border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
@@ -37,11 +59,11 @@
             </td>
             <td
                 class="px-3 py-1 text-sm border-y border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
-                <span class="text-gray-900 dark:text-gray-400">&nbsp;</span>
+                <span class="text-gray-900 dark:text-gray-400">{!! $barangGantibaru !!}</span>
             </td>
             <td
                 class="px-3 py-1 text-sm border-y border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
-                <span class="text-gray-900 dark:text-gray-400">&nbsp;</span>
+                <span class="text-gray-900 dark:text-gray-400">{{ $gantibaru->keterangan }}</span>
             </td>
         </tr>
     @endforeach

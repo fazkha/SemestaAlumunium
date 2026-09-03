@@ -28,13 +28,19 @@
                 ->where('i.jenis_perawatan_id', $perawatan->jenis_perawatan_id)
                 ->selectRaw(
                     "GROUP_CONCAT(
-                        CONCAT(b.nama, ' (', i.kuantiti, ' ', s.singkatan, ')')
+                        CONCAT(
+                            '<strong>',
+                            b.nama,
+                            '</strong>',
+                            ' (', 
+                            TRIM(TRAILING '.' FROM TRIM(TRAILING '0' FROM i.kuantiti)), 
+                            '&nbsp;', 
+                            s.singkatan, ')')
                         ORDER BY b.nama
-                        SEPARATOR ', '
+                        SEPARATOR ',<br>'
                     ) AS barang",
                 )
                 ->value('barang');
-
         @endphp
         <tr>
             <td
@@ -53,7 +59,7 @@
             </td>
             <td
                 class="px-3 py-1 text-sm border-y border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
-                <span class="text-gray-900 dark:text-gray-400">{{ $barangPerawatan }}</span>
+                <span class="text-gray-900 dark:text-gray-400">{!! $barangPerawatan !!}</span>
             </td>
             <td
                 class="px-3 py-1 text-sm border-y border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
