@@ -159,8 +159,9 @@
         <div
             class="px-3 py-3 bg-primary-50 items-center xs:justify-between border-t border-primary-100 dark:text-gray-400 dark:bg-primary-800 dark:border-primary-800">
             <div class="flex flex-row items-center justify-between">
-                <span class="font-bold">@lang('messages.grand_total')</span>
-                <span class="font-bold">{{ Number::forHumans($grandTotal, precision: 1, abbreviate: true) }}</span>
+                <span class="hidden font-bold">@lang('messages.grand_total')</span>
+                <span
+                    class="hidden font-bold">{{ Number::forHumans($grandTotal, precision: 1, abbreviate: true) }}</span>
             </div>
         </div>
     </div>
