@@ -49,24 +49,24 @@
                     @endphp
                     <tr>
                         <td
-                            class="font-bold px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
+                            class="font-bold px-3 py-1 text-sm border-y-4 border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
                             <span class="text-gray-900 dark:text-gray-400">{{ $data->no_order }}</span>
                         </td>
                         <td
-                            class="font-bold text-center px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
+                            class="font-bold text-center px-3 py-1 text-sm border-y-4 border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
                             <span class="text-gray-900 dark:text-gray-400">&nbsp;</span>
                         </td>
                         <td
-                            class="font-bold px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
+                            class="font-bold px-3 py-1 text-sm border-y-4 border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
                             <span class="text-gray-900 dark:text-gray-400">{{ $data->customer->nama }}</span>
                         </td>
                         <td
-                            class="font-bold px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
+                            class="font-bold px-3 py-1 text-sm border-y-4 border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
                             <span
                                 class="text-gray-900 dark:text-gray-400">{{ date_format(date_create($data->tanggal), 'd/m/Y') }}</span>
                         </td>
                         <td
-                            class="text-right font-bold px-3 py-3 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
+                            class="text-right font-bold px-3 py-3 text-sm border-y-4 border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
                             <div class="flex flex-row items-center justify-end">
                                 @if ($data->biaya_angkutan > 0)
                                     <span class="px-4 font-normal">

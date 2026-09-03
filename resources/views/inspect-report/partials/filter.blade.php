@@ -59,7 +59,7 @@
         </div>
 
         <div class="pr-1">
-            @can('po-create')
+            @can('laporan-show')
                 <x-anchor-primary href="{{ route('report-inspect.index') }}">
                     <svg id="print-icon" class="size-5" viewBox="0 0 15 15" fill="none"
                         xmlns="http://www.w3.org/2000/svg">

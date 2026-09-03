@@ -72,5 +72,21 @@
                         });
                     });
         </script>
+        <script type="text/javascript">
+            function toggleAccordion(id) {
+                const content = document.getElementById(id);
+                const icon = document.getElementById('icon-' + id);
+
+                if (!content) return;
+
+                content.classList.toggle('hidden');
+
+                if (content.classList.contains('hidden')) {
+                    icon.style.transform = 'rotate(0deg)';
+                } else {
+                    icon.style.transform = 'rotate(90deg)';
+                }
+            }
+        </script>
     @endpush
 </x-app-layout>

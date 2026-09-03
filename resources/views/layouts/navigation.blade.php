@@ -327,7 +327,7 @@
                 </a>
             </div>
 
-            @can('laporan-view')
+            @can('laporan-show')
                 <div x-data="{{ substr(request()->getRequestUri(), 0, 16) == '/report/cashflow' ||
                 substr(request()->getRequestUri(), 0, 18) == '/report/profitloss' ||
                 substr(request()->getRequestUri(), 0, 16) == '/report/purchase' ||

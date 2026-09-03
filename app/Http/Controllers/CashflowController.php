@@ -51,7 +51,7 @@ class CashflowController extends Controller implements HasMiddleware
     public static function middleware(): array
     {
         return [
-            new Middleware('permission:laporan-create', only: ['create', 'store']),
+            new Middleware('permission:laporan-list', only: ['index', 'fetch']),
             new Middleware('permission:laporan-show', only: ['show']),
         ];
     }

@@ -1,6 +1,11 @@
 @php
     use Illuminate\Support\Facades\Crypt;
+
     use App\Models\ServiceOrderInspections;
+    use App\Models\ServiceOrderPerawatan;
+    use App\Models\ServiceOrderPerbaikan;
+    use App\Models\ServiceOrderGantibaru;
+
     $grandTotal = 0;
 @endphp
 
@@ -11,7 +16,7 @@
             <thead>
                 <tr>
                     <th
-                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-gray-400 dark:bg-primary-800 dark:border-primary-800">
+                        class="w-1/4 px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-gray-400 dark:bg-primary-800 dark:border-primary-800">
                         @lang('messages.ordernumber')
                     </th>
                     <th
@@ -19,7 +24,7 @@
                         &nbsp;
                     </th>
                     <th
-                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-gray-400 dark:bg-primary-800 dark:border-primary-800">
+                        class="w-1/4 px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-gray-400 dark:bg-primary-800 dark:border-primary-800">
                         @lang('messages.customer')
                     </th>
                     <th
@@ -27,7 +32,7 @@
                         @lang('calendar.date')
                     </th>
                     <th
-                        class="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-gray-400 dark:bg-primary-800 dark:border-primary-800">
+                        class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider border-b border-primary-100 text-gray-600 bg-primary-50 dark:text-gray-400 dark:bg-primary-800 dark:border-primary-800">
                         @lang('messages.officer')
                     </th>
                 </tr>
@@ -45,28 +50,39 @@
                 @foreach ($datas as $data)
                     @php
                         $details = ServiceOrderInspections::where('service_order_id', $data->id)->get();
+                        $perawatans = ServiceOrderPerawatan::where('service_order_id', $data->id)
+                            ->selectRaw('DISTINCT service_order_id, jenis_perawatan_id, nama_perawatan, keterangan')
+                            ->get();
+
+                        $perbaikans = ServiceOrderPerbaikan::where('service_order_id', $data->id)->get();
+                        $gantibarus = ServiceOrderGantibaru::where('service_order_id', $data->id)->get();
+                        $accordionPerawatan = 'perawatan-' . $data->id;
+                        $accordionPerbaikan = 'perbaikan-' . $data->id;
+                        $accordionGantibaru = 'gantibaru-' . $data->id;
                         $i = 0;
+                        $i2 = 0;
                     @endphp
                     <tr>
                         <td
-                            class="font-bold px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
+                            class="font-bold px-3 py-1 text-sm border-y-4 border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
                             <span class="text-gray-900 dark:text-gray-400">{{ $data->no_order }}</span>
                         </td>
                         <td
-                            class="font-bold text-center px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
+                            class="font-bold text-center px-3 py-1 text-sm border-y-4 border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
                             <span class="text-gray-900 dark:text-gray-400">&nbsp;</span>
                         </td>
                         <td
-                            class="font-bold px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
-                            <span class="text-gray-900 dark:text-gray-400">{{ $data->customer->nama }}</span>
+                            class="font-bold px-3 py-1 text-sm border-y-4 border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
+                            <span
+                                class="text-gray-900 dark:text-gray-400">{{ ($data->customer->customer_group_id == 1 ? 'Cabang ' : '') . $data->customer->nama }}</span>
                         </td>
                         <td
-                            class="font-bold px-3 py-1 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
+                            class="font-bold px-3 py-1 text-sm border-y-4 border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
                             <span
                                 class="text-gray-900 dark:text-gray-400">{{ date_format(date_create($data->tanggal), 'd/m/Y') }}</span>
                         </td>
                         <td
-                            class="text-right font-bold px-3 py-3 text-sm border-b border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
+                            class="font-bold px-3 py-3 text-sm border-y-4 border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
                             <span class="text-gray-900 dark:text-gray-400">{{ $data->petugas->nama_lengkap }}</span>
                         </td>
                     </tr>
@@ -123,9 +139,20 @@
                             </td>
                         </tr>
                     @endforeach
+
                     @php
                         $grandTotal += $data->total_harga;
                     @endphp
+
+                    @if ($perawatans->isNotEmpty())
+                        @include('inspect-report.partials.perawatan')
+                    @endif
+                    @if ($perbaikans->isNotEmpty())
+                        @include('inspect-report.partials.perbaikan')
+                    @endif
+                    @if ($gantibarus->isNotEmpty())
+                        @include('inspect-report.partials.gantibaru')
+                    @endif
                 @endforeach
             </tbody>
         </table>
@@ -139,3 +166,6 @@
     </div>
 
 </div>
+
+@push('scripts')
+@endpush
