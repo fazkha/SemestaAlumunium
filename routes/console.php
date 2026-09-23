@@ -8,7 +8,5 @@ Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');
 
-Schedule::command('app:check-minimum-stock')
-    ->everyMinute();
-Schedule::command('app:check-open-complaint')
-    ->everyMinute();
+Schedule::command('app:check-minimum-stock')->everyTenMinutes();
+Schedule::command('app:check-open-complaint')->everyTenMinutes();
