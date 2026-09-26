@@ -325,5 +325,6 @@ return [
     'kas_akhir' => 'Ending Cash Balance',
     'selectall' => 'Select All',
     'item' => 'Item',
+    'gerobak' => 'Gerobak',
     'grand_total' => 'Grand Total',
 ];

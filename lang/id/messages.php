@@ -325,5 +325,6 @@ return [
     'kas_akhir' => 'Kas Akhir',
     'selectall' => 'Centang Semua',
     'item' => 'Barang',
+    'gerobak' => 'Gerobak',
     'grand_total' => 'Jumlah Keseluruhan',
 ];

@@ -8,6 +8,7 @@ use App\Models\KalenderHke;
 use App\Models\Pegawai;
 use App\Models\ServiceOrder;
 use App\Http\Requests\ServiceOrderRequest;
+use App\Models\Gerobak;
 use App\Models\JenisPelayanan;
 use App\Models\ServiceOrderInspections;
 use App\Models\StdInspect;
@@ -148,6 +149,7 @@ class InspectController extends Controller implements HasMiddleware
     public function create(): View
     {
         $branch_id = auth()->user()->profile->branch_id;
+        $gerobaks = Gerobak::where('isactive', 1)->orderBy('kode')->pluck('kode', 'id');
         $jenis_pelayanan_id = JenisPelayanan::where('nama', 'Inspeksi')->value('id');
         $customers = Customer::where('branch_id', $branch_id)->where('isactive', 1)->orderBy('nama')->pluck('nama', 'id');
         $petugass = Pegawai::join('brandivjabpegs', 'brandivjabpegs.pegawai_id', 'pegawais.id')
@@ -160,7 +162,7 @@ class InspectController extends Controller implements HasMiddleware
         $hke = KalenderHke::where('tanggal', date('Y-m-d'))->value('hke');
         $sro_prefix = AppSetting::where('parm', 'prefix_service_order')->value('value');
 
-        return view('service-order.create', compact(['customers', 'branch_id', 'jenis_pelayanan_id', 'petugass', 'hke', 'sro_prefix']));
+        return view('service-order.create', compact(['gerobaks', 'customers', 'branch_id', 'jenis_pelayanan_id', 'petugass', 'hke', 'sro_prefix']));
     }
 
     public function store(ServiceOrderRequest $request)
@@ -174,6 +176,7 @@ class InspectController extends Controller implements HasMiddleware
                 'jenis_pelayanan_id' => $request->jenis_pelayanan_id,
                 'petugas_id' => $request->petugas_id,
                 'product_id' => $product_id,
+                'gerobak_id' => $request->gerobak_id,
                 'hke' => $request->hke,
                 'tanggal' => $request->tanggal,
                 'keterangan' => $request->keterangan,
@@ -199,6 +202,7 @@ class InspectController extends Controller implements HasMiddleware
     public function edit(Request $request): View
     {
         $branch_id = auth()->user()->profile->branch_id;
+        $gerobaks = Gerobak::where('isactive', 1)->orderBy('kode')->pluck('kode', 'id');
         $jenis_pelayanan_id = JenisPelayanan::where('nama', 'Inspeksi')->value('id');
         $datas = ServiceOrder::find(Crypt::decrypt($request->inspect));
         $details = ServiceOrderInspections::where('service_order_id', Crypt::decrypt($request->inspect))->get();
@@ -213,7 +217,7 @@ class InspectController extends Controller implements HasMiddleware
             ->orderBy('pegawais.nama_lengkap')
             ->pluck('pegawais.nama_lengkap', 'pegawais.id');
 
-        return view('service-order.edit', compact(['datas', 'details', 'customers', 'std_inspections', 'branch_id', 'jenis_pelayanan_id', 'petugass']));
+        return view('service-order.edit', compact(['datas', 'details', 'gerobaks', 'customers', 'std_inspections', 'branch_id', 'jenis_pelayanan_id', 'petugass']));
     }
 
     public function update(ServiceOrderRequest $request): RedirectResponse
@@ -224,6 +228,7 @@ class InspectController extends Controller implements HasMiddleware
             $order->update([
                 'keterangan' => $request->keterangan,
                 'petugas_id' => $request->petugas_id,
+                'gerobak_id' => $request->gerobak_id,
                 'isperawatan' => ($request->isperawatan == 'on' ? 1 : 0),
                 'isperawatan_by' => $request->isperawatan == 'on' ? auth()->user()->email : null,
                 'isperawatan_at' => $request->isperawatan == 'on' ? date('Y-m-d H:i:s') : null,

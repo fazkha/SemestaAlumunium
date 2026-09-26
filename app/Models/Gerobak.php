@@ -8,10 +8,11 @@ class Gerobak extends Model
 {
     protected $guarded = [];
     protected $table = 'gerobaks';
-    protected $connection = 'mysql2';
+    protected $connection = 'mysql';
 
     protected $fillable = [
         'kode',
         'nama',
+        'isactive',
     ];
 }

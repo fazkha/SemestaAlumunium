@@ -17,6 +17,7 @@ class ServiceOrderRequest extends FormRequest
             'branch_id' => ['required', 'exists:branches,id'],
             'customer_id' => ['required', 'exists:customers,id'],
             'jenis_pelayanan_id' => ['required', 'exists:jenis_pelayanans,id'],
+            'gerobak_id' => ['required', 'exists:gerobaks,id'],
             'tanggal' => ['required', 'date'],
             'no_order' => ['nullable', 'string', 'max:200'],
         ];

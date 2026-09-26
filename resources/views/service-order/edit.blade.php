@@ -163,6 +163,22 @@
 
                                 <div class="w-full lg:w-1/2 px-2 flex flex-col justify-start">
                                     <div class="w-auto pb-4">
+                                        <label for="gerobak_id"
+                                            class="block mb-2 font-medium text-primary-600">@lang('messages.gerobak')</label>
+                                        <select name="gerobak_id" id="gerobak_id" tabindex="4" required
+                                            class="w-full block text-sm rounded-lg shadow-md text-gray-700 placeholder-gray-300 border-primary-100 bg-primary-20 dark:placeholder-gray-600 dark:border-primary-800 dark:bg-primary-700 dark:text-gray-400">
+                                            <option value="">@lang('messages.choose')...</option>
+                                            @foreach ($gerobaks as $id => $name)
+                                                <option value="{{ $id }}"
+                                                    {{ $datas->gerobak_id == $id ? 'selected' : '' }}>
+                                                    {{ $name }}</option>
+                                            @endforeach
+                                        </select>
+
+                                        <x-input-error class="mt-2" :messages="$errors->get('gerobak_id')" />
+                                    </div>
+
+                                    <div class="w-auto pb-4">
                                         <label for="keterangan"
                                             class="block mb-2 font-medium text-primary-600">@lang('messages.description')</label>
                                         <x-text-input type="text" maxlength="200" name="keterangan"
