@@ -61,6 +61,11 @@ class ServiceOrder extends Model
         return $this->belongsTo(Customer::class);
     }
 
+    public function gerobak()
+    {
+        return $this->belongsTo(Gerobak::class);
+    }
+
     public function petugas()
     {
         return $this->belongsTo(Pegawai::class, 'petugas_id');
