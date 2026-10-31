@@ -78,7 +78,7 @@
                             class="font-bold px-3 py-1 text-sm border-y-4 border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
                             <span
                                 class="text-gray-900 dark:text-gray-400">{{ ($data->customer->customer_group_id == 1 ? 'Cabang ' : '') . $data->customer->nama }}
-                                G{{ $data->gerobak->nama }}</span>
+                                - G{{ $data->gerobak->nama }}</span>
                         </td>
                         <td
                             class="font-bold px-3 py-1 text-sm border-y-4 border-primary-100 bg-primary-20 text-gray-700 dark:bg-primary-900 dark:border-primary-800 dark:text-gray-400">
